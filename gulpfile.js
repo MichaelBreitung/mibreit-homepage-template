@@ -12,7 +12,9 @@ const concat = require("gulp-concat");
 const cleanCss = require("gulp-clean-css");
 
 function prettyGulp(file, enc, callback) {
-  file.contents = Buffer.from(pretty(file.contents.toString(), { ocd: true }));
+  const prettyString = pretty(file.contents.toString(), { ocd: true });
+  const trimmedString = prettyString.replace(/^ +/gm, "");
+  file.contents = Buffer.from(trimmedString);
   callback(null, file);
 }
 
