@@ -1,13 +1,12 @@
 {
-  "name": "mibreit-photo",
+  "name": "mibreit-photo-homepage-template",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Homepage template based on Gulp and Nunjucks",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Michael Breitung",
+  "license": "BSD",
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
