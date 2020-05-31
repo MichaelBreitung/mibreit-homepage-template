@@ -1,0 +1,15 @@
+.galleries__table {
+  position: relative;
+}
+
+.galleries__table tr {
+  margin-top: 0.25rem;
+}
+
+.galleries__table h3 {
+  padding-top: 0.5rem;
+}
+
+.galleries__table p {
+  padding-top: 0.5rem;
+}

@@ -1,0 +1,74 @@
+{
+  "page_base_url": "https://www.mibreit-photo.com",
+  "page_base_german_url": "https://www.mibreit-photo.com/german",
+  "page_author": "Michael Breitung",
+  "page_name": "Michael Breitung Photography",
+  "social_media": {
+    "facebook": {
+      "url": "https://www.facebook.com/Michael-Breitung-Photography",
+      "image": "/images/social-media-links/facebook.png",
+      "me": true,
+      "essential": true
+    },
+    "youtube": {
+      "url": "https://www.youtube.com/user/mibreit",
+      "image": "/images/social-media-links/youtube.png",
+      "essential": true
+    },
+    "instagram": {
+      "url": "https://www.instagram.com/mibreitphoto/",
+      "image": "/images/social-media-links/instagram.png",
+      "essential": true
+    },
+    "linkedin": {
+      "url": "https://de.linkedin.com/in/michael-breitung",
+      "image": "/images/social-media-links/linkedIn.png"
+    },
+    "flickr": {
+      "url": "https://www.flickr.com/photos/mibreit/",
+      "image": "/images/social-media-links/flickr.png"
+    },
+    "steemit": {
+      "url": "https://steemit.com/@mibreit-photo",
+      "image": "/images/social-media-links/steem.png"
+    }
+  },
+  "page_navigation": {
+    "de": [
+      { "name": "Galerien", "url": "/german/galleries-ger.html" },
+      { "name": "Shop", "url": "/german/shop-ger.html" },
+      { "name": "Tutorials", "url": "/tutorials.html" },
+      { "name": "Services", "url": "/german/services-ger.html" },
+      { "name": "Kontakt", "url": "/german/contact-ger.html" },
+      { "name": "Blog", "url": "/blog/" }
+    ],
+    "en": [
+      { "name": "Galleries", "url": "/galleries.html" },
+      { "name": "Shop", "url": "/shop.html" },
+      { "name": "Tutorials", "url": "/tutorials.html" },
+      { "name": "Services", "url": "/services.html" },
+      { "name": "Contact", "url": "/contact.html" },
+      { "name": "Blog", "url": "/blog/" }
+    ]
+  },
+  "page_footer": {
+    "de": [
+      { "name": "Impressum", "url": "/german/imprint-ger.html" },
+      { "name": "Datenschutzerklärung", "url": "/german/privacy-policy-ger.html" },
+      { "name": "Haftungsausschluss", "url": "/german/disclaimer-ger.html" }
+    ],
+    "en": [
+      { "name": "Imprint", "url": "/imprint.html" },
+      { "name": "Privacy Policy", "url": "/privacy-policy.html" },
+      { "name": "Disclaimer", "url": "/disclaimer.html" }
+    ]
+  },
+  "page_cookie_consent": {
+    "de": {
+      "privacy_url": "/german/privacy-policy-ger.html"
+    },
+    "en": {
+      "privacy_url": "/privacy-policy.html"
+    }
+  }
+}

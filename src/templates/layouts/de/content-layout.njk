@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="robots" content="index,follow"/>
+    <meta name="copyright" content="{{page_author}}"/>
+    <meta name="author" content="{{page_author}}"/>
+    <meta name="keywords" lang="de" xml:lang="de" content="{{page_keywords}}"/>
+    <meta name="description" lang="de" xml:lang="de" content="{{page_description}}"/>
+    {% block meta %}{% endblock %}
+    <title>{{page_title}}</title>
+    <link rel="canonical" href="{{page_base_german_url}}/{{page_canonical}}"/>
+    <link rel="stylesheet" href="/styles/styles.css" type="text/css"/>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+    {% block styles %}{% endblock %}
+    <script src="/scripts/base.js"></script>
+    {% include "../../schema/schema-person.njk" %}
+    {% include "../../parts/script-google-analytics.njk" %}
+    {% include "../../parts/de/script-cookie-consent.njk" %}
+    {% block scripts %}{% endblock %}
+  </head>
+
+  <body>
+    <div id="container">
+      {% include "../../parts/de/header.njk" %}
+      {% include "../../parts/de/navigation.njk" %}
+      {% block slideshow %}{% endblock %}
+      <div class="framed-background">
+        <div class="framed-background__border"></div>
+        <div class="flex-vertical">
+          <main id="content">
+            {% block content %}{% endblock %}
+          </main>
+          {% include "../../parts/de/footer.njk" %}
+        </div>
+        <div class="framed-background__border"></div>
+      </div>
+    </div>
+  </body>
+</html>

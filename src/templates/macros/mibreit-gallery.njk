@@ -1,0 +1,152 @@
+{# 
+# All macros in this file are designed to work with mibreit-gallery javascript gallery. They
+# can be used to create php Markup for loading images from an accompanying gallery.xml files,
+# which must be loaced in the same folder as the page that uses these macros.
+#
+# @attention All macros below only work in php layouts 
+#
+# Example for gallery.xml
+
+  <?xml version="1.0" encoding="UTF-8"?>
+  <MibreitGallery imagePath="path to large images" thumbPath="path to thumbnails">
+  <infoEn keywords="landscape photos" description="great landscape photos">
+    <header_h1>Some header for the gallery pages</header_h1>
+    <header_h2>Some other header for the gallery pages</header_h2>
+    <content_title>Some title for the gallery pages</content_title>
+  </infoEn>
+  <infoDe .... same as for en, just german </infoDe>
+  <images>
+    <image>
+    <filename>some-image.jpg</filename>
+    <caption>title</caption>
+    <alt>alt description</alt>
+    <altDe>german alt description</altDe>
+    </image>
+  </images>
+  </MibreitGallery>
+  
+#}
+
+{# prepares data for slideshow, gallery, imageTitle and thumbview macros #}
+{% macro prepare() %}
+  <?php
+    require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery.php';
+    $mibreitGallery = new MibreitGalleryDataParser('gallery.xml');
+  ?>
+{% endmacro %}
+
+{# 
+# inserts slideshow container with php markup 
+# @param container - class name for container
+# @param de - if given, german version is generated (optional)
+# @attention requires call to prepare() beforehand
+#}
+{% macro slideshow(container, de) %}
+  <div class="{{container}}">
+    <?php
+    $images = $mibreitGallery->getImages();
+    $nrImages = count($images);
+    for ($i = 0; $i < 10 and $i < $nrImages; $i++) 
+    {
+        $r = rand(0, $nrImages - 1);
+        $image = $images[$r];
+        {{_image("image", de)}}
+        array_splice($images, $r, 1);
+        $nrImages--;
+    }
+  ?>
+  </div>
+{% endmacro %}
+
+{# 
+# inserts gallery container with php markup 
+# @param de - if given, german version is generated (optional)
+# @attention requires call to prepare() beforehand
+#}
+{% macro gallery(de) %}
+  <div class="mibreit-slideshow">
+    <?php
+    foreach ($mibreitGallery->getImages() as $image)
+    {
+      {{_image("image", de)}}
+    }
+  ?>
+  </div>
+{% endmacro %}
+
+{# private macro that should only be used internally within a php tag to create the image marcup #}
+{% macro _image(item, de) %}
+  $size = getimagesize(${{item}}->imageUrl);
+  echo "\n<div class=\"mibreit-imageElement\">\n";
+  echo "<img src=\"/images/image-placeholder-transparent.png\" ";
+  echo "data-src=\"" . ${{item}}->imageUrl . "\" ";
+  echo "title=\""    . ${{item}}->caption  . "\" ";
+  echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";							
+  echo "width=\""    . $size[0]         ."\" ";
+  echo "height=\""   . $size[1]         ."\"/>\n";
+  echo "<h3>" . ${{item}}->caption . "</h3>\n";
+  echo "\n</div>";
+{% endmacro %}
+
+{# 
+# inserts thumbview container with php markup 
+# @attention requires call to prepare() beforehand
+#}
+{% macro thumbview() %}
+  <div class="mibreit-thumbview">
+    <?php
+    foreach ($mibreitGallery->getImages() as $image)
+    {
+      $size = getimagesize($image->thumbUrl);						
+      echo "\n<div class=\"mibreit-thumbElement\">\n";						
+      echo "<img src=\"/images/image-placeholder-transparent.png\" data-src=\"" . $image->thumbUrl . "\" ";
+      echo "width=\"". $size[0] ."\" height=\"". $size[1] . "\" alt=\"thumbnail\"/>\n";	
+      echo "</div>";
+    }
+  ?>
+  </div>
+{% endmacro %}
+
+{# 
+# inserts title container with php markup 
+# @param de - if given, german version is generated (optional)
+# @attention requires call to prepare() beforehand
+#}
+{% macro imageTitle(de) %}
+  <div class="mibreit-slideshow-title"></div>
+  {% if de %}
+    <?php if (!empty($mibreitGallery->getInfoDe()->content)) { ?>
+    <p><?php echo $mibreitGallery->getInfoDe()->content; ?></p>
+    <?php } ?>
+  {% else %}
+    <?php if (!empty($mibreitGallery->getInfoEn()->content)) { ?>
+    <p><?php echo $mibreitGallery->getInfoEn()->content; ?></p>
+    <?php } ?>
+  {% endif %}
+{% endmacro %}
+
+{# 
+# inserts script for slideshow 
+# @param container - class name for container of slideshow -> same as in slideshow macro
+#}
+{% macro scriptSlideshow(container) %}
+  <script src="/scripts/mibreit-gallery/mibreitGallery.js"></script>
+  <script>
+    $(document).ready(function () {
+      var slideshow = mibreitGallery.createSlideshow({slideshowContainer: ".{{container}}", imageScaleMode: mibreitGallery.SCALE_MODE_STRETCH, interval: 4000});
+      slideshow.start();
+    });
+  </script>
+{% endmacro %}
+
+{# 
+# inserts script for gallery 
+#}
+{% macro scriptGallery() %}
+  <script src="/scripts/mibreit-gallery/mibreitGallery.js"></script>
+  <script>
+    $(document).ready(function () {
+      var gallery = mibreitGallery.createGallery({titleContainer: ".mibreit-slideshow-title", slideshowContainer: ".mibreit-slideshow", allowFullscreen: true, thumbviewContainer: ".mibreit-thumbview"})
+    });
+  </script>
+{% endmacro %}

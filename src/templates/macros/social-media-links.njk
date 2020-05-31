@@ -1,0 +1,30 @@
+{# 
+# inserts social media links that are provided
+# @param social_media - link objects for social media
+# @param essential - if provided, only subset of essential links will be used -> if less space is available
+#}
+{% macro socialMediaLinks(social_media, essential) %}
+  <div class="social-media">
+    {% if essential %}
+      {% for item_name, item_content in social_media %}
+        {% if item_content.url and item_content.image and item_content.essential %}
+          {% if item_content.me %}
+            <a class="social-media__link" rel="me" href="{{item_content.url}}"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="{{item_name}}"/></a>
+          {% else %}
+            <a class="social-media__link" href="{{item_content.url}}"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="{{item_name}}"/></a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {% for item_name, item_content in social_media %}
+        {% if item_content.url and item_content.image %}
+          {% if item_content.me %}
+            <a class="social-media__link" rel="me" href="{{item_content.url}}"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="{{item_name}}"/></a>
+          {% else %}
+            <a class="social-media__link" href="{{item_content.url}}"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="{{item_name}}"/></a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </div>
+{% endmacro %}

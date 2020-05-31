@@ -1,0 +1,6 @@
+{% from "../../macros/link-item-list.njk" import linkItemList %}
+<footer class="footer">
+  <p class="footer__text">All Material © Copyright by {{page_author}}. All Rights Reserved<br>
+    {{ linkItemList(page_footer.en, false, "footer__link", 4, "|") }}
+  </p>
+</footer>

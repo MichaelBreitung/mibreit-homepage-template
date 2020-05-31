@@ -1,0 +1,7 @@
+{# 
+# inserts markup for spaces
+# @param nr_of_spaces - number of spaces to insert
+#}
+{% macro insertSpaces(nr_of_spaces) %}
+  {% for i in range(0, nr_of_spaces) -%}&nbsp;{%- endfor %}
+{% endmacro %}

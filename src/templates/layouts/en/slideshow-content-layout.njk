@@ -1,0 +1,12 @@
+{% from "../../macros/mibreit-gallery.njk" import slideshow, prepare, scriptSlideshow %}
+
+{% extends "./content-layout.njk" %}
+{% block scripts %}
+  {{scriptSlideshow("slideshow")}}
+{% endblock %}
+{% block slideshow %}
+  <section class="slideshow__background">
+    {{prepare()}}
+    {{slideshow("slideshow")}}
+  </section>
+{% endblock %}

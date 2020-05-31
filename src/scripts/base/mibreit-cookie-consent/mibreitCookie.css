@@ -1,0 +1,25 @@
+#cookie-msg {
+  position: fixed;
+  color: #fff;
+  bottom: 0;
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #666;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+#cookie-msg .btn-aceptar {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  color: #fff;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background-color: #d4b888;
+  text-align: center;
+  white-space: nowrap;
+}

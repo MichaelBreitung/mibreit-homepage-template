@@ -1,0 +1,9 @@
+{% from "../../macros/dived-link-item-list.njk" import divedLinkItemList %}
+<nav class="navigation">
+  {{ divedLinkItemList(page_navigation.de, "navigation__item", "navigation__item--active", page_active_navigation) }}
+  {% if page_en %}
+    <div class="navigation__language-item">
+      <a href="{{page_en}}"><img src="/images/navigation/english.gif" alt="klicken sie hier um zur englischen Version dieser Seite zu gelangen" width="20" height="12"/></a>
+    </div>
+  {% endif %}
+</nav>

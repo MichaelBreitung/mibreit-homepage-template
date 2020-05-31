@@ -1,0 +1,14 @@
+.footer {
+  margin: 0.5rem;
+  margin-top: 3rem;
+}
+
+.footer .footer__text {
+  color: #b08719;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.footer .footer__link {
+  text-decoration: underline;
+}
