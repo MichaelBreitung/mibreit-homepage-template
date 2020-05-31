@@ -77,15 +77,15 @@
 {# private macro that should only be used internally within a php tag to create the image marcup #}
 {% macro _image(item, de) %}
   $size = getimagesize(${{item}}->imageUrl);
-  echo "\n<div class=\"mibreit-imageElement\">\n";
+  echo "<div class=\"mibreit-imageElement\">\n";
   echo "<img src=\"/images/image-placeholder-transparent.png\" ";
   echo "data-src=\"" . ${{item}}->imageUrl . "\" ";
   echo "title=\""    . ${{item}}->caption  . "\" ";
   echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";							
   echo "width=\""    . $size[0]         ."\" ";
   echo "height=\""   . $size[1]         ."\"/>\n";
-  echo "<h3>" . ${{item}}->caption . "</h3>\n";
-  echo "\n</div>";
+  echo "<h3>" . ${{item}}->caption . "</h3>";
+  echo "\n</div>\n";
 {% endmacro %}
 
 {# 
