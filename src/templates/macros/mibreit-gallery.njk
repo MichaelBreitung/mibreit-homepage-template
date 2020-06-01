@@ -127,13 +127,13 @@
 
 {# 
 # inserts script for slideshow 
-# @param container - class name for container of slideshow -> same as in slideshow macro
+# @param container - class or id name for container of slideshow -> starting with a . or #
 #}
 {% macro scriptSlideshow(container) %}
   <script src="/scripts/mibreit-gallery/mibreitGallery.js"></script>
   <script>
     $(document).ready(function () {
-      var slideshow = mibreitGallery.createSlideshow({slideshowContainer: ".{{container}}", imageScaleMode: mibreitGallery.SCALE_MODE_STRETCH, interval: 4000});
+      var slideshow = mibreitGallery.createSlideshow({slideshowContainer: "{{container}}", imageScaleMode: mibreitGallery.SCALE_MODE_STRETCH, interval: 4000});
       slideshow.start();
     });
   </script>
