@@ -128,12 +128,15 @@
 {# 
 # inserts script for slideshow 
 # @param container - class or id name for container of slideshow -> starting with a . or #
+# @param scale_mode - if provided will be applied to all images (SCALE_MODE_STRETCH(default), SCALE_MODE_FITASPECT, SCALE_MODE_NONE, SCALE_MODE_EXPAND)
 #}
-{% macro scriptSlideshow(container) %}
+{% macro scriptSlideshow(container, scale_mode) %}
   <script src="/scripts/mibreit-gallery/mibreitGallery.js"></script>
   <script>
     $(document).ready(function () {
-      var slideshow = mibreitGallery.createSlideshow({slideshowContainer: "{{container}}", imageScaleMode: mibreitGallery.SCALE_MODE_STRETCH, interval: 4000});
+      var slideshow = mibreitGallery.createSlideshow({slideshowContainer: "{{container}}", imageScaleMode:{% if scale_mode %}mibreitGallery.{{scale_mode}}
+        {% else %}
+          mibreitGallery.SCALE_MODE_STRETCH{% endif %}, interval: 4000});
       slideshow.start();
     });
   </script>
