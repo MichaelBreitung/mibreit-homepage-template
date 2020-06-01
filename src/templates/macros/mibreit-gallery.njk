@@ -128,10 +128,13 @@
 {# 
 # inserts script for slideshow 
 # @param container - class or id name for container of slideshow -> starting with a . or #
+# @param omit_script_include - it is possible to place multiple slideshows on one page. If you do so, you only need the slideshow include once. Use this flag whenever you want to omit the inclusion of the script. Typically you will just include it in your first call to this macro
 # @param scale_mode - if provided will be applied to all images (SCALE_MODE_STRETCH(default), SCALE_MODE_FITASPECT, SCALE_MODE_NONE, SCALE_MODE_EXPAND)
 #}
-{% macro scriptSlideshow(container, scale_mode) %}
-  <script src="/scripts/mibreit-gallery/mibreitGallery.js"></script>
+{% macro scriptSlideshow(container, omit_script_include, scale_mode) %}
+  {% if not omit_script_include %}
+    <script src="/scripts/mibreit-gallery/mibreitGallery.js"></script>
+  {% endif %}
   <script>
     $(document).ready(function () {
       var slideshow = mibreitGallery.createSlideshow({slideshowContainer: "{{container}}", imageScaleMode:{% if scale_mode %}mibreitGallery.{{scale_mode}}
