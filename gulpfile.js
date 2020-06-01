@@ -73,11 +73,11 @@ gulp.task("concatenate-base-javascript", function () {
     .pipe(gulp.dest("dist/scripts"));
 });
 
-gulp.task("concatenate-javascript", function () {
+gulp.task("concatenate-contact-javascript", function () {
   return gulp
     .src(["src/scripts/contact/jquery-validate/*.js", "src/scripts/contact/mibreit-contact/*.js"])
     .pipe(concat("contact.js"))
-    .pipe(gulp.dest("dist/scripts"));
+    .pipe(gulp.dest("dist/scripts/contact"));
 });
 
 gulp.task("copy-mibreit-gallery-javascript", function () {
@@ -103,10 +103,8 @@ gulp.task("copy-favicon", function () {
 });
 
 // additional copy tasks
-gulp.task("copy-mibreit-gallery-php", function () {
-  return gulp
-    .src(["src/scripts/mibreit-gallery/mibreit-gallery.php"])
-    .pipe(gulp.dest("dist/scripts/mibreit-gallery"));
+gulp.task("copy-php-scripts", function () {
+  return gulp.src(["src/scripts/**/*.php"]).pipe(gulp.dest("dist/scripts"));
 });
 
 gulp.task(
@@ -116,9 +114,9 @@ gulp.task(
     "nunjucks-php",
     "create-clean-css",
     "concatenate-base-javascript",
-    "concatenate-javascript",
+    "concatenate-contact-javascript",
     "copy-mibreit-gallery-javascript",
-    "copy-mibreit-gallery-php",
+    "copy-php-scripts",
     "copy-images",
     "copy-mibreit-gallery-images",
     "copy-favicon"
