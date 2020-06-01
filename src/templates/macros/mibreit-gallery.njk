@@ -78,7 +78,7 @@
 {% macro _image(item, de) %}
   $size = getimagesize(${{item}}->imageUrl);
   echo "<div class=\"mibreit-imageElement\">\n";
-  echo "<img src=\"/images/image-placeholder-transparent.png\" ";
+  echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" ";
   echo "data-src=\"" . ${{item}}->imageUrl . "\" ";
   echo "title=\""    . ${{item}}->caption  . "\" ";
   echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";							
@@ -99,7 +99,7 @@
     {
       $size = getimagesize($image->thumbUrl);						
       echo "\n<div class=\"mibreit-thumbElement\">\n";						
-      echo "<img src=\"/images/image-placeholder-transparent.png\" data-src=\"" . $image->thumbUrl . "\" ";
+      echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" data-src=\"" . $image->thumbUrl . "\" ";
       echo "width=\"". $size[0] ."\" height=\"". $size[1] . "\" alt=\"thumbnail\"/>\n";	
       echo "</div>";
     }

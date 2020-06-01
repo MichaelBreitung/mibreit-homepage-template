@@ -98,6 +98,10 @@ gulp.task("copy-mibreit-gallery-images", function () {
     .pipe(gulp.dest("dist/scripts/mibreit-gallery/images"));
 });
 
+gulp.task("copy-favicon", function () {
+  return gulp.src("src/images/favicon.ico").pipe(gulp.dest("dist"));
+});
+
 // additional copy tasks
 gulp.task("copy-mibreit-gallery-php", function () {
   return gulp
@@ -116,6 +120,7 @@ gulp.task(
     "copy-mibreit-gallery-javascript",
     "copy-mibreit-gallery-php",
     "copy-images",
-    "copy-mibreit-gallery-images"
+    "copy-mibreit-gallery-images",
+    "copy-favicon"
   )
 );
