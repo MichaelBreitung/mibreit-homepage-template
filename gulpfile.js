@@ -11,6 +11,15 @@ const pretty = require("pretty");
 const concat = require("gulp-concat");
 const cleanCss = require("gulp-clean-css");
 
+// helpers
+const loadVariant = require("./scripts/variantLoader");
+
+const baseFolder = "src";
+const variant = loadVariant(process.argv, baseFolder);
+if (!variant) {
+  process.exit(1);
+}
+
 function prettyGulp(file, enc, callback) {
   const prettyString = pretty(file.contents.toString(), { ocd: true });
   const trimmedString = prettyString.replace(/^ +/gm, "");
@@ -21,11 +30,11 @@ function prettyGulp(file, enc, callback) {
 // html / php tasks
 gulp.task("nunjucks-php", function () {
   return gulp
-    .src("src/pages/**/*.php")
+    .src(`${baseFolder}/pages/**/*.php`)
     .pipe(data(page_data))
     .pipe(
       nunjucksRender({
-        path: ["src/templates"],
+        path: [`${baseFolder}/${variant.templates}/templates`],
         ext: ".php",
         envOptions: {
           autoescape: false,
@@ -40,11 +49,11 @@ gulp.task("nunjucks-php", function () {
 
 gulp.task("nunjucks-html", function () {
   return gulp
-    .src("src/pages/**/*.html")
+    .src(`${baseFolder}/pages/**/*.html`)
     .pipe(data(page_data))
     .pipe(
       nunjucksRender({
-        path: ["src/templates"],
+        path: [`${baseFolder}/${variant.templates}/templates`],
         envOptions: {
           autoescape: false,
           trimBlocks: true,
@@ -58,11 +67,11 @@ gulp.task("nunjucks-html", function () {
 
 gulp.task("nunjucks-php-scripts", function () {
   return gulp
-    .src(["src/scripts/**/*.php"])
+    .src([`${baseFolder}/scripts/**/*.php`])
     .pipe(data(page_data))
     .pipe(
       nunjucksRender({
-        path: ["src/templates"],
+        path: [`${baseFolder}/${variant.templates}/templates`],
         ext: ".php",
         envOptions: {
           autoescape: false,
@@ -74,11 +83,11 @@ gulp.task("nunjucks-php-scripts", function () {
 
 gulp.task("nunjucks-htaccess", function () {
   return gulp
-    .src(["src/htaccess/.htaccess"], { dot: true })
+    .src([`${baseFolder}/htaccess/.htaccess`], { dot: true })
     .pipe(data(page_data))
     .pipe(
       nunjucksRender({
-        path: ["src/templates"],
+        path: [`${baseFolder}/templates`],
         ext: "",
         envOptions: {
           autoescape: false,
@@ -91,7 +100,7 @@ gulp.task("nunjucks-htaccess", function () {
 // css tasks
 gulp.task("create-clean-css", function () {
   return gulp
-    .src(["src/styles/*.css", "src/scripts/**/*.css"])
+    .src([`${baseFolder}/${variant.styles}/styles/*.css`, `${baseFolder}/scripts/**/*.css`])
     .pipe(concat("styles.css"))
     .pipe(cleanCss({ compatibility: "ie8" }))
     .pipe(gulp.dest("dist/styles"));
@@ -100,38 +109,46 @@ gulp.task("create-clean-css", function () {
 // javascript tasks
 gulp.task("concatenate-base-javascript", function () {
   return gulp
-    .src(["src/scripts/base/jquery/*.js", "src/scripts/base/mibreit-cookie-consent/*.js"])
+    .src([
+      `${baseFolder}/scripts/base/jquery/*.js`,
+      `${baseFolder}/scripts/base/mibreit-cookie-consent/*.js`,
+    ])
     .pipe(concat("base.js"))
     .pipe(gulp.dest("dist/scripts"));
 });
 
 gulp.task("concatenate-contact-javascript", function () {
   return gulp
-    .src(["src/scripts/contact/jquery-validate/*.js", "src/scripts/contact/mibreit-contact/*.js"])
+    .src([
+      `${baseFolder}/scripts/contact/jquery-validate/*.js`,
+      `${baseFolder}/scripts/contact/mibreit-contact/*.js`,
+    ])
     .pipe(concat("contact.js"))
     .pipe(gulp.dest("dist/scripts/contact"));
 });
 
 gulp.task("copy-mibreit-gallery-javascript", function () {
   return gulp
-    .src("src/scripts/mibreit-gallery/*.js")
+    .src(`${baseFolder}/scripts/mibreit-gallery/*.js`)
     .pipe(gulp.dest("dist/scripts/mibreit-gallery"));
 });
 
 // images tasks
 
 gulp.task("copy-images", function () {
-  return gulp.src("src/images/**/*.+(jpg|png|gif)").pipe(gulp.dest("dist/images"));
+  return gulp
+    .src(`${baseFolder}/${variant.images}/images/**/*.+(jpg|png|gif)`)
+    .pipe(gulp.dest("dist/images"));
 });
 
 gulp.task("copy-mibreit-gallery-images", function () {
   return gulp
-    .src("src/scripts/mibreit-gallery/images/*.+(jpg|png|gif)")
+    .src(`${baseFolder}/scripts/mibreit-gallery/images/*.+(jpg|png|gif)`)
     .pipe(gulp.dest("dist/scripts/mibreit-gallery/images"));
 });
 
 gulp.task("copy-favicon", function () {
-  return gulp.src("src/images/favicon.ico").pipe(gulp.dest("dist"));
+  return gulp.src(`${baseFolder}/${variant.images}/images/favicon.ico`).pipe(gulp.dest("dist"));
 });
 
 gulp.task(

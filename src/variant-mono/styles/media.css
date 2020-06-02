@@ -1,0 +1,73 @@
+@media (min-width: 360px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media (min-width: 420px) {
+  html {
+    font-size: 62.5%;
+  }
+}
+
+@media (min-width: 480px) {
+  html {
+    font-size: 66%;
+  }
+}
+
+@media (min-width: 600px) {
+  html {
+    font-size: 75%;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  h3,
+  h4 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 1.25rem;
+  }
+
+  small {
+    font-size: 1rem;
+  }
+
+  ol,
+  ul {
+    font-size: 1.25rem;
+  }
+
+  #footer p {
+    font-size: 1rem;
+  }
+
+  form {
+    font-size: 1.25rem;
+  }
+
+  form input,
+  form textarea {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 801px) {
+  html {
+    font-size: 100%;
+  }
+
+  #container {
+    max-width: 54rem;
+  }
+}

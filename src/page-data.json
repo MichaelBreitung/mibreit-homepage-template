@@ -36,20 +36,12 @@
   },
   "page_navigation": {
     "de": [
-      { "name": "Galerien", "url": "/german/galleries-ger.html" },
-      { "name": "Shop", "url": "/german/shop-ger.html" },
-      { "name": "Tutorials", "url": "/tutorials.html" },
-      { "name": "Services", "url": "/german/services-ger.html" },
-      { "name": "Kontakt", "url": "/german/contact-ger.html" },
-      { "name": "Blog", "url": "/blog/" }
+      { "name": "Home", "url": "/german/" },
+      { "name": "Kontakt", "url": "/german/contact-ger.html" }
     ],
     "en": [
-      { "name": "Galleries", "url": "/galleries.html" },
-      { "name": "Shop", "url": "/shop.html" },
-      { "name": "Tutorials", "url": "/tutorials.html" },
-      { "name": "Services", "url": "/services.html" },
-      { "name": "Contact", "url": "/contact.html" },
-      { "name": "Blog", "url": "/blog/" }
+      { "name": "Home", "url": "/" },
+      { "name": "Contact", "url": "/contact.html" }
     ]
   },
   "page_footer": {

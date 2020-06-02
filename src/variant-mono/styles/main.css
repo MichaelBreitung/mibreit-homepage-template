@@ -1,0 +1,62 @@
+#content {
+  padding-top: 1px;
+}
+
+#content .content__table img {
+  padding: 0.5rem;
+}
+
+#content .content__table .width-small img {
+  max-width: 100%;
+  height: auto;
+}
+
+#content .content__tutorial-discount {
+  position: relative;
+  background-image: url("/images/tutorial-discount.jpg");
+  background-position: top;
+  background-attachment: scroll;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  padding-bottom: 12%;
+  height: auto;
+  overflow: hidden;
+}
+
+#content .content__shop-banner {
+  position: relative;
+  background-image: url("/images/shop-banner.jpg");
+  background-position: top;
+  background-attachment: scroll;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  padding-bottom: 12%;
+  height: auto;
+  overflow: hidden;
+}
+
+/******** Framed background ****/
+/*******************************/
+
+.framed-background {
+  min-height: 57rem;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  background-image: url(/images/design/background-content-middle.png);
+  background-position: top;
+  background-attachment: scroll;
+  background-repeat: repeat-x;
+  display: flex;
+  flex-direction: row;
+}
+
+.framed-background .framed-background__border {
+  background-image: url(/images/design/background-content-border.png);
+  background-position: top;
+  background-repeat: repeat-x;
+  width: 1px;
+  height: 57rem;
+}
