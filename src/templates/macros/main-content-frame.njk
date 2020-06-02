@@ -1,0 +1,9 @@
+{% macro mainContentFrame() %}
+  <div class="framed-background">
+    <div class="framed-background__border"></div>
+    <div class="flex-vertical">
+      {{caller()}}
+    </div>
+    <div class="framed-background__border"></div>
+  </div>
+{% endmacro %}

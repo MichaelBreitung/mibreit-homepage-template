@@ -26,16 +26,13 @@
       {% include "../../parts/en/header.njk" %}
       {% include "../../parts/en/navigation.njk" %}
       {% block slideshow %}{% endblock %}
-      <div class="framed-background">
-        <div class="framed-background__border"></div>
-        <div class="flex-vertical">
-          <main id="content">
-            {% block content %}{% endblock %}
-          </main>
-          {% include "../../parts/en/footer.njk" %}
-        </div>
-        <div class="framed-background__border"></div>
-      </div>
+      {% from "../../macros/main-content-frame.njk" import mainContentFrame %}
+      {% call mainContentFrame() %}
+      <main id="content">
+        {% block content %}{% endblock %}
+      </main>
+      {% include "../../parts/en/footer.njk" %}
+      {% endcall %}
     </div>
   </body>
 </html>
