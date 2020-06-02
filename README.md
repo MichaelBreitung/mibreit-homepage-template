@@ -4,6 +4,14 @@
 
 Homepage Template based on Gulp and Nunjucks, which makes it easy to create html/php homepages.
 
+## Install
+
+1. npm install
+2. download minified jQuery Version -> see src/scripts/base/jquery/README.md
+3. download minified jQuery.validate Version -> see src/scripts/base/jquery/README.md
+4. make changes to variants, page-data.json and pages
+5. run gulp
+
 ## Technology
 
 - Gulp -> https://www.npmjs.com/package/gulp
