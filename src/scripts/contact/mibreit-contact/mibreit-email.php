@@ -23,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
 
     // Set the recipient email address.  
-    $recipient = "mibreit@gmx.de";
+    $recipient = "{{page_email}}";
 
     // Set the email subject.
-    $subject = "mibreit-photo: $subject";
+    $subject = "{{page_name}}: $subject";
 
     // Build the email content.  
     $email_content = "Email: $email\n\n";

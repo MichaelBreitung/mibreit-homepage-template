@@ -56,6 +56,38 @@ gulp.task("nunjucks-html", function () {
     .pipe(gulp.dest("dist"));
 });
 
+gulp.task("nunjucks-php-scripts", function () {
+  return gulp
+    .src(["src/scripts/**/*.php"])
+    .pipe(data(page_data))
+    .pipe(
+      nunjucksRender({
+        path: ["src/templates"],
+        ext: ".php",
+        envOptions: {
+          autoescape: false,
+        },
+      })
+    )
+    .pipe(gulp.dest("dist/scripts"));
+});
+
+gulp.task("nunjucks-htaccess", function () {
+  return gulp
+    .src(["src/htaccess/.htaccess"], { dot: true })
+    .pipe(data(page_data))
+    .pipe(
+      nunjucksRender({
+        path: ["src/templates"],
+        ext: "",
+        envOptions: {
+          autoescape: false,
+        },
+      })
+    )
+    .pipe(gulp.dest("dist"));
+});
+
 // css tasks
 gulp.task("create-clean-css", function () {
   return gulp
@@ -102,21 +134,17 @@ gulp.task("copy-favicon", function () {
   return gulp.src("src/images/favicon.ico").pipe(gulp.dest("dist"));
 });
 
-// additional copy tasks
-gulp.task("copy-php-scripts", function () {
-  return gulp.src(["src/scripts/**/*.php"]).pipe(gulp.dest("dist/scripts"));
-});
-
 gulp.task(
   "default",
   gulp.parallel(
     "nunjucks-html",
     "nunjucks-php",
+    "nunjucks-php-scripts",
+    "nunjucks-htaccess",
     "create-clean-css",
     "concatenate-base-javascript",
     "concatenate-contact-javascript",
     "copy-mibreit-gallery-javascript",
-    "copy-php-scripts",
     "copy-images",
     "copy-mibreit-gallery-images",
     "copy-favicon"
