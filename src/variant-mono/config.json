@@ -1,5 +1,6 @@
 {
-  "images": "variant-base",
+  "images": ["variant-base", "variant-mono"],
   "styles": "variant-mono",
-  "templates": "variant-base"
+  "templates": "variant-base",
+  "favicon": "variant-base"
 }

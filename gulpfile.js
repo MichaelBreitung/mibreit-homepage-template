@@ -137,9 +137,15 @@ gulp.task("copy-mibreit-gallery-javascript", function () {
 // images tasks
 
 gulp.task("copy-images", function () {
-  return gulp
-    .src(`${baseFolder}/${variant.images}/images/**/*.+(jpg|png|gif)`)
-    .pipe(gulp.dest(`${outputFolder}/images`));
+  if (Array.isArray(variant.images)) {
+    return gulp
+      .src(variant.images.map((folder) => `${baseFolder}/${folder}/images/**/*.+(jpg|png|gif)`))
+      .pipe(gulp.dest(`${outputFolder}/images`));
+  } else {
+    return gulp
+      .src(`${baseFolder}/${variant.images}/images/**/*.+(jpg|png|gif)`)
+      .pipe(gulp.dest(`${outputFolder}/images`));
+  }
 });
 
 gulp.task("copy-mibreit-gallery-images", function () {
@@ -150,7 +156,7 @@ gulp.task("copy-mibreit-gallery-images", function () {
 
 gulp.task("copy-favicon", function () {
   return gulp
-    .src(`${baseFolder}/${variant.images}/images/favicon.ico`)
+    .src(`${baseFolder}/${variant.favicon}/images/favicon.ico`)
     .pipe(gulp.dest(outputFolder));
 });
 
