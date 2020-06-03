@@ -14,6 +14,7 @@ const cleanCss = require("gulp-clean-css");
 // helpers
 const loadVariant = require("./scripts/variantLoader");
 
+const outputFolder = "dist";
 const baseFolder = "src";
 const variant = loadVariant(process.argv, baseFolder);
 if (!variant) {
@@ -44,7 +45,7 @@ gulp.task("nunjucks-php", function () {
       })
     )
     .pipe(through2.obj(prettyGulp))
-    .pipe(gulp.dest("dist"));
+    .pipe(gulp.dest(outputFolder));
 });
 
 gulp.task("nunjucks-html", function () {
@@ -62,7 +63,7 @@ gulp.task("nunjucks-html", function () {
       })
     )
     .pipe(through2.obj(prettyGulp))
-    .pipe(gulp.dest("dist"));
+    .pipe(gulp.dest(outputFolder));
 });
 
 gulp.task("nunjucks-php-scripts", function () {
@@ -78,7 +79,7 @@ gulp.task("nunjucks-php-scripts", function () {
         },
       })
     )
-    .pipe(gulp.dest("dist/scripts"));
+    .pipe(gulp.dest(`${outputFolder}/scripts`));
 });
 
 gulp.task("nunjucks-htaccess", function () {
@@ -94,7 +95,7 @@ gulp.task("nunjucks-htaccess", function () {
         },
       })
     )
-    .pipe(gulp.dest("dist"));
+    .pipe(gulp.dest(outputFolder));
 });
 
 // css tasks
@@ -103,7 +104,7 @@ gulp.task("create-clean-css", function () {
     .src([`${baseFolder}/${variant.styles}/styles/*.css`, `${baseFolder}/scripts/**/*.css`])
     .pipe(concat("styles.css"))
     .pipe(cleanCss({ compatibility: "ie8" }))
-    .pipe(gulp.dest("dist/styles"));
+    .pipe(gulp.dest(`${outputFolder}/styles`));
 });
 
 // javascript tasks
@@ -114,7 +115,7 @@ gulp.task("concatenate-base-javascript", function () {
       `${baseFolder}/scripts/base/mibreit-cookie-consent/*.js`,
     ])
     .pipe(concat("base.js"))
-    .pipe(gulp.dest("dist/scripts"));
+    .pipe(gulp.dest(`${outputFolder}/scripts`));
 });
 
 gulp.task("concatenate-contact-javascript", function () {
@@ -124,13 +125,13 @@ gulp.task("concatenate-contact-javascript", function () {
       `${baseFolder}/scripts/contact/mibreit-contact/*.js`,
     ])
     .pipe(concat("contact.js"))
-    .pipe(gulp.dest("dist/scripts/contact"));
+    .pipe(gulp.dest(`${outputFolder}/scripts/contact`));
 });
 
 gulp.task("copy-mibreit-gallery-javascript", function () {
   return gulp
     .src(`${baseFolder}/scripts/mibreit-gallery/*.js`)
-    .pipe(gulp.dest("dist/scripts/mibreit-gallery"));
+    .pipe(gulp.dest(`${outputFolder}/scripts/mibreit-gallery`));
 });
 
 // images tasks
@@ -138,19 +139,22 @@ gulp.task("copy-mibreit-gallery-javascript", function () {
 gulp.task("copy-images", function () {
   return gulp
     .src(`${baseFolder}/${variant.images}/images/**/*.+(jpg|png|gif)`)
-    .pipe(gulp.dest("dist/images"));
+    .pipe(gulp.dest(`${outputFolder}/images`));
 });
 
 gulp.task("copy-mibreit-gallery-images", function () {
   return gulp
     .src(`${baseFolder}/scripts/mibreit-gallery/images/*.+(jpg|png|gif)`)
-    .pipe(gulp.dest("dist/scripts/mibreit-gallery/images"));
+    .pipe(gulp.dest(`${outputFolder}/scripts/mibreit-gallery/images`));
 });
 
 gulp.task("copy-favicon", function () {
-  return gulp.src(`${baseFolder}/${variant.images}/images/favicon.ico`).pipe(gulp.dest("dist"));
+  return gulp
+    .src(`${baseFolder}/${variant.images}/images/favicon.ico`)
+    .pipe(gulp.dest(outputFolder));
 });
 
+// parallel execution of all tasks
 gulp.task(
   "default",
   gulp.parallel(
