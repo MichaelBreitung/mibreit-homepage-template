@@ -1,3 +1,3 @@
-Put minified JQuery here. Will later become a proper dependency
+Put minified JQuery here - Version 3.5.
 
 https://jquery.com/download/
