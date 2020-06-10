@@ -1,37 +1,29 @@
 {
-  "page_base_url": "https://www.mibreit-photo.com",
-  "page_base_german_url": "https://www.mibreit-photo.com/german",
-  "page_author": "Michael Breitung",
-  "page_name": "Michael Breitung Photography",
-  "page_email": "Michael.Breitung@mibreit-photo.com",
+  "page_base_url": "127.0.0.1",
+  "page_base_german_url": "127.0.0.1/german",
+  "page_author": "Your Name",
+  "page_name": "Name of page",
+  "page_email": "your.email@your-domain.com",
   "social_media": {
     "facebook": {
-      "url": "https://www.facebook.com/Michael-Breitung-Photography",
+      "url": "your facebook",
       "image": "/images/social-media-links/facebook.png",
       "me": true,
       "essential": true
     },
     "youtube": {
-      "url": "https://www.youtube.com/user/mibreit",
+      "url": "your youtube",
       "image": "/images/social-media-links/youtube.png",
       "essential": true
     },
     "instagram": {
-      "url": "https://www.instagram.com/mibreitphoto/",
+      "url": "your instagram url",
       "image": "/images/social-media-links/instagram.png",
       "essential": true
     },
     "linkedin": {
-      "url": "https://de.linkedin.com/in/michael-breitung",
+      "url": "your linked in",
       "image": "/images/social-media-links/linkedIn.png"
-    },
-    "flickr": {
-      "url": "https://www.flickr.com/photos/mibreit/",
-      "image": "/images/social-media-links/flickr.png"
-    },
-    "steemit": {
-      "url": "https://steemit.com/@mibreit-photo",
-      "image": "/images/social-media-links/steem.png"
     }
   },
   "page_navigation": {

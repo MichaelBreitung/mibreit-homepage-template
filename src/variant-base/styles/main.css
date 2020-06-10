@@ -11,32 +11,6 @@
   height: auto;
 }
 
-#content .content__tutorial-discount {
-  position: relative;
-  background-image: url("/images/tutorial-discount.jpg");
-  background-position: top;
-  background-attachment: scroll;
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 100%;
-  padding-bottom: 12%;
-  height: auto;
-  overflow: hidden;
-}
-
-#content .content__shop-banner {
-  position: relative;
-  background-image: url("/images/shop-banner.jpg");
-  background-position: top;
-  background-attachment: scroll;
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 100%;
-  padding-bottom: 12%;
-  height: auto;
-  overflow: hidden;
-}
-
 /******** Framed background ****/
 /*******************************/
 
