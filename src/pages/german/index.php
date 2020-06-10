@@ -2,7 +2,7 @@
 {% set page_sub_title="Sub Titel" %}
 {% set page_keywords="Homepage, Template, Keywords" %}
 {% set page_description="Homepage Template Description." %}
-{% set page_canonical = "" %}
+{% set page_canonical = "german/" %}
 {% set page_active_navigation = "Home" %}
 {% set page_en = "/" %}
 {% extends "./layouts/de/content-layout.njk" %}
