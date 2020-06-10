@@ -1,24 +1,32 @@
+{% include "../../parts/wordpress/top.njk" %}
+{% set page_title = "<?php echo $page_title ?>" %}
+{% set page_keywords = "<?php echo $page_keywords ?>" %}
+{% set page_description = "<?php echo $page_description ?>" %}
+{% set page_active_navigation = "Blog" %}
+{% set page_canonical = "<?php echo $page ?>" %}
+{% set page_type = "article" %}
+{% set page_image = "<?php echo $page_image ?>" %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     {% include "../../parts/en/head.njk" %}
+    {% include "../../parts/wordpress/head.njk" %}
     {% block meta %}{% endblock %}
     {% block styles %}{% endblock %}
     {% block scripts %}{% endblock %}
   </head>
-
   <body>
     <div id="container">
       {% include "../../parts/en/header.njk" %}
       {% include "../../parts/en/navigation.njk" %}
-      {% block slideshow %}{% endblock %}
       {% from "../../macros/main-content-frame.njk" import mainContentFrame %}
       {% call mainContentFrame() %}
-      <main id="content">
+      <main id="content" class="flexiblecontent">
         {% block content %}{% endblock %}
       </main>
       {% include "../../parts/en/footer.njk" %}
       {% endcall %}
     </div>
+    {% include "../../parts/wordpress/footer.njk" %}
   </body>
 </html>

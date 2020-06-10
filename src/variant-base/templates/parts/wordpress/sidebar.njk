@@ -1,0 +1,34 @@
+<aside id="sidebar" class="width-small" >
+  <div class="affiliate aligncenterflex">
+    <a href="https://www.booking.com/index.html?aid=1435595"><img class="fluid" src="/images/affiliate/booking-banner-square.jpg" alt="Booking.com" width="200" height="200"/></a>
+  </div>
+  <h4>Search</h4>
+  <form id="searchform" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <input type="text" name="s" id="s" size="30" value=""/>
+  </form>
+  <h4>Share</h4>
+  <div class="image-links">
+    <a class="image-links__link" href="https://twitter.com/intent/tweet?url=<?php if(is_home()){echo home_url();}else{the_permalink();} ?>&amp;text=<?php if(is_home()){echo sanitize_title_with_dashes(get_bloginfo("name"));}else{echo sanitize_title_with_dashes(get_the_title());} ?>" target="_blank"><img class="image-links__image" src="/images/social-media-share/twitter-share.png" alt="share via Twitter"/></a>
+    <a class="image-links__link" href="https://facebook.com/sharer.php?u=<?php if(is_home()){echo home_url();}else{the_permalink();} ?>" target="_blank"><img class="image-links__image" src="/images/social-media-share/facebook-share.png" alt="share via Facebook"/></a>
+  </div>
+  <h4>Subscribe</h4>
+  <div class="image-links">
+    <a class="image-links__link" href="http://feeds.feedburner.com/ArticlesTipsAndTutorialsAboutLandscapePhotography"><img class="image-links__image" src="<?php bloginfo('template_url'); ?>/images/feed-icon-28x28.png" alt="Subscribe via Feedburner" title="Subscribe via Feedburner" width="28"/></a>
+    <a class="image-links__link" href="http://www.feedspot.com/infiniterss.php?q=site:http%3A%2F%2Fmibreit-photo.com%2Fblog%2Ffeed"><img class="image-links__image" src="<?php bloginfo('template_url'); ?>/images/feed-icon-blue-28x28.png" alt="Subscribe via Feedspot" title="Subscribe via Feedspot" width="28"/></a>
+  </div>
+  <h4>Newsletter</h4>
+  <p>
+    <a href="/mailing-list.php">Mailing List</a>
+  </p>
+  <h4>Personal Network</h4>
+  {% from "../../macros/social-media-links.njk" import socialMediaLinks %}
+  {{ socialMediaLinks(social_media, true) }}
+  <h4>Equipment</h4>
+  <p>
+    <a href="/equipment.html">my Photography Gear</a>
+  </p>
+  <h4>Categories</h4>
+  <ul>
+    <?php wp_list_cats('sort_column=name'); ?>
+  </ul>
+</aside>

@@ -1,0 +1,23 @@
+{% from "../../macros/mibreit-gallery.njk" import gallery, thumbview, imageTitle, scriptGallery %}
+
+{% set page_title="<?php echo $mibreitGallery->getInfoDe()->header_h1;?>" %}
+{% set page_sub_title = "<?php echo $mibreitGallery->getInfoDe()->header_h2;?>" %}
+{% set page_keywords="<?php echo $mibreitGallery->getInfoDe()->keywords\;?>" %}
+{% set page_description = "<?php echo $mibreitGallery->getInfoDe()->description\;?>" %}
+{% set page_canonical = "<?php $page = $_SERVER[\"REQUEST_URI\"];if (substr($page, 0, 1) === \"/\"){$page = substr($page, 1);}echo $page;?>" %}
+{% set page_active_navigation = "Galerien" %}
+{% set page_en = "index.php?lan=en" %}
+{% extends "./content-layout.njk" %}
+{% block scripts %}
+  {{scriptGallery()}}
+{% endblock %}
+{% block content %}
+  {% include "../../parts/shop-banner.njk" %}
+  <h2>
+    <a href="/german/galleries-ger.html">Galerien</a> - <?php if (!empty($mibreitGallery->getInfoEn()->content_category)) {?>
+    <a href=<?php echo "../galleries-" . str_replace(' ', '-', strtolower($mibreitGallery->getInfoEn()->content_category)) . "-ger.html";?>><?php echo $mibreitGallery->getInfoDe()->content_category;?></a> - <?php }; echo $mibreitGallery->getInfoDe()->content_title;?>
+  </h2>
+  {{gallery(true)}}
+  {{thumbview()}}
+  {{imageTitle(true)}}
+{% endblock %}

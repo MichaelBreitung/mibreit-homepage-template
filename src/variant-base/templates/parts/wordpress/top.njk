@@ -1,0 +1,39 @@
+<?php 
+  $page_title = get_post_meta( get_the_ID(), 'title', true );    
+  if (!is_single() || !$title || (strlen($title) == 0))     
+  {
+    if(wp_title('', false))
+    {
+      $page_title = wp_title('', false);
+    }  
+    else 
+    {
+      $page_title = get_bloginfo('name');
+    }        
+  } 
+  $page_title = ltrim($page_title);
+
+  $page = "blog/";
+  if (is_single())
+  {
+    $page = $_SERVER["REQUEST_URI"];
+    if (substr($page, 0, 1) === "/")
+    {
+      $page = substr($page, 1);
+    }
+  }
+
+  $page_keywords = get_post_meta( get_the_ID(), 'keys', true );
+  if (!is_single() || !$page_keywords || (strlen($page_keywords) == 0)) 
+  {      
+    $page_keywords = "Landscape Photography, tips, photography, Tutorials, learning, Michael Breitung, mibreit";
+  }
+
+  $page_description = get_post_meta( get_the_ID(), 'desc', true );
+  if (!is_single() || !$page_description || (strlen($page_description) == 0))    
+  {
+    $page_description = "Landscape Photography of Michael Breitung - tips about photography and tutorials about digital postprocessing";
+  }  
+
+  $page_image = get_site_image();  
+?>

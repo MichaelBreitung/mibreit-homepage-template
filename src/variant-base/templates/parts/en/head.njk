@@ -1,0 +1,40 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="index,follow"/>
+<meta name="copyright" content="{{page_author}}"/>
+<meta name="author" content="{{page_author}}"/>
+<meta name="keywords" lang="en-us" xml:lang="en-us" content="{{page_keywords}}"/>
+<meta name="description" lang="en-us" xml:lang="en-us" content="{{page_description}}"/>
+<title>{{page_title}}</title>
+<link rel="canonical" href="{{page_base_url}}/{{page_canonical}}"/>
+<link rel="stylesheet" href="/styles/styles.css" type="text/css"/>
+<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+<meta property="og:locale" content="en_US"/>
+{% if page_type %}
+  <meta property="og:type" content="{{page_type}}"/>
+{% else %}
+  <meta property="og:type" content="website"/>
+{% endif %}
+<meta property="og:site_name" content="{{page_name}}"/>
+<meta property="og:url" content="{{page_base_url}}/{{page_canonical}}"/>
+<meta property="og:title" content="{{page_title}}"/>
+<meta property="og:description" content="{{page_description}}"/>
+{% if page_image %}
+  <meta property="og:image" content="{{page_image}}"/>
+{% else %}
+  <meta property="og:image" content="{{page_base_url}}/images/header/michael-breitung-photography.jpg"/>
+{% endif %}
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@BreitungMichael"/>
+<meta name="twitter:creator" content="@BreitungMichael"/>
+<meta name="twitter:title" content="{{page_title}}"/>
+<meta name="twitter:description" content="{{page_description}}"/>
+{% if page_image %}
+  <meta name="twitter:image"  content="{{page_image}}"/>
+{% else %}
+  <meta name="twitter:image"  content="{{page_base_url}}/images/header/michael-breitung-photography.jpg"/>
+{% endif %}
+<script src="/scripts/base.js"></script>
+{% include "../../schema/schema-person.njk" %}
+{% include "../../parts/script-google-analytics.njk" %}
+{% include "../../parts/en/script-cookie-consent.njk" %}

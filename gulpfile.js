@@ -160,6 +160,21 @@ gulp.task("copy-favicon", function () {
     .pipe(gulp.dest(outputFolder));
 });
 
+// wordpress specific
+gulp.task("copy-wordpress-images", function () {
+  return gulp
+    .src(`${baseFolder}/pages/blog/wp-content/themes/mibreit-photo/**/*.+(jpg|png|gif)`)
+    .pipe(gulp.dest(`${outputFolder}/blog/wp-content/themes/mibreit-photo`));
+});
+
+gulp.task("create-clean-css-wordpress", function () {
+  return gulp
+    .src(`${baseFolder}/pages/blog/wp-content/themes/mibreit-photo/*.css`)
+    .pipe(concat("styles.css"))
+    .pipe(cleanCss({ compatibility: "ie8" }))
+    .pipe(gulp.dest(`${outputFolder}/blog/wp-content/themes/mibreit-photo`));
+});
+
 // parallel execution of all tasks
 gulp.task(
   "default",
@@ -167,13 +182,15 @@ gulp.task(
     "nunjucks-html",
     "nunjucks-php",
     "nunjucks-php-scripts",
-    "nunjucks-htaccess",
+    // "nunjucks-htaccess",
     "create-clean-css",
     "concatenate-base-javascript",
     "concatenate-contact-javascript",
     "copy-mibreit-gallery-javascript",
     "copy-images",
     "copy-mibreit-gallery-images",
-    "copy-favicon"
+    "copy-favicon",
+    "copy-wordpress-images",
+    "create-clean-css-wordpress"
   )
 );
