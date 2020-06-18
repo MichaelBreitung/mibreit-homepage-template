@@ -2,6 +2,13 @@
   "page_base_url": "127.0.0.1",
   "page_base_german_url": "127.0.0.1/german",
   "page_author": "Your Name",
+  "page_author_details": {
+    "street": "street",
+    "town": "your city",
+    "zip": "city zip code",
+    "country": "country",
+    "phone": "+4411231231231"
+  },
   "page_name": "Name of page",
   "page_email": "your.email@your-domain.com",
   "social_media": {

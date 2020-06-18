@@ -1,0 +1,29 @@
+{% set page_title = "Imprint" %}
+{% set page_sub_title = "Homepage Template Subtitle" %}
+{% set page_keywords = "Homepage, template, keywords" %}
+{% set page_description = "Homepage Template Description." %}
+{% set page_canonical = "imprint.html" %}
+{% set page_de = "/german/imprint-ger.html" %}
+{% extends "./layouts/en/content-layout.njk" %}
+{% block content %}
+  <table>
+    <tr>
+      <td class="width-small"></td>
+      <td>
+        <h1>Imprint</h1>
+        <h2>According to § 5 TMG</h2>
+        <p>{{page_name}}<br>
+        Photographer<br>
+          {{page_author}}</p>
+        <h2>Address</h2>
+        <p>{{page_author_details.street}}<br>
+          {{page_author_details.zip}}&nbsp;{{page_author_details.town}}<br>
+          {{page_author_details.country}}</p>
+        <h2>Contact</h2>
+        <p>{{page_author_details.phone}}<br>
+          <a href="contact.html">Contact Form</a>
+        </p>
+      </td>
+    </tr>
+  </table>
+{% endblock %}

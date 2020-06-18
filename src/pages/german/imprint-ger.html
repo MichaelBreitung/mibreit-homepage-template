@@ -1,0 +1,29 @@
+{% set page_title = "Impressum" %}
+{% set page_sub_title = "Sub Titel" %}
+{% set page_keywords = "Homepage, Template, Keywords" %}
+{% set page_description = "Homepage Template Description." %}
+{% set page_canonical = "german/imprint-ger.html" %}
+{% set page_en = "/imprint.html" %}
+{% extends "./layouts/de/content-layout.njk" %}
+{% block content %}
+  <table>
+    <tr>
+      <td class="width-small"></td>
+      <td>
+        <h1>Impressum</h1>
+        <h2>Angaben gemäß § 5 TMG</h2>
+        <p>{{page_name}}<br>
+        Fotograf<br>
+          {{page_author}}</p>
+        <h2>Postanschrift</h2>
+        <p>{{page_author_details.street}}<br>
+          {{page_author_details.zip}}&nbsp;{{page_author_details.town}}<br>
+          {{page_author_details.country}}</p>
+        <h2>Kontakt</h2>
+        <p>{{page_author_details.phone}}<br>
+          <a href="contact-ger.html">Kontaktformular</a>
+        </p>
+      </td>
+    </tr>
+  </table>
+{% endblock %}
