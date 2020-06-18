@@ -12,11 +12,6 @@ html {
 body {
   font: 1rem Georgia, Times, Times New Roman, serif;
   line-height: 1.5;
-  background-image: url(/images/design/background.jpg);
-  background-position: center;
-  background-position: top;
-  background-attachment: scroll;
-  background-repeat: no-repeat;
   color: #4f5c64;
   background-color: #f4f5f6;
   border: none;
