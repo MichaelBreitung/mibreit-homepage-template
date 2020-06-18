@@ -6,6 +6,7 @@ const data = require("gulp-data");
 const page_data = require("./src/page-data.json");
 const through2 = require("through2");
 const pretty = require("pretty");
+const uglifyJs = require("uglify-js");
 
 // css
 const concat = require("gulp-concat");
@@ -21,10 +22,18 @@ if (!variant) {
   process.exit(1);
 }
 
-function prettyGulp(file, enc, callback) {
+// custom plugins
+function prettyHtml(file, enc, callback) {
   const prettyString = pretty(file.contents.toString(), { ocd: true });
   const trimmedString = prettyString.replace(/^ +/gm, "");
   file.contents = Buffer.from(trimmedString);
+  callback(null, file);
+}
+
+function minifyJs(file, enc, callback) {
+  if (!file.path.endsWith(".min.js")) {
+    file.contents = Buffer.from(uglifyJs.minify(file.contents.toString()).code);
+  }
   callback(null, file);
 }
 
@@ -44,7 +53,7 @@ gulp.task("nunjucks-php", function () {
         },
       })
     )
-    .pipe(through2.obj(prettyGulp))
+    .pipe(through2.obj(prettyHtml))
     .pipe(gulp.dest(outputFolder));
 });
 
@@ -62,7 +71,7 @@ gulp.task("nunjucks-html", function () {
         },
       })
     )
-    .pipe(through2.obj(prettyGulp))
+    .pipe(through2.obj(prettyHtml))
     .pipe(gulp.dest(outputFolder));
 });
 
@@ -99,9 +108,16 @@ gulp.task("nunjucks-htaccess", function () {
 });
 
 // css tasks
+
+// we ensure that media.css comes at the end -> so it takes precedence
 gulp.task("create-clean-css", function () {
   return gulp
-    .src([`${baseFolder}/${variant.styles}/styles/*.css`, `${baseFolder}/scripts/**/*.css`])
+    .src([
+      `${baseFolder}/${variant.styles}/styles/*.css`,
+      `!${baseFolder}/${variant.styles}/styles/media.css`,
+      `${baseFolder}/scripts/**/*.css`,
+      `${baseFolder}/${variant.styles}/styles/media.css`,
+    ])
     .pipe(concat("styles.css"))
     .pipe(cleanCss({ compatibility: "ie8" }))
     .pipe(gulp.dest(`${outputFolder}/styles`));
@@ -111,9 +127,10 @@ gulp.task("create-clean-css", function () {
 gulp.task("concatenate-base-javascript", function () {
   return gulp
     .src([
-      `${baseFolder}/scripts/base/jquery/*.js`,
-      `${baseFolder}/scripts/base/mibreit-cookie-consent/*.js`,
+      `${baseFolder}/scripts/base/jquery/*.min.js`,
+      `${baseFolder}/scripts/base/mibreit-cookie-consent/*.min.js`,
     ])
+    .pipe(through2.obj(minifyJs))
     .pipe(concat("base.js"))
     .pipe(gulp.dest(`${outputFolder}/scripts`));
 });
@@ -121,8 +138,8 @@ gulp.task("concatenate-base-javascript", function () {
 gulp.task("concatenate-contact-javascript", function () {
   return gulp
     .src([
-      `${baseFolder}/scripts/contact/jquery-validate/*.js`,
-      `${baseFolder}/scripts/contact/mibreit-contact/*.js`,
+      `${baseFolder}/scripts/contact/jquery-validate/*.min.js`,
+      `${baseFolder}/scripts/contact/mibreit-contact/*.min.js`,
     ])
     .pipe(concat("contact.js"))
     .pipe(gulp.dest(`${outputFolder}/scripts/contact`));
@@ -130,7 +147,7 @@ gulp.task("concatenate-contact-javascript", function () {
 
 gulp.task("copy-mibreit-gallery-javascript", function () {
   return gulp
-    .src(`${baseFolder}/scripts/mibreit-gallery/*.js`)
+    .src(`${baseFolder}/scripts/mibreit-gallery/*.min.js`)
     .pipe(gulp.dest(`${outputFolder}/scripts/mibreit-gallery`));
 });
 
