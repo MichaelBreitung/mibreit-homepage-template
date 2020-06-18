@@ -4,7 +4,6 @@
     {% include "../../parts/de/head.njk" %}
     {% block meta %}{% endblock %}
     {% block styles %}{% endblock %}
-    {% block scripts %}{% endblock %}
   </head>
 
   <body>
@@ -18,6 +17,7 @@
         {% block content %}{% endblock %}
       </main>
       {% include "../../parts/de/footer.njk" %}
+      {% block scripts %}{% endblock %}
       {% endcall %}
     </div>
   </body>
