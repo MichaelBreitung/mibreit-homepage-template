@@ -133,7 +133,7 @@
 #}
 {% macro scriptSlideshow(container, omit_script_include, scale_mode) %}
   {% if not omit_script_include %}
-    <script src="/scripts/mibreit-gallery/mibreitGallery.js"></script>
+    <script src="/scripts/mibreit-gallery/mibreitGallery.min.js"></script>
   {% endif %}
   <script>
     $(document).ready(function () {
@@ -149,7 +149,7 @@
 # inserts script for gallery 
 #}
 {% macro scriptGallery() %}
-  <script src="/scripts/mibreit-gallery/mibreitGallery.js"></script>
+  <script src="/scripts/mibreit-gallery/mibreitGallery.min.js"></script>
   <script>
     $(document).ready(function () {
       var gallery = mibreitGallery.createGallery({titleContainer: ".mibreit-slideshow-title", slideshowContainer: ".mibreit-slideshow", allowFullscreen: true, thumbviewContainer: ".mibreit-thumbview"})
