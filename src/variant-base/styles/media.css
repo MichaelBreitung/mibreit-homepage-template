@@ -75,3 +75,13 @@
     max-width: 53rem;
   }
 }
+
+@media (min-width: 880px) {
+  .navigation__sticky {
+    width: 100%;
+    left: auto;
+    right: auto;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
