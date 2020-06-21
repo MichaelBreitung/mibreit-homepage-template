@@ -2,6 +2,8 @@
   margin-top: 0.5rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+  height: 2.25rem;
+  min-width: 40rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -13,12 +15,12 @@
 .navigation .navigation__item {
   flex-grow: 1;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
-.navigation .navigation__language-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.navigation .navigation__item a:hover {
+  color: #a1b5c2;
 }
 
 .navigation .navigation__language-item img {
@@ -26,4 +28,5 @@
   height: auto;
   padding-left: 0.25rem;
   padding-right: 0.5rem;
+  vertical-align: middle;
 }

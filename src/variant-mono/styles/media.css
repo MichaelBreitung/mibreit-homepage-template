@@ -70,4 +70,8 @@
   #container {
     max-width: 54rem;
   }
+
+  .navigation {
+    max-width: 53rem;
+  }
 }
