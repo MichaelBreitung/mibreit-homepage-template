@@ -12,6 +12,8 @@ Homepage Template based on Gulp and Nunjucks, which makes it easy to create html
 4. make changes to variants, page-data.json and pages
 5. run gulp
 
+Note: If you want to build a specific variant, you can run _gulp --variant [folder of the variant]_. For example _gulp --variant mono_
+
 ## Technology
 
 - Gulp -> https://www.npmjs.com/package/gulp
