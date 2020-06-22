@@ -1,4 +1,4 @@
-var stickyNavbar = (function () {
+var stickyNavbar = function () {
   var navigationTopPosition = undefined;
   var navigationIsSticky = false;
 
@@ -25,13 +25,11 @@ var stickyNavbar = (function () {
     updateTopPosition();
   });
 
-  return function () {
-    window.onscroll = update;
+  $(window).scroll(update);
 
-    window.onresize = function () {
-      if (!navigationIsSticky) {
-        updateTopPosition();
-      }
-    };
-  };
-})();
+  $(window).resize(function () {
+    if (!navigationIsSticky) {
+      updateTopPosition();
+    }
+  });
+};
