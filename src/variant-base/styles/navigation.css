@@ -2,7 +2,7 @@
   margin-top: 0.5rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  height: 2.25rem;
+  height: 2.75rem;
   min-width: 40rem;
   display: flex;
   flex-direction: row;
@@ -21,6 +21,9 @@
   margin: 0rem;
 }
 
+.navigation__place-holder {
+  height: 2.75rem;
+}
 .navigation .navigation__item {
   flex-grow: 1;
   text-align: center;

@@ -20,6 +20,25 @@
   html {
     font-size: 75%;
   }
+}
+
+@media (min-width: 801px) {
+  html {
+    font-size: 100%;
+  }
+
+  #container {
+    max-width: 54rem;
+  }
+
+  .navigation {
+    height: 2.25rem;
+    max-width: 53rem;
+  }
+
+  .navigation__place-holder {
+    height: 2.25rem;
+  }
 
   h1 {
     font-size: 1.8rem;
@@ -62,16 +81,12 @@
   }
 }
 
-@media (min-width: 801px) {
-  html {
-    font-size: 100%;
-  }
-
-  #container {
-    max-width: 54rem;
-  }
-
-  .navigation {
-    max-width: 53rem;
+@media (min-width: 880px) {
+  .navigation__sticky {
+    width: 100%;
+    left: auto;
+    right: auto;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
   }
 }

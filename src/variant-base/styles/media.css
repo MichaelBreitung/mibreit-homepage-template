@@ -20,6 +20,25 @@
   html {
     font-size: 75%;
   }
+}
+
+@media (min-width: 801px) {
+  html {
+    font-size: 100%;
+  }
+
+  #container {
+    max-width: 54rem;
+  }
+
+  .navigation {
+    height: 2.25rem;
+    max-width: 53rem;
+  }
+
+  .navigation__place-holder {
+    height: 2.25rem;
+  }
 
   h1 {
     font-size: 1.8rem;
@@ -59,20 +78,6 @@
   form input,
   form textarea {
     font-size: 1.1rem;
-  }
-}
-
-@media (min-width: 801px) {
-  html {
-    font-size: 100%;
-  }
-
-  #container {
-    max-width: 54rem;
-  }
-
-  .navigation {
-    max-width: 53rem;
   }
 }
 

@@ -5,11 +5,13 @@ var stickyNavbar = function () {
   var update = function () {
     if (!navigationIsSticky) {
       if ($(window).scrollTop() > navigationTopPosition) {
+        $(".navigation").before('<div class="navigation__place-holder"></div>');
         $(".navigation").addClass("navigation__sticky");
         navigationIsSticky = true;
       }
     } else {
       if ($(window).scrollTop() <= navigationTopPosition) {
+        $(".navigation__place-holder").remove();
         $(".navigation").removeClass("navigation__sticky");
         navigationIsSticky = false;
         updateTopPosition();
