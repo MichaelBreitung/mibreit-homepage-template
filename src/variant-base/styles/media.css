@@ -31,12 +31,11 @@
     max-width: 54rem;
   }
 
-  .navigation {
-    height: 2.25rem;
+  .navigation__container {
     max-width: 53rem;
   }
 
-  .navigation__place-holder {
+  .navigation__container .navigation {
     height: 2.25rem;
   }
 
@@ -82,7 +81,7 @@
 }
 
 @media (min-width: 880px) {
-  .navigation__sticky {
+  .navigation__container.sticky {
     width: 100%;
     left: auto;
     right: auto;
