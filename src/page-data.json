@@ -11,6 +11,7 @@
   },
   "page_name": "Name of page",
   "page_email": "your.email@your-domain.com",
+  "google_analytics": "GTM-XXXXXX",
   "social_media": {
     "facebook": {
       "url": "your facebook",
