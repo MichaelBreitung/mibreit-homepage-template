@@ -14,29 +14,52 @@ class MibreitGalleryImage
     $this->altDe = "image";
     $this->imageUrl = "";
 
+    $this->redbubble = "";
+    $this->limited = false;
+    $this->size = "large";
+
     $tmp = $imageXml->filename;
     if (!empty($tmp))
     {
-      $this->imageUrl = $relativePath . $path . $tmp;
-      $this->thumbUrl = $relativePath . $thumbPath . $tmp;
+      $this->imageUrl = $relativePath . $path . (string) $tmp;
+      $this->thumbUrl = $relativePath . $thumbPath . (string) $tmp;
     }
     $tmp = $imageXml->caption;
     if (!empty($tmp))
     {
-      $this->caption = $tmp;
-      $this->altEn = $tmp;
-      $this->altDe = $tmp;
+      $this->caption = (string) $tmp;
+      $this->altEn = (string) $tmp;
+      $this->altDe = (string) $tmp;
     }
     $tmp = $imageXml->alt;    
     if (!empty($tmp))
     {    
-      $this->altEn = $tmp;
+      $this->altEn = (string) $tmp;
     }
     $tmp = $imageXml->altDe;
     if (!empty($tmp))
     {
-      $this->altDe = $tmp;
+      $this->altDe = (string)  $tmp;
     }   
+    $prints = $imageXml->prints;
+    if (!empty($prints))
+    {
+      $tmp = $prints["redbubble"];
+      if (!empty($tmp))
+      {
+        $this->redbubble = (string) $tmp;
+      }
+      $tmp = $prints["limited"];
+      if (!empty($tmp))
+      {
+        $this->limited = (boolean) $tmp;
+      }
+      $tmp = $prints["size"];
+      if (!empty($tmp))
+      {
+        $this->size = (string) $tmp;
+      }
+    }
   }
 }
 
@@ -75,42 +98,42 @@ class MibreitGalleryInfo
     $tmp = $infoXml->header_h1;
     if (!empty($tmp))
     {
-      $this->header_h1 = $tmp;
+      $this->header_h1 = (string) $tmp;
     }
     $tmp = $infoXml->header_h2;
     if (!empty($tmp))
     {
-      $this->header_h2 = $tmp;
+      $this->header_h2 = (string) $tmp;
     }
     $tmp = $infoXml->content_category;
     if (!empty($tmp))
     {
-      $this->content_category = $tmp;
+      $this->content_category = (string) $tmp;
     }
     $tmp = $infoXml->content_title;
     if (!empty($tmp))
     {
-      $this->content_title = $tmp;
+      $this->content_title = (string) $tmp;
     }
     $tmp = $infoXml->content;
     if (!empty($tmp))
     {
-      $this->content = $tmp;
+      $this->content = (string) $tmp;
     }
     $tmp = $infoXml["keywords"];
     if (!empty($tmp))
     {
-      $this->keywords = $tmp;
+      $this->keywords = (string) $tmp;
     }
     $tmp = $infoXml["description"];
     if (!empty($tmp))
     {
-      $this->description = $tmp;
+      $this->description = (string) $tmp;
     }
     $tmp = $infoXml["title"];
     if (!empty($tmp))
     {
-      $this->title = $tmp;
+      $this->title = (string) $tmp;
     }    
   }
 }
@@ -155,12 +178,12 @@ class MibreitGalleryDataParser
     $imagePath = "";
     if (!empty($gallery[self::IMAGE_PATH_TAG]))
     {
-      $imagePath = $gallery[self::IMAGE_PATH_TAG];
+      $imagePath = (string) $gallery[self::IMAGE_PATH_TAG];
     }
     $thumbPath = "";
     if (!empty($gallery[self::THUMB_PATH_TAG]))
     {
-      $thumbPath = $gallery[self::THUMB_PATH_TAG];
+      $thumbPath = (string) $gallery[self::THUMB_PATH_TAG];
     }
 
     if (!empty($images))
