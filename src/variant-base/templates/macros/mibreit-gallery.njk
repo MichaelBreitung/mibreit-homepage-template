@@ -64,7 +64,7 @@
 # @attention requires call to prepare() beforehand
 #}
 {% macro gallery(de) %}
-  <div class="mibreit-slideshow">
+  <div class="mibreit-gallery">
     <?php
     foreach ($mibreitGallery->getImages() as $image)
     {
@@ -93,7 +93,7 @@
 # @attention requires call to prepare() beforehand
 #}
 {% macro thumbview() %}
-  <div class="mibreit-thumbview">
+  <div class="mibreit-thumbview padding-bottom-large">
     <?php
     foreach ($mibreitGallery->getImages() as $image)
     {
@@ -113,7 +113,7 @@
 # @attention requires call to prepare() beforehand
 #}
 {% macro imageTitle(de) %}
-  <div class="mibreit-slideshow-title"></div>
+  <h2 class="mibreit-slideshow-title"></h2>
   {% if de %}
     <?php if (!empty($mibreitGallery->getInfoDe()->content)) { ?>
     <p><?php echo $mibreitGallery->getInfoDe()->content; ?></p>
@@ -141,6 +141,7 @@
       var slideshow = mibreitGallery.createSlideshow({slideshowContainer: "{{container}}", imageScaleMode:{% if scale_mode %}mibreitGallery.{{scale_mode}}
         {% else %}
           mibreitGallery.SCALE_MODE_STRETCH{% endif %}, interval: 4000{% if zoom %}, zoom: {{zoom}}{% endif %}});
+      $("{{container}}").css("opacity", "1.0");
       slideshow.start();
     });
   </script>
@@ -149,11 +150,36 @@
 {# 
 # inserts script for gallery 
 #}
-{% macro scriptGallery() %}
+{% macro scriptGallery(gallery_var_name) %}
   <script src="/scripts/mibreit-gallery/mibreitGallery.min.js"></script>
   <script>
+    {% if gallery_var_name %}
+      var {{gallery_var_name}};
+    {% else %}
+      var mibreitGalleryInstance;
+    {% endif %}
     $(document).ready(function () {
-      var gallery = mibreitGallery.createGallery({titleContainer: ".mibreit-slideshow-title", slideshowContainer: ".mibreit-slideshow", allowFullscreen: true, thumbviewContainer: ".mibreit-thumbview"})
+      {% if gallery_var_name %}
+        {{gallery_var_name}}
+      {% else %}
+        mibreitGalleryInstance
+      {% endif %} = mibreitGallery.createGallery({titleContainer: ".mibreit-slideshow-title", slideshowContainer: ".mibreit-gallery", allowFullscreen: true, thumbviewContainer: ".mibreit-thumbview"});
+      $(".mibreit-gallery").css("opacity", "1.0");
+      $(".mibreit-thumbview").css("opacity", "1.0");
     });
   </script>
+{% endmacro %}
+
+{# 
+# inserts prints script
+# @attention requires call to prepare() beforehand
+#}
+{% macro scriptImagePrints(gallery) %}
+  <?php   
+  echo "<script>\n";    
+  echo "$(document).ready(function () {\n";
+  echo "{{gallery}}.setImageChangedCallback(mibreitImagePrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", {{gallery}}))";  
+  echo "});\n";
+  echo "</script>";
+  ?>
 {% endmacro %}

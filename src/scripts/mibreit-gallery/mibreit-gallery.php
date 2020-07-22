@@ -63,6 +63,11 @@ class MibreitGalleryImage
       }
     }
   }
+
+  function getPrintInfo()
+  {
+    return array("prints" => $this->prints, "name" => $this->caption, "redbubble" => $this->redbubble, "limited" => $this->limited, "size" => $this->size);
+  }
 }
 
 class MibreitGalleryInfo
@@ -201,6 +206,16 @@ class MibreitGalleryDataParser
   public function getImages()
   {
     return $this->images;
+  }
+
+  public function getPrintInfos()
+  {
+    $printInfos = array();
+    foreach ($this->images as $image)
+    {             
+      $printInfos[$image->imageUrl] = $image->getPrintInfo();      
+    } 
+    return $printInfos;
   }
 
   public function getInfoEn()

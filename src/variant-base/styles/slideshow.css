@@ -11,4 +11,25 @@
   position: relative;
   width: 100%;
   padding-bottom: 66.66%;
+  opacity: 0;
+}
+
+.mibreit-slideshow-title {
+  padding: 0rem;
+  padding-top: 0.5rem;
+}
+
+.mibreit-gallery {
+  position: relative;
+  left: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 37rem;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.mibreit-thumbview {
+  overflow: hidden;
+  opacity: 0;
 }
