@@ -7,18 +7,12 @@
   </head>
 
   <body>
-    <div id="container">
-      {% include "../../parts/en/header.njk" %}
-      {% include "../../parts/en/navigation.njk" %}
-      {% block slideshow %}{% endblock %}
-      {% from "../../macros/main-content-frame.njk" import mainContentFrame %}
-      {% call mainContentFrame() %}
-      <main id="content">
-        {% block content %}{% endblock %}
-      </main>
-      {% include "../../parts/en/footer.njk" %}
-      {% block scripts %}{% endblock %}
-      {% endcall %}
-    </div>
+    {% include "../../parts/en/header.njk" %}
+    {% block slideshow %}{% endblock %}
+    <main class="content padding-bottom-normal">
+      {% block content %}{% endblock %}
+    </main>
+    {% include "../../parts/en/footer.njk" %}
+    {% block scripts %}{% endblock %}
   </body>
 </html>

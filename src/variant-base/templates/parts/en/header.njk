@@ -1,9 +1,9 @@
 <header class="header">
-  {% include "./header-image-link.njk" %}
   {% if page_title %}
     <h1>{{page_title}}</h1>
   {% endif %}
   {% if page_sub_title %}
     <h2>{{page_sub_title}}</h2>
   {% endif %}
+  {% include "../../parts/en/navigation.njk" %}
 </header>

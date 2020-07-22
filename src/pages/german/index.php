@@ -10,7 +10,4 @@
 {% block content %}
   <h2>Haupt Inhalt</h2>
   <p>Haupt Inhalte hier</p>  
-  <h3>Social Media</h3>
-  {% from "./macros/social-media-links.njk" import socialMediaLinks %} 
-  {{ socialMediaLinks(social_media) }}
 {% endblock %}

@@ -1,12 +1,15 @@
 .header {
-  margin: auto;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-  margin-top: 0;
+  position: relative;
+  margin: 0;
   height: 8rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-box-shadow: 0rem 0rem 0.5rem 0rem rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0rem 0rem 0.5rem 0rem rgba(0, 0, 0, 0.6);
+  box-shadow: 0rem 0rem 0.5rem 0rem rgba(0, 0, 0, 0.6);
 }
 
 .header h1 {

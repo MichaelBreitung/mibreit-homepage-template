@@ -15,21 +15,15 @@
     {% block styles %}{% endblock %}
   </head>
   <body>
-    <div id="container">
-      {% include "../../parts/en/header.njk" %}
-      {% include "../../parts/en/navigation.njk" %}
-      {% from "../../macros/main-content-frame.njk" import mainContentFrame %}
-      {% call mainContentFrame() %}
-      <main id="content" class="flexiblecontent">
-        {% include "../../parts/wordpress/sidebar.njk" %}
-        <div class="fluid">
-          {% block content %}{% endblock %}
-        </div>
-      </main>
-      {% include "../../parts/en/footer.njk" %}
-      {% block scripts %}{% endblock %}
-      {% endcall %}
-    </div>
+    {% include "../../parts/en/header.njk" %}
+    <main class="content padding-bottom-normal flexiblecontent">
+      {% include "../../parts/wordpress/sidebar.njk" %}
+      <div class="fluid">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+    {% include "../../parts/en/footer.njk" %}
+    {% block scripts %}{% endblock %}
     {% include "../../parts/wordpress/footer.njk" %}
   </body>
 </html>

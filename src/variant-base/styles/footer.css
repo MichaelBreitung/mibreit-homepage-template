@@ -1,6 +1,14 @@
 .footer {
-  margin: 0.5rem;
-  margin-top: 3rem;
+  position: absolute;
+  margin-bottom: 0rem;
+  margin-top: 0.5rem;
+  padding-bottom: 1rem;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-box-shadow: 0rem 0rem 0.5rem 0rem rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0rem 0rem 0.5rem 0rem rgba(0, 0, 0, 0.6);
+  box-shadow: 0rem 0rem 0.5rem 0rem rgba(0, 0, 0, 0.6);
 }
 
 .footer .footer__text {

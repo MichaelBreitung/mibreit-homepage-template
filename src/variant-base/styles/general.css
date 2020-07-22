@@ -10,12 +10,13 @@ html {
 }
 
 body {
-  font: 1rem Georgia, Times, Times New Roman, serif;
-  line-height: 1.5;
+  font: 1rem Helvetica, Verdana, "Open Sans", Georgia;
+  line-height: 1.6;
   color: #4f5c64;
-  background-color: #f4f5f6;
+  background-color: rgb(255, 255, 255);
   border: none;
   text-align: left;
+  max-height: 25000px;
 }
 
 a {
@@ -127,18 +128,6 @@ form textarea {
   background-color: #a5bac7;
 }
 
-/**** main container */
-/*********************/
-#container {
-  position: relative;
-  margin: auto;
-  margin-top: 0;
-  width: 100%;
-  max-height: 25000px;
-  min-width: 40rem;
-  overflow: hidden;
-}
-
 /******* alignment ***********/
 /*****************************/
 
@@ -217,6 +206,24 @@ form textarea {
 
 .spacing-top-large {
   margin-top: 1rem;
+}
+
+/******* padding *************/
+/*****************************/
+.padding-bottom-tiny {
+  padding-bottom: 0.125rem;
+}
+
+.padding-bottom-small {
+  padding-bottom: 0.25rem;
+}
+
+.padding-bottom-normal {
+  padding-bottom: 0.5rem;
+}
+
+.padding-bottom-large {
+  padding-bottom: 1rem;
 }
 
 /******* video ***************/

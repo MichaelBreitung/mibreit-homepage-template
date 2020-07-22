@@ -7,12 +7,10 @@
 #}
 {% macro divedLinkItemList(link_items, item_class, item_active_class, link_item_activator) %}
   {% for item in link_items %}
-    <div class="{{item_class}}">
-      {% if link_item_activator and link_item_activator == item.name %}
-        <a href="{{item.url}}" class="{{item_active_class}}">{{item.name}}</a>
-      {% else %}
-        <a href="{{item.url}}">{{item.name}}</a>
-      {% endif %}
-    </div>
+    {% if link_item_activator and link_item_activator == item.name %}
+      <a href="{{item.url}}" class="{{item_active_class}} {{item_class}}">{{item.name}}</a>
+    {% else %}
+      <a href="{{item.url}}" class="{{item_class}}">{{item.name}}</a>
+    {% endif %}
   {% endfor %}
 {% endmacro %}

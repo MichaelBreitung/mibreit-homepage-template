@@ -36,7 +36,4 @@ Amet officia tempor occaecat ullamco. Ad aute anim fugiat magna dolor Lorem veli
 Proident enim in labore sit sit commodo non cillum aliqua irure. Reprehenderit ex in voluptate aliquip est Lorem ad excepteur ea sint proident adipisicing. Labore ea ut laborum eu veniam ut veniam eu Lorem. Occaecat sint fugiat incididunt quis anim sunt. Nostrud eu Lorem nostrud minim ad eu sit mollit irure. In est excepteur ea laboris fugiat ex qui adipisicing officia. Duis esse excepteur voluptate proident aliquip do eu magna incididunt enim anim est culpa commodo.
 
 Veniam tempor in laboris duis cillum. Aliquip incididunt nisi excepteur quis veniam duis velit. Eiusmod consequat aliqua eiusmod nisi commodo id. Do commodo tempor do quis eiusmod. Eu quis eiusmod commodo mollit sint eu velit cillum.</p>
-  <h3>Social Media</h3>
-  {% from "./macros/social-media-links.njk" import socialMediaLinks %} 
-  {{ socialMediaLinks(social_media) }}
 {% endblock %}

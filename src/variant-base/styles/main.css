@@ -1,12 +1,18 @@
-#content {
-  padding-top: 1px;
+.content {
+  position: relative;
+  margin: 0rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5rem;
+  min-width: 40rem;
+  height: 100%;
 }
 
-#content .content__table img {
+.content .content__table img {
   padding: 0.5rem;
 }
 
-#content .content__table .width-small img {
+.content .content__table .width-small img {
   max-width: 100%;
   height: auto;
 }
