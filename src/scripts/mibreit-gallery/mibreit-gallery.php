@@ -14,6 +14,7 @@ class MibreitGalleryImage
     $this->altDe = "image";
     $this->imageUrl = "";
 
+    $this->prints = false;
     $this->redbubble = "";
     $this->limited = false;
     $this->size = "large";
@@ -44,6 +45,7 @@ class MibreitGalleryImage
     $prints = $imageXml->prints;
     if (!empty($prints))
     {
+      $this->prints = true;
       $tmp = $prints["redbubble"];
       if (!empty($tmp))
       {
