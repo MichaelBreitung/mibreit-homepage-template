@@ -181,6 +181,11 @@ form textarea {
   height: auto;
 }
 
+.fluid-vertical {
+  max-height: 100%;
+  width: auto;
+}
+
 /******* flexgrid ************/
 /*****************************/
 .flex-horizontal {

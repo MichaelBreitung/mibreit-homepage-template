@@ -12,6 +12,10 @@
   box-shadow: 0rem 0rem 0.5rem 0rem rgba(0, 0, 0, 0.6);
 }
 
+.header .header__image {
+  position: absolute;
+}
+
 .header h1 {
   position: absolute;
   text-align: left;
