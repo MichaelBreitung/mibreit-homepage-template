@@ -1,7 +1,7 @@
 .header {
   position: relative;
   margin: 0;
-  height: 8rem;
+  height: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -140,15 +140,21 @@ gulp.task("concatenate-contact-javascript", function () {
   return gulp
     .src([
       `${baseFolder}/scripts/contact/jquery-validate/*.min.js`,
-      `${baseFolder}/scripts/contact/mibreit-contact/*.min.js`,
+      `${baseFolder}/scripts/contact/mibreit-contact/*.js`,
     ])
+    .pipe(through2.obj(minifyJs))
     .pipe(concat("contact.js"))
     .pipe(gulp.dest(`${outputFolder}/scripts/contact`));
 });
 
 gulp.task("copy-mibreit-gallery-javascript", function () {
   return gulp
-    .src(`${baseFolder}/scripts/mibreit-gallery/*.min.js`)
+    .src([
+      `${baseFolder}/scripts/mibreit-gallery/*.js`,
+      `${baseFolder}/scripts/mibreit-prints/*.js`,
+    ])
+    .pipe(through2.obj(minifyJs))
+    .pipe(concat("mibreitGallery.min.js"))
     .pipe(gulp.dest(`${outputFolder}/scripts/mibreit-gallery`));
 });
 
@@ -193,6 +199,16 @@ gulp.task("create-clean-css-wordpress", function () {
     .pipe(gulp.dest(`${outputFolder}/blog/wp-content/themes/mibreit-photo`));
 });
 
+// fonts
+gulp.task("copy-fonts", function () {
+  if (typeof variant.fonts !== "undefined") {
+    return gulp
+      .src(`${baseFolder}/${variant.fonts}/fonts/*.ttf`)
+      .pipe(gulp.dest(`${outputFolder}/fonts`));
+  }
+  return Promise.resolve("nothing to do");
+});
+
 // parallel execution of all tasks
 gulp.task(
   "default",
@@ -208,6 +224,7 @@ gulp.task(
     "copy-images",
     "copy-mibreit-gallery-images",
     "copy-favicon",
+    "copy-fonts",
     "copy-wordpress-images",
     "create-clean-css-wordpress"
   )

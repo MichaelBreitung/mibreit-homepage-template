@@ -29,10 +29,6 @@
   flex-direction: row;
 }
 
-.navigation__container .navigation a:hover {
-  color: #b08719;
-}
-
 .navigation__container .navigation .navigation__item {
   flex-grow: 1;
   height: 3rem;

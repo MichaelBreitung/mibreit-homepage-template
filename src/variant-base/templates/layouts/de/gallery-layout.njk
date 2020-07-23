@@ -14,8 +14,8 @@
 {% block content %}
   {% include "../../parts/shop-banner.njk" %}
   <h2>
-    <a href="/german/galleries-ger.html">Galerien</a> - <?php if (!empty($mibreitGallery->getInfoEn()->content_category)) {?>
-    <a href=<?php echo "../galleries-" . str_replace(' ', '-', strtolower($mibreitGallery->getInfoEn()->content_category)) . "-ger.html";?>><?php echo $mibreitGallery->getInfoDe()->content_category;?></a> - <?php }; echo $mibreitGallery->getInfoDe()->content_title;?>
+    <a href="/german/galleries.html">Galerien</a> - <?php if (!empty($mibreitGallery->getInfoEn()->content_category)) {?>
+    <a href=<?php echo "../galleries-" . str_replace(' ', '-', strtolower($mibreitGallery->getInfoEn()->content_category)) . ".html";?>><?php echo $mibreitGallery->getInfoDe()->content_category;?></a> - <?php }; echo $mibreitGallery->getInfoDe()->content_title;?>
   </h2>
   {{gallery(true)}}
   {{thumbview()}}
