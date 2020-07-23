@@ -1,4 +1,4 @@
-var stickyNavbar = function () {
+var stickyNavbar = function (getStickyThresholdCallback) {
   var navigationTopPosition = undefined;
   var navigationIsSticky = false;
   var navigationContainer = undefined;
@@ -12,8 +12,11 @@ var stickyNavbar = function () {
   };
 
   var updateNavigationContainerTopPosition = function () {
-    navigationTopPosition =
-      navigationContainer.position().top + parseInt(navigationContainer.css("margin-top"));
+    if (typeof getStickyThresholdCallback !== "undefined") {
+      navigationTopPosition = getStickyThresholdCallback() - navigationContainer.height();
+    } else if (!navigationIsSticky) {
+      navigationTopPosition = navigationContainer.position().top;
+    }
   };
 
   var makeSticky = function () {
@@ -36,6 +39,7 @@ var stickyNavbar = function () {
         reset();
       }
     }
+    updateNavigationContainerTopPosition();
   };
 
   $(document).ready(function () {
