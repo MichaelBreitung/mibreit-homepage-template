@@ -1,5 +1,5 @@
 .footer {
-  position: relative;
+  flex: 0 1 auto;
   margin-bottom: 0rem;
   margin-top: 0.5rem;
   padding-bottom: 1rem;
