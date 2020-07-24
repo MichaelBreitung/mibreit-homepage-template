@@ -1,5 +1,6 @@
 .navigation__container {
   position: absolute;
+  top: auto;
   bottom: 0rem;
   width: 100%;
   height: 2.5rem;
@@ -13,6 +14,7 @@
   position: fixed;
   z-index: 50;
   top: 0rem;
+  bottom: auto;
 }
 
 .navigation__container .navigation {
@@ -20,12 +22,11 @@
   margin: auto;
   min-width: 40rem;
   flex-direction: row;
-  height: 100%;
 }
 
 .navigation__container .navigation .navigation__item {
   flex-grow: 1;
-  height: 100%;
+  height: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,10 +37,8 @@
 }
 
 .navigation__container .navigation__language-item {
-  height: 100%;
+  height: 2.5rem;
   width: 3rem;
-  top: 0rem;
-  right: 0.5rem;
   display: flex;
   align-items: center;
 }
@@ -52,11 +51,12 @@
 
 .navigation__container .menu-btn {
   position: relative;
-  height: 100%;
+  height: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.5s ease-in-out;
+  display: none;
 }
 
 .navigation__container .menu-btn__burger {

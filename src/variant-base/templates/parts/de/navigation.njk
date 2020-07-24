@@ -1,5 +1,8 @@
 {% from "../../macros/dived-link-item-list.njk" import divedLinkItemList %}
 <nav class="navigation__container">
+  <div class="menu-btn">
+    <div class="menu-btn__burger"></div>
+  </div>
   <div class="navigation">
     {{ divedLinkItemList(page_navigation.de, "navigation__item", "navigation__item--active", page_active_navigation) }}
     {% if page_en %}
