@@ -11,9 +11,10 @@
 }
 
 .header .header__image {
-  position: relative;
+  position: absolute;
+  top: 0rem;
   width: 100%;
-  height: 100%;
+  height: 7.5rem;
   background-image: url("/images/header/header.png");
   background-size: cover;
 }

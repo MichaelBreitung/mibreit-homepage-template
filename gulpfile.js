@@ -130,6 +130,7 @@ gulp.task("concatenate-base-javascript", function () {
       `${baseFolder}/scripts/base/jquery/*.min.js`,
       `${baseFolder}/scripts/base/mibreit-cookie-consent/*.min.js`,
       `${baseFolder}/scripts/base/sticky-navbar/*.js`,
+      `${baseFolder}/scripts/base/hamburger-navbar/*.js`,
     ])
     .pipe(through2.obj(minifyJs))
     .pipe(concat("base.js"))
