@@ -5,8 +5,8 @@
   </div>
   <div class="navigation">
     {{ divedLinkItemList(page_navigation.en, "navigation__item", "navigation__item--active", page_active_navigation) }}
-    {% if page_de %}
-      <a href="{{page_de}}" class="navigation__item navigation__language-item"><img src="/images/navigation/german.gif" alt="click here to switch to german version" width="20" height="12"/></a>
-    {% endif %}
   </div>
+  {% if page_de %}
+    <a href="{{page_de}}" class="navigation__item navigation__language-item"><img src="/images/navigation/german.gif" alt="click here to switch to german version" width="20" height="12"/></a>
+  {% endif %}
 </nav>

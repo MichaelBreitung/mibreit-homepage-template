@@ -1,8 +1,8 @@
 .navigation__container {
   position: absolute;
-  top: 7.5rem;
+  top: 10rem;
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
   max-height: 2.5rem;
   background-color: rgb(255, 255, 255);
@@ -28,12 +28,14 @@
   display: flex;
   margin: auto;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
 }
 
 .navigation__container .navigation__item {
   position: relative;
-  flex-grow: 1;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
   height: 2.5rem;
   display: flex;
   justify-content: center;
@@ -46,6 +48,7 @@
 
 .navigation__container .navigation__language-item {
   position: absolute;
+  padding: 0;
   flex-grow: 0;
   top: 0;
   right: 0;
@@ -53,6 +56,8 @@
 }
 
 .navigation__container .navigation__language-item img {
+  position: absolute;
+  right: 1rem;
   height: auto;
   width: 1.5rem;
   margin: auto;

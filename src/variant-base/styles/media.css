@@ -32,10 +32,6 @@
   .navigation__container .menu-btn {
     display: none;
   }
-
-  .navigation__container .navigation__language-item {
-    position: relative;
-  }
 }
 
 @media (min-width: 801px) {
@@ -49,6 +45,10 @@
 
   .navigation__container .navigation {
     max-width: 54rem;
+  }
+
+  .navigation__container {
+    font-size: 1.4rem;
   }
 
   h1 {
@@ -89,13 +89,5 @@
   form input,
   form textarea {
     font-size: 1.1rem;
-  }
-}
-
-@media (min-width: 880px) {
-  .navigation__container.sticky {
-    width: 100%;
-    left: auto;
-    right: auto;
   }
 }
