@@ -7,13 +7,12 @@ var stickyNavbar = function (getStickyThresholdCallback) {
     makeSmooth = false;
     navigationIsSticky = false;
     navigationContainer = $(".navigation__container");
-    currentNavigationContainerHeight = navigationContainer.height();
     updateNavigationContainerTopPosition();
   };
 
   var updateNavigationContainerTopPosition = function () {
     if (typeof getStickyThresholdCallback !== "undefined") {
-      navigationTopPosition = getStickyThresholdCallback() - navigationContainer.height();
+      navigationTopPosition = getStickyThresholdCallback();
     } else if (!navigationIsSticky) {
       navigationTopPosition = navigationContainer.position().top;
     }

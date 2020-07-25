@@ -1,12 +1,12 @@
 {% from "../../macros/dived-link-item-list.njk" import divedLinkItemList %}
 <nav class="navigation__container">
-  <div class="menu-btn">
+  <div class="navigation__item menu-btn">
     <div class="menu-btn__burger"></div>
   </div>
   <div class="navigation">
     {{ divedLinkItemList(page_navigation.en, "navigation__item", "navigation__item--active", page_active_navigation) }}
     {% if page_de %}
-      <a href="{{page_de}}" class="navigation__language-item"><img src="/images/navigation/german.gif" alt="click here to switch to german version" width="20" height="12"/></a>
+      <a href="{{page_de}}" class="navigation__item navigation__language-item"><img src="/images/navigation/german.gif" alt="click here to switch to german version" width="20" height="12"/></a>
     {% endif %}
   </div>
 </nav>

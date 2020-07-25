@@ -11,6 +11,7 @@ html {
 }
 
 body {
+  position: relative;
   font: 1rem Helvetica, Verdana, "Open Sans", Georgia;
   line-height: 1.6;
   color: #4f5c64;
@@ -19,6 +20,7 @@ body {
   text-align: left;
   max-height: 25000px;
   min-height: 100vh;
+  min-width: 40rem;
   display: flex;
   flex-direction: column;
 }
