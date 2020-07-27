@@ -7,14 +7,7 @@
 {% set page_active_navigation = "Home" %}
 {% set page_de = "/german/" %}
 {% extends "./layouts/en/content-layout.njk" %}
-
-{% block scripts %}
-  {{scriptSlideshow(".slideshow", false, "SCALE_MODE_STRETCH", 105)}}
-{% endblock %}
-
 {% block content %}
-  {{prepare()}}
-  {{slideshow("slideshow")}}
   <h2>Main Content</h2>
   <p>Some main content</p> 
   <p>Ex nostrud eu aute ipsum consectetur. Sint mollit laboris et deserunt do. Amet Lorem et consectetur enim pariatur eu adipisicing sunt aliqua. Ullamco in veniam elit do duis dolore tempor. Magna commodo aliquip culpa duis et commodo officia.
