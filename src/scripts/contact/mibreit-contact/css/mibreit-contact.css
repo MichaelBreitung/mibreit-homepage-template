@@ -19,6 +19,7 @@
 
 .contact-sheet input:focus {
   background-color: #d4b888;
+  outline: none;
 }
 
 .contact-sheet input.error {
@@ -28,16 +29,17 @@
 .contact-sheet input.contact-sheet__checkbox {
   padding: 0.25rem;
   width: 20px;
-  appearance: none;
 }
 
 .contact-sheet textarea {
   min-width: 100%;
+  max-width: 100%;
   min-height: 260px;
 }
 
 .contact-sheet textarea:focus {
   background-color: #d4b888;
+  outline: none;
 }
 
 .contact-sheet td {
