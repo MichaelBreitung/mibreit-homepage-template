@@ -164,6 +164,10 @@
       {% else %}
         mibreitGalleryInstance
       {% endif %} = mibreitGallery.createGallery({titleContainer: ".mibreit-slideshow-title", slideshowContainer: ".mibreit-gallery", allowFullscreen: true, thumbviewContainer: ".mibreit-thumbview"});
+      var providedImageId = new URLSearchParams(window.location.search).get("imageNr");
+      if (providedImageId) {
+        mibreitGalleryInstance.showImage(providedImageId);
+      }
       $(".mibreit-gallery").css("opacity", "1.0");
       $(".mibreit-thumbview").css("opacity", "1.0");
     });

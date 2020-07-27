@@ -208,6 +208,17 @@ class MibreitGalleryDataParser
     return $this->images;
   }
 
+  public function getImage($id)
+  {
+    if (array_key_exists($id, $this->images))
+    {
+      return $this->images[$id];
+    }
+    else {
+      return $this->images[0];
+    }
+  }
+
   public function getPrintInfos()
   {
     $printInfos = array();
