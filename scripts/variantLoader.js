@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const variantConfigFileName = "config.json";
-const baseVariantSubFolder = "variant-base";
+const baseVariantSubFolder = "variant-custom";
 
 function variantPathFromArgv(argv, baseFolder) {
   if (argv.length >= 4 && argv[2] === "--variant") {
