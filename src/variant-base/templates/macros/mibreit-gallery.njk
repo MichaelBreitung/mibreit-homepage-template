@@ -1,9 +1,9 @@
-{# 
+{#
 # All macros in this file are designed to work with mibreit-gallery javascript gallery. They
 # can be used to create php Markup for loading images from an accompanying gallery.xml files,
 # which must be loaced in the same folder as the page that uses these macros.
 #
-# @attention All macros below only work in php layouts 
+# @attention All macros below only work in php layouts
 #
 # Example for gallery.xml
 
@@ -24,7 +24,7 @@
     </image>
   </images>
   </MibreitGallery>
-  
+
 #}
 
 {# prepares data for slideshow, gallery, imageTitle and thumbview macros #}
@@ -35,8 +35,8 @@
   ?>
 {% endmacro %}
 
-{# 
-# inserts slideshow container with php markup 
+{#
+# inserts slideshow container with php markup
 # @param container - class name for container
 # @param de - if given, german version is generated (optional)
 # @attention requires call to prepare() beforehand
@@ -46,7 +46,7 @@
     <?php
     $images = $mibreitGallery->getImages();
     $nrImages = count($images);
-    for ($i = 0; $i < 10 and $i < $nrImages; $i++) 
+    for ($i = 0; $i < 10 and $i < $nrImages; $i++)
     {
         $r = rand(0, $nrImages - 1);
         $image = $images[$r];
@@ -58,8 +58,8 @@
   </div>
 {% endmacro %}
 
-{# 
-# inserts gallery container with php markup 
+{#
+# inserts gallery container with php markup
 # @param de - if given, german version is generated (optional)
 # @attention requires call to prepare() beforehand
 #}
@@ -81,15 +81,15 @@
   echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" ";
   echo "data-src=\"" . ${{item}}->imageUrl . "\" ";
   echo "title=\""    . ${{item}}->caption  . "\" ";
-  echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";							
+  echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";
   echo "width=\""    . $size[0]         ."\" ";
   echo "height=\""   . $size[1]         ."\"/>\n";
   echo "<h3>" . ${{item}}->caption . "</h3>";
   echo "\n</div>\n";
 {% endmacro %}
 
-{# 
-# inserts thumbview container with php markup 
+{#
+# inserts thumbview container with php markup
 # @attention requires call to prepare() beforehand
 #}
 {% macro thumbview() %}
@@ -97,36 +97,37 @@
     <?php
     foreach ($mibreitGallery->getImages() as $image)
     {
-      $size = getimagesize($image->thumbUrl);						
-      echo "\n<div class=\"mibreit-thumbElement\">\n";						
+      $size = getimagesize($image->thumbUrl);
+      echo "\n<div class=\"mibreit-thumbElement\">\n";
       echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" data-src=\"" . $image->thumbUrl . "\" ";
-      echo "width=\"". $size[0] ."\" height=\"". $size[1] . "\" alt=\"thumbnail\"/>\n";	
+      echo "width=\"". $size[0] ."\" height=\"". $size[1] . "\" alt=\"thumbnail\"/>\n";
       echo "</div>";
     }
   ?>
   </div>
 {% endmacro %}
 
-{# 
-# inserts title container with php markup 
+{#
+# inserts title container with php markup
 # @param de - if given, german version is generated (optional)
 # @attention requires call to prepare() beforehand
 #}
 {% macro imageTitle(de) %}
-  <h2 class="mibreit-slideshow-title"></h2>
   {% if de %}
+    <h2 class="mibreit-slideshow-title"><?php echo $mibreitGallery->getInfoDe()->header_h1; ?></h2>
     <?php if (!empty($mibreitGallery->getInfoDe()->content)) { ?>
     <p><?php echo $mibreitGallery->getInfoDe()->content; ?></p>
     <?php } ?>
   {% else %}
+    <h2 class="mibreit-slideshow-title"><?php echo $mibreitGallery->getInfoEn()->header_h1; ?></h2>
     <?php if (!empty($mibreitGallery->getInfoEn()->content)) { ?>
     <p><?php echo $mibreitGallery->getInfoEn()->content; ?></p>
     <?php } ?>
   {% endif %}
 {% endmacro %}
 
-{# 
-# inserts script for slideshow 
+{#
+# inserts script for slideshow
 # @param container - class or id name for container of slideshow -> starting with a . or #
 # @param omit_script_include - it is possible to place multiple slideshows on one page. If you do so, you only need the slideshow include once. Use this flag whenever you want to omit the inclusion of the script. Typically you will just include it in your first call to this macro
 # @param scale_mode - if provided will be applied to all images (SCALE_MODE_STRETCH(default), SCALE_MODE_FITASPECT, SCALE_MODE_NONE, SCALE_MODE_EXPAND)
@@ -147,8 +148,8 @@
   </script>
 {% endmacro %}
 
-{# 
-# inserts script for gallery 
+{#
+# inserts script for gallery
 #}
 {% macro scriptGallery(gallery_var_name) %}
   <script src="/scripts/mibreit-gallery/mibreitGallery.min.js"></script>
@@ -164,25 +165,22 @@
       {% else %}
         mibreitGalleryInstance
       {% endif %} = mibreitGallery.createGallery({titleContainer: ".mibreit-slideshow-title", slideshowContainer: ".mibreit-gallery", allowFullscreen: true, thumbviewContainer: ".mibreit-thumbview"});
-      var providedImageId = new URLSearchParams(window.location.search).get("imageNr");
-      if (providedImageId) {
-        mibreitGalleryInstance.showImage(providedImageId);
-      }
+      mibreitGalleryHistory(mibreitGalleryInstance);
       $(".mibreit-gallery").css("opacity", "1.0");
       $(".mibreit-thumbview").css("opacity", "1.0");
     });
   </script>
 {% endmacro %}
 
-{# 
+{#
 # inserts prints script
 # @attention requires call to prepare() beforehand
 #}
 {% macro scriptImagePrints(gallery) %}
-  <?php   
-  echo "<script>\n";    
+  <?php
+  echo "<script>\n";
   echo "$(document).ready(function () {\n";
-  echo "{{gallery}}.setImageChangedCallback(mibreitImagePrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", {{gallery}}))";  
+  echo "{{gallery}}.addImageChangedCallback(mibreitImagePrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", {{gallery}}))";
   echo "});\n";
   echo "</script>";
   ?>

@@ -152,6 +152,7 @@ gulp.task("copy-mibreit-gallery-javascript", function () {
   return gulp
     .src([
       `${baseFolder}/scripts/mibreit-gallery/*.js`,
+      `${baseFolder}/scripts/mibreit-gallery-history/*.js`,
       `${baseFolder}/scripts/mibreit-prints/*.js`,
     ])
     .pipe(through2.obj(minifyJs))
