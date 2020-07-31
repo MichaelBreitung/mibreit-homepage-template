@@ -1,13 +1,13 @@
-{% from "../../macros/mibreit-gallery.njk" import prepare, gallery, thumbview, imageTitle, scriptGallery %}
-{{prepare()}}
+{% block php_init %}
+  {% from "../../macros/mibreit-gallery.njk" import prepare, gallery, thumbview, imageTitle, scriptGallery %}
+  {{prepare()}}
+{% endblock %}
 {% set page_title="<?php echo $mibreitGallery->getInfoEn()->header_h1;?>" %}
 {% set page_sub_title = "<?php echo $mibreitGallery->getInfoEn()->header_h2;?>" %}
 {% set page_keywords="<?php echo $mibreitGallery->getInfoEn()->keywords\;?>" %}
 {% set page_description = "<?php echo $mibreitGallery->getInfoEn()->description\;?>" %}
-{% set page_canonical = "<?php echo $page;?>" %}
-{% set page_image = "<?php echo $basePath . $mibreitGallery->getImage(0)->imageUrl ?>" %}
-{% set page_active_navigation = "Galleries" %}
-{% set page_de = "index.php?lan=de" %}
+{% set page_canonical = "<?php echo $mibreitGalleryPageData->getPage();?>" %}
+{% set page_image = "<?php echo $mibreitGalleryPageData->getBasePath() . $mibreitGallery->getImage(0)->imageUrl ?>" %}
 {% extends "./content-layout.njk" %}
 {% block scripts %}
   {{scriptGallery()}}

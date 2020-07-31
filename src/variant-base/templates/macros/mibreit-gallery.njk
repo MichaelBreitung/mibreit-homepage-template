@@ -31,7 +31,9 @@
 {% macro prepare() %}
   <?php
     require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery-helpers.php';
     $mibreitGallery = new MibreitGalleryDataParser('gallery.xml');
+    $mibreitGalleryPageData = new MibreitGalleryPageData();
   ?>
 {% endmacro %}
 

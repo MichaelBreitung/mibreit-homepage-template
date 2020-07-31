@@ -150,7 +150,6 @@ class MibreitGalleryDataParser
   const IMAGE_PATH_TAG = "imagePath";
   const THUMB_PATH_TAG = "thumbPath";
 
-  private $gallery;
   private $infoEn;
   private $infoDe;
   private $images = array();
