@@ -13,7 +13,7 @@
 .header .header__image {
   position: absolute;
   top: 0rem;
-  width: auto;
+  width: 100%;
   height: 10rem;
 }
 

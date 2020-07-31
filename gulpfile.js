@@ -177,7 +177,7 @@ gulp.task("copy-images", function () {
 gulp.task("copy-mibreit-gallery-images", function () {
   return gulp
     .src(`${baseFolder}/scripts/mibreit-gallery/images/*.+(jpg|png|gif)`)
-    .pipe(gulp.dest(`${outputFolder}/scripts/mibreit-gallery/images`));
+    .pipe(gulp.dest(`${outputFolder}/images`));
 });
 
 gulp.task("copy-favicon", function () {
