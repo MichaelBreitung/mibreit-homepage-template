@@ -16,12 +16,12 @@
   </head>
   <body>
     {% include "../../parts/en/header.njk" %}
-    <main class="content padding-bottom-normal flexiblecontent">
+    <div class="content flexiblecontent">
       {% include "../../parts/wordpress/sidebar.njk" %}
-      <div class="fluid">
+      <main class="fluid">
         {% block content %}{% endblock %}
-      </div>
-    </main>
+      </main>
+    </div>
     {% include "../../parts/en/footer.njk" %}
     {% block scripts %}{% endblock %}
     {% include "../../parts/wordpress/footer.njk" %}

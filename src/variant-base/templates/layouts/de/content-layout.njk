@@ -5,12 +5,15 @@
     {% block meta %}{% endblock %}
     {% block styles %}{% endblock %}
   </head>
-
   <body>
     {% include "../../parts/de/header.njk" %}
     {% block slideshow %}{% endblock %}
-    <main class="content padding-bottom-normal">
-      {% block content %}{% endblock %}
+    <main>
+      {% block breadcrumb %}{% endblock %}
+      <div class="content padding-bottom-normal">
+        {% block content %}{% endblock %}
+      </div>
+      {% block more %}{% endblock %}
     </main>
     {% include "../../parts/de/footer.njk" %}
     {% block scripts %}{% endblock %}

@@ -16,8 +16,10 @@
   </head>
   <body>
     {% include "../../parts/en/header.njk" %}
-    <main class="content flexiblecontent padding-bottom-normal">
-      {% block content %}{% endblock %}
+    <main>
+      <div class="content padding-bottom-normal">
+        {% block content %}{% endblock %}
+      </div>
     </main>
     {% include "../../parts/en/footer.njk" %}
     {% block scripts %}{% endblock %}
