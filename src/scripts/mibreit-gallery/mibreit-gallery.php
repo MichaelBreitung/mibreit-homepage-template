@@ -156,6 +156,9 @@ class MibreitGalleryDataParser
 
   function __construct($file)
   {
+    $this->infoEn = new MibreitGalleryInfo(false);  
+    $this->infoDe = new MibreitGalleryInfo(true);
+
     // get relative path part of file to use for image paths too
     $relativePath = "";
     $relativePathEndPos = strrpos($file, "/");
@@ -164,42 +167,43 @@ class MibreitGalleryDataParser
       $relativePath = substr($file, 0, $relativePathEndPos+1);
     }
 
-    $gallery = simplexml_load_file($file);    
-    $this->infoEn = new MibreitGalleryInfo(false);  
-    $this->infoDe = new MibreitGalleryInfo(true);
-    
-    $info = $gallery->infoEn;
-    if (!empty($info))
+    if (file_exists($file))
     {
-      $this->infoEn->initFromXml($info);
-    }
-    
-    $info = $gallery->infoDe;
-    if (!empty($info))
-    {
-      $this->infoDe->initFromXml($info);
-    }  
-     
-    $images = $gallery->images;
-    $imagePath = "";
-    if (!empty($gallery[self::IMAGE_PATH_TAG]))
-    {
-      $imagePath = (string) $gallery[self::IMAGE_PATH_TAG];
-    }
-    $thumbPath = "";
-    if (!empty($gallery[self::THUMB_PATH_TAG]))
-    {
-      $thumbPath = (string) $gallery[self::THUMB_PATH_TAG];
-    }
-
-    if (!empty($images))
-    {
-      foreach ($images->children() as $imageXml)
+      $gallery = simplexml_load_file($file);    
+   
+      $info = $gallery->infoEn;
+      if (!empty($info))
       {
-        $image = new MibreitGalleryImage($imageXml, $imagePath, $thumbPath, $relativePath);
-        array_push($this->images, $image);
+        $this->infoEn->initFromXml($info);
+      }
+      
+      $info = $gallery->infoDe;
+      if (!empty($info))
+      {
+        $this->infoDe->initFromXml($info);
       }  
-    }     
+       
+      $images = $gallery->images;
+      $imagePath = "";
+      if (!empty($gallery[self::IMAGE_PATH_TAG]))
+      {
+        $imagePath = (string) $gallery[self::IMAGE_PATH_TAG];
+      }
+      $thumbPath = "";
+      if (!empty($gallery[self::THUMB_PATH_TAG]))
+      {
+        $thumbPath = (string) $gallery[self::THUMB_PATH_TAG];
+      }
+  
+      if (!empty($images))
+      {
+        foreach ($images->children() as $imageXml)
+        {
+          $image = new MibreitGalleryImage($imageXml, $imagePath, $thumbPath, $relativePath);
+          array_push($this->images, $image);
+        }  
+      } 
+    }   
   }
 
   public function getImages()
