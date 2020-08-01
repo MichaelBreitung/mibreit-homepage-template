@@ -17,6 +17,7 @@ const loadVariant = require("./scripts/variantLoader");
 
 const outputFolder = "dist";
 const baseFolder = "src";
+const tempFolder = "temp";
 const variant = loadVariant(process.argv, baseFolder);
 if (!variant) {
   process.exit(1);
@@ -110,18 +111,39 @@ gulp.task("nunjucks-htaccess", function () {
 // css tasks
 
 // we ensure that media.css comes at the end -> so it takes precedence
-gulp.task("create-clean-css", function () {
-  return gulp
-    .src([
-      `${baseFolder}/${variant.styles}/styles/*.css`,
-      `!${baseFolder}/${variant.styles}/styles/media.css`,
-      `${baseFolder}/scripts/**/*.css`,
-      `${baseFolder}/${variant.styles}/styles/media.css`,
-    ])
-    .pipe(concat("styles.css"))
-    .pipe(cleanCss({ compatibility: "ie8" }))
-    .pipe(gulp.dest(`${outputFolder}/styles`));
-});
+if (Array.isArray(variant.styles)) {
+  gulp.task("create-clean-css-gather", function () {
+    return gulp
+      .src(variant.styles.map((folder) => `${baseFolder}/${folder}/styles/*.css`))
+      .pipe(gulp.dest(`${baseFolder}/${tempFolder}/styles`));
+  });
+  gulp.task("create-clean-css-process", function () {
+    return gulp
+      .src([
+        `${baseFolder}/${tempFolder}/styles/*.css`,
+        `!${baseFolder}/${tempFolder}/styles/media.css`,
+        `${baseFolder}/scripts/**/*.css`,
+        `${baseFolder}/${tempFolder}/styles/media.css`,
+      ])
+      .pipe(concat("styles.css"))
+      .pipe(cleanCss({ compatibility: "ie8" }))
+      .pipe(gulp.dest(`${outputFolder}/styles`));
+  });
+  gulp.task("create-clean-css", gulp.series("create-clean-css-gather", "create-clean-css-process"));
+} else {
+  gulp.task("create-clean-css", function () {
+    return gulp
+      .src([
+        `${baseFolder}/${variant.styles}/styles/*.css`,
+        `!${baseFolder}/${variant.styles}/styles/media.css`,
+        `${baseFolder}/scripts/**/*.css`,
+        `${baseFolder}/${variant.styles}/styles/media.css`,
+      ])
+      .pipe(concat("styles.css"))
+      .pipe(cleanCss({ compatibility: "ie8" }))
+      .pipe(gulp.dest(`${outputFolder}/styles`));
+  });
+}
 
 // javascript tasks
 gulp.task("concatenate-base-javascript", function () {
