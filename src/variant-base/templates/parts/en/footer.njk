@@ -1,5 +1,7 @@
 {% from "../../macros/link-item-list.njk" import linkItemList %}
+{% from "../../macros/social-media-links.njk" import socialMediaLinks %}
 <footer class="footer">
+  {{ socialMediaLinks(social_media) }}
   <p class="footer__text">All Material © Copyright by {{page_author}}. All Rights Reserved<br>
     {{ linkItemList(page_footer.en, false, "footer__link", 4, "|") }}
   </p>
