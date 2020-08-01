@@ -12,10 +12,18 @@
 
 .header .header__image {
   position: relative;
-  background-color: rgb(212, 212, 212);
   margin-top: 0rem;
   width: 100%;
   height: 10rem;
+}
+
+.header .profile__image {
+  position: absolute;
+  height: 8rem;
+  width: auto;
+  top: 1rem;
+  right: 2rem;
+  display: none;
 }
 
 .header h1 {
