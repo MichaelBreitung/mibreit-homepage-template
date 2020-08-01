@@ -1,7 +1,9 @@
 /dist
 
 /node_modules
-/variant-custom
+/src/pages
+/src/temp
+/src/variant-custom
 
 /src/scripts/base/jquery/jquery.min.js
 /src/scripts/contact/jquery-validate/jquery.validate.min.js
