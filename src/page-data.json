@@ -11,6 +11,10 @@
   },
   "page_name": "Name of page",
   "page_email": "your.email@your-domain.com",
+  "page_contact": {
+    "en": "/contact.html",
+    "de": "/german/contact.html"
+  },
   "google_analytics": "GTM-XXXXXX",
   "social_media": {
     "facebook": {
