@@ -11,8 +11,9 @@
 }
 
 .header .header__image {
-  position: absolute;
-  top: 0rem;
+  position: relative;
+  background-color: rgb(212, 212, 212);
+  margin-top: 0rem;
   width: 100%;
   height: 10rem;
 }
