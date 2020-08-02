@@ -1,5 +1,6 @@
 .navigation__container {
-  position: relative;
+  position: absolute;
+  top: 10rem;
   width: 100%;
   font-size: 1.6rem;
   font-weight: bold;

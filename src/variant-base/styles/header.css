@@ -11,8 +11,8 @@
 }
 
 .header .header__image {
-  position: relative;
-  margin-top: 0rem;
+  position: absolute;
+  top: 0rem;
   width: 100%;
   height: 10rem;
 }
@@ -24,6 +24,7 @@
   top: 1rem;
   right: 2rem;
   display: none;
+  z-index: 1;
 }
 
 .header h1 {
