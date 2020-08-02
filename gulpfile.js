@@ -38,7 +38,7 @@ function minifyJs(file, enc, callback) {
   callback(null, file);
 }
 
-// html / php tasks
+// nunjucks tasks
 gulp.task("nunjucks-php", function () {
   return gulp
     .src(`${baseFolder}/pages/**/*.php`)
@@ -106,6 +106,22 @@ gulp.task("nunjucks-htaccess", function () {
       })
     )
     .pipe(gulp.dest(outputFolder));
+});
+
+gulp.task("nunjucks-xml", function () {
+  return gulp
+    .src(`${baseFolder}/pages/**/*.xml`)
+    .pipe(data(page_data))
+    .pipe(
+      nunjucksRender({
+        path: [`${baseFolder}/templates`],
+        ext: ".xml",
+        envOptions: {
+          autoescape: false,
+        },
+      })
+    )
+    .pipe(gulp.dest(`${outputFolder}`));
 });
 
 // css tasks
@@ -208,14 +224,10 @@ gulp.task("copy-favicon", function () {
     .pipe(gulp.dest(outputFolder));
 });
 
-// gallery / slideshow tasks
+// gallery / slideshow images
 
 gulp.task("copy-slideshow-images", function () {
   return gulp.src(`${baseFolder}/pages/**/*.+(jpg|png|gif)`).pipe(gulp.dest(`${outputFolder}`));
-});
-
-gulp.task("copy-slideshow-xml", function () {
-  return gulp.src(`${baseFolder}/pages/**/*.xml`).pipe(gulp.dest(`${outputFolder}`));
 });
 
 // wordpress specific
@@ -245,6 +257,7 @@ gulp.task(
     "nunjucks-html",
     "nunjucks-php",
     "nunjucks-php-scripts",
+    "nunjucks-xml",
     // "nunjucks-htaccess",
     "create-clean-css",
     "concatenate-base-javascript",
@@ -255,7 +268,6 @@ gulp.task(
     "copy-favicon",
     "copy-fonts",
     "copy-slideshow-images",
-    "copy-slideshow-xml",
     "create-clean-css-wordpress"
   )
 );
