@@ -82,21 +82,21 @@ class MibreitGalleryInfo
   public $content;
 
   function __construct($de) {
-    $this->header_h1 = "Michael Breitung Photography";
-    $this->title = "Michael Breitung Photography";
+    $this->header_h1 = "{{page_name}}";
+    $this->title = "{{page_name}}";
     $this->content_title = "";    
     $this->content_category = "";
     $this->content = "";
     if ($de)
     {
-      $this->header_h2 = "Reisefoto Galerie";
-      $this->keywords = "Reisefotografie, Michael Breitung, Reisefoto Galerie";
+      $this->header_h2 = "Foto Galerie";
+      $this->keywords = "Fotografie, Foto Galerie";
       $this->description = "Galerie mit Reise und Landschaftsfotos";    
     }
     else{      
-      $this->header_h2 = "Travel Photo Gallery";
-      $this->keywords = "Travel Photo Gallery, Travel Photography, Michael Breitung";
-      $this->description = "Travel photo gallery with beautiful landscape and cityscape photos";    
+      $this->header_h2 = "Photo Gallery";
+      $this->keywords = "Photo Gallery, Photography";
+      $this->description = "Photo gallery with beautiful landscape and cityscape photos";    
     }   
   }
 
