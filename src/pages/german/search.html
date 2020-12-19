@@ -1,0 +1,13 @@
+{% set page_title = "Google Suche Ergebnisseite" %}
+{% set page_sub_title = "Suchergebnisse für {{page_name}}" %}
+{% set page_keywords = "Suche, keywords" %}
+{% set page_description = "Suche Seiten Beschreibung" %}
+{% set page_canonical = "german/search.html" %}
+{% extends "./layouts/de/content-layout.njk" %}
+{% block content %}
+  <h2>Suchergebnisse</h2>
+  <div class="gcse-searchresults-only"></div>
+{% endblock %}
+{% block scripts %}
+  {% include "./parts/script-google-search.njk" %}
+{% endblock %}

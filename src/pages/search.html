@@ -1,0 +1,13 @@
+{% set page_title = "Search Results Page" %}
+{% set page_sub_title = "Search on {{page_name}}" %}
+{% set page_keywords = "search, page, keywords" %}
+{% set page_description = "search page description" %}
+{% set page_canonical = "search.html" %}
+{% extends "./layouts/en/content-layout.njk" %}
+{% block content %}
+  <h2>Search Results</h2>
+  <div class="gcse-searchresults-only"></div>
+{% endblock %}
+{% block scripts %}
+  {% include "./parts/script-google-search.njk" %}
+{% endblock %}

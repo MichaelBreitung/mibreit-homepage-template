@@ -114,6 +114,7 @@ iframe {
 
 form {
   border: none;
+  border: none;
   font-size: 1.5rem;
 }
 
@@ -128,10 +129,23 @@ form input {
   background-color: #a5bac7;
 }
 
+form input:focus {
+  outline: none;
+}
+
 form textarea {
   border: none;
   color: #1c2124;
   background-color: #a5bac7;
+}
+
+form textarea:focus {
+  outline: none;
+}
+
+form input[type="checkbox"] {
+  height: 1.2rem;
+  width: 1.2rem;
 }
 
 /******* alignment ***********/

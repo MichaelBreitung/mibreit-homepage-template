@@ -6,5 +6,16 @@
   {% if page_sub_title %}
     <h2>{{page_sub_title}}</h2>
   {% endif %}
+  <div class="search">
+    <div class="search__container">
+      <form action="/search.html" id="google-search-form" method="get" role="search">
+        <input autocomplete="off" class="search__input" name="q" placeholder="search with Google" title="Enter search here" type="text"/>
+        <input type="image" src="/images/search/search.png" class="search__button" title="search with Google" alt="Submit"/>
+      </form>
+      <div class="search__privacy-link">
+        <a href="/privacy-policy.html#google_search" title="Information on data transfer for Google™ search">Information on Google™ search</a>
+      </div>
+    </div>
+  </div>
   {% include "../../parts/en/navigation.njk" %}
 </header>
