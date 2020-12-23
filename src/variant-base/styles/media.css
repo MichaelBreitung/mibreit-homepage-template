@@ -39,14 +39,6 @@
     font-size: 100%;
   }
 
-  .content {
-    max-width: 54rem;
-  }
-
-  .navigation__container .navigation {
-    max-width: 54rem;
-  }
-
   .navigation__container {
     font-size: 1.4rem;
   }
@@ -89,5 +81,18 @@
   form input,
   form textarea {
     font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 864px) 
+{
+  .content {
+    max-width: 54rem;
+  }
+
+  .navigation__container {
+    max-width: 54rem;
+    left:50%;
+    margin-left: -27rem;
   }
 }

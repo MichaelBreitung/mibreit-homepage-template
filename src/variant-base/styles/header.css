@@ -1,20 +1,20 @@
 .header {
   position: relative;
   margin: 0;
-  height: 12.5rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
   background-color: rgb(255, 255, 255);
   background-color: rgba(255, 255, 255, 0.9);
 }
 
 .header .header__image {
-  position: absolute;
-  top: 0rem;
+  position: relative;
   width: 100%;
-  height: 10rem;
+  height: 14rem;
 }
 
 .header .profile__image {

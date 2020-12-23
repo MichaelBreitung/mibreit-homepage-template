@@ -2,17 +2,20 @@
   position: absolute;
   height: 3rem;
   right: 0.5rem;
-  bottom: 2.5rem;
+  top: 8rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.search__privacy-link a {
+  color: #a5bac7;
 }
 
 .search .search__privacy-link {
   text-align: left;
   display: none;
 }
-
 .search form {
   display: flex;
   flex-direction: row;
