@@ -1,3 +1,7 @@
+main {
+  min-height: 72vh;
+}
+
 .content {
   position: relative;
   margin: 0rem;
