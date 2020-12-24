@@ -30,9 +30,14 @@
 .search .search__button {
   padding: 0;
   margin-left: 1rem;
-  height: 1.5rem;
-  width: 1.5rem;
   background: none;
+  border: none;
+}
+
+.search .search__button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: #a5bac7;
 }
 
 #container .gs-image-scalable {
