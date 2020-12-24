@@ -1,40 +1,43 @@
-.search .search__container {
+.search__container {
   position: absolute;
   height: 3rem;
-  right: 0.5rem;
-  top: 8rem;
+  right: 0rem;
+  top:0rem;
+  padding-top: 0.5rem;
+  padding-right: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: linear-gradient(90deg, rgb(255, 255, 255, 0) 0%, rgba(103, 105, 110, 0.5) 100%);
 }
 
 .search__privacy-link a {
   color: #a5bac7;
 }
 
-.search .search__privacy-link {
+.search__container .search__privacy-link {
   text-align: left;
   display: none;
 }
-.search form {
+.search__container form {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.search input {
+.search__container input {
   padding-left: 0.25rem;
   width: 14rem;
 }
 
-.search .search__button {
+.search__container .search__button {
   padding: 0;
   margin-left: 1rem;
   background: none;
   border: none;
 }
 
-.search .search__button svg {
+.search__container .search__button svg {
   width: 1.5rem;
   height: 1.5rem;
   fill: #a5bac7;

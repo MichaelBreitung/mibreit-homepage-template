@@ -6,15 +6,13 @@
   {% if page_sub_title %}
     <h2>{{page_sub_title}}</h2>
   {% endif %}
-  <div class="search">
-    <div class="search__container">
-      <form action="/german/search.html" id="google-search-form" method="get" role="search">
-        <input autocomplete="off" class="search__input" name="q" placeholder="mit Google suchen" title="Enter search here" type="text"/>
-         <button class="search__button" type="submit" form="google-search-form" name="Google Search Submit Knopf">{% include "../../svgs/search/search.njk" %}</button>
-      </form>
-      <div class="search__privacy-link">
-        <a href="/german/privacy-policy.html#google_search" title="Hinweise zur Datenübertragung bei der Google™ Suche">Hinweise zur Google™ Suche</a>
-      </div>
+  <div class="search__container">
+    <form action="/german/search.html" id="google-search-form" method="get" role="search">
+      <input autocomplete="off" class="search__input" name="q" placeholder="mit Google suchen" title="Enter search here" type="text"/>
+      <button class="search__button" type="submit" form="google-search-form" name="Google Search Submit Knopf">{% include "../../svgs/search/search.njk" %}</button>
+    </form>
+    <div class="search__privacy-link">
+      <a href="/german/privacy-policy.html#google_search" title="Hinweise zur Datenübertragung bei der Google™ Suche">Hinweise zur Google™ Suche</a>
     </div>
   </div>
   {% include "../../parts/de/navigation.njk" %}
