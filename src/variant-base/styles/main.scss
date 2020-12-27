@@ -10,13 +10,14 @@ main {
   margin-top: 0.5rem;
   width: 100%;
   flex: 1 1 auto;
+
+  .content__table img {
+    padding: 0.5rem;
+  }
+  
+  .content__table .width-small img {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
-.content .content__table img {
-  padding: 0.5rem;
-}
-
-.content .content__table .width-small img {
-  max-width: 100%;
-  height: auto;
-}

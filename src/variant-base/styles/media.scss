@@ -23,15 +23,15 @@
 
   .navigation__container {
     max-height: 2.5rem;
-  }
 
-  .navigation__container .navigation {
-    flex-direction: row;
-  }
-
-  .navigation__container .menu-btn {
-    display: none;
-  }
+    .navigation {
+      flex-direction: row;
+    }
+  
+    .menu-btn {
+      display: none;
+    }
+  }  
 }
 
 @media (min-width: 801px) {

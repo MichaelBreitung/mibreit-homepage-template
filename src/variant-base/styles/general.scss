@@ -1,5 +1,5 @@
-/**** GLOBALS *****/
-/******************/
+@import "palette";
+
 * {
   padding: 0;
   margin: 0;
@@ -14,8 +14,8 @@ body {
   position: relative;
   font: 1rem Helvetica, Verdana, "Open Sans", Georgia;
   line-height: 1.6;
-  color: #4f5c64;
-  background-color: rgb(255, 255, 255);
+  color: $base-color;
+  background-color: $background-color;
   border: none;
   text-align: left;
   max-height: 25000px;
@@ -26,16 +26,16 @@ body {
 }
 
 a {
-  color: #103247;
+  color: $link-color;
   text-decoration: none;
 }
 
 a:hover {
-  color: #a1b5c2;
+  color: $link-color-hover;
 }
 
 a:visited {
-  color: #032b44;
+  color: $link-color-visited;
 }
 
 h1 {
@@ -125,8 +125,8 @@ form textarea {
 
 form input {
   border: none;
-  color: #1c2124;
-  background-color: #a5bac7;
+  color: $form-color;
+  background-color: $form-background-color;
 }
 
 form input:focus {
@@ -135,8 +135,8 @@ form input:focus {
 
 form textarea {
   border: none;
-  color: #1c2124;
-  background-color: #a5bac7;
+  color: $form-color;
+  background-color: $form-background-color;
 }
 
 form textarea:focus {
