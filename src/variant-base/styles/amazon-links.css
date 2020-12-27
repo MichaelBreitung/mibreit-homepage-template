@@ -1,0 +1,14 @@
+.amazon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.amazon .amazon__link {
+  flex-basis: content;
+}
+
+.amazon .amazon__image {
+  height: 3rem;
+  width: auto;
+}
