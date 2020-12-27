@@ -8,8 +8,8 @@
 }
 .content .image-desc {
   margin-top: 0.125rem;
-  padding-left: 0.0rem;
-  padding-right: 0.0rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
   padding-bottom: 0.5rem;
   width: 100%;
   text-align: center;
@@ -76,6 +76,8 @@
   line-height: 1;
   padding: 0;
   padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
   font-size: 1.25rem;
 }
 .verticalImageElement {
