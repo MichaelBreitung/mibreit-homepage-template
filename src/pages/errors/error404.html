@@ -1,8 +1,8 @@
-{% set page_title = "Homepage Template Title" %}
-{% set page_sub_title = "Homepage Template Subtitle" %}
+{% set page_title = "{{page_name}} - Page not Found" %}
+{% set page_sub_title = "Page not found on this homepage" %}
 {% set page_keywords = "Homepage, template, keywords" %}
 {% set page_description = "Homepage Template Description." %}
-{% set page_canonical = "errors/error403.html" %}
+{% set page_canonical = "errors/error404.html" %}
 {% extends "./layouts/en/content-layout.njk" %}
 {% block content %}
   <p>I'm sorry. The requested site does not exist on this server.</p>
