@@ -17,6 +17,11 @@
   },
   "google_analytics": "",
   "google_search": "",
+  "amazon_affiliate": {
+    "us": "httpwwwmibrei-20",
+    "uk": "httpwwwmibr03-21",
+    "de": "httpwwwmibrei-21"
+  },
   "social_media": {
     "facebook": {
       "url": "your facebook",

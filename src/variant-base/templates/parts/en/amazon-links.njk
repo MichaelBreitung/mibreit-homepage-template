@@ -1,0 +1,11 @@
+<div class="amazon">
+  {% if amazon_affiliate.us %}
+    <a class="amazon__link" href="https://www.amazon.com/?tag={{amazon_affiliate.us}}"><img class="amazon__image" src="images/amazon/amazon-us.png" title="amazon us affiliate" width="136" height="56" alt="amazon us affiliate"/></a>
+  {% endif %}
+  {% if amazon_affiliate.uk %}
+    <a class="amazon__link" href="https://www.amazon.co.uk/?tag={{amazon_affiliate.uk}}"><img class="amazon__image" src="images/amazon/amazon-uk.png" title="amazon uk affiliate" width="136" height="56" alt="amazon uk affiliate"/></a>
+  {% endif %}
+  {% if amazon_affiliate.de %}
+    <a class="amazon__link" href="https://www.amazon.de/?tag={{amazon_affiliate.de}}"><img class="amazon__image" src="images/amazon/amazon-de.png" title="amazon de affiliate" width="136" height="56" alt="amazon de affiliate"/></a>
+  {% endif %}
+</div>
