@@ -1,8 +1,8 @@
 var mibreitSearch = function () {
   $(document).ready(function () {
-    if ($(".search input").length) {
-      $(".search input").click(function () {
-        $(".search .search__privacy-link").show();
+    if ($(".search__container input").length) {
+      $(".search__container input").click(function () {
+        $(".search__container .search__privacy-link").show();
       });
     }
   });
