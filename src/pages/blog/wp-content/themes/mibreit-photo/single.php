@@ -10,12 +10,7 @@
     <p itemprop="author" itemscope itemtype="https://schema.org/Person"><?php the_time('F j, Y'); ?> | <?php the_category(', ') ?> | by <a rel="author" href="https://www.mibreit-photo.com/about.html"><span itemprop="name">{{page_author}}</span></a></p>    
     <div itemprop="text"><?php the_content(__('Read more'));?></div>
     <div class="content-navigation spacing-top-large spacing-bottom-large small">
-      <div class="content-navigation__link"><?php previous_post_link('%link', '&laquo; previous' ); ?></div>
-      <div class="image-links">
-        <a class="image-links__link" href="https://twitter.com/intent/tweet?url=<?php if(is_home()){echo home_url();}else{the_permalink();} ?>&amp;text=<?php if(is_home()){echo get_bloginfo("name");}else{echo sanitize_title_with_dashes(get_the_title());} ?>" target="_blank"><img class="image-links__image" src="/images/social-media-share/twitter-share.png" alt="share via Twitter" /></a>
-        <a class="image-links__link" href="https://facebook.com/sharer.php?u=<?php if(is_home()){echo home_url();}else{the_permalink();} ?>" target="_blank"><img class="image-links__image" src="/images/social-media-share/facebook-share.png" alt="share via Facebook" /></a>
-        <a class="image-links__link" href="http://www.pinterest.com/pin/create/button/?url=<?php if(is_home()){echo home_url();}else{the_permalink();} ?>&amp;media=<?php echo $page_image ?>&amp;description=<?php if(is_home()){echo get_bloginfo("name");}else{echo sanitize_title_with_dashes(get_the_title());} ?>"           target="_blank"><img class="image-links__image" src="/images/social-media-share/pinterest-share.png" alt="share via Pinterest" /></a>
-      </div>
+      <div class="content-navigation__link"><?php previous_post_link('%link', '&laquo; previous' ); ?></div>      
       <div class="content-navigation__link textright"><?php next_post_link( '%link', 'next &raquo;' ); ?></div>
     </div>
     <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
@@ -39,7 +34,7 @@
   <?php trackback_rdf(); ?>
   -->
   <?php endwhile; else: ?>
-  <p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
+  <p><?php echo('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
   <?php
   $affiliate = get_post_meta( get_the_ID(), 'affiliate', true );
   if (is_single())
