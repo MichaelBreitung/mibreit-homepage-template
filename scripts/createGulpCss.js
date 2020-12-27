@@ -4,10 +4,14 @@ const cleanCss = require("gulp-clean-css");
 
 const { baseFolder, outputFolder, tempFolder } = require("./constants");
 
-const createGulpCss = function (variant) {
+const createGulpCss = function (styles) {
+  if (typeof styles !== "string" && !Array.isArray(styles)) {
+    throw (new Error("createGulpCss: no styles folder specified"));
+  }
+
   const gatherCss = function () {
     return gulp
-      .src(variant.styles.map((folder) => `${baseFolder}/${folder}/styles/*.css`))
+      .src(styles.map((folder) => `${baseFolder}/${folder}/styles/*.css`))
       .pipe(gulp.dest(`${baseFolder}/${tempFolder}/styles`));
 
   };
@@ -28,11 +32,11 @@ const createGulpCss = function (variant) {
     return processCss;
   }
 
-  if (Array.isArray(variant.styles)) {
+  if (Array.isArray(styles)) {
     return gulp.series(gatherCss, createProcessCss(tempFolder));
   }
   else {
-    return createProcessCss(variant.styles);
+    return createProcessCss(styles);
   }
 }
 

@@ -6,15 +6,18 @@ const prettyHtml = require("./prettyHtml");
 const page_data = require("../src/page-data.json");
 const { baseFolder, outputFolder } = require("./constants");
 
-const createGulpPhp = function (variant) {
-  const njkPhp = function () {
+const createGulpHtml = function (templates) {
+  if (typeof templates !== "string") {
+    throw (new Error("createGulpHtml: no templates folder specified"));
+  }
+
+  const njkHtml = function () {
     return gulp
-      .src(`${baseFolder}/pages/**/*.php`)
+      .src(`${baseFolder}/pages/**/*.html`)
       .pipe(data(page_data))
       .pipe(
         nunjucksRender({
-          path: [`${baseFolder}/${variant.templates}/templates`],
-          ext: ".php",
+          path: [`${baseFolder}/${templates}/templates`],
           envOptions: {
             autoescape: false,
             trimBlocks: true,
@@ -25,7 +28,8 @@ const createGulpPhp = function (variant) {
       .pipe(through2.obj(prettyHtml))
       .pipe(gulp.dest(outputFolder));
   }
-  return njkPhp;
+  return njkHtml;
 };
 
-module.exports = createGulpPhp;
+module.exports = createGulpHtml;
+
