@@ -6,21 +6,22 @@
   display: flex;
   flex-direction: column;
 }
-#content .image-desc {
+.content .image-desc {
   margin-top: 0.125rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 0.0rem;
+  padding-right: 0.0rem;
   padding-bottom: 0.5rem;
+  width: 100%;
   text-align: center;
   background-color: #e6e5e4;
 }
-#content img.wp-smiley {
+.content img.wp-smiley {
   float: none;
   border: none;
   padding: 0;
   margin: 0;
 }
-#content img.wp-wink {
+.content img.wp-wink {
   float: none;
   border: none;
   padding: 0;
@@ -75,7 +76,6 @@
   line-height: 1;
   padding: 0;
   padding-left: 0.5rem;
-  padding-right: 0.5rem;
   font-size: 1.25rem;
 }
 .verticalImageElement {
