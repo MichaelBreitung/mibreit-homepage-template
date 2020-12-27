@@ -1,7 +1,9 @@
 const gulp = require("gulp");
 const concat = require("gulp-concat");
 const cleanCss = require("gulp-clean-css");
-
+const sass = require('gulp-sass');
+sass.compiler = require('node-sass');
+ 
 const { baseFolder, outputFolder, tempFolder } = require("./constants");
 
 const createGulpCss = function (styles) {
@@ -9,11 +11,23 @@ const createGulpCss = function (styles) {
     throw (new Error("createGulpCss: no styles folder specified"));
   }
 
-  const gatherCss = function () {
-    return gulp
-      .src(styles.map((folder) => `${baseFolder}/${folder}/styles/*.css`))
-      .pipe(gulp.dest(`${baseFolder}/${tempFolder}/styles`));
+  const createCompileScss = function (sourceFolder, destinationFolder) {
+    const compileScss = function () {
+      return gulp
+      .src([
+        `${baseFolder}/${sourceFolder}/styles/*.scss`,          
+      ])
+      .pipe(sass().on('error', sass.logError))
+      .pipe(gulp.dest(`${baseFolder}/${destinationFolder}/styles`));
+    }    
+    return compileScss;
+  }
 
+
+  const gatherCssAndScss = function () {
+    return gulp
+      .src(styles.map((folder) => `${baseFolder}/${folder}/styles/*.+(css|scss)`))
+      .pipe(gulp.dest(`${baseFolder}/${tempFolder}/styles`));
   };
 
   const createProcessCss = function (sourceFolder) {
@@ -33,10 +47,10 @@ const createGulpCss = function (styles) {
   }
 
   if (Array.isArray(styles)) {
-    return gulp.series(gatherCss, createProcessCss(tempFolder));
+    return gulp.series(gatherCssAndScss, createCompileScss(tempFolder, tempFolder), createProcessCss(tempFolder));
   }
   else {
-    return createProcessCss(styles);
+    return gulp.series(createCompileScss(sourceFolder,sourceFolder), createProcessCss(styles));
   }
 }
 
