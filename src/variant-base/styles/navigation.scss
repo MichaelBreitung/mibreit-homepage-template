@@ -1,3 +1,5 @@
+@import 'variables';
+
 .navigation__container {
   position: absolute;
   top: 11rem;
@@ -5,12 +7,11 @@
   font-size: 1.6rem;
   font-weight: bold;
   max-height: 2.5rem;
-  background-color: rgb(247, 247, 247);
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: $navigation-background-color;
   backdrop-filter: blur(3.5px);
-  -webkit-box-shadow: 0rem 0.2rem 0.15rem 0rem rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0rem 0.2rem 0.15rem 0rem rgba(0, 0, 0, 0.25);
-  box-shadow: 0rem 0.2rem 0.15rem 0rem rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: $navigation-shadow;
+  -moz-box-shadow: $navigation-shadow;
+  box-shadow: $navigation-shadow;
   overflow: hidden;
   z-index: 50;
   transition: max-height 0.7s ease-in-out;
@@ -34,7 +35,7 @@
   }
   
   .navigation__item:hover {
-    background-color: #a1b5c2;
+    background-color: $link-color-hover;
   }
   
   .navigation__language-item {
@@ -67,7 +68,7 @@
   .menu-btn__burger {
     width: 2rem;
     height: 0.3rem;
-    background: #445057;
+    background: $link-color;
     border-radius: 0.25rem;
     transition: all 0.5s ease-in-out;
   }
@@ -78,7 +79,7 @@
     position: absolute;
     width: 2rem;
     height: 0.3rem;
-    background: #445057;
+    background: $link-color;
     border-radius: 0.25rem;
     transition: all 0.5s ease-in-out;
   }

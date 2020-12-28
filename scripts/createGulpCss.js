@@ -34,10 +34,10 @@ const createGulpCss = function (styles) {
     const processCss = function () {
       return gulp
         .src([
-          `${baseFolder}/${sourceFolder}/styles/*.css`,
-          `!${baseFolder}/${sourceFolder}/styles/media.css`,
+          `${baseFolder}/${sourceFolder}/styles/+general.css`,
           `${baseFolder}/scripts/**/*.css`,
-          `${baseFolder}/${sourceFolder}/styles/media.css`,
+          `${baseFolder}/${sourceFolder}/styles/!(+)*.css`,          
+          `${baseFolder}/${sourceFolder}/styles/+media.css`,
         ])
         .pipe(concat("styles.css"))
         .pipe(cleanCss({ compatibility: "ie8" }))

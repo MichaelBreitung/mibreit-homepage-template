@@ -1,4 +1,4 @@
-@import "palette";
+@import "variables";
 
 * {
   padding: 0;
@@ -130,7 +130,16 @@ form input {
 }
 
 form input:focus {
+  background-color: $form-background-focus;
   outline: none;
+}
+
+form input.error {
+  background-color:$form-background-error;
+}
+
+form label.error {
+  color: $form-background-error;
 }
 
 form textarea {
@@ -140,6 +149,7 @@ form textarea {
 }
 
 form textarea:focus {
+  background-color: $form-background-focus;
   outline: none;
 }
 

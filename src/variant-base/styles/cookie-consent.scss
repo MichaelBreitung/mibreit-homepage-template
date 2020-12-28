@@ -1,0 +1,13 @@
+@import 'variables';
+
+#cookie-msg {
+  background-color: $cookie-consent-background-color;
+  -webkit-box-shadow: $cookie-consent-shadow;
+  -moz-box-shadow: $cookie-consent-shadow;
+  box-shadow: $cookie-consent-shadow;
+
+  .btn-aceptar {
+    background-color: #a1b5c2;
+  }
+}
+

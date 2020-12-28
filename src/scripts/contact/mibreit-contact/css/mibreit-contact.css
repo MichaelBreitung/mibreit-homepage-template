@@ -17,15 +17,6 @@
   width: 100%;
 }
 
-.contact-sheet input:focus {
-  background-color: #d4b888;
-  outline: none;
-}
-
-.contact-sheet input.error {
-  background-color: #e45e4d;
-}
-
 .contact-sheet input.contact-sheet__checkbox {
   padding: 0.25rem;
   width: 20px;
@@ -35,11 +26,6 @@
   min-width: 100%;
   max-width: 100%;
   min-height: 260px;
-}
-
-.contact-sheet textarea:focus {
-  background-color: #d4b888;
-  outline: none;
 }
 
 .contact-sheet td {
@@ -53,10 +39,6 @@
 
 .contact-sheet td.contact-sheet__left {
   text-align: left;
-}
-
-.contact-sheet label.error {
-  color: #dd4b37;
 }
 
 .contact-result {

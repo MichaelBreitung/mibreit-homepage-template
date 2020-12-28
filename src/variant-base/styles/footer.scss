@@ -1,14 +1,15 @@
+@import 'variables';
+
 .footer {
   flex: 0 1 auto;
   margin-bottom: 0rem;
   margin-top: 0.5rem;
   padding-bottom: 1rem;
   width: 100%;
-  background-color: rgb(255, 255, 255);
-  background-color: rgba(255, 255, 255, 0.9);
-  -webkit-box-shadow: 0rem -0.2rem 0.15rem 0rem rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0rem -0.2rem 0.15rem 0rem rgba(0, 0, 0, 0.25);
-  box-shadow: 0rem -0.2rem 0.15rem 0rem rgba(0, 0, 0, 0.25);
+  background-color: $footer-background-color;
+  -webkit-box-shadow: $footer-shadow;
+  -moz-box-shadow: $footer-shadow;
+  box-shadow: $footer-shadow;
 
   .footer__text {
     text-align: center;

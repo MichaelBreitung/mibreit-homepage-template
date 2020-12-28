@@ -1,25 +1,26 @@
 #cookie-msg {
   position: fixed;
-  color: #fff;
   bottom: 0;
   width: 100%;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #666;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   z-index: 100;
+  background-color: #ffffff;
+  -webkit-box-shadow:  0rem -0.2rem 0.15rem 0rem rgba(0, 0, 0, 0.25);
+  -moz-box-shadow:  0rem -0.2rem 0.15rem 0rem rgba(0, 0, 0, 0.25);
+  box-shadow:  0rem -0.2rem 0.15rem 0rem rgba(0, 0, 0, 0.25);
 }
 
 #cookie-msg .btn-aceptar {
   padding: 0.25rem;
-  border-radius: 0.25rem;
-  color: #fff;
+  border-radius: 0.25rem;  
   margin-left: 1rem;
   margin-right: 1rem;
-  background-color: #d4b888;
+  background-color: #a1b5c2;
   text-align: center;
   white-space: nowrap;
 }
