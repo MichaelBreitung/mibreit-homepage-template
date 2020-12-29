@@ -8,13 +8,17 @@ $navigation-background-color: rgba(255, 255, 255, 0.85);
 $footer-background-color: $background-color;
 $cookie-consent-background-color: $background-color;
 
-$button-background-color: #a1b5c2;
+
 
 $link-color: #103247;
 $link-color-hover: #a1b5c2;
 $link-color-visited: #032b44;
 
+$button-background-color: #a1b5c2;
+$button-link-color: $link-color;
+
 $search-link-color: #a5bac7;
+$search-button-color: $search-link-color;
 
 $form-color: #1c2124;
 $form-background-color: #a5bac7;
