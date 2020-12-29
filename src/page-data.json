@@ -48,13 +48,15 @@
     "de": [
       { "name": "Home", "url": "/german/" },
       { "name": "Kontakt", "url": "/german/contact.html" },
-      { "name": "Info", "url": "/german/about.html" }
+      { "name": "Info", "url": "/german/about.html" },
+      { "name": "Blog", "url": "/blog/" }
     ],
     "en": [
       { "name": "Home", "url": "/" },
       { "name": "Portfolio", "url": "/portfolio.php" },
       { "name": "Contact", "url": "/contact.html" },
-      { "name": "About", "url": "/about.html" }
+      { "name": "About", "url": "/about.html" },
+      { "name": "Blog", "url": "/blog/" }
     ]
   },
   "page_footer": {

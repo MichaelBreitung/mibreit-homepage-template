@@ -11,10 +11,10 @@ const createGulpNjkTasks = function (templates) {
   }
 
   if (Array.isArray(templates)) {
-    return gulp.series(createGatherNjkTemplates(templates), gulp.parallel(createGulpNjkHtml(tempFolder), createGulpNjkPhp(tempFolder, createGulpNjkPhpScripts(tempFolder))));
+    return gulp.series(createGatherNjkTemplates(templates), gulp.parallel(createGulpNjkHtml(tempFolder), createGulpNjkPhp(tempFolder), createGulpNjkPhpScripts(tempFolder)));
   }
   else {
-    return gulp.parallel(createGulpNjkHtml(templates), createGulpNjkPhp(templates, createGulpNjkPhpScripts(templates)));
+    return gulp.parallel(createGulpNjkHtml(templates), createGulpNjkPhp(templates), createGulpNjkPhpScripts(templates));
   }
 };
 
