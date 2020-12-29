@@ -4,7 +4,6 @@ const fsExtra = require("fs-extra");
 const loadVariant = require("./scripts/variantLoader");
 const createGulpCss = require("./scripts/createGulpCss");
 const createGulpFonts = require("./scripts/createGulpFonts");
-const gulpHtAccess = require("./scripts/gulpHtAccess");
 const createGulpNjkTasks = require("./scripts/createGulpNjkTasks");
 const createGulpImages = require("./scripts/createGulpImages");
 const createGulpJavascript = require("./scripts/createGulpJavascript");
@@ -26,8 +25,7 @@ fsExtra.emptyDirSync(`${baseFolder}/${tempFolder}`);
 module.exports = { default: gulp.parallel(createGulpFonts(variant.fonts), 
   createGulpImages(variant.images, variant.favicon), 
   createGulpCss(variant.styles), 
-  createGulpNjkTasks(variant), 
+  createGulpNjkTasks(variant), //, true), // comment in second parameter true, to also create .htaccess before deploy
   createGulpJavascript(), 
-  /** gulpHtAccess // activate this once testing is done and you want to deploy to server */
   gulpWordpressCss,
   gulpXml) };
