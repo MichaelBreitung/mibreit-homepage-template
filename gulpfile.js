@@ -26,7 +26,7 @@ fsExtra.emptyDirSync(`${baseFolder}/${tempFolder}`);
 module.exports = { default: gulp.parallel(createGulpFonts(variant.fonts), 
   createGulpImages(variant.images, variant.favicon), 
   createGulpCss(variant.styles), 
-  createGulpNjkTasks(variant.templates), 
+  createGulpNjkTasks(variant), 
   createGulpJavascript(), 
   /** gulpHtAccess // activate this once testing is done and you want to deploy to server */
   gulpWordpressCss,
