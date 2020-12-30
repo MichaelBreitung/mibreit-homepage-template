@@ -1,2 +1,6 @@
-<div class="header__image"></div>
+{% if page_header_img | length -%}
+  <div class="header__image" style="background-image: url('{{page_header_img}}')"></div>
+{%- else -%}
+  <div class="header__image"></div>
+{%- endif %}
 <img class="profile__image" src="images/header/profile.png" width="200" height="200" alt="{{page_name}}"></img>
