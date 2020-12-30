@@ -16,6 +16,10 @@ body {
   line-height: 1.6;
   color: $base-color;
   background-color: $background-color;
+  background-position: center;
+  background-position: top;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
   border: none;
   text-align: left;
   max-height: 25000px;

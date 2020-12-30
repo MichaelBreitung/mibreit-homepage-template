@@ -14,7 +14,11 @@
     {% block meta %}{% endblock %}
     {% block styles %}{% endblock %}
   </head>
+{% if page_background_image | length %}
+  <body style="background-image: url({{page_background_image}})">
+{% else %}
   <body>
+{% endif %}
     {% include "../../parts/en/header.njk" %}
     <div class="content flexiblecontent">
       {% include "../../parts/wordpress/sidebar.njk" %}
