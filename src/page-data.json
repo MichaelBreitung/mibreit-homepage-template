@@ -46,6 +46,22 @@
       "image": "/images/social-media-links/linkedIn.png"
     }
   },
+  "social_media_share": {
+    "facebook": {
+      "url": "https://facebook.com/sharer.php",
+      "image": "/images/social-media-share/facebook-share.png",
+      "essential": true
+    },
+    "twitter": {
+      "url": "https://twitter.com/intent/tweet",
+      "image": "/images/social-media-share/twitter-share.png",
+      "essential": true
+    },
+    "pinterest": {
+      "url": "http://www.pinterest.com/pin/create/button/",
+      "image": "/images/social-media-share/pinterest-share.png"
+    }
+  },
   "page_navigation": {
     "de": [
       { "name": "Home", "url": "/german/" },
@@ -80,5 +96,10 @@
     "en": {
       "privacy_url": "/privacy-policy.html"
     }
+  },
+  "blog":
+  {
+    "rrs": "",
+    "feedspot": ""
   }
 }

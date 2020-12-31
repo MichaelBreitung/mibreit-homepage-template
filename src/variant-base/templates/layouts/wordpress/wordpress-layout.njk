@@ -23,6 +23,8 @@
     <main>
       <div class="content padding-bottom-normal">
         {% block content %}{% endblock %}
+        {% from "../../macros/social-media-share.njk" import socialMediaShare %}
+        {{ socialMediaShare(social_media_share, false, "<?php the_permalink(); ?>", "<?php echo sanitize_title_with_dashes(get_the_title()); ?>", "<?php echo $page_image ?>") }}
       </div>
     </main>
     {% include "../../parts/en/footer.njk" %}
