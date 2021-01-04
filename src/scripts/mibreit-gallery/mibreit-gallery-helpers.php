@@ -14,6 +14,10 @@ class MibreitGalleryPageData
       $this->page = substr($this->page, 1);
     }
     $imageNrPos = strpos($this->page, "&imageNr");
+    if ($imageNrPos === FALSE)
+    {
+      $imageNrPos = strpos($this->page, "?imageNr");
+    }
     if ($imageNrPos !== FALSE)
     {
       $this->page = substr($this->page, 0, $imageNrPos);

@@ -1,3 +1,4 @@
+{% from "../../macros/get-page-image.njk" import getPageImage %}
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="robots" content="index,follow"/>
@@ -16,11 +17,19 @@
   <meta property="og:type" content="website"/>
 {% endif %}
 <meta property="og:site_name" content="{{page_name}}"/>
+{% if page_parameters %}
+  {% if "?" in page_canonical %}
+    <meta property="og:url" content="{{page_base_url}}/{{page_canonical}}&{{page_parameters}}"/>
+  {% else %}
+    <meta property="og:url" content="{{page_base_url}}/{{page_canonical}}?{{page_parameters}}"/>
+  {% endif %}
+{% else %}
 <meta property="og:url" content="{{page_base_url}}/{{page_canonical}}"/>
+{% endif %}
 <meta property="og:title" content="{{page_title}}"/>
 <meta property="og:description" content="{{page_description}}"/>
 {% if page_image %}
-  <meta property="og:image" content="{{page_image}}"/>
+  <meta property="og:image" content="{{getPageImage(page_base_url, page_image)}}"/>
 {% else %}
   <meta property="og:image" content="{{page_base_url}}/images/header/michael-breitung-photography.jpg"/>
 {% endif %}
@@ -30,7 +39,7 @@
 <meta name="twitter:title" content="{{page_title}}"/>
 <meta name="twitter:description" content="{{page_description}}"/>
 {% if page_image %}
-  <meta name="twitter:image"  content="{{page_image}}"/>
+  <meta name="twitter:image" content="{{getPageImage(page_base_url, page_image)}}"/>
 {% else %}
   <meta name="twitter:image"  content="{{page_base_url}}/images/header/michael-breitung-photography.jpg"/>
 {% endif %}

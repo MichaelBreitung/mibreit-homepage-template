@@ -7,7 +7,8 @@
 {% set page_keywords="<?php echo $mibreitGallery->getInfoDe()->keywords\;?>" %}
 {% set page_description = "<?php echo $mibreitGallery->getInfoDe()->description\;?>" %}
 {% set page_canonical = "<?php echo $mibreitGalleryPageData->getPage();?>" %}
-{% set page_image = "<?php echo $mibreitGalleryPageData->getBasePath() . $mibreitGallery->getImage(0)->imageUrl ?>" %}
+{% set page_parameters = "imageNr=<?php echo $imageNr ?>" %}
+{% set page_image = "<?php echo $mibreitGalleryPageData->getBasePath() . $mibreitGallery->getImage($imageNr)->imageUrl ?>" %}
 {% extends "./content-layout.njk" %}
 {% block scripts %}
   {{scriptGallery()}}
