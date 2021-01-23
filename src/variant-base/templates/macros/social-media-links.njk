@@ -9,9 +9,9 @@
       {% for item_name, item_content in social_media %}
         {% if item_content.url and item_content.image and item_content.essential %}
           {% if item_content.me %}
-            <a class="social-media__link" rel="me" href="{{item_content.url}}"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="{{item_name}}"/></a>
+            <a class="social-media__link" rel="me" href="{{item_content.url}}"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="{{item_name}}" width="32" height="32"/></a>
           {% else %}
-            <a class="social-media__link" href="{{item_content.url}}"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="{{item_name}}"/></a>
+            <a class="social-media__link" href="{{item_content.url}}"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="{{item_name}}" width="32" height="32"/></a>
           {% endif %}
         {% endif %}
       {% endfor %}
@@ -19,9 +19,9 @@
       {% for item_name, item_content in social_media %}
         {% if item_content.url and item_content.image %}
           {% if item_content.me %}
-            <a class="social-media__link" rel="me" href="{{item_content.url}}"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="{{item_name}}"/></a>
+            <a class="social-media__link" rel="me" href="{{item_content.url}}"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="{{item_name}}" width="32" height="32"/></a>
           {% else %}
-            <a class="social-media__link" href="{{item_content.url}}"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="{{item_name}}"/></a>
+            <a class="social-media__link" href="{{item_content.url}}"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="{{item_name}}" width="32" height="32"/></a>
           {% endif %}
         {% endif %}
       {% endfor %}

@@ -14,6 +14,7 @@ const createGulpJavascript = function () {
         `${baseFolder}/scripts/base/hamburger-navbar/*.js`,
         `${baseFolder}/scripts/base/mibreit-navbar/*.js`,
         `${baseFolder}/scripts/base/mibreit-search/*.js`,
+        `${baseFolder}/scripts/mibreit-lazy-loader/*.js`
       ])
       .pipe(through2.obj(minifyJs))
       .pipe(concat("base.js"))

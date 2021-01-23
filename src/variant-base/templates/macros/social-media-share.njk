@@ -8,21 +8,21 @@
     {% if essential %}
       {% for item_name, item_content in social_media %}
         {% if item_name == "facebook" and item_content.essential %}
-          <a class="social-media__share-link" href="{{item_content.url}}?u={{share_url}}" target="_blank"><img class="social-media__image" src="/images/social-media-share/facebook-share.png" alt="share on {{item_name}}"></a>
+          <a class="social-media__share-link" href="{{item_content.url}}?u={{share_url}}" target="_blank"><img class="social-media__image" src="/images/social-media-share/facebook-share.png" alt="share on {{item_name}}" width="80" height="33"/></a>
         {% elif item_name == "twitter" and item_content.essential %}
-          <a class="social-media__share-link" href="{{item_content.url}}?url={{share_url}}&amp;text={{share_description}}" target="_blank"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="share on {{item_name}}"/></a>
+          <a class="social-media__share-link" href="{{item_content.url}}?url={{share_url}}&amp;text={{share_description}}" target="_blank"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="share on {{item_name}}" width="80" height="33"/></a>
         {% elif item_name == "pinterest" and item_content.essential %}
-          <a class="social-media__share-link" href="{{item_content.url}}?url={{share_url}}&amp;media={{share_image}}&amp;description={{share_description}}" target="_blank"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="share on {{item_name}}"/></a>
+          <a class="social-media__share-link" href="{{item_content.url}}?url={{share_url}}&amp;media={{share_image}}&amp;description={{share_description}}" target="_blank"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="share on {{item_name}}" width="80" height="33"/></a>
         {% endif %}
       {% endfor %}
     {% else %}
       {% for item_name, item_content in social_media %}
         {% if item_name == "facebook" %}
-          <a class="social-media__share-link" href="{{item_content.url}}?u={{share_url}}" target="_blank"><img class="social-media__image" src="/images/social-media-share/facebook-share.png" alt="share on {{item_name}}"></a>
+          <a class="social-media__share-link" href="{{item_content.url}}?u={{share_url}}" target="_blank"><img class="social-media__image" src="/images/social-media-share/facebook-share.png" alt="share on {{item_name}}" width="80" height="33"&></a>
         {% elif item_name == "twitter" %}
-          <a class="social-media__share-link" href="{{item_content.url}}?url={{share_url}}&amp;text={{share_description}}" target="_blank"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="share on {{item_name}}"/></a>
+          <a class="social-media__share-link" href="{{item_content.url}}?url={{share_url}}&amp;text={{share_description}}" target="_blank"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="share on {{item_name}}" width="80" height="33"/></a>
         {% elif item_name == "pinterest" %}
-          <a class="social-media__share-link" href="{{item_content.url}}?url={{share_url}}&amp;media={{share_image}}&amp;description={{share_description}}" target="_blank"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="share on {{item_name}}"/></a>
+          <a class="social-media__share-link" href="{{item_content.url}}?url={{share_url}}&amp;media={{share_image}}&amp;description={{share_description}}" target="_blank"><img class="social-media__image" src="{{item_content.image}}" title="{{item_name}}" alt="share on {{item_name}}" width="80" height="33"/></a>
         {% endif %}
       {% endfor %}
     {% endif %}
