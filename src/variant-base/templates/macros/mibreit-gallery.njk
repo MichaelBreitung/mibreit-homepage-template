@@ -83,16 +83,14 @@
 
 {# private macro that should only be used internally within a php tag to create the image marcup #}
 {% macro _image(item, de) %}
-  $size = getimagesize(${{item}}->imageUrl);
-  echo "<div class=\"mibreit-imageElement\">\n";
-  echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" ";
+  $size = getimagesize(${{item}}->imageUrl);  
+  echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" style=\"position: absolute;\" ";
   echo "data-src=\"" . ${{item}}->imageUrl . "\" ";
   echo "title=\""    . ${{item}}->caption  . "\" ";
   echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";
   echo "width=\""    . $size[0]         ."\" ";
-  echo "height=\""   . $size[1]         ."\"/>\n";
-  echo "<h3>" . ${{item}}->caption . "</h3>";
-  echo "\n</div>\n";
+  echo "height=\""   . $size[1]         ."\"/>\n"; 
+  echo "<h3 class=\"mibreit-slideshow-caption\" style=\"position: absolute;\">" . ${{item}}->caption . "</h3>\n";
 {% endmacro %}
 
 {#
@@ -100,15 +98,13 @@
 # @attention requires call to prepare() beforehand
 #}
 {% macro thumbview() %}
-  <div class="mibreit-thumbview padding-bottom-large">
+  <div class="mibreit-thumbview">
     <?php
     foreach ($mibreitGallery->getImages() as $image)
     {
-      $size = getimagesize($image->thumbUrl);
-      echo "\n<div class=\"mibreit-thumbElement\">\n";
-      echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" data-src=\"" . $image->thumbUrl . "\" ";
-      echo "width=\"". $size[0] ."\" height=\"". $size[1] . "\" alt=\"thumbnail\"/>\n";
-      echo "</div>";
+      $size = getimagesize($image->thumbUrl);      
+      echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" style=\"position: absolute;\" data-src=\"" . $image->thumbUrl . "\" ";
+      echo "width=\"". $size[0] ."\" height=\"". $size[1] . "\" alt=\"thumbnail\"/>\n";      
     }
   ?>
   </div>
@@ -140,17 +136,13 @@
 # @param scale_mode - if provided will be applied to all images (SCALE_MODE_STRETCH(default), SCALE_MODE_FITASPECT, SCALE_MODE_NONE, SCALE_MODE_EXPAND)
 # @param zoom - if provided and set to value != 100, zoom animation will be applied
 #}
-{% macro scriptSlideshow(container, omit_script_include, scale_mode, zoom) %}
+{% macro scriptSlideshow(container, omit_script_include, stretch, zoom) %}
   {% if not omit_script_include %}
-    <script src="/scripts/mibreit-gallery/mibreitGallery.min.js"></script>
+    <script src="/scripts/mibreit-gallery/mibreitGalleryTs.min.js"></script>
   {% endif %}
   <script>
-    $(document).ready(function () {
-      var slideshow = mibreitGallery.createSlideshow({slideshowContainer: "{{container}}", imageScaleMode:{% if scale_mode %}mibreitGallery.{{scale_mode}}
-        {% else %}
-          mibreitGallery.SCALE_MODE_STRETCH{% endif %}, interval: 4000{% if zoom %}, zoom: {{zoom}}{% endif %}});
-      $("{{container}}").css("opacity", "1.0");
-      slideshow.start();
+    mibreitGalleryTs.DomTools.documentReady(function () {
+      mibreitGalleryTs.createSlideshow({imageSelector: "{{container}} > img", scaleMode:{% if stretch %}mibreitGalleryTs.EImageScaleMode.STRETCH{% else %}mibreitGalleryTs.EImageScaleMode.FIT_ASPECT{% endif %}, interval : 4000{% if zoom %}, zoom : {{zoom}}{% endif %}}); 
     });
   </script>
 {% endmacro %}
@@ -159,22 +151,26 @@
 # inserts script for gallery
 #}
 {% macro scriptGallery(gallery_var_name) %}
-  <script src="/scripts/mibreit-gallery/mibreitGallery.min.js"></script>
+  <script src="/scripts/mibreit-gallery/mibreitGalleryTs.min.js"></script>
   <script>
     {% if gallery_var_name %}
       var {{gallery_var_name}};
     {% else %}
       var mibreitGalleryInstance;
     {% endif %}
-    $(document).ready(function () {
+    mibreitGalleryTs.DomTools.documentReady(function () { 
+      var gallery = mibreitGalleryTs.createGallery({galleryContainerSelector: ".mibreit-gallery", imageSelector: ".mibreit-gallery > img", scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT, thumbContainerSelector: ".mibreit-thumbview", thumbSelector: ".mibreit-thumbview > img", numberOfVisibleThumbs: 7});
+      const titleElement = mibreitGalleryTs.DomTools.getElement(".mibreit-slideshow-title");
+      mibreitGalleryTs.DomTools.setInnerHtml(titleElement, gallery.getViewer().getImageInfo(gallery.getViewer().getImageIndex()).getTitle());
+      gallery.getViewer().addImageChangedCallback((index, imageInfo) => {
+        mibreitGalleryTs.DomTools.setInnerHtml(titleElement, imageInfo.getTitle());
+      });
+      mibreitGalleryHistory(gallery);
       {% if gallery_var_name %}
-        {{gallery_var_name}}
+      {{gallery_var_name}} = gallery.getViewer();
       {% else %}
-        mibreitGalleryInstance
-      {% endif %} = mibreitGallery.createGallery({titleContainer: ".mibreit-slideshow-title", slideshowContainer: ".mibreit-gallery", allowFullscreen: true, thumbviewContainer: ".mibreit-thumbview"});
-      mibreitGalleryHistory(mibreitGalleryInstance);
-      $(".mibreit-gallery").css("opacity", "1.0");
-      $(".mibreit-thumbview").css("opacity", "1.0");
+      mibreitGalleryInstance = gallery.getViewer();
+      {% endif %} 
     });
   </script>
 {% endmacro %}
@@ -186,7 +182,7 @@
 {% macro scriptImagePrints(gallery) %}
   <?php
   echo "<script>\n";
-  echo "$(document).ready(function () {\n";
+  echo "mibreitGalleryTs.DomTools.documentReady(function () {\n";
   echo "{{gallery}}.addImageChangedCallback(mibreitImagePrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", {{gallery}}))";
   echo "});\n";
   echo "</script>";

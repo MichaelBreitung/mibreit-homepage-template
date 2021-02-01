@@ -1,5 +1,5 @@
 <script>
   stickyNavbar(function () {
-    return $(".header").height() - $(".navigation__container .navigation .navigation__item").height();
+    return document.querySelector(".header").clientHeight - document.querySelector(".navigation__container .navigation .navigation__item").clientHeight;
   });
 </script>

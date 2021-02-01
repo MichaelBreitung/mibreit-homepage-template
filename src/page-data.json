@@ -84,7 +84,7 @@
       { "name": "Haftungsausschluss", "url": "/german/disclaimer.html" }
     ],
     "en": [
-      { "name": "Imprint", "url": "/imprint.html" },
+      { "name": "Legal Notice", "url": "/imprint.html" },
       { "name": "Privacy Policy", "url": "/privacy-policy.html" },
       { "name": "Disclaimer", "url": "/disclaimer.html" }
     ]

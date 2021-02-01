@@ -1,54 +1,64 @@
 var mibreitImagePrints = function (imagePrints, gallery) {
   // init elements
-  var printsDiv = $(".mibreit-prints");
-  var limitedDiv = $(".mibreit-prints__options-limited");
-  var redbubbleDiv = $(".mibreit-prints__options-redbubble");
-  var customDiv = $(".mibreit-prints__options-custom");
-  var limitedLink = $(".mibreit-prints__options-limited-link");
-  var limitedLinkText = limitedLink.attr("href");
-  var customLink = $(".mibreit-prints__options-custom-link");
-  var customLinkText = customLink.attr("href");
-  var licenseLink = $(".mibreit-prints__options-license-link");
-  var licenseLinkText = licenseLink.attr("href");
+  var printsDiv = document.querySelector(".mibreit-prints");
+  var limitedDiv = document.querySelector(".mibreit-prints__options-limited");
+  var redbubbleDiv = document.querySelector(".mibreit-prints__options-redbubble");
+  var customDiv = document.querySelector(".mibreit-prints__options-custom");
+  var limitedLink = document.querySelector(".mibreit-prints__options-limited-link");
+  var limitedLinkText = limitedLink.getAttribute("href");
+  var customLink = document.querySelector(".mibreit-prints__options-custom-link");
+  var customLinkText = customLink.getAttribute("href");
+  var licenseLink = document.querySelector(".mibreit-prints__options-license-link");
+  var licenseLinkText = licenseLink.getAttribute("href");
+
+  function hideElement(element)
+  {
+    element.style.setProperty("display", "none");
+  }
+
+  function showElement(element)
+  {
+    element.style.removeProperty("display");     
+  }
 
   // init elements state
-  printsDiv.hide();
-  redbubbleDiv.hide();
-  limitedDiv.hide();
-  customDiv.hide();
+  hideElement(printsDiv);
+  hideElement(redbubbleDiv);
+  hideElement(limitedDiv);
+  hideElement(customDiv);
 
   return function (id) {
-    var printInfo = imagePrints[gallery.getCurrentImageUrl()];
+    var printInfo = imagePrints[gallery.getImageInfo(gallery.getImageIndex()).getUrl()];
     if (typeof printInfo !== "undefined" && printInfo.prints) {
       if (printInfo.limited) {
-        limitedLink.attr(
+        limitedLink.setAttribute(
           "href",
           limitedLinkText + "?subject=Limited - " + printInfo.name.replace(/ /g, "%20")
         );
-        limitedDiv.show();
-        redbubbleDiv.hide();
-        customDiv.hide();
+        showElement(limitedDiv);
+        hideElement(redbubbleDiv);
+        hideElement(customDiv);
       } else {
-        limitedDiv.hide();
+        hideElement(limitedDiv);
         if (printInfo.redbubble) {
-          $(".mibreit-prints__options-redbubble a").attr("href", printInfo.redbubble);
-          redbubbleDiv.show();
+          document.querySelector(".mibreit-prints__options-redbubble a").setAttribute("href", printInfo.redbubble);
+          showElement(redbubbleDiv);
         } else {
-          redbubbleDiv.hide();
+          hideElement(redbubbleDiv);
         }
-        customLink.attr(
+        customLink.setAttribute(
           "href",
           customLinkText + "?subject=Custom - " + printInfo.name.replace(/ /g, "%20")
         );
-        licenseLink.attr(
+        licenseLink.setAttribute(
           "href",
           licenseLinkText + "?subject=License - " + printInfo.name.replace(/ /g, "%20")
         );
-        customDiv.show();
+        showElement(customDiv);
       }
-      printsDiv.show();
+      showElement(printsDiv);
     } else {
-      printsDiv.hide();
+      hideElement(printsDiv);
     }
   };
 };

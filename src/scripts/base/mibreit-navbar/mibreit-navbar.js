@@ -13,73 +13,70 @@ var mibreitNavbar = function (getStickyThresholdCallback) {
     isOpen = false;
     isSticky = false;
 
-    menuBtn = $(".navigation__container .menu-btn");
-    navigationContainer = $(".navigation__container");
-    navigationContainerNextSibling = navigationContainer.next();
-
-    oldNextSiblingMarginTop = parseInt(navigationContainerNextSibling.css("margin-top"));
+    menuBtn = document.querySelector('.navigation__container .menu-btn');
+    navigationContainer = document.querySelector('.navigation__container');
+    navigationContainerNextSibling = navigationContainer.nextElementSibling;    
+    oldNextSiblingMarginTop = parseInt(window.getComputedStyle(navigationContainerNextSibling).marginTop);
     updateNavigationContainerTopPosition();
   };
 
-  var increaseNextSiblingMarginTop = function (additionalMargin) {
-    navigationContainerNextSibling.css("margin-top", oldNextSiblingMarginTop + additionalMargin);
+  var updateNextSiblingMarginTop = function (additionalMargin) {   
+    navigationContainerNextSibling.style.setProperty('margin-top', ''+(oldNextSiblingMarginTop + additionalMargin)+'px');
   };
 
   var updateNavigationContainerTopPosition = function () {
-    if (typeof getStickyThresholdCallback !== "undefined") {
+    if (typeof getStickyThresholdCallback !== 'undefined') {
       navigationTopPosition = getStickyThresholdCallback();
     } else if (!navigationIsSticky) {
-      navigationTopPosition = navigationContainer.position().top;
-    }
+      navigationTopPosition = navigationContainer.getBoundingClientRect().top;
+    }  
   };
 
   var makeSticky = function () {
-    increaseNextSiblingMarginTop(navigationContainer.height());
-    navigationContainer.addClass("sticky");
+    updateNextSiblingMarginTop(navigationContainer.clientHeight);
+    navigationContainer.classList.add('sticky');
     isSticky = true;
   };
 
   var makeUnSticky = function () {
-    navigationContainer.removeClass("sticky");
-    navigationContainerNextSibling.css("transition", "");
-    navigationContainerNextSibling.css("margin-top", "");
+    navigationContainer.classList.remove('sticky');
+    navigationContainerNextSibling.style.removeProperty('transition');
+    navigationContainerNextSibling.style.removeProperty('margin-top');
     isSticky = false;
   };
 
   var updateStickyState = function () {
-    if (!isSticky) {
-      if ($(window).scrollTop() > navigationTopPosition) {
+    if (!isSticky) {      
+      if (window.pageYOffset > navigationTopPosition) {
         makeSticky();
       }
-    } else {
-      if ($(window).scrollTop() <= navigationTopPosition) {
-        makeUnSticky();
-      }
+    } else if (window.pageYOffset <= navigationTopPosition) {
+      makeUnSticky();
     }
   };
 
   var makeClose = function () {
-    menuBtn.removeClass("open");
-    navigationContainer.removeClass("open");
+    menuBtn.classList.remove('open');
+    navigationContainer.classList.remove('open');
     isOpen = false;
 
     if (isSticky) {
-      navigationContainerNextSibling.css("transition", "all 0.5s ease-in-out");
+      navigationContainerNextSibling.style.setProperty('transition', 'all 0.5s ease-in-out');
       setTimeout(function () {
-        increaseNextSiblingMarginTop(navigationContainer.height());
+        updateNextSiblingMarginTop(navigationContainer.clientHeight);
       }, 500);
     }
   };
 
   var makeOpen = function () {
-    menuBtn.addClass("open");
-    navigationContainer.addClass("open");
+    menuBtn.classList.add('open');
+    navigationContainer.classList.add('open');
     isOpen = true;
 
     if (isSticky) {
-      navigationContainerNextSibling.css("transition", "all 0.5s ease-in-out");
+      navigationContainerNextSibling.style.setProperty('transition', 'all 0.5s ease-in-out');
       setTimeout(function () {
-        increaseNextSiblingMarginTop(navigationContainer.height());
+        updateNextSiblingMarginTop(navigationContainer.clientHeight);
       }, 500);
     }
   };
@@ -92,11 +89,11 @@ var mibreitNavbar = function (getStickyThresholdCallback) {
     }
   };
 
-  $(document).ready(function () {
+  window.addEventListener('load', function () {
     init();
 
-    menuBtn.click(updateOpenState);
-    $(window).scroll(updateStickyState);
-    $(window).resize(updateNavigationContainerTopPosition);
+    menuBtn.addEventListener('click', updateOpenState);
+    document.addEventListener('scroll', updateStickyState);
+    window.addEventListener('resize', updateNavigationContainerTopPosition);
   });
 };

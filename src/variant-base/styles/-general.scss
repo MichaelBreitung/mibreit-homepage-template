@@ -246,6 +246,24 @@ form input[type="checkbox"] {
   margin-top: 1rem;
 }
 
+/******* negative bottom spacing *************/
+/*****************************/
+.spacing-negative-bottom-tiny {
+  margin-bottom: -0.125rem;
+}
+
+.spacing-negative-bottom-small {
+  margin-bottom: -0.25rem;
+}
+
+.spacing-negative-bottom-normal {
+  margin-bottom: -0.5rem;
+}
+
+.spacing-negative-bottom-large {
+  margin-bottom: -1rem;
+}
+
 /******* padding *************/
 /*****************************/
 .padding-bottom-tiny {

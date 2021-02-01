@@ -1,0 +1,10 @@
+{% macro scriptLazyScroller(item_selector) %}
+<script>
+  window.addEventListener('load', function () {
+    mibreitLazyLoader.createLazyLoader("{{item_selector}}", {
+      mode: mibreitLazyLoader.ELazyMode.WINDOWED_SCROLL,
+      useSurrogate: false
+    });
+  });
+</script>
+{% endmacro %}

@@ -6,45 +6,43 @@ var stickyNavbar = function (getStickyThresholdCallback) {
   var init = function () {
     makeSmooth = false;
     navigationIsSticky = false;
-    navigationContainer = $(".navigation__container");
+    navigationContainer = document.querySelector('.navigation__container');
     updateNavigationContainerTopPosition();
   };
 
   var updateNavigationContainerTopPosition = function () {
-    if (typeof getStickyThresholdCallback !== "undefined") {
+    if (typeof getStickyThresholdCallback !== 'undefined') {
       navigationTopPosition = getStickyThresholdCallback();
     } else if (!navigationIsSticky) {
-      navigationTopPosition = navigationContainer.position().top;
+      navigationTopPosition = navigationContainer.getBoundingClientRect().top;
     }
   };
 
   var makeSticky = function () {
-    navigationContainer.addClass("sticky");
+    navigationContainer.classList.add('sticky');
     navigationIsSticky = true;
   };
 
   var reset = function () {
-    navigationContainer.removeClass("sticky");
+    navigationContainer.classList.remove('sticky');
     navigationIsSticky = false;
   };
 
   var update = function () {
     if (!navigationIsSticky) {
-      if ($(window).scrollTop() > navigationTopPosition) {
+      if (window.pageYOffset > navigationTopPosition) {
         makeSticky();
       }
-    } else {
-      if ($(window).scrollTop() <= navigationTopPosition) {
-        reset();
-      }
+    } else if (window.pageYOffset <= navigationTopPosition) {
+      reset();
     }
     updateNavigationContainerTopPosition();
   };
 
-  $(document).ready(function () {
+  window.addEventListener('load', function () {
     init();
-    $(window).scroll(update);
-    $(window).resize(function () {
+    document.addEventListener('scroll', update);
+    window.addEventListener('resize', function () {
       updateNavigationContainerTopPosition();
     });
   });
