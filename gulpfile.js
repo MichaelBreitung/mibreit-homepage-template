@@ -7,7 +7,6 @@ const createGulpFonts = require("./scripts/createGulpFonts");
 const createGulpNjkTasks = require("./scripts/createGulpNjkTasks");
 const createGulpImages = require("./scripts/createGulpImages");
 const createGulpJavascript = require("./scripts/createGulpJavascript");
-const gulpWordpressCss = require("./scripts/gulpWordpressCss");
 const gulpXml = require("./scripts/gulpXml");
 
 const { baseFolder, tempFolder } = require("./scripts/constants");
@@ -27,5 +26,4 @@ module.exports = { default: gulp.parallel(createGulpFonts(variant.fonts),
   createGulpCss(variant.styles), 
   createGulpNjkTasks(variant), //, true), // comment in second parameter true, to also create .htaccess before deploy
   createGulpJavascript(), 
-  gulpWordpressCss,
   gulpXml) };

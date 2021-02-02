@@ -6,11 +6,12 @@
   -moz-box-shadow: $cookie-consent-shadow;
   box-shadow: $cookie-consent-shadow;
 
-  .btn-aceptar {
-    background-color: #a1b5c2;
-  }
-  a {
-    color: $button-link-color;
+  .mibreit-cookie-accept {
+    background-color: $button-background-color;
+
+    a {
+      color: $button-link-color;
+    }
   }
 
   small {
