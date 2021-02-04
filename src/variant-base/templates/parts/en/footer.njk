@@ -7,7 +7,14 @@
   </p>
 </footer>
 <script src="/scripts/base.js"></script>
-{% include "./script-cookie-consent.njk" %}
-{% include "../script-sticky-navbar.njk" %}
-{% include "../script-hamburger-navbar.njk" %}
-{% include "../script-mibreit-search.njk" %}
+<script>
+  window.addEventListener('load', function () {    
+    mibreitSearch();
+    hamburgerNavbar();
+    {% include "../script-sticky-navbar.njk" %}
+    {% include "./script-cookie-consent.njk" %}  
+    {% if page_background_image | length %}
+      {% include "../script-background.njk" %}
+    {% endif %}
+  });
+</script>

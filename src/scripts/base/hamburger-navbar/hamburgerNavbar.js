@@ -1,9 +1,9 @@
 var hamburgerNavbar = function () {
-  var isOpen = false;
-  var menuBtn = undefined;
-  var navigationContainer = undefined;
-  
-  var update = function () {
+  var navigationContainer = document.querySelector('.navigation__container');
+  var menuBtn = document.querySelector('.navigation__container .menu-btn');  
+  var isOpen = false;  
+
+  var update = function() {
     if (isOpen) {
       isOpen = false;
       navigationContainer.classList.remove('open');
@@ -14,10 +14,6 @@ var hamburgerNavbar = function () {
       menuBtn.classList.add('open');
     }
   };
-
-  window.addEventListener('load', function () {
-    menuBtn = document.querySelector('.navigation__container .menu-btn');
-    navigationContainer = document.querySelector('.navigation__container');
-    menuBtn.addEventListener('click', update);
-  });
+  
+  menuBtn.addEventListener('click', update);
 };

@@ -1,12 +1,12 @@
-var mibreitCookieMessage = function (config) {
-  function setCookie(c_name, value, exdays) {
+var mibreitCookieConsent = function (config) {
+  var setCookie = function(c_name, value, exdays) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + exdays);
     var c_value = escape(value) + (exdays == null ? "" : "; expires=" + exdate.toUTCString());
     document.cookie = c_name + "=" + c_value;
   }
 
-  function getCookie(c_name) {
+  var getCookie = function(c_name) {
     var i,
       x,
       y,
@@ -21,7 +21,7 @@ var mibreitCookieMessage = function (config) {
     }
   }
 
-  function cookieMessageGenerate() {
+  var cookieMessageGenerate = function() {
     var html =
       '<small class="msg">' +
       config.mainMessage +
@@ -31,10 +31,8 @@ var mibreitCookieMessage = function (config) {
     var cookieConsentBar = document.createElement("div");
     cookieConsentBar.setAttribute("id", "cookie-msg");
     cookieConsentBar.innerHTML = html;
-
     var body = document.querySelector("body");
     body.append(cookieConsentBar);
-
     document
       .querySelector("#cookie-msg .mibreit-cookie-accept")
       .addEventListener("click", function () {
@@ -42,11 +40,9 @@ var mibreitCookieMessage = function (config) {
         body.removeChild("#cookie-msg");
       });
   }
-
-  window.addEventListener("load", function () {
-    var cookie = getCookie(config.cookieName);
-    if (cookie !== "true") {
-      cookieMessageGenerate();
-    }
-  });
+  
+  var cookie = getCookie(config.cookieName);
+  if (cookie !== "true") {
+    cookieMessageGenerate();
+  }  
 };

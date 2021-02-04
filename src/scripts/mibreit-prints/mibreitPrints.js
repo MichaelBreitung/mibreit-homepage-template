@@ -1,5 +1,4 @@
-var mibreitImagePrints = function (imagePrints, gallery) {
-  // init elements
+var mibreitImagePrints = function (imagePrints, gallery) {  
   var printsDiv = document.querySelector(".mibreit-prints");
   var limitedDiv = document.querySelector(".mibreit-prints__options-limited");
   var redbubbleDiv = document.querySelector(".mibreit-prints__options-redbubble");
@@ -11,12 +10,12 @@ var mibreitImagePrints = function (imagePrints, gallery) {
   var licenseLink = document.querySelector(".mibreit-prints__options-license-link");
   var licenseLinkText = licenseLink.getAttribute("href");
 
-  function hideElement(element)
+  var hideElement = function(element)
   {
     element.style.setProperty("display", "none");
   }
 
-  function showElement(element)
+  var showElement = function(element)
   {
     element.style.removeProperty("display");     
   }

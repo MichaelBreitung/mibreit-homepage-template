@@ -1,11 +1,9 @@
 var mibreitNavbar = function (getStickyThresholdCallback) {
   var isOpen = false;
   var isSticky = false;
-
   var menuBtn = undefined;
   var navigationContainer = undefined;
   var navigationContainerNextSibling = undefined;
-
   var navigationTopPosition = 0;
   var oldNextSiblingMarginTop = 0;
 
@@ -27,7 +25,7 @@ var mibreitNavbar = function (getStickyThresholdCallback) {
   var updateNavigationContainerTopPosition = function () {
     if (typeof getStickyThresholdCallback !== 'undefined') {
       navigationTopPosition = getStickyThresholdCallback();
-    } else if (!navigationIsSticky) {
+    } else if (!isSticky) {
       navigationTopPosition = navigationContainer.getBoundingClientRect().top;
     }  
   };
@@ -89,11 +87,8 @@ var mibreitNavbar = function (getStickyThresholdCallback) {
     }
   };
 
-  window.addEventListener('load', function () {
-    init();
-
-    menuBtn.addEventListener('click', updateOpenState);
-    document.addEventListener('scroll', updateStickyState);
-    window.addEventListener('resize', updateNavigationContainerTopPosition);
-  });
+  init();
+  menuBtn.addEventListener('click', updateOpenState);
+  document.addEventListener('scroll', updateStickyState);
+  window.addEventListener('resize', updateNavigationContainerTopPosition);
 };

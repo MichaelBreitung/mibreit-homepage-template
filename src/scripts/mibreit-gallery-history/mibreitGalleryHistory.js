@@ -1,5 +1,5 @@
 var mibreitGalleryHistory = function (gallery) {
-  var currentImageId;
+  var currentImageId = 0;
 
   var udpateSeo = function () {    
     var href = window.location.href;
@@ -50,7 +50,6 @@ var mibreitGalleryHistory = function (gallery) {
   };
 
   gallery.getViewer().addImageChangedCallback(imageChangedCallback);
-
   window.onpopstate = function (event) {
     updateImageBasedOnURLParams();
   };

@@ -38,12 +38,10 @@ var stickyNavbar = function (getStickyThresholdCallback) {
     }
     updateNavigationContainerTopPosition();
   };
-
-  window.addEventListener('load', function () {
-    init();
-    document.addEventListener('scroll', update);
-    window.addEventListener('resize', function () {
-      updateNavigationContainerTopPosition();
-    });
+  
+  init();
+  document.addEventListener('scroll', update);
+  window.addEventListener('resize', function () {
+    updateNavigationContainerTopPosition();
   });
 };
