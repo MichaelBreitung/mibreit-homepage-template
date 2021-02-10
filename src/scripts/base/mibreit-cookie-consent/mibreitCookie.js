@@ -25,9 +25,9 @@ var mibreitCookieConsent = function (config) {
     var html =
       '<small class="msg">' +
       config.mainMessage +
-      '</small><div class="mibreit-cookie-accept"><a href="">' +
+      '</small><div class="mibreit-cookie-accept"><a href="#">' +
       config.acceptButton +
-      "</a></div></div>";
+      "</a></div>";
     var cookieConsentBar = document.createElement("div");
     cookieConsentBar.setAttribute("id", "cookie-msg");
     cookieConsentBar.innerHTML = html;
@@ -35,9 +35,10 @@ var mibreitCookieConsent = function (config) {
     body.append(cookieConsentBar);
     document
       .querySelector("#cookie-msg .mibreit-cookie-accept")
-      .addEventListener("click", function () {
+      .addEventListener("click", function (event) {       
+        event.preventDefault();
         setCookie(config.cookieName, true, config.expirationDays);
-        body.removeChild("#cookie-msg");
+        cookieConsentBar.remove();
       });
   }
   

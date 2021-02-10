@@ -13,7 +13,7 @@ const createGulpJavascript = function () {
         `${baseFolder}/scripts/base/hamburger-navbar/*.js`,
         `${baseFolder}/scripts/base/mibreit-navbar/*.js`,
         `${baseFolder}/scripts/base/mibreit-search/*.js`,
-        `${baseFolder}/scripts/mibreit-lazy-loader/*.js`
+        `${baseFolder}/scripts/mibreit-lazy-loader/*.js`,
       ])
       .pipe(through2.obj(minifyJs))
       .pipe(concat("base.js"))
@@ -23,13 +23,12 @@ const createGulpJavascript = function () {
   const concatenateContactJs = function () {
     return gulp
       .src([
-        `${baseFolder}/scripts/base/jquery/*.min.js`,
-        `${baseFolder}/scripts/contact/jquery-validate/*.min.js`,
-        `${baseFolder}/scripts/contact/mibreit-contact/*.js`,
+        `${baseFolder}/scripts/mibreit-contact/mibreitFormValidator.min.js`,
+        `${baseFolder}/scripts/mibreit-contact/mibreit-contact.js`,
       ])
       .pipe(through2.obj(minifyJs))
       .pipe(concat("contact.js"))
-      .pipe(gulp.dest(`${outputFolder}/scripts/contact`));
+      .pipe(gulp.dest(`${outputFolder}/scripts/mibreit-contact`));
   };
 
   const copyGalleryJs = function () {
@@ -44,9 +43,7 @@ const createGulpJavascript = function () {
       .pipe(gulp.dest(`${outputFolder}/scripts/mibreit-gallery`));
   };
 
-  return gulp.parallel(concatenateBaseJs,
-    concatenateContactJs,
-    copyGalleryJs)
-}
+  return gulp.parallel(concatenateBaseJs, concatenateContactJs, copyGalleryJs);
+};
 
 module.exports = createGulpJavascript;

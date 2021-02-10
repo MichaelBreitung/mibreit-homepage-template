@@ -7,52 +7,52 @@
 {% set page_en = "contact.html" %}
 {% extends "./layouts/de/content-layout.njk" %}
 {% block scripts %}
-  <script src="/scripts/contact/contact.js"></script>
+  <script src="/scripts/mibreit-contact/contact.js"></script>
 {% endblock %}
 {% block content %}
   <h2>Kontakt</h2>
   <p>Wenn Sie Fragen zu meinen Bildern oder meiner Homepage haben oder mir einfach eine Nachricht schicken wollen, können Sie das Formular ausfüllen oder eine Email an {{page_email | replace("@", "{at}")}} schreiben.</p>
-  <form id="contact" class="contact-sheet" name="contact-sheet" method="post" autocomplete="off" action="/scripts/contact/mibreit-contact/mibreit-email.php">
+  <form id="contact" class="contact-sheet" name="contact-sheet" method="post" autocomplete="off" action="/scripts/mibreit-contact/mibreit-email.php">
     <table>
       <tr>
         <td class="contact-sheet__left">Meine Email:</td>
         <td class="contact-sheet__right">
-          <input name="myemail" type="text" disabled="disabled" value="{{page_email | replace("@", "{at}")}}" readonly="readonly" class="fluid"/>
+          <input name="myemail" type="text" disabled="disabled" value="Michael.Breitung{at}mibreit-photo.com" readonly="readonly" class="fluid"/>
         </td>
       </tr>
       <tr>
         <td class="contact-sheet__left">Ihre Email:</td>
         <td class="contact-sheet__right">
-          <input name="email" id="email" type="text" class="fluid" spellcheck="false"/>
+          <input name="email" type="text" class="fluid" spellcheck="false"/>
         </td>
       </tr>
       <tr>
         <td class="contact-sheet__left">Ihre Homepage:</td>
         <td class="contact-sheet__right">
-          <input name="homepage" id="homepage" type="text" class="fluid" spellcheck="false"/>
+          <input name="homepage" type="text" class="fluid" spellcheck="false"/>
         </td>
       </tr>
       <tr>
         <td class="contact-sheet__left">Betreff:</td>
         <td class="contact-sheet__right">
-          <input name="subject" id="subject" type="text" class="fluid" spellcheck="false"/>
+          <input name="subject" type="text" class="fluid" spellcheck="false"/>
         </td>
       </tr>
       <tr>
         <td class="contact-sheet__left">Ihre Nachricht:</td>
         <td class="contact-sheet__right">
-          <textarea name="message" id="message" rows="10" spellcheck="false"></textarea>
+          <textarea name="message" rows="10" spellcheck="false"></textarea>
         </td>
       </tr>
       <tr>
         <td class="contact-sheet__left">
-          <input type="checkbox" name="privacy" id="privacy" class="contact-sheet__checkbox"/>
+          <input type="checkbox" name="privacy" class="contact-sheet__checkbox"/>
         </td>
-        <td class="contact-sheet__right">Durch die Nutzung dieses Formulars erklären Sie sich mit der Speicherung und Verarbeitung Ihrer Daten einverstanden. Mehr Informationen entnehmen Sie bitte der <a href="privacy-policy.html">Datenschutzerklärung</a>.</td>
+        <td class="contact-sheet__right">Durch die Nutzung dieses Formulars erklären Sie sich mit der Speicherung und Verarbeitung Ihrer Daten einverstanden. Mehr Informationen entnehmen Sie bitte der <a href="privacy-policy-ger.html">Datenschutzerklärung</a>.</td>
       </tr>
       <tr>
         <td class="contact-sheet__left">&nbsp;</td>
-        <td class="contact-sheet__right"><input type="submit" value="senden" class="contact-sheet__button"/>
+        <td class="contact-sheet__right"><input type="submit" value="senden" name="submit" class="contact-sheet__button"/>
         </td>
       </tr>
     </table>

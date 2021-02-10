@@ -23,6 +23,7 @@ $form-color: #1c2124;
 $form-background-color: #a5bac7;
 $form-background-focus: #d4b888;
 $form-background-error: #e45e4d;
+$form-color-error: $form-background-error;
 
 // gradients
 $search-background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(103, 105, 110, 0.5) 100%);

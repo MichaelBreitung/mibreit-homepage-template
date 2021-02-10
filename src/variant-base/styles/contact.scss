@@ -1,0 +1,58 @@
+@import 'variables';
+
+.contact-sheet {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+
+  table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .contact-sheet__button {
+    padding: 0.25rem;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  input.contact-sheet__checkbox {
+    padding: 0.25rem;
+    width: 20px;
+  }
+
+  textarea {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 260px;
+  }
+
+  td {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  td.contact-sheet__right {
+    width: 75%;
+  }
+
+  td.contact-sheet__left {
+    text-align: left;
+  }
+
+  input.error {
+    background-color: $form-background-error;
+  }
+  span.error {
+    color: $form-color-error;
+  }
+}
+
+.contact-result {
+  padding-top: 0.8em;
+  padding-bottom: 0rem;
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+}
