@@ -15,40 +15,40 @@
   <form id="contact" class="contact-sheet" name="contact-sheet" method="post" autocomplete="off" action="/scripts/mibreit-contact/mibreit-email.php">
     <table>
       <tr>
-        <td class="contact-sheet__left">Meine Email:</td>
+        <td class="contact-sheet__left"><label for="myemail">Meine Email:</label></td>
         <td class="contact-sheet__right">
-          <input name="myemail" type="text" disabled="disabled" value="Michael.Breitung{at}mibreit-photo.com" readonly="readonly" class="fluid"/>
+          <input id="myemail" name="myemail" type="text" disabled="disabled" value="{{page_email | replace("@", "{at}")}}" readonly="readonly" class="fluid"/>
         </td>
       </tr>
       <tr>
-        <td class="contact-sheet__left">Ihre Email:</td>
+        <td class="contact-sheet__left"><label for="email">Ihre Email:</label></td>
         <td class="contact-sheet__right">
-          <input name="email" type="text" class="fluid" spellcheck="false"/>
+          <input id="email" name="email" type="text" class="fluid" spellcheck="false"/>
         </td>
       </tr>
       <tr>
-        <td class="contact-sheet__left">Ihre Homepage:</td>
+        <td class="contact-sheet__left"><label for="homepage">Ihre Homepage:</label></td>
         <td class="contact-sheet__right">
-          <input name="homepage" type="text" class="fluid" spellcheck="false"/>
+          <input id="homepage" name="homepage" type="text" class="fluid" spellcheck="false"/>
         </td>
       </tr>
       <tr>
-        <td class="contact-sheet__left">Betreff:</td>
+        <td class="contact-sheet__left"><label for="subject">Betreff:</label></td>
         <td class="contact-sheet__right">
-          <input name="subject" type="text" class="fluid" spellcheck="false"/>
+          <input id="subject" name="subject" type="text" class="fluid" spellcheck="false"/>
         </td>
       </tr>
       <tr>
-        <td class="contact-sheet__left">Ihre Nachricht:</td>
+        <td class="contact-sheet__left"><label for="message">Ihre Nachricht:</label></td>
         <td class="contact-sheet__right">
-          <textarea name="message" rows="10" spellcheck="false"></textarea>
+          <textarea id="message" name="message" rows="10" spellcheck="false"></textarea>
         </td>
       </tr>
       <tr>
         <td class="contact-sheet__left">
-          <input type="checkbox" name="privacy" class="contact-sheet__checkbox"/>
+          <input type="checkbox" id="privacy" name="privacy" class="contact-sheet__checkbox"/>
         </td>
-        <td class="contact-sheet__right">Durch die Nutzung dieses Formulars erklären Sie sich mit der Speicherung und Verarbeitung Ihrer Daten einverstanden. Mehr Informationen entnehmen Sie bitte der <a href="privacy-policy-ger.html">Datenschutzerklärung</a>.</td>
+        <td class="contact-sheet__right"><label for="privacy">Durch die Nutzung dieses Formulars erklären Sie sich mit der Speicherung und Verarbeitung Ihrer Daten einverstanden. Mehr Informationen entnehmen Sie bitte der <a href="privacy-policy-ger.html">Datenschutzerklärung</a>.</label></td>
       </tr>
       <tr>
         <td class="contact-sheet__left">&nbsp;</td>
