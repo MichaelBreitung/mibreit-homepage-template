@@ -10,6 +10,9 @@
 <link rel="canonical" href="{{page_base_url}}/{{page_canonical}}"/>
 <link rel="stylesheet" href="/styles/styles.css" type="text/css"/>
 <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+{% if apple_touch_icon %}
+<link rel="apple-touch-icon" href="{{apple_touch_icon}}">
+{% endif %}
 <meta property="og:locale" content="en_US"/>
 {% if page_type %}
   <meta property="og:type" content="{{page_type}}"/>

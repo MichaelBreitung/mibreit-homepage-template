@@ -176,6 +176,21 @@
 {% endmacro %}
 
 {#
+# inserts script for gallery
+#}
+{% macro scriptGalleryWP() %}
+  <script src="/scripts/mibreit-gallery/mibreitGalleryTs.min.js"></script>
+  <script>    
+    mibreitGalleryTs.DomTools.documentReady(function () { 
+      if (mibreitGalleryTs.DomTools.getElement(".mibreit-gallery") != null)
+      {
+        mibreitGalleryTs.createGallery({galleryContainerSelector: ".mibreit-gallery", imageSelector: ".mibreit-gallery > img", scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT});           
+      }
+    });
+  </script>
+{% endmacro %}
+
+{#
 # inserts prints script
 # @attention requires call to prepare() beforehand
 #}

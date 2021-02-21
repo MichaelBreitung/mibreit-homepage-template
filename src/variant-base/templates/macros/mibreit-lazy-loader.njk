@@ -1,9 +1,9 @@
-{% macro scriptLazyScroller(item_selector) %}
+{% macro scriptLazyScroller(item_selector, useSurrogate) %}
 <script>
   window.addEventListener('load', function () {
     mibreitLazyLoader.createLazyLoader("{{item_selector}}", {
       mode: mibreitLazyLoader.ELazyMode.WINDOWED_SCROLL,
-      useSurrogate: false
+      useSurrogate: {% if useSurrogate %}{{useSurrogate}}{% else %}false{% endif %}
     });
   });
 </script>

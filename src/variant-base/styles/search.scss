@@ -1,11 +1,12 @@
 @import 'variables';
 
 .search__container {
-  position: absolute;
-  height: 3rem;
+  position: absolute;  
+  font-size: 1.1rem;
   right: 0rem;
   top:0rem;
   padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   padding-right: 1rem;
   display: flex;
   flex-direction: column;
@@ -17,6 +18,7 @@
   }
 
   .search__privacy-link {
+    margin-top: 0.25rem;
     text-align: left;
     display: none;
   }
@@ -29,11 +31,13 @@
   
   input {
     padding-left: 0.25rem;
-    width: 14rem;
+    width: 15.25rem;
+    margin-bottom: 0.25rem;
+    margin-top: 0.25rem;
   }
   
   .search__button {
-    padding: 0;
+    padding: 0.5rem;
     margin-left: 1rem;
     background: none;
     border: none;
