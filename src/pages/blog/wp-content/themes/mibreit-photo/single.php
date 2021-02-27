@@ -1,8 +1,9 @@
   {% extends "./layouts/wordpress/wordpress-layout.njk" %}
   {% block scripts %}
-  <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=9282521f-aa78-4b0d-8a6e-e256d95f070e"></script>
   {% from "./macros/mibreit-lazy-loader.njk" import scriptLazyScroller %}
   {{scriptLazyScroller("article iframe")}}  
+  {% from "./macros/mibreit-gallery.njk" import scriptGalleryWP %}
+  {{scriptGalleryWP()}}
   {% endblock %}
   {% block content %}   
   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>

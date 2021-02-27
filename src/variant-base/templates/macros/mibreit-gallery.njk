@@ -89,8 +89,7 @@
   echo "title=\""    . ${{item}}->caption  . "\" ";
   echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";
   echo "width=\""    . $size[0]         ."\" ";
-  echo "height=\""   . $size[1]         ."\"/>\n"; 
-  echo "<h3 class=\"mibreit-slideshow-caption\" style=\"position: absolute;\">" . ${{item}}->caption . "</h3>\n";
+  echo "height=\""   . $size[1]         ."\"/>\n";  
 {% endmacro %}
 
 {#
@@ -159,7 +158,7 @@
       var mibreitGalleryInstance;
     {% endif %}
     mibreitGalleryTs.DomTools.documentReady(function () { 
-      var gallery = mibreitGalleryTs.createGallery({galleryContainerSelector: ".mibreit-gallery", imageSelector: ".mibreit-gallery > img", scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT, thumbContainerSelector: ".mibreit-thumbview", thumbSelector: ".mibreit-thumbview > img", numberOfVisibleThumbs: 7});
+      var gallery = mibreitGalleryTs.createGallery({slideshowContainerSelector: ".mibreit-gallery", imageSelector: ".mibreit-gallery > img", scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT, thumbContainerSelector: ".mibreit-thumbview", thumbSelector: ".mibreit-thumbview > img", numberOfVisibleThumbs: 7});
       const titleElement = mibreitGalleryTs.DomTools.getElement(".mibreit-slideshow-title");
       mibreitGalleryTs.DomTools.setInnerHtml(titleElement, gallery.getViewer().getImageInfo(gallery.getViewer().getImageIndex()).getTitle());
       gallery.getViewer().addImageChangedCallback((index, imageInfo) => {
@@ -181,12 +180,20 @@
 {% macro scriptGalleryWP() %}
   <script src="/scripts/mibreit-gallery/mibreitGalleryTs.min.js"></script>
   <script>    
+    var imageSelector = "article > div > img";
     mibreitGalleryTs.DomTools.documentReady(function () { 
-      if (mibreitGalleryTs.DomTools.getElement(".mibreit-gallery") != null)
-      {
-        mibreitGalleryTs.createGallery({galleryContainerSelector: ".mibreit-gallery", imageSelector: ".mibreit-gallery > img", scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT});           
-      }
-    });
+      var gallery = mibreitGalleryTs.createFullscreenOnlyGallery({imageSelector, scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT, preloaderBeforeSize: 0, preloaderAfterSize: 1});           
+      var images = mibreitGalleryTs.DomTools.getElements(imageSelector);
+      images.forEach( function(image, index) {          
+        image.addEventListener('dblclick', function (e) {
+          if (!gallery.getFullscreen().isFullscreenActive())
+          {
+            gallery.getViewer().showImage(index);
+            gallery.getFullscreen().activate();                          
+          }          
+        });
+      });
+    });   
   </script>
 {% endmacro %}
 
