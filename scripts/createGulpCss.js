@@ -1,3 +1,4 @@
+const fs = require('fs');
 const gulp = require('gulp');
 const concat = require('gulp-concat');
 const cleanCss = require('gulp-clean-css');
@@ -6,7 +7,7 @@ sass.compiler = require('node-sass');
 
 const { baseFolder, outputFolder, tempFolder } = require('./constants');
 
-const createGulpCss = function (styles) {
+const createGulpCss = function (styles, plugins) {
   if (typeof styles !== 'string' && !Array.isArray(styles)) {
     throw new Error('createGulpCss: no styles folder specified');
   }
@@ -29,6 +30,15 @@ const createGulpCss = function (styles) {
       });
     } else {
       allStyles.push(`${baseFolder}/${styles}/styles/*.+(css|scss)`);
+    }
+
+    if (Array.isArray(plugins)) {
+      plugins.forEach((plugin) => {
+        const stylesFolder = `${baseFolder}/plugins/${plugin}/styles`;
+        if (fs.existsSync(stylesFolder)) {
+          allStyles.push(`${stylesFolder}/*.+(css|scss)`);
+        }
+      });
     }
 
     return gulp.src(allStyles).pipe(gulp.dest(`${baseFolder}/${tempFolder}/styles`));

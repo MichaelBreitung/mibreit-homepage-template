@@ -4,7 +4,7 @@ const concat = require("gulp-concat");
 const minifyJs = require("./minifyJs");
 const { baseFolder, outputFolder } = require("./constants");
 
-const createGulpJavascript = function () {
+const createGulpJavascript = function (plugins) { 
   const concatenateBaseJs = function () {
     return gulp
       .src([
@@ -41,9 +41,25 @@ const createGulpJavascript = function () {
       .pipe(through2.obj(minifyJs))
       .pipe(concat("mibreitGalleryTs.min.js"))
       .pipe(gulp.dest(`${outputFolder}/scripts/mibreit-gallery`));
-  };
+  }
+  
+  const pluginTasks = [concatenateBaseJs, concatenateContactJs, copyGalleryJs];
+  if (Array.isArray(plugins)) {
+    const createCopyPluginJs = function (pluginFolder) {
+      return function() {
+        return gulp
+        .src(`${baseFolder}/plugins/${pluginFolder}/scripts/*.js`,)
+        .pipe(through2.obj(minifyJs))
+        .pipe(concat(`${pluginFolder}.min.js`))
+        .pipe(gulp.dest(`${outputFolder}/scripts/${pluginFolder}`));
+      }      
+    } 
+    plugins.forEach(function(pluginFolder) {
+      pluginTasks.push(createCopyPluginJs(pluginFolder));
+    });
+  } 
 
-  return gulp.parallel(concatenateBaseJs, concatenateContactJs, copyGalleryJs);
+  return gulp.parallel(pluginTasks);
 };
 
 module.exports = createGulpJavascript;

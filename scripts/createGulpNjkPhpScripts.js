@@ -9,7 +9,7 @@ const createGulpPhpScripts = function (templates, scripts) {
     throw (new Error("createGulpPhpScripts: no templates folder specified"));
   }
 
-  var source = [`${baseFolder}/scripts/**/*.php`];
+  const source = [`${baseFolder}/scripts/**/*.php`];
   if (typeof scripts === "string")
   {  
     source.push(`${baseFolder}/${scripts}/scripts/**/*.php`);

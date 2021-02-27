@@ -23,7 +23,7 @@ fsExtra.emptyDirSync(`${baseFolder}/${tempFolder}`);
 // process gulp tasks
 module.exports = { default: gulp.parallel(createGulpFonts(variant.fonts), 
   createGulpImages(variant.images, variant.favicon), 
-  createGulpCss(variant.styles), 
+  createGulpCss(variant.styles, variant.plugins), 
   createGulpNjkTasks(variant), //, true), // comment in second parameter true, to also create .htaccess before deploy
-  createGulpJavascript(), 
+  createGulpJavascript(variant.plugins), 
   gulpXml) };
