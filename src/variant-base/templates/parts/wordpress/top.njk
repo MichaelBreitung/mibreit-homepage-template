@@ -26,13 +26,13 @@
   $page_keywords = get_post_meta( get_the_ID(), 'keys', true );
   if (!is_single() || !$page_keywords || (strlen($page_keywords) == 0)) 
   {      
-    $page_keywords = "Landscape Photography, tips, photography, Tutorials, learning, Michael Breitung, mibreit";
+    $page_keywords = "{{page_default_keywords}}";
   }
 
   $page_description = get_post_meta( get_the_ID(), 'desc', true );
   if (!is_single() || !$page_description || (strlen($page_description) == 0))    
   {
-    $page_description = "Landscape Photography of Michael Breitung - tips about photography and tutorials about digital postprocessing";
+    $page_description = "{{page_default_description}}";
   }  
 
   $page_image = get_site_image();  

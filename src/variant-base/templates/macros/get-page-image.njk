@@ -1,6 +1,8 @@
 {% macro getPageImage(baseUrl, imageUrl) %}
   {% if baseUrl in imageUrl or "<?php" in imageUrl -%}
     {{imageUrl}}
+  {%- elif imageUrl | first == "/" -%}
+    {{baseUrl}}{{imageUrl}}
   {%- else -%}
     {{baseUrl}}/{{imageUrl}}
   {%- endif -%}

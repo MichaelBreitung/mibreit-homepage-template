@@ -184,8 +184,9 @@
     mibreitGalleryTs.DomTools.documentReady(function () { 
       var gallery = mibreitGalleryTs.createFullscreenOnlyGallery({imageSelector, scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT, preloaderBeforeSize: 0, preloaderAfterSize: 1});           
       var images = mibreitGalleryTs.DomTools.getElements(imageSelector);
-      images.forEach( function(image, index) {          
-        image.addEventListener('dblclick', function (e) {
+      images.forEach( function(image, index) {        
+        mibreitGalleryTs.DomTools.addCssStyle(image, "cursor", "pointer");  
+        image.addEventListener('click', function (e) {
           if (!gallery.getFullscreen().isFullscreenActive())
           {
             gallery.getViewer().showImage(index);

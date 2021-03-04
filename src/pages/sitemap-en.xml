@@ -1,39 +1,40 @@
+{% from "macros/get-base-page-url.njk" import getBasePageUrl %}
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>{{page_base_url}}/</loc>
+    <loc>{{getBasePageUrl(domain_name)}}/</loc>
     <changefreq>daily</changefreq>
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>{{page_base_url}}/contact.html</loc>
+    <loc>{{getBasePageUrl(domain_name)}}/contact.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>{{page_base_url}}/disclaimer.html</loc>
+    <loc>{{getBasePageUrl(domain_name)}}/disclaimer.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>{{page_base_url}}/privacy-policy.html</loc>
+    <loc>{{getBasePageUrl(domain_name)}}/privacy-policy.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>{{page_base_url}}/imprint.html</loc>
+    <loc>{{getBasePageUrl(domain_name)}}/imprint.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>{{page_base_url}}/about.html</loc>
+    <loc>{{getBasePageUrl(domain_name)}}/about.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>{{page_base_url}}/portfolio.html</loc>
+    <loc>{{getBasePageUrl(domain_name)}}/portfolio.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>

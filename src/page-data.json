@@ -1,7 +1,8 @@
 {
-  "page_base_url": "127.0.0.1",
-  "page_base_german_url": "127.0.0.1/german",
+  "use_https": true,
+  "domain_name": "your-domain",  
   "page_author": "Your Name",
+  "page_author_twitter": "YourTwitterAccountName",
   "page_author_details": {
     "street": "street",
     "town": "your city",
@@ -10,13 +11,16 @@
     "phone": "+4411231231231"
   },
   "page_name": "Name of page",
-  "page_email": "your.email@your-domain.com",
+  "page_email": "your.email@your-domain",
   "page_contact": {
     "en": "/contact.html",
     "de": "/german/contact.html"
   },
+  "page_author_image": "",
   "page_header_image": "",
   "page_background_image": "",
+  "page_default_keywords": "some, default, keywords, which, are, mandatory",
+  "page_default_description": "some default description, which is mandatory",
   "google_analytics": "",
   "google_search": "",
   "amazon_affiliate": {
@@ -88,6 +92,10 @@
       { "name": "Privacy Policy", "url": "/privacy-policy.html" },
       { "name": "Disclaimer", "url": "/disclaimer.html" }
     ]
+  },
+  "page_about": {  
+    "de": "/german/about.html",   
+    "en": "/about.html"
   },
   "page_cookie_consent": {
     "de": {

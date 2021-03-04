@@ -1,0 +1,11 @@
+{% macro getBasePageUrl(domain_name, use_https = true) %}
+  {%- if use_https -%}https://www.{{domain_name}}
+  {%- else -%}http://www.{{domain_name}}
+  {%- endif -%}
+{% endmacro %}
+
+{% macro getBasePageUrlGerman(domain_name, use_https = true) %}
+  {%- if use_https -%}https://www.{{domain_name}}/german
+  {%- else -%}http://www.{{domain_name}}/german
+  {%- endif -%}
+{% endmacro %}

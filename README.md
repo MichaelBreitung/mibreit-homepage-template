@@ -8,14 +8,12 @@ Homepage Template based on Gulp and Nunjucks, which makes it easy to create html
 
 1. clone, fork or download the repository 
 2. call npm install in the root folder
-3. download minified jQuery Version -> see src/scripts/base/jquery/README.md
-4. download minified jQuery.validate Version -> see src/scripts/base/jquery/README.md
-5. make changes to page-data.json,  custom variant and pages
-5. run gulp
+3. make changes to page-data.json, custom variant and pages
+4. run gulp
 
-Important: You should not touch the base variant, since this is where I make regular updates and where I add features that you can reuse in the custom variant or in your own variants.
+**Important:** You should not touch the base variant, since this is where I make regular updates and where I add features that you can reuse in the custom variant or in your own variants.
 
-Note: You can create additional variants, other than custom. Just create another variant folder and add a config.json. If you want to build a specific variant, you can run _gulp --variant [folder of the variant]_. 
+**Note:** You can create additional variants, other than custom. Just create another variant folder and add a config.json. If you want to build a specific variant, you can run _gulp --variant [folder of the variant]_. 
 
 ## Technology
 

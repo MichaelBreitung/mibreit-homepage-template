@@ -1,8 +1,9 @@
+{% from "macros/get-base-page-url.njk" import getBasePageUrl %}
 <script type='application/ld+json'>
   {
     "@context": "https:\/\/schema.org",
     "@type": "Person",
-    "url": "{{page_base_url}}",
+    "url": "{{getBasePageUrl(domain_name)}}",
     "sameAs": [
       {% if social_media.facebook.url %}"{{social_media.facebook.url}}"{% endif %}{% if social_media.instagram.url %}, "{{social_media.instagram.url}}"{% endif %}{% if social_media.linkedin.url %}, "{{social_media.linkedin.url}}"{% endif %}
     ],

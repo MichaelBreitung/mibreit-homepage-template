@@ -1,37 +1,38 @@
+{% from "macros/get-base-page-url.njk" import getBasePageUrl %}
 <?php
-
 class MibreitGalleryPageData
 {
-  private $page;
-  private $pageEncoded;
+  private $url;
   private $basePath;
 
   function __construct()
   {
-    $this->page = $_SERVER["REQUEST_URI"];
-    if (substr($this->page, 0, 1) === "/")
+    $this->url = $_SERVER["REQUEST_URI"];
+    if (substr($this->url, 0, 1) === "/")
     {
-      $this->page = substr($this->page, 1);
+      $this->url = substr($this->url, 1);
     }
-    $imageNrPos = strpos($this->page, "&imageNr");
-    if ($imageNrPos === FALSE)
-    {
-      $imageNrPos = strpos($this->page, "?imageNr");
-    }
-    if ($imageNrPos !== FALSE)
-    {
-      $this->page = substr($this->page, 0, $imageNrPos);
-    }
-    $this->pageEncoded = urlencode(substr($this->page, 1));
-    $this->basePath = "{{page_base_url}}/" . substr($this->page, 0, strrpos($this->page, "/", -1)) . "/";    
+    $this->basePath = "{{getBasePageUrl(domain_name)}}/" . substr($this->url, 0, strrpos($this->url, "/", -1)) . "/";    
   }
-  public function getPage()
+  public function getUrl($canonical)
   {
-    return $this->page;
+    if ($canonical)
+    {
+      $imageNrPos = strpos($this->url, "&imageNr");
+      if ($imageNrPos === FALSE)
+      {
+        $imageNrPos = strpos($this->url, "?imageNr");
+      }
+      if ($imageNrPos !== FALSE)
+      {
+        return substr($this->url, 0, $imageNrPos);
+      }      
+    }    
+    return $this->url;    
   }
-  public function getPageEncoded()
+  public function getUrlEncoded($canonical)
   {
-    return $this->pageEncoded;
+    return urlencode($this->getUrl($canonical));
   }
   public function getBasePath()
   {

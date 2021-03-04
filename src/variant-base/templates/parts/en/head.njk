@@ -1,3 +1,4 @@
+{% from "macros/get-base-page-url.njk" import getBasePageUrl %}
 {% from "../../macros/get-page-image.njk" import getPageImage %}
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -7,7 +8,7 @@
 <meta name="keywords" lang="en-us" xml:lang="en-us" content="{{page_keywords}}"/>
 <meta name="description" lang="en-us" xml:lang="en-us" content="{{page_description}}"/>
 <title>{{page_title}}</title>
-<link rel="canonical" href="{{page_base_url}}/{{page_canonical}}"/>
+<link rel="canonical" href="{{getBasePageUrl(domain_name)}}/{{page_canonical}}"/>
 <link rel="stylesheet" href="/styles/styles.css" type="text/css"/>
 <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
 {% if apple_touch_icon %}
@@ -20,31 +21,29 @@
   <meta property="og:type" content="website"/>
 {% endif %}
 <meta property="og:site_name" content="{{page_name}}"/>
-{% if page_parameters %}
-  {% if "?" in page_canonical %}
-    <meta property="og:url" content="{{page_base_url}}/{{page_canonical}}&{{page_parameters}}"/>
-  {% else %}
-    <meta property="og:url" content="{{page_base_url}}/{{page_canonical}}?{{page_parameters}}"/>
-  {% endif %}
+{% if page_with_parameters %}
+<meta property="og:url" content="{{getBasePageUrl(domain_name)}}/{{page_with_parameters}}"/>
 {% else %}
-<meta property="og:url" content="{{page_base_url}}/{{page_canonical}}"/>
+<meta property="og:url" content="{{getBasePageUrl(domain_name)}}/{{page_canonical}}"/>
 {% endif %}
 <meta property="og:title" content="{{page_title}}"/>
 <meta property="og:description" content="{{page_description}}"/>
 {% if page_image %}
-  <meta property="og:image" content="{{getPageImage(page_base_url, page_image)}}"/>
-{% else %}
-  <meta property="og:image" content="{{page_base_url}}/images/header/michael-breitung-photography.jpg"/>
+  <meta property="og:image" content="{{getPageImage(getBasePageUrl(domain_name), page_image)}}"/>
+{% elif page_header_image %}
+  <meta property="og:image" content="{{getPageImage(getBasePageUrl(domain_name), page_header_image)}}"/>
 {% endif %}
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:site" content="@BreitungMichael"/>
-<meta name="twitter:creator" content="@BreitungMichael"/>
+{% if page_author_twitter %}
+<meta name="twitter:site" content="@{{page_author_twitter}}"/>
+<meta name="twitter:creator" content="@{{page_author_twitter}}"/>
+{% endif %}
 <meta name="twitter:title" content="{{page_title}}"/>
 <meta name="twitter:description" content="{{page_description}}"/>
 {% if page_image %}
-  <meta name="twitter:image" content="{{getPageImage(page_base_url, page_image)}}"/>
-{% else %}
-  <meta name="twitter:image"  content="{{page_base_url}}/images/header/michael-breitung-photography.jpg"/>
+  <meta name="twitter:image" content="{{getPageImage(getBasePageUrl(domain_name), page_image)}}"/>
+{% elif page_header_image %}
+  <meta name="twitter:image" content="{{getPageImage(getBasePageUrl(domain_name), page_header_image)}}"/>
 {% endif %}
 {% include "../../schema/schema-person.njk" %}
 {% include "../../parts/script-google-analytics.njk" %}

@@ -1,3 +1,5 @@
+{% from "macros/get-page-image.njk" import getPageImage %}
+{% from "macros/get-base-page-url.njk" import getBasePageUrl %}
 <?php
 include_once(plugin_dir_path( __FILE__ )."../../../../scripts/affiliate/affiliate_banner.php");
 
@@ -29,12 +31,14 @@ function filter_ptags_on_iframes($content)
 }
 add_filter('the_content', 'filter_ptags_on_iframes');
 
-// make all mibreit-photo links https
-function filter_http_to_https_mibreit($content)
+// make all links https
+{% if use_https %}
+function filter_http_to_https($content)
 {
-    return preg_replace('/http:\/\/mibreit-photo/','https://www.mibreit-photo', $content);
+    return preg_replace('/http:\/\/{{domain_name}}/','https://www.{{domain_name}}', $content);
 }
-add_filter('the_content', 'filter_http_to_https_mibreit');
+add_filter('the_content', 'filter_http_to_https');
+{% endif %}
 
 
 // w3c errors
@@ -122,7 +126,7 @@ function get_site_image() {
         $first_img = $matches[1][0];
     }    
     if(empty($first_img)){
-        $first_img = "{{page_base_url}}/images/header/michael-breitung-photography.jpg";
+        $first_img = "{{getPageImage(getBasePageUrl(domain_name), page_header_image)}}";
     }
     return $first_img;
 }

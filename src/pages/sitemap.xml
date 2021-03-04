@@ -1,12 +1,13 @@
+{% from "macros/get-base-page-url.njk" import getBasePageUrl %}
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>{{page_base_url}}/sitemap-en.xml</loc>
+    <loc>{{getBasePageUrl(domain_name)}}/sitemap-en.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>{{page_base_url}}/blog/sitemap-blog.xml</loc>
+    <loc>{{getBasePageUrl(domain_name)}}/blog/sitemap-blog.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>{{page_base_url}}/sitemap-de.xml</loc>
+    <loc>{{getBasePageUrl(domain_name)}}/sitemap-de.xml</loc>
   </sitemap>
 </sitemapindex>
