@@ -6,6 +6,7 @@
   {% if page_sub_title %}
     <h2>{{page_sub_title}}</h2>
   {% endif %}
+  {% if google_search | length -%} 
   <div class="search__container">
     <form action="/german/search.html" id="google-search-form" method="get" role="search">
       <input autocomplete="off" class="search__input" name="q" placeholder="mit Google suchen" title="Enter search here" type="text"/>
@@ -15,5 +16,6 @@
       <a href="/german/privacy-policy.html#google_search" title="Hinweise zur Datenübertragung bei der Google™ Suche">Hinweise zur Google™ Suche</a>
     </div>
   </div>
+  {% endif %}
   {% include "../../parts/de/navigation.njk" %}
 </header>

@@ -1,15 +1,15 @@
 <aside id="sidebar" class="width-small" > 
-  <h1><label for="search">Search</label></h1>
+  <h2><label for="search">Search</label></h2>
   <form id="searchform" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-    <input type="text" name="s" id="search" size="30" value=""/>
+    <input type="text" name="s" id="search" size="30" value="" autocomplete="off"/>
   </form>
-  <h1>Share</h1>
+  <h2>Share</h2>
   <div class="image-links">
     <a class="image-links__link" href="https://twitter.com/intent/tweet?url=<?php if(is_home()){echo home_url();}else{the_permalink();} ?>&amp;text=<?php if(is_home()){echo sanitize_title_with_dashes(get_bloginfo("name"));}else{echo sanitize_title_with_dashes(get_the_title());} ?>" target="_blank"><img class="image-links__image" src="/images/social-media-share/twitter-share.png" alt="share via Twitter"/></a>
     <a class="image-links__link" href="https://facebook.com/sharer.php?u=<?php if(is_home()){echo home_url();}else{the_permalink();} ?>" target="_blank"><img class="image-links__image" src="/images/social-media-share/facebook-share.png" alt="share via Facebook"/></a>
   </div>
   {% if (blog.rrs | length) or (blog.feedspot | length) %}
-  <h1>Subscribe</h1>
+  <h2>Subscribe</h2>
   <div class="image-links">
     {% if (blog.rrs | length) %}
     <a class="image-links__link" href="{{blog.rrs}}"><img class="image-links__image" src="<?php bloginfo('template_url'); ?>/images/feed-icon-28x28.png" alt="Subscribe via Feedburner" title="Subscribe via Feedburner" width="28"/></a>
@@ -19,10 +19,10 @@
     {% endif %}
   </div>
   {% endif %}
-  <h1>Personal Network</h1>
+  <h2>Personal Network</h2>
   {% from "../../macros/social-media-links.njk" import socialMediaLinks %}
   {{ socialMediaLinks(social_media, true) }}
-  <h1>Categories</h1>
+  <h2>Categories</h2>
   <ul>
     <?php wp_list_cats('sort_column=name'); ?>
   </ul>
