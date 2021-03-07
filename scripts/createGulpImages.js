@@ -26,7 +26,7 @@ const createGulpImages = function (images, favicon) {
   const copyFavIcon = function () {
     if (typeof favicon === "string") {
       return gulp
-        .src(`${baseFolder}/${favicon}/images/favicon.ico`)
+        .src(`${baseFolder}/${favicon}/images/favicon.ico`, {allowEmpty: true})
         .pipe(gulp.dest(outputFolder));
     }
     else {

@@ -10,8 +10,10 @@
 <title>{{page_title}}</title>
 <link rel="canonical" href="{{getBasePageUrl(domain_name)}}/{{page_canonical}}"/>
 <link rel="stylesheet" href="/styles/styles.css" type="text/css"/>
-<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
-{% if apple_touch_icon %}
+{% if page_fav_icon | length %}
+<link rel="icon" href="{{page_fav_icon}}" type="image/x-icon"/>
+{% endif %}
+{% if apple_touch_icon | length %}
 <link rel="apple-touch-icon" href="{{apple_touch_icon}}">
 {% endif %}
 <meta property="og:locale" content="en_US"/>

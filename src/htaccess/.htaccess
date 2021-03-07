@@ -4,10 +4,17 @@
   # error pages
   ErrorDocument 404 /errors/error404.html 
   ErrorDocument 403 /errors/error403.html 
+  {% if use_https %}
   # redirect to https
   RewriteCond %{HTTPS} !on [OR]
   RewriteCond %{HTTP_HOST} !^www\. [NC]
-  RewriteRule ^(.*)$ {{getBasePageUrl(domain_name)}}/$1 [R=301,L]
+  RewriteRule ^(.*)$ {{getBasePageUrl(domain_name, use_https)}}/$1 [R=301,L]
+  {% else %}
+  # redirect to http
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule ^(.*)$ {{getBasePageUrl(domain_name, use_https)}}/$1 [R=301,L]
+  {% endif %}
 </IfModule>
 <filesMatch ".(jpg|jpeg|png|gif|ico)$">
   Header set Cache-Control "max-age=2592000, public"
