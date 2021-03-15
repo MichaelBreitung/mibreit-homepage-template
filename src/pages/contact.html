@@ -13,49 +13,5 @@
 {% block content %}
   <h2>Contact</h2>
   <p>If you have questions regarding my Photography or my Homepage or you just want to drop me a message, please fill out the form below or simply mail to {{page_email | replace("@", "{at}")}}.</p>
-  <form id="contact" class="contact-sheet" name="contact-sheet" method="post" autocomplete="off" action="/scripts/mibreit-contact/mibreit-email.php">
-    <table>
-      <tr>
-        <td class="contact-sheet__left"><label for="myemail">My email:</label></td>
-        <td class="contact-sheet__right">
-          <input id="myemail" name="myemail" type="text" disabled="disabled" value="{{page_email | replace("@", "{at}")}}" readonly="readonly" class="fluid"/>
-        </td>
-      </tr>
-      <tr>
-        <td class="contact-sheet__left"><label for="email">Your email:</label></td>
-        <td class="contact-sheet__right">
-          <input id="email" name="email" type="text" class="fluid" spellcheck="false"/>
-        </td>
-      </tr>
-      <tr>
-        <td class="contact-sheet__left"><label for="homepage">Your homepage:</label></td>
-        <td class="contact-sheet__right">
-          <input id="homepage" name="homepage" type="text" class="fluid" spellcheck="false"/>
-        </td>
-      </tr>
-      <tr>
-        <td class="contact-sheet__left"><label for="subject">Subject:</label></td>
-        <td class="contact-sheet__right">
-          <input id="subject" name="subject" type="text" class="fluid" spellcheck="false"/>
-        </td>
-      </tr>
-      <tr>
-        <td class="contact-sheet__left"><label for="message">Your message:</label></td>
-        <td class="contact-sheet__right">
-          <textarea id="message" name="message" rows="10" spellcheck="false"></textarea>
-        </td>
-      </tr>
-      <tr>
-        <td class="contact-sheet__left">
-          <input type="checkbox" id="privacy" name="privacy" class="contact-sheet__checkbox"/>
-        </td>
-        <td class="contact-sheet__right"><label for="privacy">By using this form, you agree to the storage and processing of your data. More information can be found in the <a href="privacy-policy.html">privacy policy</a>.</label></td>
-      </tr>
-      <tr>
-        <td class="contact-sheet__left">&nbsp;</td>
-        <td class="contact-sheet__right"><input type="submit" name="submit" value="send" class="contact-sheet__button"/></td>
-      </tr>
-    </table>
-  </form>
-  <div id="form-reply" class="contact-result"></div>
+  {% include "./parts/en/contact.njk" %}
 {% endblock %}

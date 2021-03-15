@@ -1,0 +1,46 @@
+<form id="contact" class="contact-sheet" name="contact-sheet" method="post" autocomplete="off" action="/scripts/mibreit-contact/mibreit-email.php">
+  <table>
+    <tr>
+      <td class="contact-sheet__left"><label for="myemail">Meine Email:</label></td>
+      <td class="contact-sheet__right">
+        <input id="myemail" name="myemail" type="text" disabled="disabled" value="{{page_email | replace("@", "{at}")}}" readonly="readonly" class="fluid"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="contact-sheet__left"><label for="email">Ihre Email:</label></td>
+      <td class="contact-sheet__right">
+        <input id="email" name="email" type="text" class="fluid" spellcheck="false"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="contact-sheet__left"><label for="homepage">Ihre Homepage:</label></td>
+      <td class="contact-sheet__right">
+        <input id="homepage" name="homepage" type="text" class="fluid" spellcheck="false"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="contact-sheet__left"><label for="subject">Betreff:</label></td>
+      <td class="contact-sheet__right">
+        <input id="subject" name="subject" type="text" class="fluid" spellcheck="false"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="contact-sheet__left"><label for="message">Ihre Nachricht:</label></td>
+      <td class="contact-sheet__right">
+        <textarea id="message" name="message" rows="10" spellcheck="false"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td class="contact-sheet__left">
+        <input type="checkbox" id="privacy" name="privacy" class="contact-sheet__checkbox"/>
+      </td>
+      <td class="contact-sheet__right"><label for="privacy">Durch die Nutzung dieses Formulars erklären Sie sich mit der Speicherung und Verarbeitung Ihrer Daten einverstanden. Mehr Informationen entnehmen Sie bitte der <a href="privacy-policy-ger.html">Datenschutzerklärung</a>.</label></td>
+    </tr>
+    <tr>
+      <td class="contact-sheet__left">&nbsp;</td>
+      <td class="contact-sheet__right"><input type="submit" value="senden" name="submit" class="contact-sheet__button"/>
+      </td>
+    </tr>
+  </table>
+</form>
+<div id="form-reply" class="contact-result"></div>
