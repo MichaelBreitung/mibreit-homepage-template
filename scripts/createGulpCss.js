@@ -66,7 +66,16 @@ const createGulpCss = function (styles, plugins) {
     return processCss;
   };
 
-  return gulp.series(gatherCssAndScss, createCompileScss(tempFolder, tempFolder), createProcessCss(tempFolder));
+  const processWordpressCssPlaceholder = function () {
+    return gulp.src([`${baseFolder}/pages/blog/wp-content/themes/mibreit-photo/style.css`]).pipe(gulp.dest(`${outputFolder}/blog/wp-content/themes/mibreit-photo`));
+  };
+
+  return gulp.series(
+    gatherCssAndScss,
+    createCompileScss(tempFolder, tempFolder),
+    createProcessCss(tempFolder),
+    processWordpressCssPlaceholder
+  );
 };
 
 module.exports = createGulpCss;
