@@ -19,9 +19,6 @@
     {% endif %}
   </div>
   {% endif %}
-  <h2>Personal Network</h2>
-  {% from "../../macros/social-media-links.njk" import socialMediaLinks %}
-  {{ socialMediaLinks(social_media, true) }}
   <h2>Categories</h2>
   <ul>
     <?php wp_list_cats('sort_column=name'); ?>
