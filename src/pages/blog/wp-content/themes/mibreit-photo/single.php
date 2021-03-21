@@ -12,7 +12,7 @@
   <article itemscope itemtype="http://schema.org/Article">    
     <link itemprop="mainEntityOfPage" href="<?php the_permalink()?>">
     <h1 itemprop="headline"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h1>
-    <p itemprop="author" itemscope itemtype="https://schema.org/Person"><?php the_time('F j, Y'); ?> | <?php the_category(', ') ?> | by <a rel="author" href="{{getBasePageUrl(domain_name)}}{{page_about.en}}"><span itemprop="name">{{page_author}}</span></a></p>    
+    <p itemprop="author" itemscope itemtype="https://schema.org/Person"><?php the_date(); ?> | <?php the_category(', ') ?> | by <a rel="author" href="{{getBasePageUrl(domain_name)}}{{page_about.en}}"><span itemprop="name">{{page_author}}</span></a></p>    
     <div itemprop="text"><?php the_content(__('Read more'));?></div>
     <div class="content-navigation spacing-top-large spacing-bottom-large small">
       <div class="content-navigation__link"><?php previous_post_link('%link', '&laquo; previous' ); ?></div>      
