@@ -3,7 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     // Get the form fields and remove whitespace. 
     $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-    $homepage = filter_var(trim($_POST['homepage']), FILTER_SANITIZE_URL);
+    $homepage = filter_var(trim($_POST["homepage"]), FILTER_SANITIZE_URL);
     $subject = trim($_POST["subject"]);
     $message = trim($_POST["message"]);  
     $lang = trim($_POST["lang"]);
