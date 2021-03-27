@@ -20,7 +20,7 @@ add_filter('wp_calculate_image_srcset', 'disable_srcset' );
 // remove p tags from around images
 function filter_ptags_on_images($content)
 {
-    return preg_replace('/<p>(\s*)(<img .* \/>)(\s*)<\/p>/iU', '\2', $content);
+    return preg_replace('/<p>(\s*)(<img .*\s*\/>)(\s*)<\/p>/iU', '\2', $content);
 }
 add_filter('the_content', 'filter_ptags_on_images');
 
