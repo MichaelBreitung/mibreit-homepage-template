@@ -126,7 +126,7 @@ function get_site_image() {
         $first_img = $matches[1][0];
     }    
     if(empty($first_img)){
-        $first_img = "{{getPageImage(getBasePageUrl(domain_name), page_header_image)}}";
+        $first_img = "{{getPageImage(getBasePageUrl(domain_name, use_https), page_header_image)}}";
     }
     return $first_img;
 }

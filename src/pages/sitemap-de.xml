@@ -4,32 +4,32 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>{{getBasePageUrl(domain_name)}}/german/</loc>
+    <loc>{{getBasePageUrl(domain_name, use_https)}}/german/</loc>
     <changefreq>daily</changefreq>
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>{{getBasePageUrl(domain_name)}}/german/contact.html</loc>
+    <loc>{{getBasePageUrl(domain_name, use_https)}}/german/contact.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>{{getBasePageUrl(domain_name)}}/german/disclaimer.html</loc>
+    <loc>{{getBasePageUrl(domain_name, use_https)}}/german/disclaimer.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>{{getBasePageUrl(domain_name)}}/german/privacy-policy.html</loc>
+    <loc>{{getBasePageUrl(domain_name, use_https)}}/german/privacy-policy.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>{{getBasePageUrl(domain_name)}}/german/imprint.html</loc>
+    <loc>{{getBasePageUrl(domain_name, use_https)}}/german/imprint.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>{{getBasePageUrl(domain_name)}}/german/about.html</loc>
+    <loc>{{getBasePageUrl(domain_name, use_https)}}/german/about.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
