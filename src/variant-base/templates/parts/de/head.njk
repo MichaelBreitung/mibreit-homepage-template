@@ -7,6 +7,9 @@
 <meta name="author" content="{{page_author}}"/>
 <meta name="keywords" lang="de" xml:lang="de" content="{{page_keywords}}"/>
 <meta name="description" lang="de" xml:lang="de" content="{{page_description}}"/>
+{% if theme_color | length %}
+<meta name="theme-color" content="{{theme_color}}">
+{% endif %}
 <title>{{page_title}}</title>
 <link rel="canonical" href="{{getBasePageUrl(domain_name, use_https)}}/{{page_canonical}}"/>
 <link rel="stylesheet" href="/styles/styles.css" type="text/css"/>
