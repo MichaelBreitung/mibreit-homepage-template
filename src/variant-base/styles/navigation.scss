@@ -33,6 +33,11 @@
     justify-content: center;
     align-items: center;
   }
+
+  .navigation__item--active
+  {
+    background-color: $link-color-background-active;
+  }
   
   .navigation__item:hover {
     background-color: $link-color-hover;

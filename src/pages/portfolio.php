@@ -1,3 +1,4 @@
+{% set page_active_navigation = "Portfolio" %}
 {% extends "./layouts/en/gallery-layout.njk" %}
 {% block content %}
 {{ super() }}
