@@ -2,10 +2,10 @@
 
 {% extends "./content-layout.njk" %}
 {% block scripts %}
-  {{scriptSlideshow(".slideshow")}}
+  {{scriptSlideshow(".slideshow",false, false, true)}}
 {% endblock %}
 {% block slideshow %}
-  <div>
+  <div class="slideshow-container"> 
     {{prepare()}}
     {{slideshow("slideshow")}}
   </div>

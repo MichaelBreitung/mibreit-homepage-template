@@ -78,6 +78,7 @@
     ],
     "en": [
       { "name": "Home", "url": "/" },
+      { "name": "Slideshow", "url": "/slideshow.php" },
       { "name": "Portfolio", "url": "/portfolio.php" },
       { "name": "Contact", "url": "/contact.html" },
       { "name": "About", "url": "/about.html" },

@@ -86,9 +86,9 @@
 
 @media (min-width: 864px) 
 {
-  .content {
+  .content, .slideshow-container {
     max-width: 54rem;
-  }
+  } 
 
   .navigation__container {
     max-width: 54rem;
