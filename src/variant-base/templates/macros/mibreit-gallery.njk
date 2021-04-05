@@ -84,7 +84,7 @@
 {# private macro that should only be used internally within a php tag to create the image marcup #}
 {% macro _image(item, de) %}
   $size = getimagesize(${{item}}->imageUrl);  
-  echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" style=\"position: absolute;\" ";
+  echo "<img src=\"/images/image-placeholder-transparent.png\" style=\"position: absolute;\" ";
   echo "data-src=\"" . ${{item}}->imageUrl . "\" ";
   echo "title=\""    . ${{item}}->caption  . "\" ";
   echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";
@@ -102,7 +102,7 @@
     foreach ($mibreitGallery->getImages() as $image)
     {
       $size = getimagesize($image->thumbUrl);      
-      echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" style=\"position: absolute;\" data-src=\"" . $image->thumbUrl . "\" ";
+      echo "<img src=\"/images/image-placeholder-transparent.png\" style=\"position: absolute;\" data-src=\"" . $image->thumbUrl . "\" ";
       echo "width=\"". $size[0] ."\" height=\"". $size[1] . "\" alt=\"thumbnail\"/>\n";      
     }
   ?>
