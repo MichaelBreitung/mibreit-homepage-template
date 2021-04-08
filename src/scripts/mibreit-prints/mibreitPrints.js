@@ -20,8 +20,22 @@ var mibreitImagePrints = function (imagePrints, gallery) {
     element.style.removeProperty("display");     
   }
 
-  // init elements state
-  hideElement(printsDiv);
+  var transitionHeight = function(element)
+  { 
+    element.style.transition = "none";   
+    var oldHeight = element.style.height;
+    element.style.height = "auto";
+    var newHeight = element.scrollHeight;  
+    element.style.height = oldHeight;  
+    requestAnimationFrame(function() {       
+      element.style.transition = "";
+      requestAnimationFrame(function() {
+        element.style.height = newHeight + 'px';
+      });
+    });
+  }
+
+  // init elements state  
   hideElement(redbubbleDiv);
   hideElement(limitedDiv);
   hideElement(customDiv);
@@ -56,7 +70,9 @@ var mibreitImagePrints = function (imagePrints, gallery) {
         showElement(customDiv);
       }
       showElement(printsDiv);
-    } else {
+      transitionHeight(printsDiv); 
+    }
+    else{
       hideElement(printsDiv);
     }
   };
