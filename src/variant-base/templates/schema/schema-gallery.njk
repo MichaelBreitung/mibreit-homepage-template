@@ -1,0 +1,58 @@
+{% from "../macros/get-base-page-url.njk" import getBasePageUrl %}
+
+{#
+# creates schema for imageGallery
+# @param de - if given, german version is generated (optional)
+# @attention requires call to prepare() from mibreit-gallery beforehand
+#}
+{% macro imageGallery(de, domain_name, use_https) %} 
+  <?php  
+    echo "<script type=\"application/ld+json\">\n";
+    echo "{\n";
+    echo "\"@context\": \"https://schema.org/\",\n";
+    echo "\"@type\": \"ImageGallery\",\n";    
+    {% if de %}      
+      if (!empty($mibreitGallery->getInfoEn()->content)) { 
+        echo "\"description\": \"" . $mibreitGallery->getInfoDe()->content . "\",\n";
+      }
+    {% else %}      
+      if (!empty($mibreitGallery->getInfoEn()->content)) {
+        echo "\"description\": \"" . $mibreitGallery->getInfoEn()->content . "\",\n";
+      }       
+    {% endif %} 
+    echo "\"associatedMedia\": [\n";
+    $images = $mibreitGallery->getImages();
+    $nrOfImages = count($images);
+    for ($i = 0; $i < $nrOfImages - 1; ++$i) 
+    {      
+      {{_image("$images[$i]", de)}}    
+    }
+    {{_image("$images[$i]", de, true)}}
+    echo "]\n";
+    echo "}\n";
+    echo "</script>\n";    
+  ?>
+{% endmacro %}
+
+{# private macro that should only be used internally within a php tag to create the image schema markup #}
+{% macro _image(image, de, final) %}
+  echo "{\n";    
+    echo "\"@type\": \"ImageObject\",\n";
+    echo "\"name\": \"" . {{image}}->caption . "\",\n";
+    {% if de %}      
+    if ({{image}}->altDe) { 
+      echo "\"description\": \"" . {{image}}->altDe . "\",\n";
+    }
+    {% else %}
+    if ({{image}}->altEn) {     
+      echo "\"description\": \"" . {{image}}->altEn . "\",\n";
+    }
+    {% endif %} 
+    echo "\"contentUrl\": \"" . $mibreitGalleryPageData->getBasePath() . {{image}}->imageUrl . "\",\n";
+    echo "\"thumbnailUrl\": \"" . $mibreitGalleryPageData->getBasePath() . {{image}}->thumbUrl . "\"\n";
+  {% if final %}
+    echo "}\n"; 
+  {% else %}
+    echo "},\n"; 
+  {% endif %}
+{% endmacro %}
