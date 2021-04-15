@@ -1,5 +1,5 @@
-{% from "macros/get-base-page-url.njk" import getBasePageUrl %}
 <?xml version="1.0" encoding="UTF-8"?>
+{% from "macros/get-base-page-url.njk" import getBasePageUrl %}
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>{{getBasePageUrl(domain_name, use_https)}}/sitemap-en.xml</loc>

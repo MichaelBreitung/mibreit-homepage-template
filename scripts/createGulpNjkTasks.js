@@ -5,6 +5,7 @@ const createGulpNjkPhp = require('./createGulpNjkPhp');
 const createGulpXml = require('./createGulpXml');
 const createGulpNjkPhpScripts = require('./createGulpNjkPhpScripts');
 const createGulpNjkHtAccess = require('./createGulpNjkHtAccess');
+const createGulpNjkRobots = require('./createGulpNjkRobots');
 const createGatherNjkTemplates = require('./createGatherNjkTemplates');
 const { tempFolder, baseFolder } = require('./constants');
 
@@ -44,7 +45,8 @@ const createGulpNjkTasks = function (variant, withHtAccess = false) {
       createGulpNjkHtml(tempFolder),
       createGulpNjkPhp(tempFolder),
       createGulpNjkPhpScripts(tempFolder, variant.scripts),
-      getHtAccessTask(tempFolder),
+      createGulpNjkRobots(tempFolder),
+      getHtAccessTask(tempFolder),      
       createGulpXml(tempFolder)
     )
   );
