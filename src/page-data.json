@@ -113,5 +113,23 @@
   {
     "rrs": "",
     "feedspot": ""
+  },
+  "page_affiliates": {
+    "banners":
+    [
+      {
+        "name": "affiliate1",
+        "url": "affiliate-url",
+        "image": "affiliate-banner-url",
+        "description": "affiliate description"
+      },
+      {
+        "name": "affiliate2",
+        "url": "affiliate-url",
+        "image": "affiliate-banner-url",
+        "description": "affiliate description"
+      }     
+    ],
+    "random": ["affiliate1", "affiliate2"]    
   }
 }

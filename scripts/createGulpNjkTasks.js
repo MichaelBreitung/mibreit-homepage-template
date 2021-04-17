@@ -2,6 +2,7 @@ const fs = require('fs');
 const gulp = require('gulp');
 const createGulpNjkHtml = require('./createGulpNjkHtml');
 const createGulpNjkPhp = require('./createGulpNjkPhp');
+const createGulpNjkAffiliates = require('./createGulpNjkAffiliates');
 const createGulpXml = require('./createGulpXml');
 const createGulpNjkPhpScripts = require('./createGulpNjkPhpScripts');
 const createGulpNjkHtAccess = require('./createGulpNjkHtAccess');
@@ -47,7 +48,8 @@ const createGulpNjkTasks = function (variant, withHtAccess = false) {
       createGulpNjkPhpScripts(tempFolder, variant.scripts),
       createGulpNjkRobots(tempFolder),
       getHtAccessTask(tempFolder),      
-      createGulpXml(tempFolder)
+      createGulpXml(tempFolder),
+      createGulpNjkAffiliates(tempFolder)
     )
   );
 };
