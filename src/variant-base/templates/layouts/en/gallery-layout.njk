@@ -11,10 +11,10 @@
 {% set page_image = "<?php echo $mibreitGalleryPageData->getBasePath() . $mibreitGallery->getImage($imageNr)->imageUrl ?>" %}
 {% extends "./content-layout.njk" %}
 {% block scripts %}
-  {{scriptGallery()}}
+  {{scriptGallery(".mibreit-gallery", ".mibreit-thumbview", ".mibreit-slideshow-title")}}
 {% endblock %}
 {% block content %}
-  {{gallery()}}
-  {{thumbview()}}
-  {{imageTitle()}}
+  {{gallery("mibreit-gallery")}}
+  {{thumbview("mibreit-thumbview")}}
+  {{imageTitle("mibreit-slideshow-title")}}
 {% endblock %}
