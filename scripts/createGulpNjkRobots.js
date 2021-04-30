@@ -12,7 +12,7 @@ const createGulpHtAccess = function (templates) {
       .pipe(
         nunjucksRender({
           path: [`${baseFolder}/${templates}/templates`],
-          ext: 'txt',
+          ext: '.txt',
           envOptions: {
             autoescape: false,
           },
