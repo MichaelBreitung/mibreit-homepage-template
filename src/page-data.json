@@ -65,7 +65,7 @@
       "essential": true
     },
     "pinterest": {
-      "url": "http://www.pinterest.com/pin/create/button/",
+      "url": "https://www.pinterest.com/pin/create/button/",
       "image": "/images/social-media-share/pinterest-share.png"
     }
   },
