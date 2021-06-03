@@ -5,11 +5,20 @@
   -webkit-box-shadow: $cookie-consent-shadow;
   -moz-box-shadow: $cookie-consent-shadow;
   box-shadow: $cookie-consent-shadow;
+  flex-direction: column;
+
+  p {
+    font-size: 1.4rem;
+  }
 
   .mibreit-cookie-accept {
+    padding: 0.5rem;
+    border-radius: 0.5rem;  
+    margin-left: 0rem;
     background-color: $button-background-color;
+    font-size: 1.4rem;
 
-    a {
+    a {  
       color: $button-link-color;
     }
   }

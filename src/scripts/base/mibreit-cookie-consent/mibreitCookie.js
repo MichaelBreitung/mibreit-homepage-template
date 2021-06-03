@@ -23,9 +23,9 @@ var mibreitCookieConsent = function (config) {
 
   var cookieMessageGenerate = function() {
     var html =
-      '<small class="msg">' +
+      '<div>' +
       config.mainMessage +
-      '</small><div class="mibreit-cookie-accept"><a href="#">' +
+      '</div><div class="mibreit-cookie-accept"><a href="#">' +
       config.acceptButton +
       "</a></div>";
     var cookieConsentBar = document.createElement("div");

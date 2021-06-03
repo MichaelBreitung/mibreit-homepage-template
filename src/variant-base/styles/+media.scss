@@ -82,6 +82,16 @@
   form textarea {
     font-size: 1.1rem;
   }
+
+  #cookie-msg {    
+    flex-direction: row;
+    p, .mibreit-cookie-accept {
+      font-size: 1rem;
+    }   
+    .mibreit-cookie-accept {
+      padding: 0.25rem;
+    } 
+  }
 }
 
 @media (min-width: 864px) 
