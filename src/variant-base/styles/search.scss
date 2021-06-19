@@ -1,10 +1,10 @@
 @import 'variables';
 
 .search__container {
-  position: absolute;  
+  position: absolute;
   font-size: 1.1rem;
   right: 0rem;
-  top:0rem;
+  top: 0rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-right: 1rem;
@@ -22,31 +22,37 @@
     text-align: left;
     display: none;
   }
-  
+
   form {
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
-  
+
   input {
     padding-left: 0.25rem;
     width: 15.25rem;
     margin-bottom: 0.25rem;
     margin-top: 0.25rem;
   }
-  
+
   .search__button {
     padding: 0.5rem;
     margin-left: 1rem;
     background: none;
     border: none;
   }
-  
+
   .search__button svg {
     width: 1.5rem;
     height: 1.5rem;
     fill: $search-button-color;
+  }
+}
+
+main > .content {
+  .gsc-adBlock {
+    display: none;
   }
 }
 
