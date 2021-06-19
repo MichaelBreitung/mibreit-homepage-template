@@ -75,7 +75,7 @@ h4 {
   padding-left: 1rem;
   padding-right: 0.5rem;
   font-size: 1.6rem;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 p {
@@ -316,4 +316,16 @@ form input[type="checkbox"] {
   margin: 0 0.5rem;
   height: 2rem;
   width: auto;
+}
+
+/******* effects *************/
+/*****************************/
+.blur-normal {
+  filter: blur(0.5rem);
+}
+.blur-more {
+  filter: blur(1rem);
+}
+.blur-max {
+  filter: blur(2rem);
 }

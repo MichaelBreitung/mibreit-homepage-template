@@ -144,7 +144,7 @@
   {% endif %}
   <script>
     mibreitGalleryTs.DomTools.documentReady(function () {
-      mibreitGalleryTs.DomTools.addCssStyle(mibreitGalleryTs.DomTools.getElement(".slideshow"), "opacity", "1");      
+      mibreitGalleryTs.DomTools.addCssStyle(mibreitGalleryTs.DomTools.getElement(".slideshow"), "opacity", "1");  
       mibreitGalleryTs.createSlideshow({imageSelector: "{{container}} > img", scaleMode:{% if stretch %}mibreitGalleryTs.EImageScaleMode.STRETCH{% else %}mibreitGalleryTs.EImageScaleMode.FIT_ASPECT{% endif %}, interval : 4000{% if zoom %}, zoom : {{zoom}}{% endif %}}); 
     });
   </script>
@@ -169,16 +169,17 @@
       mibreitGalleryTs.DomTools.addCssStyle(mibreitGalleryTs.DomTools.getElement("{{container}}"), "opacity", "1");
       mibreitGalleryTs.DomTools.addCssStyle(mibreitGalleryTs.DomTools.getElement("{{thumb_container}}"), "opacity", "1");
       var gallery = mibreitGalleryTs.createGallery({slideshowContainerSelector: "{{container}}", imageSelector: "{{container}} > img", scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT, thumbContainerSelector: "{{thumb_container}}", thumbSelector: "{{thumb_container}} > img", numberOfVisibleThumbs: 7});
-      const titleElement = mibreitGalleryTs.DomTools.getElement("{{title_class_name}}");
-      mibreitGalleryTs.DomTools.setInnerHtml(titleElement, gallery.getViewer().getImageInfo(gallery.getViewer().getImageIndex()).getTitle());
-      gallery.getViewer().addImageChangedCallback((index, imageInfo) => {
+      var titleElement = mibreitGalleryTs.DomTools.getElement("{{title_class_name}}");
+      var viewer = gallery.getViewer();
+      mibreitGalleryTs.DomTools.setInnerHtml(titleElement, viewer.getImageInfo(viewer.getImageIndex()).getTitle());
+      viewer.addImageChangedCallback((index, imageInfo) => {
         mibreitGalleryTs.DomTools.setInnerHtml(titleElement, imageInfo.getTitle());
       });
       mibreitGalleryHistory(gallery);
       {% if gallery_var_name %}
-      {{gallery_var_name}} = gallery.getViewer();
+      {{gallery_var_name}} = gallery;
       {% else %}
-      mibreitGalleryInstance = gallery.getViewer();
+      mibreitGalleryInstance = gallery;
       {% endif %} 
     });
   </script>
@@ -216,8 +217,8 @@
   <?php
   echo "<script>\n";
   echo "mibreitGalleryTs.DomTools.documentReady(function () {\n";
-  echo "{{gallery}}.addImageChangedCallback(mibreitImagePrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", {{gallery}}))";
+  echo "{{gallery}}.getViewer().addImageChangedCallback(mibreitImagePrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", {{gallery}}.getViewer()))";
   echo "});\n";
-  echo "</script>";
+  echo "</script>\n";
   ?>
 {% endmacro %}

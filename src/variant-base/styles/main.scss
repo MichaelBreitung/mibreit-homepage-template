@@ -1,3 +1,5 @@
+@import 'variables';
+
 .content {
   position: relative;
   margin: 0rem;
@@ -7,8 +9,18 @@
   width: 100%;
   flex: 1 1 auto;
 
-  .content__table img {
-    padding: 0.5rem;
+  .content__table {
+    margin-left: 0.5rem;
+  }
+
+  .content__table td {
+    padding-top: 1rem;
+  }
+
+  .content__table img:hover {
+    -webkit-box-shadow: $hover-shadow;
+    -moz-box-shadow: $hover-shadow;
+    box-shadow: $hover-shadow;
   }
   
   .content__table .width-small img {

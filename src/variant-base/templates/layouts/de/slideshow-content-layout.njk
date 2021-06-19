@@ -1,12 +1,17 @@
 {% from "../../macros/mibreit-gallery.njk" import slideshow, prepare, scriptSlideshow %}
-
+{% from "../../schema/schema-gallery.njk" import imageGallery %}
+{% block php_init %}  
+  {{prepare()}}
+{% endblock %}
 {% extends "./content-layout.njk" %}
+{% block meta %}
+  {{imageGallery(true)}}
+{% endblock %}
 {% block scripts %}
   {{scriptSlideshow(".slideshow", false, false, true)}}
 {% endblock %}
 {% block slideshow %}
   <div class="slideshow-container">
-    {{prepare()}}
     {{slideshow("slideshow", true)}} 
   </div>
 {% endblock %}
