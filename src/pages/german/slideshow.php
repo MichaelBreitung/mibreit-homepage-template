@@ -5,8 +5,8 @@
 {% set page_description="Homepage Template Description." %}
 {% set page_canonical = "" %}
 {% set page_active_navigation = "Slideshow" %}
-{% set page_de = "/german/slideshow.php" %}
-{% extends "./layouts/en/slideshow-content-layout.njk" %}
+{% set page_en = "/slideshow.php" %}
+{% extends "./layouts/de/slideshow-content-layout.njk" %}
 {% block content %}
   
-{% endblock %}
+{% endblock %} 
