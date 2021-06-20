@@ -1,6 +1,6 @@
 <?php 
   $page_title = get_post_meta( get_the_ID(), 'title', true );    
-  if (!is_single() || !$title || (strlen($title) == 0))     
+  if (!is_single() || !$page_title || (strlen($page_title) == 0))     
   {
     if(wp_title('', false))
     {
