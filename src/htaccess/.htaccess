@@ -1,9 +1,6 @@
 {% from "macros/get-base-page-url.njk" import getBasePageUrl %}
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  # error pages
-  ErrorDocument 404 /errors/error404.html 
-  ErrorDocument 403 /errors/error403.html 
   {% if use_https %}
   # redirect to https
   RewriteCond %{HTTPS} !on [OR]
@@ -11,17 +8,19 @@
   RewriteRule ^(.*)$ {{getBasePageUrl(domain_name, use_https)}}/$1 [R=301,L]
   {% else %}
   # redirect to http
-  RewriteEngine On
   RewriteCond %{HTTP_HOST} !^www\. [NC]
   RewriteRule ^(.*)$ {{getBasePageUrl(domain_name, use_https)}}/$1 [R=301,L]
   {% endif %}
 </IfModule>
+# caching of images at client
 <filesMatch ".(jpg|jpeg|png|gif|ico)$">
   Header set Cache-Control "max-age=2592000, public"
 </filesMatch>
+# no caching css and js files at client
 <filesMatch ".(css|js)$">
   Header set Cache-Control "no-cache"
 </filesMatch>
+# compression of served files
 <ifModule mod_deflate.c>
   AddOutputFilterByType DEFLATE application/javascript
   AddOutputFilterByType DEFLATE application/rss+xml
@@ -50,4 +49,7 @@
   BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
   Header append Vary User-Agent
 </ifModule>
+# handling of not found error pages
+ErrorDocument 404 /errors/error404.html 
+ErrorDocument 403 /errors/error403.html 
 
