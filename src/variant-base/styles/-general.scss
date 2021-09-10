@@ -34,12 +34,12 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  color: $link-color-hover;
-}
-
 a:visited {
   color: $link-color-visited;
+}
+
+a:hover {
+  color: $link-color-hover;
 }
 
 h1 {
