@@ -1,0 +1,16 @@
+@import 'variables';
+
+.donate
+{
+  margin: 0.5rem;
+  border-style: dashed;
+  border-width: thin;
+  border-radius: 0.5rem;
+  background-color: $form-background-color;
+
+  form {
+    display: flex;
+    justify-content: center;
+    margin-bottom:0.5rem;
+  }
+}
