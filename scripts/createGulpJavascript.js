@@ -36,6 +36,7 @@ const createGulpJavascript = function (plugins) {
       .src([
         `${baseFolder}/scripts/mibreit-gallery/*.js`,
         `${baseFolder}/scripts/mibreit-gallery-history/*.js`,
+        `${baseFolder}/scripts/mibreit-gallery-background-color/*.js`,
         `${baseFolder}/scripts/mibreit-prints/*.js`,
       ])
       .pipe(through2.obj(minifyJs))
