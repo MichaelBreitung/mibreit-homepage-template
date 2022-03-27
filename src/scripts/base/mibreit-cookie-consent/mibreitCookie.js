@@ -31,7 +31,10 @@ var mibreitCookieConsent = function (config) {
     var cookieConsentBar = document.createElement("div");
     cookieConsentBar.setAttribute("id", "cookie-msg");
     cookieConsentBar.innerHTML = html;
+    var cookieConsentDarkening = document.createElement("div");
+    cookieConsentDarkening.setAttribute("id", "cookie-msg__background");
     var body = document.querySelector("body");
+    body.append(cookieConsentDarkening);
     body.append(cookieConsentBar);
     document
       .querySelector("#cookie-msg .mibreit-cookie-accept")
@@ -39,6 +42,7 @@ var mibreitCookieConsent = function (config) {
         event.preventDefault();
         setCookie(config.cookieName, true, config.expirationDays);
         cookieConsentBar.remove();
+        cookieConsentDarkening.remove();
       });
   }
   
