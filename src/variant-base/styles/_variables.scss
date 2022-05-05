@@ -11,17 +11,17 @@ $cookie-consent-background-color: $background-color;
 
 $link-color: #103247;
 $link-color-background-active: #84949e;
-$link-color-hover: #0a283b;
+$link-color-hover: #a5bac7;
 $link-color-visited: #032b44;
 
 $button-background-color: #a1b5c2;
 $button-link-color: $link-color;
 
-$search-link-color: #a5bac7;
+$search-link-color: $link-color-hover;
 $search-button-color: $search-link-color;
 
 $form-color: #1c2124;
-$form-background-color: #a5bac7;
+$form-background-color: $link-color-hover;
 $form-background-focus: #d4b888;
 $form-background-error: #e45e4d;
 $form-color-error: $form-background-error;
