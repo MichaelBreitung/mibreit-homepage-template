@@ -95,6 +95,11 @@
       { "name": "Legal Notice", "url": "/imprint.html" },
       { "name": "Privacy Policy", "url": "/privacy-policy.html" },
       { "name": "Disclaimer", "url": "/disclaimer.html" }
+    ],
+    "newsletter": [
+      { "name": "Legal Notice", "url": "Full Path To, e.g. https://www.mibreit-photo.com/imprint.html" },
+      { "name": "Unsubscribe", "url": "Full Path To Mailing List, e.g. https://www.mibreit-photo.com/mailing-list.php" },
+      { "name": "Contact", "url": "Full Path To Contact, e.g. https://www.mibreit-photo.com//contact.html" }
     ]
   },
   "page_about": {  

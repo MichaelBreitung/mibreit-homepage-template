@@ -1,0 +1,10 @@
+<header class="header">
+  {% include "./header-image.njk" %}
+  {% if page_name %}
+    {% if page_content_has_h1 %}
+      <h2>{{page_name | upper }}</h2>
+    {% else %}
+      <h1>{{page_name | upper }}</h1>
+    {% endif %}
+  {% endif %}
+</header>
