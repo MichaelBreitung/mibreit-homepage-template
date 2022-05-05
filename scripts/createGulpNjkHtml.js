@@ -3,6 +3,7 @@ const nunjucksRender = require("gulp-nunjucks-render");
 const through2 = require("through2");
 const data = require("gulp-data");
 const prettyHtml = require("./prettyHtml");
+const inlineNewsletterCss = require("./inlineNewsletterCss");
 const page_data = require("../src/page-data.json");
 const { baseFolder, outputFolder } = require("./constants");
 
@@ -25,6 +26,7 @@ const createGulpHtml = function (templates) {
           },
         })
       )
+      .pipe(through2.obj(inlineNewsletterCss))
       .pipe(through2.obj(prettyHtml))
       .pipe(gulp.dest(outputFolder));
   }

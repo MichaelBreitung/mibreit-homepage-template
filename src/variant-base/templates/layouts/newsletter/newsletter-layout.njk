@@ -1,19 +1,22 @@
+{% block php_init %}{% endblock %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     {% include "../../parts/newsletter/head.njk" %}
+    {% block meta %}{% endblock %}
+    {% block styles %}{% endblock %}
   </head>
-  <body>    
-    <div id="container">
-      {% include "../../parts/newsletter/header.njk" %}
-      <main>
-        <div class="content padding-bottom-normal">
-          {% block content %}{% endblock %}
-        </div>
-        {% block more %}{% endblock %}
-      </main>
-      {% include "../../parts/newsletter/footer.njk" %}
-      {% block scripts %}{% endblock %}
-    </div>
+  <body>
+    {% include "../../parts/newsletter/header.njk" %}
+    {% block slideshow %}{% endblock %}
+    <main>
+      {% block breadcrumb %}{% endblock %}
+      <div class="content padding-bottom-normal">
+        {% block content %}{% endblock %}
+      </div>
+      {% block more %}{% endblock %}
+    </main>
+    {% include "../../parts/newsletter/footer.njk" %}
+    {% block scripts %}{% endblock %}
   </body>
 </html>
