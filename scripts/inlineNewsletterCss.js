@@ -7,7 +7,8 @@ const înlineNewsletterCss = function (file, enc, callback) {
     inline(file.contents.toString(), {url: `file://${basePath}`, preserveMediaQueries: true}).then(function(newHtml){ file.contents = Buffer.from(newHtml);
       return callback(null, file);}); 
   }
-  else{
+  else
+  {
     callback(null, file);
   }  
 }
