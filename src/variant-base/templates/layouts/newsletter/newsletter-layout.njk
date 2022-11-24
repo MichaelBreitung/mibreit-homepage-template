@@ -1,0 +1,36 @@
+{% from "../../macros/get-base-page-url.njk" import getBasePageUrl %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
+  <head>
+      {% include "../../parts/newsletter/head.njk" %}
+      {% block meta %}{% endblock %}
+      {% block styles %}{% endblock %}
+  </head>
+<body style="margin:0;padding:0;">
+	<table role="presentation" style="width:100%;">
+    <tr>
+			<td align="center">
+			 {% include "../../parts/newsletter/header.njk" %}
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<table role="presentation" class="content">
+					
+					<tr>
+						<td>
+							{% block content %}{% endblock %}
+						</td>
+					</tr>
+
+				</table>
+			</td>
+		</tr>
+		<tr>
+      <td>
+        {% include "../../parts/newsletter/footer.njk" %}
+      </td>
+    </tr>
+	</table>
+</body>
+</html>

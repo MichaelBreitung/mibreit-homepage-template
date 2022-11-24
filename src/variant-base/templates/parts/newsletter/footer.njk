@@ -1,0 +1,9 @@
+{% from "../../macros/link-item-list.njk" import linkItemList %}
+{% from "../../macros/get-base-page-url.njk" import getBasePageUrl %}
+<footer class="footer">
+  <p class="footer__text">All Material © Copyright by {{page_author}}. All Rights Reserved<br>
+    {{ linkItemList(page_footer.newsletter, false, "footer__link", 4, "|") }}
+  </p>
+</footer>
+<script>
+</script>

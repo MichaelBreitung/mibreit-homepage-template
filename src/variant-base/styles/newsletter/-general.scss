@@ -1,0 +1,74 @@
+@import '../_variables';
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: $base-color;
+  background-color: $background-color;
+}
+
+table {
+  color: $base-color;
+  background-color: $background-color;
+  border: 0;
+}
+
+table, td, div, h1, p {
+  font-family: Helvetica, Verdana, "Open Sans";
+  line-height: 1.6;
+}
+
+h1 {
+  padding-top: 0.8em;
+  padding-bottom: 0.4rem;
+}
+
+h2 {
+  padding-top: 0.8em;
+  padding-bottom: 0rem;
+}
+
+h3 {
+  padding-top: 0.8em;
+  padding-bottom: 0rem;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+}
+
+a:visited {
+  color: $link-color-visited;
+}
+
+a:hover, a:focus {
+  color: $link-color-hover;
+}
+
+.fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.fluid-vertical {
+  max-height: 100%;
+  width: auto;
+}
+
+ul {
+  padding-left: 1.5rem;
+  padding-right: 0.5rem;
+}
+
+ol {
+  padding-left: 1.5rem;
+  padding-right: 0.5rem;
+}
+
+li {
+  padding-top: 0.5em;
+}

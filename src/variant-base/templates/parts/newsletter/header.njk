@@ -1,0 +1,6 @@
+<header class="header">
+  {% if page_name %}
+    <p><a href="{{getBasePageUrl(domain_name, use_https)}}">{{page_name | upper }}</a> | <a href="{{getBasePageUrl(domain_name, use_https)}}/newsletter/{{page_canonical}}">View Web Version</a></p>
+  {% endif %}
+  {% include "./header-image.njk" %}
+</header>

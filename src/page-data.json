@@ -95,6 +95,11 @@
       { "name": "Legal Notice", "url": "/imprint.html" },
       { "name": "Privacy Policy", "url": "/privacy-policy.html" },
       { "name": "Disclaimer", "url": "/disclaimer.html" }
+    ],
+    "newsletter": [
+      { "name": "Legal Notice", "url": "Full Path To imprint / legal notice" },
+      { "name": "Unsubscribe", "url": "Full Path To Mailing List subscribe/unsub page" },
+      { "name": "Contact", "url": "Full Path To Contact" }
     ]
   },
   "page_about": {  

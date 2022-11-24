@@ -1,0 +1,9 @@
+{% from "../../macros/get-base-page-url.njk" import getBasePageUrl %}
+{% if page_header_image | length -%}
+  <div class="header__image" style="background-image: url('{{getBasePageUrl(domain_name, use_https)}}{{page_header_image}}')"></div>
+{%- else -%}
+  <div class="header__image"></div>
+{%- endif %}
+
+
+

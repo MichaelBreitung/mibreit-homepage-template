@@ -1,0 +1,20 @@
+{% from "macros/get-base-page-url.njk" import getBasePageUrl %}
+{% from "../../macros/get-page-image.njk" import getPageImage %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="copyright" content="{{page_author}}"/>
+<meta name="author" content="{{page_author}}"/>
+<meta name="keywords" lang="en-us" xml:lang="en-us" content="{{page_keywords}}"/>
+<meta name="description" lang="en-us" xml:lang="en-us" content="{{page_description}}"/>
+<title>{{page_title}}</title>
+<!--[if mso]>
+<noscript>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+</noscript>
+<![endif]-->
+<link rel="stylesheet" href="/styles/newsletter/styles.css" type="text/css"/>
