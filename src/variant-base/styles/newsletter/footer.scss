@@ -1,0 +1,17 @@
+@import '../_variables';
+
+.footer {
+  margin-bottom: 0rem;
+  margin-top: 1rem;
+  width: 100%;
+
+  .footer__text {
+    padding-top: 1rem;
+    text-align: center;
+  }
+  
+  .footer__link {
+    text-decoration: underline;
+  }
+}
+
