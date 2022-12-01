@@ -1,0 +1,10 @@
+{% macro scriptImageBeforeAfter(item_selector) %}
+<script>
+  window.addEventListener('load', function () {
+    var imageContainers = document.querySelectorAll(".content .imageBeforeAfter");
+    for (let i = 0; i < imageContainers.length; i++) {
+      mibreitImageBeforeAfter.createImageCompareSlider(imageContainers[i].firstElementChild);
+    }
+  });
+</script>
+{% endmacro %}

@@ -1,0 +1,24 @@
+.imageBeforeAfter {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.imageBeforeAfter img {
+  width: 100%;
+  height: auto;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.imageBeforeAfter img:first-child
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index:1;
+}
+.imageBeforeAfter img:last-child
+{
+  position: relative;
+}
