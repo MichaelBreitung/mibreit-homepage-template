@@ -2,14 +2,17 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
-.imageBeforeAfter img {
+main .content .imageBeforeAfter img {
   width: 100%;
   height: auto;
   -webkit-user-select: none;
   -moz-user-select: none;
   -o-user-select: none;
   user-select: none;
+  margin: 0;
 }
 .imageBeforeAfter img:first-child
 {

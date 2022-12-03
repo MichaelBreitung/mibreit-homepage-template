@@ -134,7 +134,7 @@ function get_site_image() {
 // custom replace strings
 
 // replace affiliate shortcodes with affiliate banner
-function affiliate_shortcode_func($atts)
+function affiliate_shortcode_func($atts = array())
 {
 $a = shortcode_atts( array(
 'type' => '',
@@ -142,5 +142,12 @@ $a = shortcode_atts( array(
 return getAffiliateBanner($a['type']);
 }
 add_shortcode( 'affiliate', 'affiliate_shortcode_func' );
+
+// replace before after shortcodes with before after div
+function image_before_after_shortcode_func( $atts = array(), $content = null)
+{
+return "<div class=\"imageBeforeAfter\">" . $content . "</div>";
+}
+add_shortcode( 'imageBA', 'image_before_after_shortcode_func' );
 ?>
 

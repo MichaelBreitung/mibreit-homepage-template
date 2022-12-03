@@ -4,6 +4,8 @@
   {% block scripts %}
   {% from "./macros/mibreit-lazy-loader.njk" import scriptLazyScroller %}
   {{scriptLazyScroller("article iframe")}}  
+  {% from "./macros/mibreit-image-before-after.njk" import scriptImageBeforeAfter %}
+  {{scriptImageBeforeAfter(".imageBeforeAfter > img")}}
   {% from "./macros/mibreit-gallery.njk" import scriptGalleryWP %}
   {{scriptGalleryWP()}}
   {% endblock %}
