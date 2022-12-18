@@ -6,7 +6,7 @@
   {% if google_search | length -%} 
   <div class="search__container">
     <form action="/german/search.html" id="google-search-form" method="get" role="search">
-      <input autocomplete="off" class="search__input" name="q" placeholder="mit Google suchen" title="Enter search here" type="text"/>
+      <input autocomplete="off" class="search__input" name="q" placeholder="mit Google suchen" title="Enter search here" type="text" >
       <button class="search__button" type="submit" form="google-search-form" name="Google Search Submit Knopf" aria-label="Google Suche">{% include "../../svgs/search/search.njk" %}</button>
     </form>
     <div class="search__privacy-link">

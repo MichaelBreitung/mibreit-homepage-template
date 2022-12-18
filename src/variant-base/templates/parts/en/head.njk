@@ -1,54 +1,54 @@
 {% from "macros/get-base-page-url.njk" import getBasePageUrl %}
 {% from "../../macros/get-page-image.njk" import getPageImage %}
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="robots" content="index,follow"/>
-<meta name="copyright" content="{{page_author}}"/>
-<meta name="author" content="{{page_author}}"/>
-<meta name="keywords" lang="en-us" xml:lang="en-us" content="{{page_keywords}}"/>
-<meta name="description" lang="en-us" xml:lang="en-us" content="{{page_description}}"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+<meta name="robots" content="index,follow" >
+<meta name="copyright" content="{{page_author}}" >
+<meta name="author" content="{{page_author}}" >
+<meta name="keywords" lang="en-us" xml:lang="en-us" content="{{page_keywords}}" >
+<meta name="description" lang="en-us" xml:lang="en-us" content="{{page_description}}" >
 {% if theme_color | length %}
 <meta name="theme-color" content="{{theme_color}}">
 {% endif %}
 <title>{{page_title}}</title>
-<link rel="canonical" href="{{getBasePageUrl(domain_name, use_https)}}/{{page_canonical}}"/>
-<link rel="stylesheet" href="/styles/styles.css" type="text/css"/>
+<link rel="canonical" href="{{getBasePageUrl(domain_name, use_https)}}/{{page_canonical}}" >
+<link rel="stylesheet" href="/styles/styles.css" type="text/css" >
 {% if page_fav_icon | length %}
-<link rel="icon" href="{{page_fav_icon}}" type="image/x-icon"/>
+<link rel="icon" href="{{page_fav_icon}}" type="image/x-icon" >
 {% endif %}
 {% if apple_touch_icon | length %}
 <link rel="apple-touch-icon" href="{{apple_touch_icon}}">
 {% endif %}
-<meta property="og:locale" content="en_US"/>
+<meta property="og:locale" content="en_US" >
 {% if page_type %}
-  <meta property="og:type" content="{{page_type}}"/>
+  <meta property="og:type" content="{{page_type}}" >
 {% else %}
-  <meta property="og:type" content="website"/>
+  <meta property="og:type" content="website" >
 {% endif %}
-<meta property="og:site_name" content="{{page_name}}"/>
+<meta property="og:site_name" content="{{page_name}}" >
 {% if page_with_parameters %}
-<meta property="og:url" content="{{getBasePageUrl(domain_name, use_https)}}/{{page_with_parameters}}"/>
+<meta property="og:url" content="{{getBasePageUrl(domain_name, use_https)}}/{{page_with_parameters}}" >
 {% else %}
-<meta property="og:url" content="{{getBasePageUrl(domain_name, use_https)}}/{{page_canonical}}"/>
+<meta property="og:url" content="{{getBasePageUrl(domain_name, use_https)}}/{{page_canonical}}" >
 {% endif %}
-<meta property="og:title" content="{{page_title}}"/>
-<meta property="og:description" content="{{page_description}}"/>
+<meta property="og:title" content="{{page_title}}" >
+<meta property="og:description" content="{{page_description}}" >
 {% if page_image %}
-  <meta property="og:image" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_image)}}"/>
+  <meta property="og:image" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_image)}}" >
 {% elif page_header_image %}
-  <meta property="og:image" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_header_image)}}"/>
+  <meta property="og:image" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_header_image)}}" >
 {% endif %}
-<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:card" content="summary_large_image" >
 {% if page_author_twitter %}
-<meta name="twitter:site" content="@{{page_author_twitter}}"/>
-<meta name="twitter:creator" content="@{{page_author_twitter}}"/>
+<meta name="twitter:site" content="@{{page_author_twitter}}" >
+<meta name="twitter:creator" content="@{{page_author_twitter}}" >
 {% endif %}
-<meta name="twitter:title" content="{{page_title}}"/>
-<meta name="twitter:description" content="{{page_description}}"/>
+<meta name="twitter:title" content="{{page_title}}" >
+<meta name="twitter:description" content="{{page_description}}" >
 {% if page_image %}
-  <meta name="twitter:image" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_image)}}"/>
+  <meta name="twitter:image" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_image)}}" >
 {% elif page_header_image %}
-  <meta name="twitter:image" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_header_image)}}"/>
+  <meta name="twitter:image" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_header_image)}}" >
 {% endif %}
 {% include "../../schema/schema-person.njk" %}
 {% include "../../parts/script-google-analytics.njk" %}

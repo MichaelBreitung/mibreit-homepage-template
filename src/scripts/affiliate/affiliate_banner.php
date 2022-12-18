@@ -28,13 +28,13 @@ function getAffiliateBanner($affiliateInput)
   if ($affiliate == "{{ banner.name }}")
   {
     $imageSize = getimagesize("{{banner.image}}");
-    $affiliateBanner = "<div class=\"aligncenterflex spacing-top-normal\"><a href=\"{{banner.url}}\"><img class=\"fluid\" src=\"{{banner.image}}\" alt=\"{{banner.description}}\" width=\"". $imageSize[0] ."\" height=\"". $imageSize[1] ."\"/></a></div>";
+    $affiliateBanner = "<div class=\"aligncenterflex spacing-top-normal\"><a href=\"{{banner.url}}\"><img class=\"fluid\" src=\"{{banner.image}}\" alt=\"{{banner.description}}\" width=\"". $imageSize[0] ."\" height=\"". $imageSize[1] ."\" ></a></div>";
   }
 {%- else %}
   else if ($affiliate == "{{ banner.name }}")
   {
     $imageSize = getimagesize("{{banner.image}}");
-    $affiliateBanner = "<div class=\"aligncenterflex spacing-top-normal\"><a href=\"{{banner.url}}\"><img class=\"fluid\" src=\"{{banner.image}}\" alt=\"{{banner.description}}\" width=\"". $imageSize[0] ."\" height=\"". $imageSize[1] ."\"/></a></div>";
+    $affiliateBanner = "<div class=\"aligncenterflex spacing-top-normal\"><a href=\"{{banner.url}}\"><img class=\"fluid\" src=\"{{banner.image}}\" alt=\"{{banner.description}}\" width=\"". $imageSize[0] ."\" height=\"". $imageSize[1] ."\" ></a></div>";
   }
 {%- endif -%}
 {%- endfor %}

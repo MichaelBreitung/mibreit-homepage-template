@@ -90,7 +90,7 @@
   echo "title=\""    . ${{item}}->caption  . "\" ";
   echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";
   echo "width=\""    . $size[0]         ."\" ";
-  echo "height=\""   . $size[1]         ."\"/>\n";  
+  echo "height=\""   . $size[1]         ."\" >\n";  
 {% endmacro %}
 
 {#
@@ -105,7 +105,7 @@
     {
       $size = getimagesize($image->thumbUrl);      
       echo "<img src=\"/images/image-placeholder-transparent.png\" style=\"position: absolute;\" data-src=\"" . $image->thumbUrl . "\" ";
-      echo "width=\"". $size[0] ."\" height=\"". $size[1] . "\" alt=\"thumbnail\"/>\n";      
+      echo "width=\"". $size[0] ."\" height=\"". $size[1] . "\" alt=\"thumbnail\" >\n";      
     }
   ?>
   </div>

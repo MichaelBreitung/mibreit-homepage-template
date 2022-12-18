@@ -36,8 +36,8 @@
       <meta itemprop="name" content="{{page_author}}">
     </div>
     <?php $modified_date = get_the_modified_date('Y-m-d');$publish_date = get_the_date('Y-m-d'); ?>
-    <meta itemprop="datePublished" content="<?php echo $publish_date; ?>" />
-    <meta itemprop="dateModified" content="<?php echo $modified_date; ?>" />
+    <meta itemprop="datePublished" content="<?php echo $publish_date; ?>" >
+    <meta itemprop="dateModified" content="<?php echo $modified_date; ?>" >
   </article>
   <!--
   <?php trackback_rdf(); ?>
