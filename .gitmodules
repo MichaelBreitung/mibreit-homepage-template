@@ -1,0 +1,3 @@
+[submodule "tools/mibreit-gallery-manager"]
+	path = tools/mibreit-gallery-manager
+	url = https://github.com/MichaelBreitung/mibreit-gallery-manager.git
