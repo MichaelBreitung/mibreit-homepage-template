@@ -9,7 +9,7 @@
 }
 .content {
   .image-desc {
-    margin-top: 0.125rem;
+    margin-top: -0.25rem;
     padding-left: 0rem;
     padding-right: 0rem;
     padding-bottom: 0.5rem;
@@ -17,6 +17,16 @@
     text-align: center;
     background-color: $background-color-highlight;
   }
+  article {
+    img {      
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    ul {
+      list-style-type: initial;
+      padding-left: 2rem;
+    }
+  }  
   img.wp-smiley {
     float: none;
     border: none;
@@ -53,7 +63,7 @@
 }
 
 #sidebar {
-  h1 {
+  h1, h2 {
     font-size: 1.4rem;
     padding-left: 0.5rem;
   }
@@ -93,7 +103,7 @@
 
 @media (min-width: 801px) {
   #sidebar {
-    h1 {
+    h1, h2 {
       font-size: 1.25rem;
     }
     p {

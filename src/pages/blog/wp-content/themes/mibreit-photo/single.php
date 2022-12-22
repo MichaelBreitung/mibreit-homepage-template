@@ -11,16 +11,16 @@
   {% endblock %}
   {% block content %}   
   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-  <article itemscope itemtype="http://schema.org/Article">    
+  <article itemscope itemtype="https://schema.org/Article">    
     <link itemprop="mainEntityOfPage" href="<?php the_permalink()?>">
     <h1 itemprop="headline"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h1>
-    <p itemprop="author" itemscope itemtype="https://schema.org/Person"><?php the_date(); ?> | <?php the_category(', ') ?> | by <a rel="author" href="{{getBasePageUrl(domain_name)}}{{page_about.en}}"><span itemprop="name">{{page_author}}</span></a></p>    
+    <p itemprop="author" itemscope itemtype="https://schema.org/Person"><?php the_time('F j, Y'); ?> | <?php the_category(', ') ?> | by <a rel="author" href="{{getBasePageUrl(domain_name)}}{{page_about.en}}"><span itemprop="name">{{page_author}}</span></a></p>    
     <div itemprop="text"><?php the_content(__('Read more'));?></div>
     <div class="content-navigation spacing-top-large spacing-bottom-large small">
       <div class="content-navigation__link"><?php previous_post_link('%link', '&laquo; previous' ); ?></div>      
       <div class="content-navigation__link textright"><?php next_post_link( '%link', 'next &raquo;' ); ?></div>
     </div>
-    <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+    <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
       <meta itemprop="url" content="<?php echo $page_image ?>">
       <meta itemprop="width" content="<?php echo getimagesize($page_image)[0];?>">
       <meta itemprop="height" content="<?php echo getimagesize($page_image)[1];?>">
