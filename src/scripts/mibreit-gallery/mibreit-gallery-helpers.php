@@ -12,7 +12,7 @@ class MibreitGalleryPageData
     {
       $this->url = substr($this->url, 1);
     }
-    $this->basePath = "{{getBasePageUrl(domain_name, use_https)}}/" . substr($this->url, 0, strrpos($this->url, "/", -1)) . "/";    
+    $this->basePath = "{{getBasePageUrl(domain_name, use_https)}}/" . substr($this->url, 0, strrpos($this->url, "/", 0)) . "/";    
   }
   public function getUrl($canonical)
   {
