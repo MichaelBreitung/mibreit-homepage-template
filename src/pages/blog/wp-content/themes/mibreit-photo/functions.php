@@ -131,7 +131,10 @@ function get_site_image() {
         ob_end_clean();
         $output = preg_match_all('/<img.+?src=[\'"]([^\'"]+)[\'"].*?>/i', $post->post_content,
         $matches);
-        $first_img = $matches[1][0];
+        if (isset($matches[1]) && isset($matches[1][0]))
+        {
+            $first_img = $matches[1][0];
+        }
     }    
     if(empty($first_img)){
         $first_img = "{{getPageImage(getBasePageUrl(domain_name, use_https), page_header_image)}}";
