@@ -1,6 +1,6 @@
 {#
-# All macros in this file are designed to work with mibreit-gallery javascript gallery. They
-# can be used to create php Markup for loading images from an accompanying gallery.xml files,
+# All macros in this file are designed to work with the mibreit-gallery-ts javascript gallery. They
+# can be used to create php markup for loading images from an accompanying gallery.xml file
 # which must be loaced in the same folder as the page that uses these macros.
 #
 # @attention All macros below only work in php layouts
@@ -27,7 +27,7 @@
 
 #}
 
-{# prepares data for slideshow, gallery, imageTitle and thumbview macros #}
+{# prepares has to be called before any of the other macros #}
 {% macro prepare() %}
   <?php
     require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery.php';
@@ -39,6 +39,17 @@
     {
       $imageNr = $_GET['imageNr'];
     }
+    $page_image = $mibreitGalleryPageData->getBasePath() . $mibreitGallery->getImage($imageNr)->imageUrl;
+  ?>
+{% endmacro %}
+
+{#
+# Create an array of images from the image set in random order.
+# The array is then called $randomImages.
+#}
+{% macro randomImages(number) %}
+  <?php
+    $randomImages = $mibreitGallery->getRandomImages(8);
   ?>
 {% endmacro %}
 
@@ -50,16 +61,21 @@
 #}
 {% macro slideshow(container, de) %}
   <div class="{{container}}">
-    <?php
-    $images = $mibreitGallery->getImages();
-    $nrImages = count($images);
-    for ($i = 0; $i < 10 and $i < $nrImages; $i++)
+  <?php
+    $images = [];
+    if (isset($randomImages))
     {
-        $r = rand(0, $nrImages - 1);
-        $image = $images[$r];
-        {{_image("image", de)}}
-        array_splice($images, $r, 1);
-        $nrImages--;
+      $images = $randomImages;
+    }
+    else
+    {
+      $images =  $mibreitGallery->getImages(); 
+    }
+    $nrImages = count($images);
+    for ($i = 0; $i < $nrImages; $i++)
+    {
+      $image = $images[$i];     
+      {{_figure("image", de)}}
     }
   ?>
   </div>
@@ -74,23 +90,46 @@
 {% macro gallery(container, de) %}
   <div class="{{container}}">
     <?php
-    foreach ($mibreitGallery->getImages() as $image)
+    $nrImages = $mibreitGallery->getNumberImages();
+    for ($i = 0; $i < $nrImages; $i++)
     {
-      {{_image("image", de)}}
+      $image = $mibreitGallery->getImage($i);
+      {{_figure("image", de)}}
     }
   ?>
   </div>
 {% endmacro %}
 
-{# private macro that should only be used internally within a php tag to create the image marcup #}
-{% macro _image(item, de) %}
-  $size = getimagesize(${{item}}->imageUrl);  
-  echo "<img src=\"/images/image-placeholder-transparent.png\" style=\"position: absolute;\" ";
-  echo "data-src=\"" . ${{item}}->imageUrl . "\" ";
+{# private macro that should only be used internally within a php tag to create the figure markup #}
+{% macro _figure(item, de) %}
+  $size = getimagesize(${{item}}->imageUrl); 
+  echo "<figure>"; 
+  {{_image(item, de, false)}}
+  {{_image(item, de, true)}}
+  if (${{item}}->altEn != ${{item}}->caption)
+  {
+    echo "<figcaption><p>{% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %}</p></figcaption>"; 
+  }
+  echo "</figure>\n";
+{% endmacro %}
+
+{# private macro that should only be used internally within a php tag to create the image markup #}
+{% macro _image(item, de, no_script) %}
+  {% if no_script %}
+    echo "<noscript><img src=\"" . ${{item}}->imageUrl . "\" style=\"position: absolute;\" ";
+  {% else %}
+    echo "<img src=\"/images/image-placeholder-transparent.png\" style=\"position: absolute;\" ";
+    echo "data-src=\"" . ${{item}}->imageUrl . "\" ";
+  {% endif %}
   echo "title=\""    . ${{item}}->caption  . "\" ";
-  echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";
+  {% if not no_script %}
+    echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";
+  {% endif %}
   echo "width=\""    . $size[0]         ."\" ";
-  echo "height=\""   . $size[1]         ."\" >\n";  
+  echo "height=\""   . $size[1]         ."\" >"; 
+  {% if no_script %}
+  echo "</noscript>";
+  {% endif %}
 {% endmacro %}
 
 {#
@@ -120,13 +159,26 @@
 {% macro imageTitle(class_name, de) %}
   {% if de %}
     <h2 class="{{class_name}}"><?php echo $mibreitGallery->getInfoDe()->header_h1; ?></h2>
-    <?php if (!empty($mibreitGallery->getInfoDe()->content)) { ?>
-    <p><?php echo $mibreitGallery->getInfoDe()->content; ?></p>
-    <?php } ?>
   {% else %}
     <h2 class="{{class_name}}"><?php echo $mibreitGallery->getInfoEn()->header_h1; ?></h2>
+  {% endif %}
+{% endmacro %}
+
+{#
+# inserts gallery info
+# @param de - if given, german version is generated (optional)
+# @attention requires call to prepare() beforehand
+#}
+{% macro galleryInfo(de) %}
+  {% if de %}
+    <?php if (!empty($mibreitGallery->getInfoDe()->content)) { ?>
+    <h2>Galerie Information</h2>
+    <p><?php echo str_replace('\n', '</p><p>', $mibreitGallery->getInfoDe()->content); ?></p>
+    <?php } ?>
+  {% else %}
     <?php if (!empty($mibreitGallery->getInfoEn()->content)) { ?>
-    <p><?php echo $mibreitGallery->getInfoEn()->content; ?></p>
+    <h2>Gallery Info</h2>
+    <p><?php echo str_replace('\n', '</p><p>', $mibreitGallery->getInfoEn()->content); ?></p>
     <?php } ?>
   {% endif %}
 {% endmacro %}
@@ -135,7 +187,7 @@
 # inserts script for slideshow
 # @param container - class or id name for container of slideshow -> starting with a . or #
 # @param omit_script_include - it is possible to place multiple slideshows on one page. If you do so, you only need the slideshow include once. Use this flag whenever you want to omit the inclusion of the script. Typically you will just include it in your first call to this macro
-# @param scale_mode - if provided will be applied to all images (SCALE_MODE_STRETCH(default), SCALE_MODE_FITASPECT, SCALE_MODE_NONE, SCALE_MODE_EXPAND)
+# @param stretch - if true scale mode STRETCH will be applied to images, if false FITASPECT
 # @param zoom - if provided and set to value != 100, zoom animation will be applied
 #}
 {% macro scriptSlideshow(container, omit_script_include, stretch, zoom) %}
@@ -145,7 +197,7 @@
   <script>
     mibreitGalleryTs.DomTools.documentReady(function () {
       mibreitGalleryTs.DomTools.addCssStyle(mibreitGalleryTs.DomTools.getElement("{{container}}"), "opacity", "1");  
-      mibreitGalleryTs.createSlideshow({imageSelector: "{{container}} > img", scaleMode:{% if stretch %}mibreitGalleryTs.EImageScaleMode.STRETCH{% else %}mibreitGalleryTs.EImageScaleMode.FIT_ASPECT{% endif %}, interval : 4000{% if zoom %}, zoom : {{zoom}}{% endif %}}); 
+      mibreitGalleryTs.createSlideshow({imageSelector: "{{container}} img", scaleMode:{% if stretch %}mibreitGalleryTs.EImageScaleMode.STRETCH{% else %}mibreitGalleryTs.EImageScaleMode.FIT_ASPECT{% endif %}, interval : 4000{% if zoom %}, zoom : {{zoom}}{% endif %}}); 
     });
   </script>
 {% endmacro %}
@@ -165,7 +217,7 @@
     {% endif %}
     mibreitGalleryTs.DomTools.documentReady(function () { 
       mibreitGalleryTs.DomTools.addCssStyle(mibreitGalleryTs.DomTools.getElement("{{container}}"), "opacity", "1");
-      var gallery = mibreitGalleryTs.createGallery({slideshowContainerSelector: "{{container}}", imageSelector: "{{container}} > img", scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT, numberOfVisibleThumbs: 7});
+      var gallery = mibreitGalleryTs.createGallery({slideshowContainerSelector: "{{container}}", imageSelector: "{{container}} img", scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT, numberOfVisibleThumbs: 7});
       mibreitGalleryHistory(gallery);
       mibreitGalleryBackgroundColor(gallery);
       {% if gallery_var_name %}
@@ -195,13 +247,14 @@
     mibreitGalleryTs.DomTools.documentReady(function () { 
       mibreitGalleryTs.DomTools.addCssStyle(mibreitGalleryTs.DomTools.getElement("{{container}}"), "opacity", "1");
       mibreitGalleryTs.DomTools.addCssStyle(mibreitGalleryTs.DomTools.getElement("{{thumb_container}}"), "opacity", "1");
-      var gallery = mibreitGalleryTs.createGallery({slideshowContainerSelector: "{{container}}", imageSelector: "{{container}} > img", scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT, thumbContainerSelector: "{{thumb_container}}", thumbSelector: "{{thumb_container}} > img", numberOfVisibleThumbs: 7});
+      var gallery = mibreitGalleryTs.createGallery({slideshowContainerSelector: "{{container}}", imageSelector: "{{container}} img", scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT, thumbContainerSelector: "{{thumb_container}}", thumbSelector: "{{thumb_container}} > img", numberOfVisibleThumbs: 7});
       var titleElement = mibreitGalleryTs.DomTools.getElement("{{title_class_name}}");
       var viewer = gallery.getViewer();
       mibreitGalleryTs.DomTools.setInnerHtml(titleElement, viewer.getImageInfo(viewer.getImageIndex()).getTitle());
       viewer.addImageChangedCallback((index, imageInfo) => {
         mibreitGalleryTs.DomTools.setInnerHtml(titleElement, imageInfo.getTitle());
       });
+      mibreitGalleryCaption(gallery, mibreitGalleryTs.DomTools.getElement("{{container}}"), mibreitGalleryTs.DomTools.getElements("{{container}} figcaption"));
       mibreitGalleryHistory(gallery);
       mibreitGalleryBackgroundColor(gallery);
       {% if gallery_var_name %}
@@ -214,7 +267,7 @@
 {% endmacro %}
 
 {#
-# inserts script for gallery
+# inserts script for gallery in Wordpress layouts
 #}
 {% macro scriptGalleryWP() %}
   <script src="/scripts/mibreit-gallery/mibreitGalleryTs.min.js"></script>
@@ -246,7 +299,7 @@
   <?php
   echo "<script>\n";
   echo "mibreitGalleryTs.DomTools.documentReady(function () {\n";
-  echo "{{gallery}}.getViewer().addImageChangedCallback(mibreitImagePrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", {{gallery}}.getViewer()))";
+  echo "{{gallery}}.getViewer().addImageChangedCallback(mibreitImagePrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", {{gallery}}.getViewer(), " . $imageNr . "))";
   echo "});\n";
   echo "</script>\n";
   ?>

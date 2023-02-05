@@ -1,0 +1,16 @@
+.mibreit-gallery {
+  opacity: 1;
+  height: 100%;
+}
+.mibreit-thumbview {
+  display:none !important;
+}
+.mibreit-gallery img {
+  position: relative !important;
+  width: 100%;
+  height: auto;
+}
+.mibreit-gallery figcaption {
+  position: relative !important;
+  opacity: 1;
+}

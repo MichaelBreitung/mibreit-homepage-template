@@ -1,7 +1,8 @@
-{% from "../../macros/mibreit-gallery.njk" import slideshow, prepare, scriptSlideshow %}
+{% from "../../macros/mibreit-gallery.njk" import slideshow, prepare, randomImages, scriptSlideshow %}
 {% from "../../schema/schema-gallery.njk" import imageGallery %}
 {% block php_init %}  
   {{prepare()}}
+  {{randomImages(8)}}
 {% endblock %}
 {% extends "./content-layout.njk" %}
 {% block meta %}

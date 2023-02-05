@@ -6,6 +6,8 @@
 {% set page_canonical = "<?php echo $page ?>" %}
 {% set page_type = "article" %}
 {% set page_image = "<?php echo $page_image ?>" %}
+{% set page_image_width = "<?php echo getimagesize($page_image)[0] ?>"%}
+{% set page_image_height = "<?php echo getimagesize($page_image)[1] ?>"%}
 <!DOCTYPE html>
 <html lang="en">
   <head>

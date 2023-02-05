@@ -6,6 +6,17 @@
   .mibreit_GalleryFullscreenButton > svg {
     fill: $base-color;
   }
+  figcaption {
+    position: absolute;
+    bottom: 0rem;
+    opacity: 0;
+    width: 100%;
+    background-color: $figcaption-background-color;
+  }
+  figcaption > p {
+    padding: 0;
+    text-align: center;
+  }
 }
 
 .mibreit-thumbview {

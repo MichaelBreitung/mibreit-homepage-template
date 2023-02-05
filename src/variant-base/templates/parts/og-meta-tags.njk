@@ -1,0 +1,33 @@
+{% if page_type %}
+  <meta property="og:type" content="{{page_type}}" >
+{% else %}
+  <meta property="og:type" content="website" >
+{% endif %}
+<meta property="og:site_name" content="{{page_name}}" >
+{% if page_with_parameters %}
+<meta property="og:url" content="{{getBasePageUrl(domain_name, use_https)}}/{{page_with_parameters}}" >
+{% else %}
+<meta property="og:url" content="{{getBasePageUrl(domain_name, use_https)}}/{{page_canonical}}" >
+{% endif %}
+<meta property="og:title" content="{{page_title}}" >
+<meta property="og:description" content="{{page_description}}" >
+{% if page_image %}
+<meta property="og:image" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_image)}}" >
+<meta property="og:image:type" content="image/jpeg" >
+  {% if page_image_width %}
+  <meta property="og:image:width" content="{{page_image_width}}" >
+  {% endif %}
+  {% if page_image_height %}
+  <meta property="og:image:height" content="{{page_image_height}}" >
+  {% endif %}
+{% elif page_header_image %}
+<meta property="og:image" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_header_image)}}" >
+<meta property="og:image:type" content="image/jpeg" >
+  {% if page_header_image_width %}
+  <meta property="og:image:width" content="{{page_header_image_width}}" >
+  {% endif %}
+  {% if page_header_image_height %}
+  <meta property="og:image:height" content="{{page_header_image_height}}" >
+  {% endif %}
+{% endif %}
+

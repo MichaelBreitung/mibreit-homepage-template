@@ -20,24 +20,7 @@
 <link rel="apple-touch-icon" href="{{apple_touch_icon}}">
 {% endif %}
 <meta property="og:locale" content="en_DE" >
-{% if page_type %}
-  <meta property="og:type" content="{{page_type}}" >
-{% else %}
-  <meta property="og:type" content="website" >
-{% endif %}
-<meta property="og:site_name" content="{{page_name}}" >
-{% if page_with_parameters %}
-<meta property="og:url" content="{{getBasePageUrl(domain_name, use_https)}}/{{page_with_parameters}}" >
-{% else %}
-<meta property="og:url" content="{{getBasePageUrl(domain_name, use_https)}}/{{page_canonical}}" >
-{% endif %}
-<meta property="og:title" content="{{page_title}}" >
-<meta property="og:description" content="{{page_description}}" >
-{% if page_image %}
-  <meta property="og:image" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_image)}}" >
-{% elif page_header_image %}
-  <meta property="og:image" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_header_image)}}" >
-{% endif %}
+{% include "../../parts/og-meta-tags.njk" %}
 <meta name="twitter:card" content="summary_large_image" >
 {% if page_author_twitter %}
 <meta name="twitter:site" content="@{{page_author_twitter}}" >

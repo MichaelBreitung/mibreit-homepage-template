@@ -206,10 +206,30 @@ class MibreitGalleryDataParser
     }   
   }
 
+  public function getNumberImages()
+  {
+    return count($this->images);
+  }
+
   public function getImages()
   {
     return $this->images;
   }
+
+  public function getRandomImages($number)
+  {
+    $randomImages = [];
+    $nrImages = $this->getNumberImages();
+    $images = $this->images;
+    for ($i = 0; $i < $number and $nrImages > 0; $i++)
+    {
+        $r = rand(0, $nrImages - 1);
+        array_push($randomImages, $images[$r]);
+        array_splice($images, $r, 1);
+        $nrImages--;
+    }
+    return $randomImages;
+  } 
 
   public function getImage($id)
   {

@@ -1,6 +1,6 @@
 {
   "name": "mibreit-photo-homepage-template",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "description": "Homepage template based on Gulp and Nunjucks",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +16,7 @@
     "gulp-nunjucks-render": "^2.2.3",
     "gulp-sass": "^5.1.0",
     "inline-css": "^3.0.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^8.0.0",
     "pretty": "^2.0.0",
     "through2": "^3.0.2",
     "uglify-js": "^3.13.9"

@@ -5,7 +5,7 @@
   {% from "./macros/mibreit-lazy-loader.njk" import scriptLazyScroller %}
   {{scriptLazyScroller("article iframe")}}  
   {% from "./macros/mibreit-image-before-after.njk" import scriptImageBeforeAfter %}
-  {{scriptImageBeforeAfter(".imageBeforeAfter > img")}}
+  {{scriptImageBeforeAfter("article .imageBeforeAfter")}}
   {% from "./macros/mibreit-gallery.njk" import scriptGalleryWP %}
   {{scriptGalleryWP()}}
   {% endblock %}

@@ -21,13 +21,24 @@
       }       
     {% endif %} 
     echo "\"associatedMedia\": [\n";
-    $images = $mibreitGallery->getImages();
-    $nrOfImages = count($images);
-    for ($i = 0; $i < $nrOfImages - 1; ++$i) 
-    {      
-      {{_image("$images[$i]", de)}}    
+    if (isset($randomImages))
+    {
+      $nrOfImages = count($randomImages);
+      for ($i = 0; $i < $nrOfImages - 1; ++$i) 
+      {      
+        {{_image("$randomImages[$i]", de)}}    
+      }
+      {{_image("$randomImages[$i]", de, true)}}
     }
-    {{_image("$images[$i]", de, true)}}
+    else
+    {
+      $nrOfImages = $mibreitGallery->getNumberImages();
+      for ($i = 0; $i < $nrOfImages - 1; ++$i) 
+      {      
+        {{_image("$mibreitGallery->getImage($i)", de)}}    
+      }
+      {{_image("$mibreitGallery->getImage($i)", de, true)}}
+    }
     echo "]\n";
     echo "}\n";
     echo "</script>\n";    
@@ -42,14 +53,20 @@
     {% if de %}      
     if ({{image}}->altDe) { 
       echo "\"description\": \"" . {{image}}->altDe . "\",\n";
+      echo "\"caption\": \"" . {{image}}->altDe . "\",\n";
     }
     {% else %}
     if ({{image}}->altEn) {     
       echo "\"description\": \"" . {{image}}->altEn . "\",\n";
+      echo "\"caption\": \"" . {{image}}->altEn . "\",\n";
     }
     {% endif %} 
+    echo "\"url\": \"" . $mibreitGalleryPageData->getBasePath() . {{image}}->imageUrl . "\",\n";
     echo "\"contentUrl\": \"" . $mibreitGalleryPageData->getBasePath() . {{image}}->imageUrl . "\",\n";
-    echo "\"thumbnailUrl\": \"" . $mibreitGalleryPageData->getBasePath() . {{image}}->thumbUrl . "\"\n";
+    echo "\"thumbnailUrl\": \"" . $mibreitGalleryPageData->getBasePath() . {{image}}->thumbUrl . "\",\n";
+    $size = getimagesize({{image}}->imageUrl);  
+    echo "\"width\": \"" . $size[0] . "\",\n";
+    echo "\"height\": \"" . $size[1] . "\"\n";
   {% if final %}
     echo "}\n"; 
   {% else %}

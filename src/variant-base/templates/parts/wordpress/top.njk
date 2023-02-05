@@ -17,9 +17,15 @@
   if (is_single())
   {
     $page = $_SERVER["REQUEST_URI"];
-    if (substr($page, 0, 1) === "/")
+    if (str_starts_with($page, "/"))
     {
       $page = substr($page, 1);
+    }
+    // remove parameters from url
+    $parametersPos = strpos($page, "?");
+    if ($parametersPos != false)
+    {
+      $page = substr($page, 0, $parametersPos);
     }
   }
 

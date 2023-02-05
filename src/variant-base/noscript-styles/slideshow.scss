@@ -1,0 +1,23 @@
+.slideshow {
+  opacity: 1;
+  height: 100%;
+  padding-bottom: 0;
+
+  figcaption {
+    display: block;
+    width: 100%;
+  }
+  figcaption > p {
+    padding: 0;
+    text-align: center;
+  }
+}
+.slideshow img {
+  position: relative !important;
+  width: 100%;
+  height: auto;
+}
+.slideshow figcaption {
+  position: relative !important;
+  opacity: 1;
+}

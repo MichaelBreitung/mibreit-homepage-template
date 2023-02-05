@@ -1,4 +1,4 @@
-var mibreitImagePrints = function (imagePrints, gallery) {  
+var mibreitImagePrints = function (imagePrints, gallery, index) {  
   var printsDiv = document.querySelector(".mibreit-prints");
   var limitedDiv = document.querySelector(".mibreit-prints__options-limited");
   var redbubbleDiv = document.querySelector(".mibreit-prints__options-redbubble");
@@ -40,7 +40,7 @@ var mibreitImagePrints = function (imagePrints, gallery) {
   hideElement(limitedDiv);
   hideElement(customDiv);
 
-  return function (id) {
+  var updatePrintInfo = function (id) {
     var printInfo = imagePrints[gallery.getImageInfo(gallery.getImageIndex()).getUrl()];
     if (typeof printInfo !== "undefined" && printInfo.prints) {
       if (printInfo.limited) {
@@ -72,8 +72,9 @@ var mibreitImagePrints = function (imagePrints, gallery) {
       showElement(printsDiv);
       transitionHeight(printsDiv); 
     }
-    else{
-      hideElement(printsDiv);
-    }
   };
+
+  updatePrintInfo(index);
+
+  return updatePrintInfo;
 };
