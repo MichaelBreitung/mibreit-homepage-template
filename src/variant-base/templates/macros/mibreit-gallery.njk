@@ -28,17 +28,33 @@
 #}
 
 {# prepares has to be called before any of the other macros #}
-{% macro prepare() %}
+{% macro prepare(baseUrl) %}
   <?php
-    require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery.php';
-    require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery-helpers.php';
-    $mibreitGallery = new MibreitGalleryDataParser('gallery.xml');
-    $mibreitGalleryPageData = new MibreitGalleryPageData();    
+    $language = "en";
+    if (isset($_GET['lan'])) 
+    {
+      $language = $_GET['lan'];
+      if (strlen($language) > 2)
+      {
+        header('Location: {{baseUrl}}/errors/error400.html');
+        exit();
+      }
+    }
     $imageNr = 0;
     if (isset($_GET['imageNr'])) 
     {
       $imageNr = $_GET['imageNr'];
+      if (strlen($imageNr) > 2)
+      {
+        header('Location: {{baseUrl}}/errors/error400.html');
+        exit();
+      }
     }
+
+    require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery-helpers.php';
+    $mibreitGallery = new MibreitGalleryDataParser('gallery.xml');
+    $mibreitGalleryPageData = new MibreitGalleryPageData();    
     $page_image = $mibreitGalleryPageData->getBasePath() . $mibreitGallery->getImage($imageNr)->imageUrl;
   ?>
 {% endmacro %}
