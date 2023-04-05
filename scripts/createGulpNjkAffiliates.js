@@ -15,6 +15,7 @@ const createGulpAffiliates = function(templates) {
             ext: ".php",
             envOptions: {
               autoescape: false,
+              throwOnUndefined: true,
             },
           })
         )

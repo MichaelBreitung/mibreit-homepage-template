@@ -1,7 +1,7 @@
 var mibreitGalleryBackgroundColor = function (gallery) {
+  var fullscreen = gallery.getFullscreen();
   if (typeof FastAverageColor !== "undefined")
   {
-    var fullscreen = gallery.getFullscreen();
     var viewer = gallery.getViewer();
     var fastAverageColor = new FastAverageColor();
     var fastAverageColorOptions = {algorithm: 'sqrt'};
@@ -26,5 +26,6 @@ var mibreitGalleryBackgroundColor = function (gallery) {
   }
   else{
     console.warn("no FastAverageColor installed");
+    fullscreen.setBackgroundColor("#000000");
   }
 } 

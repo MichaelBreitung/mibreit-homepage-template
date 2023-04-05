@@ -25,6 +25,7 @@ const createGulpPhpScripts = function (templates, scripts) {
           ext: ".php",
           envOptions: {
             autoescape: false,
+            throwOnUndefined: true,
           },
         })
       )

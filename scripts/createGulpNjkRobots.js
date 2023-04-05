@@ -15,6 +15,7 @@ const createGulpHtAccess = function (templates) {
           ext: '.txt',
           envOptions: {
             autoescape: false,
+            throwOnUndefined: true,
           },
         })
       )

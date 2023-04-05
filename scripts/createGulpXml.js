@@ -19,6 +19,7 @@ const createGulpXml = function (templates) {
           ext: ".xml",
           envOptions: {
             autoescape: false,
+            throwOnUndefined: true,
           },
         })
       )

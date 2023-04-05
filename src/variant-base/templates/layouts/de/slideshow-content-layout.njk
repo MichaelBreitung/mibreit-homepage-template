@@ -1,7 +1,8 @@
 {% from "../../macros/mibreit-gallery.njk" import slideshow, prepare, randomImages, scriptSlideshow %}
 {% from "../../schema/schema-gallery.njk" import imageGallery %}
+{% from "../../macros/get-base-page-url.njk" import getBasePageUrl %}
 {% block php_init %}  
-  {{prepare()}}
+  {{prepare(getBasePageUrl(domain_name, use_https))}}
   {{randomImages(8)}}
 {% endblock %}
 {% extends "./content-layout.njk" %}

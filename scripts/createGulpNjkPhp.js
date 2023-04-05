@@ -23,6 +23,7 @@ const createGulpPhp = function (templates) {
             autoescape: false,
             trimBlocks: true,
             lstripBlocks: true,
+            throwOnUndefined: true,
           },
         })
       )
