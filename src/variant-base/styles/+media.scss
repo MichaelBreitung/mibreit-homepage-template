@@ -26,12 +26,29 @@
 
     .navigation {
       flex-direction: row;
+
+      .navigation__item {
+        padding: 0rem 1.5rem;
+      }
+
+      .navigation__language-item {
+        position: relative;
+        top: unset;
+        right: unset;
+      }
     }
   
     .menu-btn {
       display: none;
     }
-  }  
+  } 
+  
+  .social-media {
+    padding: 0rem;
+    .social-media__image {     
+      height: 2.5rem;
+    }
+  }
 }
 
 @media (min-width: 801px) {
@@ -89,6 +106,19 @@
     p, .mibreit-cookie-accept {
       font-size: 1rem;
     }    
+  }
+
+  .social-media {
+    justify-content: center;
+    padding: 0rem;
+
+    .social-media__link, .social-media__share-link {
+      margin: 0 1rem;
+    }
+    
+    .social-media__image {     
+      height: 2rem;
+    }
   }
 }
 

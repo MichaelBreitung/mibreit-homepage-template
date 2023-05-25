@@ -1,23 +1,22 @@
 .social-media {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content:space-evenly;
   align-items: center;
+  padding: 0.5rem 0rem;
   
   .social-media__link {
     display: flex;
-    margin: 0 1rem;
   }
 
   .social-media__share-link {
     display: flex;
-    margin: 0 1rem;
   }
 
   .social-media__image {
     padding: 0;
     padding: 0.5rem;
-    height: 2rem;
+    height: 3rem;
     width: auto;
   }
 }

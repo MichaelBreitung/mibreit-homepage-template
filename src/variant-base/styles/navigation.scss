@@ -26,8 +26,7 @@
   
   .navigation__item {
     position: relative;
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
+    padding: 0.25rem 1.5rem;
     height: 2.5rem;
     display: flex;
     justify-content: center;
@@ -53,7 +52,6 @@
   }
   
   .navigation__language-item img {
-    position: absolute;
     right: 1rem;
     height: auto;
     width: 1.5rem;
