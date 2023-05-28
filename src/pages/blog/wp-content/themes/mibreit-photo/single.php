@@ -10,12 +10,11 @@
   {{scriptGalleryWP()}}
   {% endblock %}
   {% block content %}   
-  <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
   <article itemscope itemtype="https://schema.org/Article">    
     <link itemprop="mainEntityOfPage" href="<?php the_permalink()?>">
     <h1 itemprop="headline"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h1>
     <p itemprop="author" itemscope itemtype="https://schema.org/Person"><?php the_time('F j, Y'); ?> | <?php the_category(', ') ?> | by <a rel="author" href="{{getBasePageUrl(domain_name)}}{{page_about.en}}"><span itemprop="name">{{page_author}}</span></a></p>    
-    <div itemprop="text"><?php the_content(__('Read more'));?></div>
+    <div itemprop="text"><?php the_content();?></div>
     <div class="content-navigation spacing-top-large spacing-bottom-large small">
       <div class="content-navigation__link"><?php previous_post_link('%link', '&laquo; previous' ); ?></div>      
       <div class="content-navigation__link textright"><?php next_post_link( '%link', 'next &raquo;' ); ?></div>
@@ -42,19 +41,16 @@
   <!--
   <?php trackback_rdf(); ?>
   -->
-  <?php endwhile; else: ?>
-  <p><?php echo('Sorry, no posts matched your criteria.'); ?></p><?php endif; ?>
   <?php
   $affiliate = get_post_meta( get_the_ID(), 'affiliate', true );
-  if (is_single())
+  include_once(plugin_dir_path( __FILE__ )."../../../../scripts/affiliate/affiliate_banner.php");
+  $affiliateBanner = getAffiliateBanner($affiliate);
+  if (strlen($affiliateBanner) > 0)
   {
-    include_once(plugin_dir_path( __FILE__ )."../../../../scripts/affiliate/affiliate_banner.php");
-    $affiliateBanner = getAffiliateBanner($affiliate);
-    if (strlen($affiliateBanner) > 0)
-    {
-      echo getAffiliateBanner($affiliate);
-    }	
-  } 
+    echo getAffiliateBanner($affiliate);
+  }	
   ?>  
 {% endblock %}
-  
+{% block donate %}
+{% include "./parts/en/donate.njk" %}
+{% endblock %}  
