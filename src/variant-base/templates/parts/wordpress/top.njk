@@ -13,20 +13,16 @@
   } 
   $page_title = ltrim($page_title);
 
-  $page = "blog/";
-  if (is_single())
+  $page = $_SERVER["REQUEST_URI"];
+  if (str_starts_with($page, "/"))
   {
-    $page = $_SERVER["REQUEST_URI"];
-    if (str_starts_with($page, "/"))
-    {
-      $page = substr($page, 1);
-    }
-    // remove parameters from url
-    $parametersPos = strpos($page, "?");
-    if ($parametersPos != false)
-    {
-      $page = substr($page, 0, $parametersPos);
-    }
+    $page = substr($page, 1);
+  }
+  // remove parameters from url
+  $parametersPos = strpos($page, "?");
+  if ($parametersPos != false)
+  {
+    $page = substr($page, 0, $parametersPos);
   }
 
   $page_keywords = get_post_meta( get_the_ID(), 'keys', true );
