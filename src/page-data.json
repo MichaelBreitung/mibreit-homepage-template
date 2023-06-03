@@ -26,6 +26,7 @@
   "page_default_description": "some default description, which is mandatory",
   "google_analytics": "",
   "google_search": "",
+  "paypal_donate": "",
   "amazon_affiliate": {
     "us": "",
     "uk": "",

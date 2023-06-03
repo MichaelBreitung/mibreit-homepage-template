@@ -1,8 +1,9 @@
 var mibreitCookieConsentBar = function (config) {
   var cookieName = 'consentCookie';
-  var fireGTMEvent = function (eventName) {
+  var pushConsentCookieToGtm = function (consentCookie) {
     if (window['dataLayer']) {
-      window['dataLayer'].push({ event: eventName });
+      window['dataLayer'].push(consentCookie);
+      window['dataLayer'].push({ event: 'ConsentConfiguredEvent' });
     }
   };
 
@@ -20,17 +21,14 @@ var mibreitCookieConsentBar = function (config) {
       cookieConsentBar,
       config.consentConfig,
       function (consentCookie) {
-        window['dataLayer'].push(consentCookie);
-        fireGTMEvent('ConsentConfiguredEvent');
+        pushConsentCookieToGtm(consentCookie);
         cookieConsentBar.remove();
       },
       config.german
     );
-
     var body = document.querySelector('body');
     body.append(cookieConsentBar);
   } else {
-    window['dataLayer'].push(consentCookie);
-    fireGTMEvent('ConsentConfiguredEvent');
+    pushConsentCookieToGtm(consentCookie);
   }
 };
