@@ -26,7 +26,8 @@
   
   .navigation__item {
     position: relative;
-    padding: 0.25rem 1.5rem;
+    flex-grow: 1;
+    padding: 0.25rem 0rem;
     height: 2.5rem;
     display: flex;
     justify-content: center;

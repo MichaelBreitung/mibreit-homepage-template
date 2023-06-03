@@ -26,9 +26,19 @@
 
     .navigation {
       flex-direction: row;
-
+      justify-content: space-between;
+ 
       .navigation__item {
-        padding: 0rem 1.5rem;
+        padding: 0rem;
+      }
+      
+      .navigation__language-item {
+        position: relative;
+        padding: 0;
+        flex-grow: 0;
+        top: unset;
+        right: unset;
+        width: 3rem;
       }
     }
 
@@ -67,6 +77,10 @@
 
   .navigation__container {
     font-size: 1.4rem;
+
+    .navigation__item {
+      padding: 0rem;
+    }
   }
 
   h1 {
