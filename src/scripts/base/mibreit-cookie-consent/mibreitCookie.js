@@ -52,6 +52,8 @@ var mibreitCookieConsentBar = function (config) {
     var body = document.querySelector('body');
     body.append(cookieConsentBar);
   } else {
-    pushConsentCookieToGtm(consentCookie, gaOptOutCookie, false);
+    if (googleTagConfigured) {
+      pushConsentCookieToGtm(consentCookie, gaOptOutCookie, false);
+    }
   }
 };
