@@ -15,11 +15,11 @@ var mibreitCookieConsentBar = function (config) {
   };
 
   var getOptOutCookie = function () {
-    const documentCookies = document.cookie.split(';');
-    for (const cookie of documentCookies) {
-      const posEquals = cookie.indexOf('=');
-      const name = cookie.substring(0, posEquals).replace(/^\s+|\s+$/g, '');
-      const value = cookie.substring(posEquals + 1).replace(/^\s+|\s+$/g, '');
+    var documentCookies = document.cookie.split(';');
+    for (var i = 0; i < documentCookies.length; i++) {
+      var posEquals = documentCookies[i].indexOf('=');
+      var name = documentCookies[i].substring(0, posEquals).replace(/^\s+|\s+$/g, '');
+      var value = documentCookies[i].substring(posEquals + 1).replace(/^\s+|\s+$/g, '');
       if (name === gaOptOutCookieName) {
         return value === 'true' ? true : false;
       }
