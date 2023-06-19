@@ -1,3 +1,4 @@
+{% set page_active_navigation = "Blog" %}
 {% extends "./layouts/wordpress/wordpress-sidebar-layout.njk" %}
 {% block content %}  
   <h1>Not Found, Error 404</h1><br/>

@@ -1,3 +1,4 @@
+{% set page_active_navigation = "Blog" %}
 {% extends "./layouts/wordpress/wordpress-sidebar-layout.njk" %}
 {% block content %}
   <?php $post = $posts[0]; // Hack. Set $post so that the_date() works. ?>

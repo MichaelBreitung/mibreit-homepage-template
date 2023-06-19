@@ -45,12 +45,18 @@ var mibreitCookieConsentBar = function (config) {
         if (googleTagConfigured) {
           pushConsentCookieToGtm(consentCookie, gaOptOutCookie, true);
         }
+        cookieConsentDarkening.remove();
         cookieConsentBar.remove();
       },
       config.german
     );
+
+    var cookieConsentDarkening = document.createElement('div');
+    cookieConsentDarkening.setAttribute('id', 'cookie-msg__background');
+
     var body = document.querySelector('body');
     body.append(cookieConsentBar);
+    body.append(cookieConsentDarkening);
   } else {
     if (googleTagConfigured) {
       pushConsentCookieToGtm(consentCookie, gaOptOutCookie, false);

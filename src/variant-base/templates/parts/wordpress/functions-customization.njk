@@ -1,0 +1,96 @@
+<?php
+  // ****** CONTENT CUSTOMIZATION ******
+
+  // custom exerpt
+  function custom_excerpt_more( $more ) {	
+    return "<a href=\"".get_permalink()."\">[...]</a>";
+  }
+  add_filter( 'excerpt_more', 'custom_excerpt_more' );
+
+  // disabling the image scr set
+  function disable_srcset( $sources ) {
+    return false;
+  }
+  add_filter('wp_calculate_image_srcset', 'disable_srcset' );
+
+  // remove p tags from around images
+  function filter_ptags_on_images($content)
+  {
+      return preg_replace('/<p>(\s*)(<img .*\s*\/>)(\s*)<\/p>/iU', '\2', $content);
+  }
+  add_filter('the_content', 'filter_ptags_on_images');
+
+  // make images fluid
+  function filter_fluid_images ($class){
+      $class .= ' fluid';
+      return $class;
+  }
+  add_filter('get_image_tag_class','filter_fluid_images');
+
+  // make centered images fluid
+  function filter_fluid_centered_images($content){        
+      $add_class = str_replace("aligncenter", "aligncenter fluid", $content); 
+      return $add_class;
+  }
+  add_filter('the_content', 'filter_fluid_centered_images');
+
+  // apply small size to image-desc
+  function filter_small_image_description($content){        
+      $add_class = str_replace("image-desc", "image-desc small", $content); 
+      return $add_class;
+  }
+  add_filter('the_content', 'filter_small_image_description');
+
+  // remove p tags from around iframes
+  function filter_ptags_on_iframes($content)
+  {
+      return preg_replace('/<p>\s*(<iframe .*>*.<\/iframe>)\s*<\/p>/iU', '\1', $content);
+  }
+  add_filter('the_content', 'filter_ptags_on_iframes');
+
+  // make all links https
+  {% if use_https %}
+  function filter_http_to_https($content)
+  {
+      return preg_replace('/http:\/\/{{domain_name}}/','https://www.{{domain_name}}', $content);
+  }
+  add_filter('the_content', 'filter_http_to_https');
+  {% endif %}
+
+  // use youtube no cookies embed
+  function filter_youtube_no_cookie($content)
+  {
+      return str_replace('www.youtube.com/embed/','www.youtube-nocookie.com/embed/', $content);
+  }
+  add_filter('the_content', 'filter_youtube_no_cookie');
+
+  // make iframe responsive
+  function responsive_iframe( $content ) {
+      return str_replace(array("<iframe", "</iframe>"), array('<div class="video-container spacing-top-tiny"><iframe', "</iframe></div>"), $content);
+  }
+  add_filter('the_content', 'responsive_iframe');
+
+
+  // ****** CUSTOM FUNCTIONS ******
+
+  // retrieve site image
+  function get_site_image() {
+      global $post, $posts;
+      $first_img = '';
+      if (is_single())
+      {
+          ob_start();
+          ob_end_clean();
+          $output = preg_match_all('/<img.+?src=[\'"]([^\'"]+)[\'"].*?>/i', $post->post_content,
+          $matches);
+          if (isset($matches[1]) && isset($matches[1][0]))
+          {
+              $first_img = $matches[1][0];
+          }
+      }    
+      if(empty($first_img)){
+          $first_img = "{{getPageImage(getBasePageUrl(domain_name, use_https), page_header_image)}}";
+      }
+      return $first_img;
+  }
+?>

@@ -97,6 +97,10 @@
     font-size: 1.4rem;
   }
 
+  h5 {
+    font-size: 1.3rem;
+  }
+
   p {
     font-size: 1.25rem;
   }
@@ -108,6 +112,13 @@
   ol,
   ul {
     font-size: 1.25rem;
+  }
+
+  table {
+    td,
+    th {
+      font-size: 1.25rem;
+    }
   }
 
   #footer p {
