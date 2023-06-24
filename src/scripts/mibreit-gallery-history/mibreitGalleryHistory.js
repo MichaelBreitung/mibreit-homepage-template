@@ -1,60 +1,50 @@
 var mibreitGalleryHistory = function (gallery) {
   var currentImageId = 0;
 
-  var getImageElementFromSchema = function(schemaMarkup)
-  {
+  var getImageElementFromSchema = function (schemaMarkup) {
     return schemaMarkup.associatedMedia[currentImageId];
-  }
+  };
 
   var updateOgParameters = function (imageUrl) {
     document.querySelector("meta[property='og\\:url']").setAttribute('content', window.location.href);
     document.querySelector("meta[property='og\\:image']").setAttribute('content', imageUrl);
 
-    // updating the image size, requires the gallery schema markup. 
+    // updating the image size, requires the gallery schema markup.
     // If not present, metadata will be removed to avoid incorrect markup
     var galleryMarkup = null;
     var galleryMarkupJSONElements = document.querySelectorAll("script[type='application/ld+json']");
-    for (var i = 0; i < galleryMarkupJSONElements.length; ++i)
-    {
-      if (galleryMarkupJSONElements[i].innerHTML.search("\"@type\": \"ImageGallery\"") != -1)
-      {
-        galleryMarkup = JSON.parse(galleryMarkupJSONElements[i].innerHTML);
+    for (var i = 0; i < galleryMarkupJSONElements.length; ++i) {
+      if (galleryMarkupJSONElements[i].innerHTML.search('"@type": "ImageGallery"') != -1) {
+        try {
+          galleryMarkup = JSON.parse(galleryMarkupJSONElements[i].innerHTML);
+        } catch (e) {/** error not relevant for user of homepage - will still work */}
       }
     }
 
     var ogImageWidthElement = document.querySelector("meta[property='og\\:image\\:width']");
-    if (ogImageWidthElement)
-    {
-      if (galleryMarkup) 
-      {
+    if (ogImageWidthElement) {
+      if (galleryMarkup) {
         ogImageWidthElement.setAttribute('content', getImageElementFromSchema(galleryMarkup).width);
-      }
-      else 
-      {
+      } else {
         ogImageWidthElement.remove();
       }
     }
-    
+
     var ogImageHeightElement = document.querySelector("meta[property='og\\:image\\:height']");
-    if (ogImageHeightElement)
-    {
-      if (galleryMarkup) 
-      {
+    if (ogImageHeightElement) {
+      if (galleryMarkup) {
         ogImageHeightElement.setAttribute('content', getImageElementFromSchema(galleryMarkup).height);
-      }
-      else
-      {
+      } else {
         ogImageHeightElement.remove();
       }
     }
-  }
+  };
 
-  var updateShareLinks = function (imageUrl)
-  {
+  var updateShareLinks = function (imageUrl) {
     var href = window.location.href;
     var socialShareLinks = document.querySelectorAll('.social-media__share-link');
     for (var i = 0; i < socialShareLinks.length; i++) {
-      var link = socialShareLinks[i];      
+      var link = socialShareLinks[i];
       var url = new URL(link.getAttribute('href'));
       if (url.href.includes('facebook')) {
         url.searchParams.set('u', href);
@@ -66,9 +56,9 @@ var mibreitGalleryHistory = function (gallery) {
       }
       link.setAttribute('href', url.href);
     }
-  }
+  };
 
-  var udpateSeo = function () {    
+  var udpateSeo = function () {
     var imageUrl =
       window.location.href.substr(0, window.location.href.lastIndexOf('/') + 1) +
       gallery.getViewer().getImageInfo(gallery.getViewer().getImageIndex()).getUrl();
@@ -82,15 +72,15 @@ var mibreitGalleryHistory = function (gallery) {
   };
 
   var updateImageBasedOnURLParams = function () {
-    var providedImageId = new URLSearchParams(window.location.search).get('imageNr');    
+    var providedImageId = new URLSearchParams(window.location.search).get('imageNr');
     if (providedImageId) {
-      currentImageId = parseInt(providedImageId);      
+      currentImageId = parseInt(providedImageId);
       gallery.getViewer().showImage(currentImageId);
       gallery.getLoader().setCurrentIndex(currentImageId);
     }
   };
 
-  var imageChangedCallback = function (id) {    
+  var imageChangedCallback = function (id) {
     if (id !== currentImageId) {
       var url = new URL(window.location);
       url.searchParams.set('imageNr', id);
@@ -101,6 +91,8 @@ var mibreitGalleryHistory = function (gallery) {
   };
 
   gallery.getViewer().addImageChangedCallback(imageChangedCallback);
-  window.onpopstate = function (event) {updateImageBasedOnURLParams();};
+  window.onpopstate = function (event) {
+    updateImageBasedOnURLParams();
+  };
   updateImageBasedOnURLParams();
 };

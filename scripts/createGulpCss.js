@@ -23,7 +23,7 @@ const createGulpCss = function (styles, plugins) {
   };
 
   const gatherCssAndScss = function () {
-    const allStyles = [`${baseFolder}/pages/blog/wp-content/themes/mibreit-photo/*.scss`];
+    const allStyles = [];
     if (Array.isArray(styles)) {
       styles.forEach((folder) => {
         allStyles.push(`${baseFolder}/${folder}/styles/**/*.+(css|scss)`);
@@ -53,12 +53,12 @@ const createGulpCss = function (styles, plugins) {
    *  4) It adds all css files starting with "*-overrides"
    *  5) It adds all css files starting with "+", except for the css files starting with "+*-overrides"
    *  6) It adds all css files starting with "+*-overrides"
-   * 
+   *
    * This order is crucial to ensure the following order in the merged css file:
    *  1) All base css files -> those start with -
    *  2) All normal css files -> those have no prepended - or +
    *  3) All overrides for the base and the normal files
-   *  4) All media query files 
+   *  4) All media query files
    *  5) All media query overrides
    */
   const createProcessCss = function (sourceFolder) {

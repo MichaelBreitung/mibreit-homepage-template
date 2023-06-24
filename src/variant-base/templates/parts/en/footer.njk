@@ -8,13 +8,11 @@
 </footer>
 <script src="/scripts/base.js"></script>
 <script>
-  window.addEventListener('load', function () {
-    mibreitSearch();
-    hamburgerNavbar();
-    {% include "../script-sticky-navbar.njk" %}
-    {% include "./script-cookie-consent.njk" %}  
-    {% if page_background_image | length %}
-      {% include "../script-background.njk" %}
-    {% endif %}
-  });
+  {% include "./script-cookie-consent.njk" %}  
+  mibreitSearch();
+  hamburgerNavbar();
+  {% include "../script-sticky-navbar.njk" %}
+  {% if page_background_image | length %}
+    {% include "../script-background.njk" %}
+  {% endif %}
 </script>

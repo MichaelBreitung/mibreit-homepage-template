@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 * {
   padding: 0;
@@ -12,7 +12,7 @@ html {
 
 body {
   position: relative;
-  font: 1rem Helvetica, Verdana, "Open Sans", Georgia;
+  font: 1rem Helvetica, Verdana, 'Open Sans', Georgia;
   line-height: 1.6;
   color: $base-color;
   background-color: $background-color;
@@ -38,7 +38,8 @@ a:visited {
   color: $link-color-visited;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   color: $link-color-hover;
   outline: none;
 }
