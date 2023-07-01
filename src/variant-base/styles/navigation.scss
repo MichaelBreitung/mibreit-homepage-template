@@ -42,20 +42,25 @@
   .navigation__item:hover {
     background-color: $link-color;
   }
-  
-  .navigation__language-item {
+
+  .navigation__icon-items {
     position: absolute;
-    padding: 0;
-    flex-grow: 0;
-    top: 0;
-    right: 0;
-    width: 3rem;
+    top: 0rem;
+    right: 0.5rem;
+    display: flex;
   }
   
-  .navigation__language-item img {
-    right: 1rem;
+  .navigation__icon-item {
+    padding:0;
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    align-items: center;
+    margin-right: 0.5rem;
+  }
+  
+  .navigation__icon-item img {
     height: auto;
-    width: 1.5rem;
     margin: auto;
     vertical-align: middle;
   }

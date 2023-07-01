@@ -32,13 +32,13 @@
         padding: 0rem;
       }
 
-      .navigation__language-item {
+      .navigation__icon-items {
         position: relative;
-        padding: 0;
-        flex-grow: 0;
-        top: unset;
-        right: unset;
-        width: 3rem;
+        right: 0rem;
+      }
+
+      .navigation__icon-item {
+        margin: 0;
       }
     }
 

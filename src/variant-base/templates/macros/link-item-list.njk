@@ -9,12 +9,12 @@
 {% macro linkItemList(link_items, external, item_class, nr_of_spaces, spacer) %}
   {% for item in link_items %}
     {% if loop.first -%}
-      <a {% if item_class | length %}class="{{item_class}}"{% endif %} href="{{item.url}}" {% if external %}target="_blank"{% endif %}>{{item.name}}</a>{{insertSpaces(nr_of_spaces)}}{{spacer}}
+      <a {% if item_class | length %}class="{{item_class}}"{% endif %} href="{{item.url}}" {% if external %}target="_blank"{% endif %}>{{item.name}}</a><span>{{insertSpaces(nr_of_spaces)}}</span>{{spacer}}
     {%- elif loop.last -%}
-      {{insertSpaces(nr_of_spaces)}}
+      <span>{{insertSpaces(nr_of_spaces)}}</span>
       <a {% if item_class | length %}class="{{item_class}}"{% endif %} href="{{item.url}}" {% if external %}target="_blank"{% endif %}>{{item.name}}</a>
-    {%- else -%}{{insertSpaces(nr_of_spaces)}}
-      <a {% if item_class | length %}class="{{item_class}}"{% endif %} href="{{item.url}}" {% if external %}target="_blank"{% endif %}>{{item.name}}</a>{{insertSpaces(nr_of_spaces)}}{{spacer}}
+    {%- else -%}<span>{{insertSpaces(nr_of_spaces)}}</span>
+      <a {% if item_class | length %}class="{{item_class}}"{% endif %} href="{{item.url}}" {% if external %}target="_blank"{% endif %}>{{item.name}}</a><span>{{insertSpaces(nr_of_spaces)}}</span>{{spacer}}
     {%- endif %}
   {% endfor %}
 {% endmacro %}
