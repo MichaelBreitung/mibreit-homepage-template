@@ -1,0 +1,35 @@
+.mibreit-gallery {
+  .mibreit_GalleryPrevious > svg,
+  .mibreit_GalleryNext > svg,
+  .mibreit_GalleryFullscreenButton > svg {
+    fill: #4f5c64;
+  }
+  figcaption {
+    position: absolute;
+    bottom: 0rem;
+    opacity: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.85);
+  }
+  figcaption > p {
+    padding: 0;
+    text-align: center;
+  }
+}
+
+.mibreit-thumbview {
+  .mibreit_ThumbScrollerPrevious,
+  .mibreit_ThumbScrollerNext {
+    opacity: 0.5;
+    svg {
+      fill: #4f5c64;
+    }
+  }
+}
+
+.mibreit_Fullscreen > .mibreit_Fullscreen_exit {
+  opacity: 0.5;
+  svg {
+    fill: #4f5c64;
+  }
+}

@@ -2,5 +2,6 @@
   "images": "variant-base",
   "styles": "variant-base",
   "templates": "variant-base",
-  "favicon": "variant-base"
+  "favicon": "variant-base",
+  "plugins" : ["mibreit-contact", "mibreit-gallery"]
 }

@@ -5,13 +5,13 @@
 {% set page_canonical = "contact.html" %}
 {% set page_active_navigation = "Contact" %}
 {% set page_de = "/german/contact.html" %}
-
 {% extends "./layouts/en/content-layout.njk" %}
 {% block scripts %}
-  <script src="/scripts/mibreit-contact/contact.js"></script>
+  {% include "./parts/script-mibreit-contact.njk" %}
 {% endblock %}
 {% block content %}
   <h2>Contact</h2>
   <p>If you have questions regarding my Photography or my Homepage or you just want to drop me a message, please fill out the form below or simply mail to {{page_email | replace("@", "{at}")}}.</p>
-  {% include "./parts/en/contact.njk" %}
+  {% from "./macros/en/mibreit-contact.njk" import mibreitContact %}
+  {{mibreitContact("privacy-policy.html")}}  
 {% endblock %}

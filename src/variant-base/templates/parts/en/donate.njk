@@ -1,3 +1,4 @@
+ {% if paypal_donate | length %}
  <div class="donate">
   <p><strong>Tip Jar</strong></p>
   <p>If you enjoyed this article, please consider making a small donation to support me and my photography. It will help me to keep this site going.</p>
@@ -6,3 +7,4 @@
     <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" >
   </form>
   </div>
+  {% endif %}

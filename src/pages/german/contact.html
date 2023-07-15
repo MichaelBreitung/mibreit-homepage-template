@@ -7,10 +7,11 @@
 {% set page_en = "/contact.html" %}
 {% extends "./layouts/de/content-layout.njk" %}
 {% block scripts %}
-  <script src="/scripts/mibreit-contact/contact.js"></script>
+  {% include "./parts/script-mibreit-contact.njk" %}
 {% endblock %}
 {% block content %}
   <h2>Kontakt</h2>
   <p>Wenn Sie Fragen zu meinen Bildern oder meiner Homepage haben oder mir einfach eine Nachricht schicken wollen, können Sie das Formular ausfüllen oder eine Email an {{page_email | replace("@", "{at}")}} schreiben.</p>
-  {% include "./parts/de/contact.njk" %}  
+  {% from "./macros/de/mibreit-contact.njk" import mibreitContact %}
+  {{mibreitContact("privacy-policy.html")}}  
 {% endblock %}

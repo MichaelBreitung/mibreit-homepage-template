@@ -1,0 +1,56 @@
+.mibreit-contact {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+
+  table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .mibreit-contact__button {
+    padding: 0.25rem;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  input.mibreit-contact__checkbox {
+    padding: 0.25rem;
+    width: 20px;
+  }
+
+  textarea {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 14rem;
+  }
+
+  td {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  td.mibreit-contact__right {
+    width: 75%;
+  }
+
+  td.mibreit-contact__left {
+    text-align: left;
+  }
+
+  input.error {
+    background-color: #e45e4d;
+  }
+  span.error {
+    color: #e45e4d;
+  }
+}
+
+.mibreit-contact__result {
+  padding-top: 0.8em;
+  padding-bottom: 0rem;
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+}

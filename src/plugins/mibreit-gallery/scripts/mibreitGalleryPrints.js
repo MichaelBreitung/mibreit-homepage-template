@@ -1,7 +1,7 @@
-var mibreitImagePrints = function (imagePrints, gallery, index) {  
+var mibreitGalleryPrints = function (imagePrints, gallery, index) {  
   var printsDiv = document.querySelector(".mibreit-prints");
   var limitedDiv = document.querySelector(".mibreit-prints__options-limited");
-  var redbubbleDiv = document.querySelector(".mibreit-prints__options-redbubble");
+  var woocommerceDiv = document.querySelector(".mibreit-prints__options-woocommerce");
   var customDiv = document.querySelector(".mibreit-prints__options-custom");
   var limitedLink = document.querySelector(".mibreit-prints__options-limited-link");
   var limitedLinkText = limitedLink.getAttribute("href");
@@ -36,7 +36,7 @@ var mibreitImagePrints = function (imagePrints, gallery, index) {
   }
 
   // init elements state  
-  hideElement(redbubbleDiv);
+  hideElement(woocommerceDiv);
   hideElement(limitedDiv);
   hideElement(customDiv);
 
@@ -49,15 +49,15 @@ var mibreitImagePrints = function (imagePrints, gallery, index) {
           limitedLinkText + "?subject=Limited - " + printInfo.name.replace(/ /g, "%20")
         );
         showElement(limitedDiv);
-        hideElement(redbubbleDiv);
+        hideElement(woocommerceDiv);
         hideElement(customDiv);
       } else {
         hideElement(limitedDiv);
-        if (printInfo.redbubble) {
-          document.querySelector(".mibreit-prints__options-redbubble a").setAttribute("href", printInfo.redbubble);
-          showElement(redbubbleDiv);
+        if (printInfo.woocommerce) {
+          document.querySelector(".mibreit-prints__options-woocommerce a").setAttribute("href", printInfo.woocommerce);
+          showElement(woocommerceDiv);
         } else {
-          hideElement(redbubbleDiv);
+          hideElement(woocommerceDiv);
         }
         customLink.setAttribute(
           "href",

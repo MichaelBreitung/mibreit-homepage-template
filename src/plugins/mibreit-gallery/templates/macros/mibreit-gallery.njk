@@ -134,7 +134,7 @@
   {% if no_script %}
     echo "<noscript><img src=\"" . ${{item}}->imageUrl . "\" style=\"position: absolute;\" ";
   {% else %}
-    echo "<img src=\"/images/image-placeholder-transparent.png\" style=\"position: absolute;\" ";
+    echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" style=\"position: absolute;\" ";
     echo "data-src=\"" . ${{item}}->imageUrl . "\" ";
   {% endif %}
   echo "title=\""    . ${{item}}->caption  . "\" ";
@@ -159,7 +159,7 @@
     foreach ($mibreitGallery->getImages() as $image)
     {
       $size = getimagesize($image->thumbUrl);      
-      echo "<img src=\"/images/image-placeholder-transparent.png\" style=\"position: absolute;\" data-src=\"" . $image->thumbUrl . "\" ";
+      echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" style=\"position: absolute;\" data-src=\"" . $image->thumbUrl . "\" ";
       echo "width=\"". $size[0] ."\" height=\"". $size[1] . "\" alt=\"thumbnail\" >\n";      
     }
   ?>
@@ -208,7 +208,7 @@
 #}
 {% macro scriptSlideshow(container, omit_script_include, stretch, zoom) %}
   {% if not omit_script_include %}
-    <script src="/scripts/mibreit-gallery/mibreitGalleryTs.min.js"></script>
+    <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
   {% endif %}
   <script>
     mibreitGalleryTs.DomTools.documentReady(function () {
@@ -224,7 +224,7 @@
 # @param gallery_var_name - the global javascript variable name used for the gallery
 #}
 {% macro scriptSimpleGallery(container, gallery_var_name) %}
-  <script src="/scripts/mibreit-gallery/mibreitGalleryTs.min.js"></script>
+  <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
   <script>
     {% if gallery_var_name %}
       var {{gallery_var_name}};
@@ -253,7 +253,7 @@
 # @param gallery_var_name - the global javascript variable name used for the gallery
 #}
 {% macro scriptGallery(container, thumb_container, title_class_name, gallery_var_name) %}
-  <script src="/scripts/mibreit-gallery/mibreitGalleryTs.min.js"></script>
+  <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
   <script>
     {% if gallery_var_name %}
       var {{gallery_var_name}};
@@ -286,7 +286,7 @@
 # inserts script for gallery in Wordpress layouts
 #}
 {% macro scriptGalleryWP() %}
-  <script src="/scripts/mibreit-gallery/mibreitGalleryTs.min.js"></script>
+  <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
   <script>    
     var imageSelector = "article > div > img";
     mibreitGalleryTs.DomTools.documentReady(function () { 
@@ -315,7 +315,7 @@
   <?php
   echo "<script>\n";
   echo "mibreitGalleryTs.DomTools.documentReady(function () {\n";
-  echo "{{gallery}}.getViewer().addImageChangedCallback(mibreitImagePrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", {{gallery}}.getViewer(), " . $imageNr . "))";
+  echo "{{gallery}}.getViewer().addImageChangedCallback(mibreitGalleryPrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", {{gallery}}.getViewer(), " . $imageNr . "))";
   echo "});\n";
   echo "</script>\n";
   ?>

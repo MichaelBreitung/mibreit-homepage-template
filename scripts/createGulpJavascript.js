@@ -1,10 +1,11 @@
-const gulp = require("gulp");
-const through2 = require("through2");
-const concat = require("gulp-concat");
-const minifyJs = require("./minifyJs");
-const { baseFolder, outputFolder } = require("./constants");
+const gulp = require('gulp');
+const through2 = require('through2');
+const concat = require('gulp-concat');
+const minifyJs = require('./minifyJs');
+const loadPluginConfigFromPath = require("./pluginConfigLoader");
+const { baseFolder, outputFolder } = require('./constants');
 
-const createGulpJavascript = function (plugins) { 
+const createGulpJavascript = function (plugins) {
   const concatenateBaseJs = function () {
     return gulp
       .src([
@@ -18,52 +19,46 @@ const createGulpJavascript = function (plugins) {
         `${baseFolder}/scripts/mibreit-image-before-after/*.js`,
       ])
       .pipe(through2.obj(minifyJs))
-      .pipe(concat("base.js"))
+      .pipe(concat('base.js'))
       .pipe(gulp.dest(`${outputFolder}/scripts`));
   };
 
-  const concatenateContactJs = function () {
-    return gulp
-      .src([
-        `${baseFolder}/scripts/mibreit-contact/mibreitFormValidator.min.js`,
-        `${baseFolder}/scripts/mibreit-contact/mibreit-contact.js`,
-      ])
-      .pipe(through2.obj(minifyJs))
-      .pipe(concat("contact.js"))
-      .pipe(gulp.dest(`${outputFolder}/scripts/mibreit-contact`));
-  };
+  const jsTasks = [concatenateBaseJs];
 
-  const copyGalleryJs = function () {
-    return gulp
-      .src([
-        `${baseFolder}/scripts/mibreit-gallery/*.js`,
-        `${baseFolder}/scripts/mibreit-gallery-caption/*.js`,
-        `${baseFolder}/scripts/mibreit-gallery-history/*.js`,
-        `${baseFolder}/scripts/mibreit-gallery-background-color/*.js`,
-        `${baseFolder}/scripts/mibreit-prints/*.js`,
-      ])
-      .pipe(through2.obj(minifyJs))
-      .pipe(concat("mibreitGalleryTs.min.js"))
-      .pipe(gulp.dest(`${outputFolder}/scripts/mibreit-gallery`));
-  }
-  
-  const pluginTasks = [concatenateBaseJs, concatenateContactJs, copyGalleryJs];
   if (Array.isArray(plugins)) {
     const createCopyPluginJs = function (pluginFolder) {
-      return function() {
-        return gulp
-        .src(`${baseFolder}/plugins/${pluginFolder}/scripts/*.js`,)
-        .pipe(through2.obj(minifyJs))
-        .pipe(concat(`${pluginFolder}.min.js`))
-        .pipe(gulp.dest(`${outputFolder}/scripts/${pluginFolder}`));
-      }      
-    } 
-    plugins.forEach(function(pluginFolder) {
-      pluginTasks.push(createCopyPluginJs(pluginFolder));
-    });
-  } 
+      const config = loadPluginConfigFromPath(`${baseFolder}/plugins/${pluginFolder}`);
 
-  return gulp.parallel(pluginTasks);
+      if (config && config.jsorder && Array.isArray(config.jsorder)) {
+        const scripts = [];
+        config.jsorder.forEach((file) => {
+          scripts.push(`${baseFolder}/plugins/${pluginFolder}/scripts/${file}`);
+        });
+
+        return function () {
+          return gulp
+            .src(scripts)
+            .pipe(through2.obj(minifyJs))
+            .pipe(concat(`${pluginFolder}.min.js`))
+            .pipe(gulp.dest(`${outputFolder}/scripts/${pluginFolder}`));
+        };
+      } else {
+        return function () {
+          return gulp
+            .src(`${baseFolder}/plugins/${pluginFolder}/scripts/*.js`)
+            .pipe(through2.obj(minifyJs))
+            .pipe(concat(`${pluginFolder}.min.js`))
+            .pipe(gulp.dest(`${outputFolder}/scripts/${pluginFolder}`));
+        };
+      }
+    };
+
+    plugins.forEach(function (pluginFolder) {
+      jsTasks.push(createCopyPluginJs(pluginFolder));
+    });
+  }
+
+  return gulp.parallel(jsTasks);
 };
 
 module.exports = createGulpJavascript;

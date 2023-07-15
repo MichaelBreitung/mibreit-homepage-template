@@ -1,0 +1,52 @@
+{#
+# inserts html for contact form
+# @param privacy_form_url - url of privacy form
+#}
+{% macro mibreitContact(privacy_form_url) %}
+<form id="contact" class="mibreit-contact" name="mibreit-contact" method="post" autocomplete="off" action="/scripts/mibreit-contact/mibreit-email.php">
+  <table>
+    <tr>
+      <td class="mibreit-contact__left"><label for="myemail">Meine Email:</label></td>
+      <td class="mibreit-contact__right">
+        <input id="myemail" name="myemail" type="text" disabled="disabled" value="Michael.Breitung{at}mibreit-photo.com" readonly="readonly" class="fluid">
+      </td>
+    </tr>
+    <tr>
+      <td class="mibreit-contact__left"><label for="email">Ihre Email:</label></td>
+      <td class="mibreit-contact__right">
+        <input id="email" name="email" type="text" class="fluid" spellcheck="false">
+      </td>
+    </tr>
+    <tr>
+      <td class="mibreit-contact__left"><label for="homepage">Ihre Homepage:</label></td>
+      <td class="mibreit-contact__right">
+        <input id="homepage" name="homepage" type="text" class="fluid" spellcheck="false">
+      </td>
+    </tr>
+    <tr>
+      <td class="mibreit-contact__left"><label for="subject">Betreff:</label></td>
+      <td class="mibreit-contact__right">
+        <input id="subject" name="subject" type="text" class="fluid" spellcheck="false">
+      </td>
+    </tr>
+    <tr>
+      <td class="mibreit-contact__left"><label for="message">Ihre Nachricht:</label></td>
+      <td class="mibreit-contact__right">
+        <textarea id="message" name="message" rows="10" spellcheck="false"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td class="mibreit-contact__left">
+        <input type="checkbox" id="privacy" name="privacy" class="mibreit-contact__checkbox">
+      </td>
+      <td class="mibreit-contact__right"><label for="privacy">Durch die Nutzung dieses Formulars erklären Sie sich mit der Speicherung und Verarbeitung Ihrer Daten einverstanden. Mehr Informationen entnehmen Sie bitte der <a href="{{privacy_form_url}}">Datenschutzerklärung</a>.</label></td>
+    </tr>
+    <tr>
+      <td class="mibreit-contact__left">&nbsp;</td>
+      <td class="mibreit-contact__right"><input type="submit" value="senden" name="submit" class="mibreit-contact__button">
+      </td>
+    </tr>
+  </table>
+</form>
+<div id="form-reply" class="mibreit-contact__result"></div>
+{% endmacro %}

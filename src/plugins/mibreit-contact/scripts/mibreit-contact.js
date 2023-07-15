@@ -23,7 +23,7 @@ mibreitFormValidator.documentReady(function () {
       required: 'Bitten nennen Sie den Betreff',
     },
     message: {
-      required: 'Bitte geben Sie einen Nachricht ein',
+      required: 'Bitte geben Sie eine Nachricht ein',
     },
     privacy: {
       required: '← erforderlich',
@@ -70,7 +70,6 @@ mibreitFormValidator.documentReady(function () {
       xhttp.onreadystatechange = function () {
         if (this.readyState === 4) {
           if (this.status === 200) {
-            console.log('success');
             formReply.innerText = this.responseText;
             emailElement.value = '';
             homepageElement.value = '';

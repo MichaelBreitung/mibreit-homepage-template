@@ -1,19 +1,15 @@
-const gulp = require("gulp");
-const nunjucksRender = require("gulp-nunjucks-render");
-const data = require("gulp-data");
-const page_data = require("../src/page-data.json");
-const { baseFolder, outputFolder } = require("./constants");
+const gulp = require('gulp');
+const nunjucksRender = require('gulp-nunjucks-render');
+const data = require('gulp-data');
+const page_data = require('../src/page-data.json');
+const { baseFolder, outputFolder } = require('./constants');
 
-const createGulpPhpScripts = function (templates, scripts) {
-  if (typeof templates !== "string") {
-    throw (new Error("createGulpPhpScripts: no templates folder specified"));
+const createGulpPhpScripts = function (templates, plugins) {
+  if (typeof templates !== 'string') {
+    throw new Error('createGulpPhpScripts: no templates folder specified');
   }
 
   const source = [`${baseFolder}/scripts/**/*.php`];
-  if (typeof scripts === "string")
-  {  
-    source.push(`${baseFolder}/${scripts}/scripts/**/*.php`);
-  }
 
   const njkPhpScripts = function () {
     return gulp
@@ -22,7 +18,7 @@ const createGulpPhpScripts = function (templates, scripts) {
       .pipe(
         nunjucksRender({
           path: [`${baseFolder}/${templates}/templates`],
-          ext: ".php",
+          ext: '.php',
           envOptions: {
             autoescape: false,
             throwOnUndefined: true,
@@ -30,8 +26,35 @@ const createGulpPhpScripts = function (templates, scripts) {
         })
       )
       .pipe(gulp.dest(`${outputFolder}/scripts`));
+  };
+
+  const tasks = [njkPhpScripts];
+  if (Array.isArray(plugins)) {
+    const createPhpPluginScripts = function (pluginFolder) {
+      return function () {
+        return gulp
+          .src(`${baseFolder}/plugins/${pluginFolder}/scripts/*.php`)
+          .pipe(data(page_data))
+          .pipe(
+            nunjucksRender({
+              path: [`${baseFolder}/${templates}/templates`],
+              ext: '.php',
+              envOptions: {
+                autoescape: false,
+                throwOnUndefined: true,
+              },
+            })
+          )
+          .pipe(gulp.dest(`${outputFolder}/scripts/${pluginFolder}`));
+      };
+    };
+
+    plugins.forEach(function (pluginFolder) {
+      tasks.push(createPhpPluginScripts(pluginFolder));
+    });
   }
-  return njkPhpScripts;
+
+  return gulp.parallel(tasks);
 };
 
 module.exports = createGulpPhpScripts;

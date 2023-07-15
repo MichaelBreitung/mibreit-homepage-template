@@ -15,7 +15,7 @@ class MibreitGalleryImage
     $this->imageUrl = "";
 
     $this->prints = false;
-    $this->redbubble = "";
+    $this->woocommerce = "";
     $this->limited = false;
     $this->size = "large";
 
@@ -46,10 +46,10 @@ class MibreitGalleryImage
     if (!empty($prints))
     {
       $this->prints = true;
-      $tmp = $prints["redbubble"];
+      $tmp = $prints["woocommerce"];
       if (!empty($tmp))
       {
-        $this->redbubble = (string) $tmp;
+        $this->woocommerce = (string) $tmp;
       }
       $tmp = $prints["limited"];
       if (!empty($tmp))
@@ -66,7 +66,7 @@ class MibreitGalleryImage
 
   function getPrintInfo()
   {
-    return array("prints" => $this->prints, "name" => $this->caption, "redbubble" => $this->redbubble, "limited" => $this->limited, "size" => $this->size);
+    return array("prints" => $this->prints, "name" => $this->caption, "woocommerce" => $this->woocommerce, "limited" => $this->limited, "size" => $this->size);
   }
 }
 

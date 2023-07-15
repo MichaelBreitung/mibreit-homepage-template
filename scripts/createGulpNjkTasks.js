@@ -21,8 +21,8 @@ const createGulpNjkTasks = function (variant, withHtAccess = false) {
   }
 
   if (Array.isArray(variant.plugins)) {
-    variant.plugins.forEach((plugin) => {
-      const templatesFolder = `plugins/${plugin}`;
+    variant.plugins.forEach((pluginsFolder) => {
+      const templatesFolder = `plugins/${pluginsFolder}`;
       if (fs.existsSync(`${baseFolder}/${templatesFolder}`)) {
         templates.push(templatesFolder);
       }
@@ -45,7 +45,7 @@ const createGulpNjkTasks = function (variant, withHtAccess = false) {
     gulp.parallel(
       createGulpNjkHtml(tempFolder),
       createGulpNjkPhp(tempFolder),
-      createGulpNjkPhpScripts(tempFolder, variant.scripts),
+      createGulpNjkPhpScripts(tempFolder, variant.plugins),
       createGulpNjkRobots(tempFolder),
       getHtAccessTask(tempFolder),      
       createGulpXml(tempFolder),
