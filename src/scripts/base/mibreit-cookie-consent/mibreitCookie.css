@@ -3,6 +3,7 @@
   bottom: 0;
   width: 100%;
   z-index: 100;
+  animation: slideInBottom 1s;
 }
 
 #cookie-msg__background {
@@ -11,4 +12,14 @@
   width: 100%;
   z-index: 99;
   background-color:rgba(0, 0, 0, 0.6);
+  animation: fadein 1s;
+}
+
+@keyframes slideInBottom {
+  from {
+    bottom: -50%
+  }
+  to {
+    bottom: 0
+  }
 }

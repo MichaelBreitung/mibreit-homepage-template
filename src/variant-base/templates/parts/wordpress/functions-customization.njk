@@ -79,6 +79,17 @@
       $first_img = '';
       if (is_single())
       {
+        if ( function_exists('is_woocommerce') && is_woocommerce())
+        {
+          $id = wc_get_product()->id;
+          $product_images = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), 'single-post-thumbnail' );
+          if ( count($product_images))
+          {
+            $first_img = $product_images[0];
+          }
+        }
+        else
+        {
           ob_start();
           ob_end_clean();
           $output = preg_match_all('/<img.+?src=[\'"]([^\'"]+)[\'"].*?>/i', $post->post_content,
@@ -87,6 +98,7 @@
           {
               $first_img = $matches[1][0];
           }
+        }
       }    
       if(empty($first_img)){
           $first_img = "{{getPageImage(getBasePageUrl(domain_name, use_https), page_header_image)}}";

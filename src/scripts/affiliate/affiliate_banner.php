@@ -31,10 +31,10 @@ function getAffiliateBanner($affiliateInput=NULL)
   $affiliate = getAffiliate($affiliateInput);
   {% for banner in page_affiliates.banners -%}    
     {%- if loop.first %}
-  if ($affiliate == "{{ banner.name }}")
+  if ($affiliate === "{{ banner.name }}")
   {
     {%- else %}
-  else if ($affiliate == "{{ banner.name }}")
+  else if ($affiliate === "{{ banner.name }}")
   {
     {%- endif %}
     $imageSize = getimagesize("{{banner.image}}");

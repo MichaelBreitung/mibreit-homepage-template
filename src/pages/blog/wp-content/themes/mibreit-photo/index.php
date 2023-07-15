@@ -1,8 +1,27 @@
 {% set page_active_navigation = "Blog" %}
 {% extends "./layouts/wordpress/wordpress-sidebar-layout.njk" %}
 {% block content %}
-  {% include "./parts/wordpress/post-list.njk" %}
-	<br>
+  <?php 
+    if (have_posts()) : 
+      while (have_posts()) : 
+        the_post(); 
+  ?>
+        <h2>
+          <a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a>
+        </h2>
+        <p><?php the_date(); ?> | <?php the_category(', '); ?></p>
+        <?php the_excerpt(); ?>
+        <!--
+        <?php trackback_rdf(); ?>
+        -->
+  <?php 
+      endwhile; 
+    else: 
+  ?>
+  <p>Sorry, no posts matched your criteria.</p>
+  <?php endif; ?>
+  <p><?php posts_nav_link(' &#8212; ', __('&larr; Previous Page'), __('Next Page &rarr;')); ?></p>
+	<br/>
 {% endblock %}
        
 	

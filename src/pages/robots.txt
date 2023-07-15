@@ -4,7 +4,11 @@ Sitemap: {{getBasePageUrl(domain_name, use_https)}}/sitemap.xml
 User-agent: *
 Disallow: /blog/wp-admin/
 Disallow: /blog/wp-includes/
+Disallow: /shop/wp-admin/
+Disallow: /shop/wp-includes/
 
 User-agent: Googlebot
 Disallow: /blog/wp-admin/
 Disallow: /blog/wp-includes/
+Disallow: /shop/wp-admin/
+Disallow: /shop/wp-includes/

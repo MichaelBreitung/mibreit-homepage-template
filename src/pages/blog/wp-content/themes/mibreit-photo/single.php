@@ -13,7 +13,7 @@
 {% block content %}   
 <article itemscope itemtype="https://schema.org/Article">    
   <link itemprop="mainEntityOfPage" href="<?php the_permalink()?>">
-  <h1 itemprop="headline"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+  <h1 itemprop="headline"><a href="/blog/">Blog</a> - <?php the_title(); ?></h1>
   <p itemprop="author" itemscope itemtype="https://schema.org/Person"><?php the_time('F j, Y'); ?> | <?php the_category(', ') ?> | by <a rel="author" href="{{getBasePageUrl(domain_name)}}{{page_about.en}}"><span itemprop="name">{{page_author}}</span></a></p>    
   <div itemprop="text"><?php the_content();?></div>
   <div class="content-navigation spacing-top-large spacing-bottom-large small">
