@@ -3,5 +3,5 @@
   "styles": ["variant-base", "variant-custom"],
   "templates": ["variant-base", "variant-custom"],
   "favicon": "variant-base",
-  "plugins" : ["mibreit-contact", "mibreit-gallery"]
+  "plugins" : ["mibreit-contact", "mibreit-gallery", "mibreit-image-before-after"]
 }

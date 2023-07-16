@@ -1,8 +1,6 @@
 <aside id="sidebar" class="width-small" > 
   <h2><label for="search">Search</label></h2>
-  <form id="searchform" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-    <input type="text" name="s" id="search" size="30" value="" autocomplete="off"/>
-  </form>
+  <?php get_search_form() ?>
   <h2>Share</h2>
   <div class="image-links">
     <a class="image-links__link" href="https://twitter.com/intent/tweet?url=<?php if(is_home()){echo home_url();}else{the_permalink();} ?>&amp;text=<?php if(is_home()){echo sanitize_title_with_dashes(get_bloginfo("name"));}else{echo sanitize_title_with_dashes(get_the_title());} ?>" target="_blank"><img class="image-links__image" src="/images/social-media-share/twitter-share.png" alt="share via Twitter" ></a>

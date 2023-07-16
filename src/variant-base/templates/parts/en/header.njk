@@ -1,7 +1,11 @@
 <header class="header">
   {% include "../header-image.njk" %}
   {% if page_name %}
-    <h2>{{page_name | upper }}</h2>
+    {% if page_name_as_h1 %}
+      <h1>{{page_name | upper }}</h1>
+    {% else %}
+      <p class="page-name">{{page_name | upper }}</p>
+    {% endif %}
   {% endif %}
   {% if google_search | length -%} 
   <div class="search__container">

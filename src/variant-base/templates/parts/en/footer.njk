@@ -6,13 +6,11 @@
     {{ linkItemList(page_footer.en, false, "footer__link", 4, "<span>|</span>") }}
   </p>
 </footer>
+{% include "../background-image.njk" %}  
 <script src="/scripts/base.js"></script>
 <script>
   {% include "./script-cookie-consent.njk" %}  
   mibreitSearch();
   hamburgerNavbar();
   {% include "../script-sticky-navbar.njk" %}
-  {% if page_background_image | length %}
-    {% include "../script-background.njk" %}
-  {% endif %}
 </script>
