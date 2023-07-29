@@ -138,9 +138,10 @@ form {
   font-size: 1.5rem;
 }
 
-form input,
-form textarea {
+input, textarea {
   font-size: 1.4rem;
+  padding: 0.25rem;
+  box-sizing: border-box;
 }
 
 form input {
@@ -194,6 +195,11 @@ form textarea:focus {
 form input[type='checkbox'] {
   height: 1.2rem;
   width: 1.2rem;
+}
+
+select {
+  padding: 0.25rem;
+  box-sizing: border-box;
 }
 
 /******* alignment ***********/
