@@ -32,12 +32,10 @@
     padding-bottom: 0.25rem;
   }
 
-  td.mibreit-contact__right {
-    width: 75%;
-  }
-
   td.mibreit-contact__left {
     text-align: left;
+    width: 12.5rem;
+    min-width: 12.5rem;
   }
 
   input.error {

@@ -11,9 +11,7 @@ const createGulpJavascript = function (plugins) {
       .src([
         `${baseFolder}/scripts/base/mibreit-cookie-consent/mibreitCookieConsent.min.js`,
         `${baseFolder}/scripts/base/mibreit-cookie-consent/mibreitCookie.js`,
-        `${baseFolder}/scripts/base/sticky-navbar/*.js`,
         `${baseFolder}/scripts/base/hamburger-navbar/*.js`,
-        `${baseFolder}/scripts/base/mibreit-navbar/*.js`,
         `${baseFolder}/scripts/base/mibreit-search/*.js`,
         `${baseFolder}/scripts/mibreit-lazy-loader/*.js`
       ])
