@@ -1,6 +1,6 @@
 {
   "name": "mibreit-photo-homepage-template",
-  "version": "2.9.0",
+  "version": "2.9.1",
   "description": "Homepage template based on Gulp and Nunjucks",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

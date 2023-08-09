@@ -5,6 +5,7 @@
     "mibreitGalleryCaption.js",
     "mibreitGalleryHistory.js",
     "mibreitGalleryPrints.js",
-    "mibreitGalleryBackgroundColor.js"
+    "mibreitGalleryBackgroundColor.js",
+    "mibreitGallerySetup.js"
   ]
 }
