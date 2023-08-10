@@ -103,24 +103,24 @@
 # @param de - if given, german version is generated (optional)
 # @attention requires call to prepare() beforehand
 #}
-{% macro gallery(container, de) %}
+{% macro gallery(container, de, old_lazy) %}
   <div class="{{container}}">
     <?php
     $nrImages = $mibreitGallery->getNumberImages();
     for ($i = 0; $i < $nrImages; $i++)
     {
       $image = $mibreitGallery->getImage($i);
-      {{_figure("image", de)}}
+      {{_figure("image", de, old_lazy)}}
     }
   ?>
   </div>
 {% endmacro %}
 
 {# private macro that should only be used internally within a php tag to create the figure markup #}
-{% macro _figure(item, de) %}
+{% macro _figure(item, de, old_lazy) %}
   $size = getimagesize(${{item}}->imageUrl); 
   echo "<figure>"; 
-  {{_image(item, de, false)}}
+  {{_image(item, de, false, old_lazy)}}
   {{_image(item, de, true)}}
   if (${{item}}->altEn != ${{item}}->caption)
   {
@@ -130,12 +130,17 @@
 {% endmacro %}
 
 {# private macro that should only be used internally within a php tag to create the image markup #}
-{% macro _image(item, de, no_script) %}
+{% macro _image(item, de, no_script, old_lazy) %}
   {% if no_script %}
     echo "<noscript><img src=\"" . ${{item}}->imageUrl . "\" style=\"position: absolute;\" ";
   {% else %}
+  {% if old_lazy %}
+  echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" style=\"position: absolute;\" ";
+    echo "data-src=\"" . ${{item}}->imageUrl . "\" ";
+  {% else %}
   echo "<img loading=\"lazy\" class=\"mibreit-LazyLoader_lazy\" style=\"position: absolute;\" ";
     echo "src=\"" . ${{item}}->imageUrl . "\" ";
+  {% endif %}
   {% endif %}
   echo "title=\""    . ${{item}}->caption  . "\" ";
   {% if not no_script %}
@@ -153,13 +158,17 @@
 # @param container - class name for container
 # @attention requires call to prepare() beforehand
 #}
-{% macro thumbview(container) %}
+{% macro thumbview(container,  old_lazy) %}
   <div class="{{container}}">
     <?php
     foreach ($mibreitGallery->getImages() as $image)
     {
-      $size = getimagesize($image->thumbUrl);      
+      $size = getimagesize($image->thumbUrl);   
+      {% if old_lazy %}   
+      echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" style=\"position: absolute;\" data-src=\"" . $image->thumbUrl . "\" ";
+      {% else %}
       echo "<img loading=\"lazy\" class=\"mibreit-LazyLoader_lazy\" style=\"position: absolute;\" src=\"" . $image->thumbUrl . "\" ";
+      {% endif %}
       echo "width=\"". $size[0] ."\" height=\"". $size[1] . "\" alt=\"thumbnail\" >\n";      
     }
   ?>
