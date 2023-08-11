@@ -7,11 +7,13 @@ var mibreitGalleryBackgroundColor = function (gallery) {
       var fastAverageColorOptions = { algorithm: 'sqrt' };
 
       var updateBackgroundColor = function (imageElement) {
-        try {
-          var color = fastAverageColor.getColor(imageElement, fastAverageColorOptions);
-          fullscreen.setBackgroundColor(color.rgba);
-        } catch (e) {
-          console.warn('FastAverageColor Exception: ' + e);
+        if (imageElement) {
+          try {
+            var color = fastAverageColor.getColor(imageElement, fastAverageColorOptions);
+            fullscreen.setBackgroundColor(color.rgba);
+          } catch (e) {
+            console.warn('FastAverageColor Exception: ' + e);
+          }
         }
       };
 
@@ -22,7 +24,7 @@ var mibreitGalleryBackgroundColor = function (gallery) {
       });
     } else {
       console.warn('no FastAverageColor installed');
-      fullscreen.setBackgroundColor("#000000");
+      fullscreen.setBackgroundColor('#000000');
     }
   }
 };

@@ -17,7 +17,9 @@ var mibreitGalleryHistory = function (gallery) {
       if (galleryMarkupJSONElements[i].innerHTML.search('"@type": "ImageGallery"') != -1) {
         try {
           galleryMarkup = JSON.parse(galleryMarkupJSONElements[i].innerHTML);
-        } catch (e) {/** error not relevant for user of homepage - will still work */}
+        } catch (e) {
+          /** error not relevant for user of homepage - will still work */
+        }
       }
     }
 
@@ -59,16 +61,16 @@ var mibreitGalleryHistory = function (gallery) {
   };
 
   var udpateSeo = function () {
-    var imageUrl =
-      window.location.href.substr(0, window.location.href.lastIndexOf('/') + 1) +
-      gallery.getViewer().getImageInfo(gallery.getViewer().getImageIndex()).getUrl();
+    var imageInfo = gallery.getViewer().getImageInfo(gallery.getViewer().getImageIndex());
+    if (imageInfo) {
+      var imageUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1) + imageInfo.getUrl();
+      updateOgParameters(imageUrl);
 
-    updateOgParameters(imageUrl);
+      // update twitter cards
+      document.querySelector("meta[name='twitter\\:image']").setAttribute('content', imageUrl);
 
-    // update twitter cards
-    document.querySelector("meta[name='twitter\\:image']").setAttribute('content', imageUrl);
-
-    updateShareLinks(imageUrl);
+      updateShareLinks(imageUrl);
+    }
   };
 
   var updateImageBasedOnURLParams = function () {
