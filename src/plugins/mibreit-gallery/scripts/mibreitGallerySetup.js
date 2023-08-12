@@ -20,10 +20,10 @@ var mibreitGallerySetup = function (containerSelector, thumbContainerSelector, t
   var viewer = gallery.getViewer();
   var imageInfo = viewer.getImageInfo();
   if (imageInfo) {
-    titleElement.innerHtml = imageInfo.getTitle();
+    titleElement.innerHTML = imageInfo.getTitle();
   }
   viewer.addImageChangedCallback((index, imageInfo) => {
-    titleElement.innerHtml = imageInfo.getTitle();
+    titleElement.innerHTML = imageInfo.getTitle();
   });
 
   mibreitGalleryCaption(gallery, container, figCaptions);
