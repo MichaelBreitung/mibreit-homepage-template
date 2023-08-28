@@ -4,7 +4,7 @@
 {% extends "./layouts/wordpress/wordpress-layout.njk" %}
 {% block scripts %}
 {% from "./macros/mibreit-lazy-loader.njk" import scriptLazyScroller %}
-{{scriptLazyScroller("article iframe")}}  
+{{scriptLazyScroller("article iframe", false)}}  
 {% from "./macros/mibreit-image-before-after.njk" import scriptImageBeforeAfter %}
 {{scriptImageBeforeAfter("article .imageBeforeAfter")}}
 {% from "./macros/mibreit-gallery.njk" import scriptGalleryWP %}
@@ -14,7 +14,7 @@
 <article itemscope itemtype="https://schema.org/Article">    
   <link itemprop="mainEntityOfPage" href="<?php the_permalink()?>">
   <h1 itemprop="headline"><a href="/blog/">Blog</a> - <?php the_title(); ?></h1>
-  <p itemprop="author" itemscope itemtype="https://schema.org/Person"><?php the_time('F j, Y'); ?> | <?php the_category(', ') ?> | by <a rel="author" href="{{getBasePageUrl(domain_name)}}{{page_about.en}}"><span itemprop="name">{{page_author}}</span></a></p>    
+  <p itemprop="author" itemscope itemtype="https://schema.org/Person"><?php the_time('F j, Y'); ?> | <?php the_category(', ') ?> | by <a rel="author" href="{{page_about.en}}"><span itemprop="name">{{page_author}}</span></a></p>    
   <div itemprop="text"><?php the_content();?></div>
   <div class="content-navigation spacing-top-large spacing-bottom-large small">
     <div class="content-navigation__link"><?php previous_post_link('%link', '&laquo; previous' ); ?></div>      

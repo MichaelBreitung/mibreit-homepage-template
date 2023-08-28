@@ -231,21 +231,11 @@
 # @param container - class or id name for container of slideshow -> starting with a . or #
 # @param gallery_var_name - the global javascript variable name used for the gallery
 #}
-{% macro scriptSimpleGallery(container, gallery_var_name) %}
+{% macro scriptSimpleGallery(container) %}
   <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
   <script>
-    {% if gallery_var_name %}
-    var {{gallery_var_name}};
-    {% else %}
-    var mibreitGalleryInstance;
-    {% endif %}
     window.addEventListener('load',function () { 
-      var gallery = mibreitGallerySetupSimple('{{container}}');
-      {% if gallery_var_name %}
-      {{gallery_var_name}} = gallery;
-      {% else %}
-      mibreitGalleryInstance = gallery;
-      {% endif %} 
+      mibreitGallerySetupSimple('{{container}}');
     });
   </script>
 {% endmacro %}
@@ -262,7 +252,11 @@
 <?php
   echo "<script>";
   echo "window.addEventListener('load',function () {\n"; 
+  {% if title_class_name %}
   echo "var viewer = mibreitGallerySetup(\"{{container}}\", \"{{thumb_container}}\", \"{{title_class_name}}\").getViewer();\n";
+  {% else %}
+  echo "var viewer = mibreitGallerySetup(\"{{container}}\", \"{{thumb_container}}\").getViewer();\n";
+  {% endif %}
   {% if with_prints %}
   echo "viewer.addImageChangedCallback(mibreitGalleryPrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", viewer, " . $imageNr . "))\n";
   {% endif %}
@@ -270,6 +264,19 @@
   echo "</script>";
 ?>
 {% endmacro %}
+
+{#
+# inserts script for woocommerce gallery 
+#}
+{% macro scriptGalleryWoo(container, thumb_container) %}
+  <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
+  <script>
+    window.addEventListener('load',function () { 
+      mibreitGallerySetupWoo('{{container}}', '{{thumb_container}}');
+    });
+  </script>
+{% endmacro %}
+
 
 {#
 # inserts script for gallery in Wordpress layouts

@@ -17,14 +17,17 @@ var mibreitGallerySetup = function (containerSelector, thumbContainerSelector, t
     preloaderAfterSize: 5,
   });
 
-  var viewer = gallery.getViewer();
-  var imageInfo = viewer.getImageInfo();
-  if (imageInfo) {
-    titleElement.innerHTML = imageInfo.getTitle();
+  if (titleElement)
+  {
+    var viewer = gallery.getViewer();
+    var imageInfo = viewer.getImageInfo();
+    if (imageInfo) {
+      titleElement.innerHTML = imageInfo.getTitle();
+    }
+    viewer.addImageChangedCallback((index, imageInfo) => {
+      titleElement.innerHTML = imageInfo.getTitle();
+    });
   }
-  viewer.addImageChangedCallback((index, imageInfo) => {
-    titleElement.innerHTML = imageInfo.getTitle();
-  });
 
   mibreitGalleryCaption(gallery, container, figCaptions);
   mibreitGalleryHistory(gallery);
@@ -44,6 +47,28 @@ var mibreitGallerySetupSimple = function (containerSelector) {
   });
   mibreitGalleryHistory(gallery);
   mibreitGalleryBackgroundColor(gallery);
+};
+
+var mibreitGallerySetupWoo = function (containerSelector, thumbContainerSelector) {
+  var container = document.querySelector(containerSelector);
+  var thumbContainer = document.querySelector(thumbContainerSelector);
+
+  // reveal gallery
+  container.style.setProperty('opacity', '1');
+  thumbContainer.style.setProperty('opacity', '1');
+
+  var gallery = mibreitGalleryTs.createGallery(containerSelector, containerSelector + ' img', {
+    scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT,
+    thumbContainerSelector,
+    thumbSelector: thumbContainerSelector + ' > img',
+    numberOfVisibleThumbs: 4,
+    preloaderBeforeSize: 1,
+    preloaderAfterSize: 4,
+  });
+
+  mibreitGalleryBackgroundColor(gallery);
+  
+  return gallery;
 };
 
 var mibreitGallerySetupWP = function (imageSelector) {
