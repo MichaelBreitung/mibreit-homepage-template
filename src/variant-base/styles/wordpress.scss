@@ -22,10 +22,6 @@
       margin-top: 1rem;
       margin-bottom: 0.5rem;
     }
-    ul {
-      list-style-type: initial;
-      padding-left: 2rem;
-    }
   }  
   img.wp-smiley {
     float: none;
@@ -74,6 +70,7 @@
     font-size: 1.3rem;
   }
   ul {
+    list-style-type: none;
     font-size: 1.3rem;
     padding-left: 0.8rem;
   }
@@ -111,6 +108,7 @@
       font-size: 1.2rem;
     }
     ul {
+      list-style-type: none;
       font-size: 1.2rem;
     }
   }

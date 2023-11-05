@@ -45,7 +45,7 @@ a:focus {
 }
 
 h1 {
-  padding-top: 0.8em;
+  padding-top: 1.5em;
   padding-bottom: 0.4rem;
   padding-left: 1rem;
   padding-right: 0.5rem;
@@ -53,17 +53,24 @@ h1 {
   font-weight: bold;
 }
 
+h1:first-of-type {
+  padding-top: 1rem;
+}
+
 h2 {
-  padding-top: 0.8em;
+  padding-top: 1.25em;
   padding-bottom: 0rem;
   padding-left: 1rem;
   padding-right: 0.5rem;
   font-size: 2rem;
   font-weight: bold;
 }
+h2:first-child {
+  padding-top: 1rem;
+}
 
 h3 {
-  padding-top: 0.8em;
+  padding-top: 1em;
   padding-bottom: 0rem;
   padding-left: 1rem;
   padding-right: 0.5rem;
@@ -103,10 +110,9 @@ small {
 }
 
 ul {
-  list-style-type: none;
   font-size: 1.5rem;
   padding-bottom: 0rem;
-  padding-left: 1.25rem;
+  padding-left: 3rem;
   padding-right: 0.5rem;
 }
 

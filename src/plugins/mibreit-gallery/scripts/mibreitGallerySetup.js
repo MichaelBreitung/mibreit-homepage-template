@@ -12,9 +12,9 @@ var mibreitGallerySetup = function (containerSelector, thumbContainerSelector, t
     scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT,
     thumbContainerSelector,
     thumbSelector: thumbContainerSelector + ' > img',
-    numberOfVisibleThumbs: 7,
+    numberOfVisibleThumbs: 6,
     preloaderBeforeSize: 1,
-    preloaderAfterSize: 5,
+    preloaderAfterSize: 2,
   });
 
   if (titleElement)
@@ -41,9 +41,9 @@ var mibreitGallerySetupSimple = function (containerSelector) {
   container.style.setProperty('opacity', '1');
   var gallery = mibreitGalleryTs.createGallery(containerSelector, containerSelector + ' img', {
     scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT,
-    numberOfVisibleThumbs: 7,
+    numberOfVisibleThumbs: 6,
     preloaderBeforeSize: 1,
-    preloaderAfterSize: 7,
+    preloaderAfterSize: 2,
   });
   mibreitGalleryHistory(gallery);
   mibreitGalleryBackgroundColor(gallery);
@@ -63,7 +63,7 @@ var mibreitGallerySetupWoo = function (containerSelector, thumbContainerSelector
     thumbSelector: thumbContainerSelector + ' > img',
     numberOfVisibleThumbs: 4,
     preloaderBeforeSize: 1,
-    preloaderAfterSize: 4,
+    preloaderAfterSize: 2,
   });
 
   mibreitGalleryBackgroundColor(gallery);

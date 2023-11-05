@@ -17,8 +17,6 @@ var mibreitGalleryBackgroundColor = function (gallery) {
         }
       };
 
-      updateBackgroundColor(viewer.getImageElement(viewer.getImageIndex()));
-
       viewer.addImageChangedCallback(function (index, _imageInfo) {
         updateBackgroundColor(viewer.getImageElement(index));
       });

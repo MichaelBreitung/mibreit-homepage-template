@@ -9,7 +9,6 @@
         <h2>
           <a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a>
         </h2>
-        <p><?php the_date(); ?> | <?php the_category(', '); ?></p>
         <?php the_excerpt(); ?>
         <!--
         <?php trackback_rdf(); ?>
