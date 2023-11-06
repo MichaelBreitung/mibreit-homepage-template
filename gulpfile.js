@@ -17,19 +17,24 @@ if (!variant) {
   process.exit(1);
 }
 
-// clean temp folder
-fsExtra.emptyDirSync(`${baseFolder}/${tempFolder}`);
+const cleanup = function() {
+  fsExtra.remove(`${baseFolder}/${tempFolder}`);
+  return Promise.resolve("nothing to do");
+}
 
 // process gulp tasks
 module.exports = {
-  default: gulp.parallel(
-    createGulpFonts(variant.fonts),
-    createGulpImages(variant.images, variant.favicon, variant.plugins),
-    gulp.series(
-      createGulpCss(variant.styles, variant.plugins),
-      createGulpNoscriptCss(variant.styles),
-      createGulpNjkTasks(variant), //, true), // comment in second parameter true, to also create .htaccess before deploy)
+  default: gulp.series(
+    gulp.parallel(
+      createGulpFonts(variant.fonts),
+      createGulpImages(variant.images, variant.favicon, variant.plugins),
+      gulp.series(
+        createGulpCss(variant.styles, variant.plugins),
+        createGulpNoscriptCss(variant.styles),
+        createGulpNjkTasks(variant), //, true), // comment in second parameter true, to also create .htaccess before deploy)
+      ),
+      createGulpJavascript(variant.plugins)
     ),
-    createGulpJavascript(variant.plugins)
+    cleanup
   ),
 };

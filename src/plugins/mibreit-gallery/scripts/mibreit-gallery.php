@@ -237,8 +237,12 @@ class MibreitGalleryDataParser
     {
       return $this->images[$id];
     }
-    else {
+    elseif (count($this->images)) {
       return $this->images[0];
+    }
+    else 
+    {
+      return null;
     }
   }
 

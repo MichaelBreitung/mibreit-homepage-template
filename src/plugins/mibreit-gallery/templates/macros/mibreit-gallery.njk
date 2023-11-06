@@ -55,7 +55,14 @@
     require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery-helpers.php';
     $mibreitGallery = new MibreitGalleryDataParser('gallery.xml');
     $mibreitGalleryPageData = new MibreitGalleryPageData();   
-    $page_image = $mibreitGalleryPageData->getBasePath() . $mibreitGallery->getImage($imageNr)->imageUrl;
+    if ($mibreitGallery->getNumberImages())
+    {
+      $page_image = $mibreitGalleryPageData->getBasePath() . $mibreitGallery->getImage($imageNr)->imageUrl;
+    }
+    else 
+    {
+      $page_image = "";
+    }
   ?>
 {% endmacro %}
 

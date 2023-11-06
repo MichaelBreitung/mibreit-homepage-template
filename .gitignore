@@ -1,11 +1,11 @@
 /dist
 
 /node_modules
-/src/pages
 /src/temp
 /src/variant-custom
 
 /src/scripts/base/jquery/jquery.min.js
 /src/scripts/contact/jquery-validate/jquery.validate.min.js
 
+*.pdf
 
