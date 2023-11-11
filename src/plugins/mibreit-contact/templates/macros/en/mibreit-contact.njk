@@ -2,13 +2,13 @@
 # inserts html for contact form
 # @param privacy_form_url - url of privacy form
 #}
-{% macro mibreitContact(privacy_form_url) %}
+{% macro mibreitContact(privacy_form_url, email) %}
 <form id="contact" class="mibreit-contact" name="mibreit-contact" method="post" autocomplete="off" action="/scripts/mibreit-contact/mibreit-email.php">
   <table>
     <tr>
       <td class="mibreit-contact__left"><label for="myemail">My email:</label></td>
       <td class="mibreit-contact__right">
-        <input id="myemail" name="myemail" type="text" disabled="disabled" value="Michael.Breitung{at}mibreit-photo.com" readonly="readonly" class="fluid" >
+        <input id="myemail" name="myemail" type="text" disabled="disabled" value="{{email}}" readonly="readonly" class="fluid" >
       </td>
     </tr>
     <tr>

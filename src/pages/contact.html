@@ -13,5 +13,5 @@
   <h2>Contact</h2>
   <p>If you have questions regarding my Photography or my Homepage or you just want to drop me a message, please fill out the form below or simply mail to {{page_email | replace("@", "{at}")}}.</p>
   {% from "./macros/en/mibreit-contact.njk" import mibreitContact %}
-  {{mibreitContact("privacy-policy.html")}}  
+  {{mibreitContact("privacy-policy.html", page_email | replace("@", "{at}") )}}  
 {% endblock %}
