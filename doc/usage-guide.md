@@ -32,11 +32,13 @@ On macOS, you should not download a Node.js package via the official homepage. I
 
 1. Open a terminal / shell.
 
-2. Type ``brew help`` - If you get an output about how to use _brew_, it is already installed on your system and you can continue with step 4.
+2. Type ``node --version``. If this command returns a Node.js version, you don't have to continue with the installation.
 
-3. Install Homebrew as described [here](https://brew.sh/).
+3. Type ``brew help`` - If you get an output about how to use _brew_, it is already installed on your system and you can continue with step 4.
 
-4. Install NVM by calling:
+4. Install Homebrew as described [here](https://brew.sh/).
+
+5. Install NVM by calling:
    ````
    $ brew update
    
@@ -52,11 +54,11 @@ On macOS, you should not download a Node.js package via the official homepage. I
    $ source $(brew --prefix nvm)/nvm.sh
    ````
 
-5. Press ESC and type ``:wq``. Then hit ENTER to save the file.
+6. Press ESC and type ``:wq``. Then hit ENTER to save the file.
 
-6. Type ``source ~/.bash_profile``to reload. Use  ``source ~/.zshrc`` on macOS Catalina or later.
+7. Type ``source ~/.bash_profile``to reload. Use  ``source ~/.zshrc`` on macOS Catalina or later.
 
-7. Install Node.js by calling ``nvm install 16``. We install an older version of Node.js here for compatibility. It should also work on older macOS systems.
+8. Install Node.js by calling ``nvm install 16``. We install an older version of Node.js here for compatibility. It should also work on older macOS systems.
 
 ### Git
 
@@ -64,16 +66,36 @@ Git is a version management system. In the [Appendix](#Version-Control) I show h
 
 #### Installation Windows
 
-Dowanload and install _git-scm_ from [here](https://git-scm.com/downloads).
+Download and install _git-scm_ from [here](https://git-scm.com/downloads).
 
 #### Installation macOS
 
 On macOS, I recommend to again use Homebrew for the installation:
 
 1. Open a terminal / shell.
-2. Type ``brew help`` - If you get an output about how to use _brew_, it is already installed on your system and you can continue with step 4.
-3. Install Homebrew as described [here](https://brew.sh/).
-4. Install Git by calling ``brew install git``.
+2. Type ``git --version``. If this command returns a Git version, then Git is already installed and you don't have to continue here.
+3. Type ``brew help`` - If you get an output about how to use _brew_, it is already installed on your system and you can continue with step 4.
+4. Install Homebrew as described [here](https://brew.sh/).
+5. Install Git by calling ``brew install git``.
+
+### Python
+
+Python is a very popular programming language and you will use it to manage your galleries.
+
+#### Installation Windows
+
+Download and install Python from [here](https://www.python.org/downloads/). Use the latest stable version.
+
+#### Installation macOS
+
+On macOS, I recommend to use the official installer. But first, check if Python is already installed on your system:
+
+1. Open a terminal / shell.
+2. Type ``python --version``. If this command returns a Python version larger than 3, you don't have to continue with the installation.
+3. Get the official installer from [here](https://www.python.org/downloads/macos/): 
+   - Use the latest stable version. 
+   - After selecting the latest stable version, scroll to the end of the page that is opened. You will find a list of installers. Download the one that starts with "macOS".
+4. Run the installer and follow the instructions.
 
 ### Laragon
 
@@ -151,7 +173,19 @@ In addition to the mentioned folders, you'll also find some important files:
 
 ## Content
 
-This section is about how to add different types of content to your homepage.
+This section is about how to add different types of content to your homepage. If you used my web development service to prepare the template for you, the structure will already be ready with all the pages. You just have to add the content. If you start from scratch, the contained sample pages will give you a guide on how to add content.
+
+### Homepage Structure
+
+Inside the _src_ folder, you will find a directory called **pages**. This is where you create the folder structure for your homepage and where you add pages.
+
+To create a page, copy one of the already contained pages and edit it. You will find both HTML and PHP pages. Prefer to use HTML pages for static content - everything where you don't need to show a Slideshow or Gallery of your photos. PHP should only be used for the gallery pages. We will cover the creation of those in a dedicated section below.
+
+#### Rules
+
+- Don't create deep nesting of folders. Try to put your main navigation pages into the root folder of _pages_. Use separate folders for the galleries / portfolio, the blog, services, and similar clusters of pages. Inside the galleries, you can add one more set of folders. But don't create any more nesting. This will create too long URLs and might hurt your SERP.
+- Stick to lower-case names for folders and files within _pages_. If you have names that consist of two more more words, separate those with a minus "-". Avoid too long names for your pages and folders. The final URL - contains your domain, folders, and page - should not exceed 75 characters. 
+- Page names can be used to insert keywords for which you want to rank those pages. But avoid stuffing the page names with too many keywords. Be precise.
 
 ## Appendix
 
@@ -166,6 +200,8 @@ This section is about how to add different types of content to your homepage.
 - **Build** - Refers to the process of compiling the source files of your homepage - contained in _src_ folder.
 - **HTML** - HTML is the standard markup language of the web. Static homepages use it to structure their content. 
 - **PHP** - If the static content that HTML provides is not sufficient to present content, PHP can be used to dynamically create the markup that is sent to the users browser on the server. The Homepage Template uses PHP, for example, to create the galleries. WordPress is also based on PHP.
+- **SERP** - Search Engine Page Rank or rankings of your pages on Google.
+- **URL** - The full address of a page of your homepage as a visitor would find it in the address bar of his / her browser.
 - **Web Server** - Your web hosting provider will have several servers running in the cloud / internet. You will host your website on such a server so it can be accessed by other people browsing the internet. For this, your provider will supply you with login and upload information. 
 
 ## References
