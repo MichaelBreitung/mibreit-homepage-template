@@ -1,0 +1,34 @@
+{% set page_title="Enter your SEO optimized page title here" %}
+{% set page_keywords="List of Keywords focussing on topic of page - SEO optimized" %}
+{% set page_description="Description of what the page is about - SEO optimized" %}
+{% set page_canonical = "relative page link, without the domain name - typically starting with / - example: /contact.html" %}
+{% set page_active_navigation = "Inside page-data.json, you defined the navigation for the homepage. Here you specify, which navigation tab shall be active for the page - example: Home" %}
+{% set page_de = "If you have a bi-lingual homepage and a german version for this page exists, put the relative link here - example /german/contact-ger.html" %}
+{% extends "./layouts/en/content-layout.njk" %} 
+{% block content %}
+  <h1>Either same as page_title or similar</h1>
+  <p>I use this page template to explain the different sections and how to structure you content using <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML markup</a>. To better read this content, copy this page into your "src/pages" folder and build your homepage. Then you can use Laragon or XAMPP to locally host your homepage and access the rendered template in your browser by opening "http://localhost/page-template.html".</p>
+  <h2>Content Block</h2>
+  <p>The content block is the location where you put the content of the page. It will mostly be text. But you can also include images, slideshows, galleries, lists, tables - whatever the html markup allows. If you want to use a slideshow or gallery, you must change line 7 of this template and use the "slideshow-content-layout.njk" or "gallery-layout.njk" instead of the "content-layout.njk". In that case, you must also change the page extension from "html" to "php". For all other content, prefer to use "html".</p>
+  <h2>Content Structure</h2>
+  <p>You might already have noticed some tags, I'm using in this template: "h1", "h2", "p". Those tags structure your content. Beyond that, they are very important for SEO - Search Engine Optimization.</p>
+  <p><strong>Notice that whenever I use an "opening" tag on this page, I must also close it. For the "h1" headline, the opening and closing pair are <em>&lt;h1&gt;headline&lt;/h1&gt;</em>. It is important to not forget the closing tags. Otherwise, your page will not render properly.</strong></p>
+  <p>I recommend to always validate the code of your page using <a href="https://validator.w3.org/" target="_blank">the W3C checker</a> immediately after you have published it. If the validator finds errors, correct them.</p>
+  <h3>h1</h3>
+  <p>The "h1" tag is for the main headline. You should only have one "h1" tag in your page. Provide a good title for the page. You can use the same or a similar title to what you have used on line 1 of this template. Make sure to include your main keywords for which you want to rank on Google. A good guide on page titles can be found on the <a href="https://www.fuelyourphotos.com/seo-for-photographers/#perfect-your-page-titles" target="blank">Fuel Your Photos</a> homepage.</p>
+  <h3>h2</h3>
+  <p>As the name suggests, the "h2" tag is used for secondary headlines - section headlines. You should use "h2" headlines to provide structure to longer content. This will not only help your readers, but also help Google to identify what your page is about. It helps with better ranking. The "h2" headlines are a good place to include further keywords for which you want to rank.</p>
+  <h3>h3</h3>
+  <p>If you find you need to structure your sections even more, you can use "h3" tags to do so. Those are helpful if you write content of more than 1000 words.</p>
+  <h3>p</h3>
+  <p>The "p" tag is the one you will use the most on your pages - "p" stands for paragraph. Every paragraph you read on this template page is enclosed in "p" tags. In general, all the text on your page should be enclosed in either a set of headline tags or paragraph tags.</p>
+  <h3>a</h3>
+  <p>I provide links to other homepages on this template page. I do so, by enclosing the link texts in "a" tags. "a" tags allow you to provide attributes in he opening tag. The most important attribute is the "href" attribute. Explore the code of this template to see how it is used. For external links, it will contain the complete URL of the target page. For internal links to other pages on your homepage, use relative links starting with "/". For example "/contact.html".</p>
+  <p>There is a second, very important attribute you should use for external links, which is "target". Always set it to "_blank" for external sites so they open in a new tab in your browser and your homepage stays active. You don't want a visitor to directly leave your page when clicking on an external link.</p>
+  <p>For internal pages, it's up for you to decide if you want them to open in a separate tab or not. Mostly, you don't want this and leave out the "target" attribute for internal links.</p>
+  <p>You can read more about the "a" tag <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" target="_blank">here</a>. Notice how the previous link says just "here". This is bad practice. You should try to have a more descriptive link text.</p>
+  <h3>img</h3>
+  <p></p>
+  <h3>More Tags</h3>
+  <p>There are many more tags you can use on your pages. Here you can find a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element" target="_blank">complete list of html elements</a>.</p>
+{% endblock %}
