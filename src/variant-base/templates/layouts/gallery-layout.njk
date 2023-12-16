@@ -1,0 +1,11 @@
+{% from "../macros/mibreit-gallery.njk" import prepare %}
+{% from "../macros/get-base-page-url.njk" import getBasePageUrl %}
+{{prepare(getBasePageUrl(domain_name, use_https))}}
+<?php
+if($language == 'de')
+{
+?>
+{% include "./de/gallery-layout.njk" %}
+<?php } else { ?>
+{% include "./en/gallery-layout.njk" %}
+<?php } ?>

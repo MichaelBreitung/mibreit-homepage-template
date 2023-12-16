@@ -3,7 +3,10 @@
   "version": "2.9.2",
   "description": "Homepage template based on Gulp and Nunjucks",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gallery:update": "python tools/mibreit-gallery-manager/gallery_manager.py -i dist/galleries",
+    "gallery:create": "python tools/mibreit-gallery-manager/gallery_manager.py -i dist/galleries -n",
+    "gallery": "python tools/mibreit-gallery-manager/gallery_manager.py"
   },
   "author": "Michael Breitung",
   "license": "BSD",
@@ -16,7 +19,7 @@
     "gulp-nunjucks-render": "^2.2.3",
     "gulp-sass": "^5.1.0",
     "inline-css": "^4.0.2",
-    "node-sass": "^8.0.0",
+    "node-sass": "^9.0.0",
     "pretty": "^2.0.0",
     "through2": "^3.0.2",
     "uglify-js": "^3.13.9"

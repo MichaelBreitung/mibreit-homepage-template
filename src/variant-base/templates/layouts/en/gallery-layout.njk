@@ -4,8 +4,8 @@
 {% block php_init %}  
   {{prepare(getBasePageUrl(domain_name, use_https))}}
 {% endblock %}
-{% set page_title="<?php echo $mibreitGallery->getInfoEn()->header_h1;?>" %}
-{% set page_sub_title = "<?php echo $mibreitGallery->getInfoEn()->header_h2;?>" %}
+{% set page_title="<?php echo $mibreitGallery->getInfoEn()->title;?>" %}
+{% set page_sub_title = "<?php echo $mibreitGallery->getInfoEn()->header_h1;?>" %}
 {% set page_keywords="<?php echo $mibreitGallery->getInfoEn()->keywords\;?>" %}
 {% set page_description = "<?php echo $mibreitGallery->getInfoEn()->description\;?>" %}
 {% set page_canonical = "<?php echo $mibreitGalleryPageData->getUrl(TRUE);?>" %}
