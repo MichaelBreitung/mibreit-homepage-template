@@ -65,7 +65,7 @@ h2 {
   font-size: 2rem;
   font-weight: bold;
 }
-h2:first-child {
+h2:first-child, h2:first-of-type {
   padding-top: 1rem;
 }
 

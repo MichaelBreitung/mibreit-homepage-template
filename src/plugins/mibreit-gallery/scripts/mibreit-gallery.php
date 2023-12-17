@@ -76,7 +76,6 @@ class MibreitGalleryInfo
   public $description;
   public $title;
   public $header_h1;
-  public $header_h2;
   public $content_category;
   public $content_title;
   public $content;
@@ -89,12 +88,10 @@ class MibreitGalleryInfo
     $this->content = "";
     if ($de)
     {
-      $this->header_h2 = "Foto Galerie";
       $this->keywords = "Fotografie, Foto Galerie";
       $this->description = "Galerie mit Reise und Landschaftsfotos";    
     }
     else{      
-      $this->header_h2 = "Photo Gallery";
       $this->keywords = "Photo Gallery, Photography";
       $this->description = "Photo gallery with beautiful landscape and cityscape photos";    
     }   
@@ -106,11 +103,6 @@ class MibreitGalleryInfo
     if (!empty($tmp))
     {
       $this->header_h1 = (string) $tmp;
-    }
-    $tmp = $infoXml->header_h2;
-    if (!empty($tmp))
-    {
-      $this->header_h2 = (string) $tmp;
     }
     $tmp = $infoXml->content_category;
     if (!empty($tmp))
@@ -240,7 +232,7 @@ class MibreitGalleryDataParser
     elseif (count($this->images)) {
       return $this->images[0];
     }
-    else 
+else 
     {
       return null;
     }
