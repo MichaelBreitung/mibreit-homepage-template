@@ -149,6 +149,14 @@ Inside your homepage directory, you'll notice a _src_ folder. The source of the 
 
 **To build your homepage, run ``gulp`` in the terminal of VSCode**. It is the most important command you must remember. You must use it every time you want to publish new content to your web server.
 
+## Test
+
+To test your homepage, use [Laragon](#Laragon). Open it and select the the **dist** folder as _Document Root_, after opening the _Preferences_.
+
+![Laragon-Preferences](C:\mibreit-photo\Homepage\homepage-template\doc\images\usage-guide\Laragon-Preferences.jpg)
+
+Afterward, press _Start All_. In your browser of choice, enter ``http://localhost`` in the address bar. Your locally built homepage will open. Navigate through the different pages and check the content.
+
 ## Content Overview
 
 In this section, I give you an overview of the Homepage Template. I'll explain the folder structure, the purpose of the different files, and where you will add your content.
@@ -194,37 +202,25 @@ Inside the _src_ folder, you will find a directory called **pages**. This is whe
 
 ### Pages
 
-To create a page inside of **pages**, copy the **page-template.html** file from the _doc_ folder into the desired directory under _pages_ and rename it to your desired page title. Run ``gulp`` to build the page and then navigate to the newly created file. In it, you will find a guide on how to add content.
+To create a page inside of **pages**, copy the **page-template.html** file from the _doc_ folder into the target directory under _pages_ and rename it to your desired page title. Run ``gulp`` to build the homepage and navigate to the newly created page as described under [Test](#Test). In it, you will find a guide on how to add content.
 
 ### Galleries
 
-Galleries are special pages you can use to display your photos. To create a gallery, you must first initialize the gallery manager once:
+Galleries are special pages you can use to display your photos. To create and manage a gallery, you must first initialize the gallery manager once:
 
-	1. Run ``git submodule init`` in the terminal, followed by ``git submodule update --remote``.
-	1. Check that a new **tools** folder with a **mibreit-gallery-manager** folder is present.
+1. Run ``git submodule init`` in the terminal, followed by ``git submodule update --remote``.
+2. Check that a new **tools** folder with a **mibreit-gallery-manager** folder is present. In the terminal, switch to that new folder by executing ``cd tools/mibreit-gallery-manager/``
+3. Install _pillow_ by executing ``pip install pillow``. This tool is used to create small versions of your photos that are used to navigate through the gallery.
 
-Then, for each gallery you want to create, perform the following steps:
+#### Creating a New Gallery
+
+For each gallery you want to create, perform the following steps:
 
 1. Create a folder for your gallery inside of **pages/galleries**. Inside this folder you can create the individual gallery folders. For example a gallery for seascape photos, mountain photos, woodland photos, and architecture photos. Or you can create galleries for different countries as I did on [my homepage](https://www.mibreit-photo.com/galleries.html).
-
 2. Copy the **gallery-template.php** file from the _doc_ folder into the newly created gallery directory and rename it to **index.php**.
-
 3. Execute ``npm run gallery:create``. When asked for a gallery name, provide the name of the gallery folder you just created.
-
 4. Execute ``gulp`` to build your homepage.
-
-5. Under **dist/galleries**, you will now find your gallery directory with the **index.php**, an **gallery.xml** file, a **images** folder, and a **small** folder.
-
-6. Prepare your photos for web and place them inside the **images** folder, where you find the **replaceme.jpg** file. Give the images proper names for SEO. If your image names consist of multiple words, separate them with "-". Don't use spaces or other special characters. 
-
-7. Delete the **replaceme.jpg** file once you have added your first images.
-
-8. Execute ``npm run gallery:update`` and follow the instructions. This command can be used, whenever you make changes to the gallery by either adding new photos to the **images** folder, or by removing photos from it. The script will ask you, if you want an image removed from the folder, or added to the gallery. Then it will ask for a caption / title. Finally, you will be asked to provide a description in English and German. If you only plan to have a gallery in either of those languages, just leave one of the two descriptions blank.
-
-   You will also be asked for the **index** at which the image shall be added. The first images will be added to **index** **0**. Afterward, you will get a list with the already added files and can select the index before which the new photo will be inserted.
-
-   **Don't interrupt this step. It currently only works, if you go through all photos.**
-
+5. Under **dist/galleries**, you will now find your gallery directory with the **index.php**, an **gallery.xml** file, an **images** folder, and a **small** folder.
 9. Open the **gallery.xml** file inside your new gallery. You will find several "TODO" fields. Add appropriate information for your gallery:
 
    - **keywords** - Provide SEO optimized keywords for the gallery.
@@ -234,6 +230,24 @@ Then, for each gallery you want to create, perform the following steps:
    - **content_category** - This information is not used by the default Homepage Template. You can leave it blank.
    - **content_title** - This information is not used by the default Homepage Template. You can leave it blank. 
    - **content** - This information is not used by the default Homepage Template. You can leave it blank. 
+
+Your new gallery is now created, but still empty. If you open it in the browser, you'll just see a single, empty image that is added as a place holder. To add your own photos, proceed to the next section.
+
+#### Adding Photos to an Existing Gallery
+
+Adding new photos to an existing gallery is easy:
+
+1. Prepare your photos for web and place them inside the **images** folder of your gallery under **dist**. You will find a **replaceme.jpg** file there at first. Give the images proper names for SEO. If your image names consist of multiple words, separate them with "-". Don't use spaces or other special characters. 
+
+2. Delete the **replaceme.jpg** file once you have added your first images.
+
+3. Execute ``npm run gallery:update`` and follow the instructions. This command can be used, whenever you make changes to the gallery by either adding new photos to the **images** folder, or by removing photos from it. The script will ask you, if you want an image removed from the folder or added to the gallery. Then it will ask for a caption / title. Finally, you will be asked to provide a description in English and German. If you only plan to have a gallery in either of those languages, just leave one of the two descriptions blank.
+
+   You will also be asked for the **index** at which the image shall be added. For the first image use **index** **0**. Afterward, you will get a list with the already added photos, and you can select the index before which the new photo will be inserted.
+
+   **Don't interrupt this step. It currently only works, if you go through all photos.**
+
+Once you are finished, you can test your gallery in the browser. The photos should now appear.
 
 ## Appendix
 
@@ -248,6 +262,7 @@ Then, for each gallery you want to create, perform the following steps:
 - **Build** - Refers to the process of compiling the source files of your homepage - contained in _src_ folder.
 - **HTML** - HTML is the standard markup language of the web. Static homepages use it to structure their content. 
 - **PHP** - If the static content that HTML provides is not sufficient to present content, PHP can be used to dynamically create the markup that is sent to the users browser on the server. The Homepage Template uses PHP, for example, to create the galleries. WordPress is also based on PHP.
+- **SEO** - It stand for Search Engine Optimization. If you want your homepage to rank on google, you should take it seriously. Here is a good [free guide on how to apply SEO](https://www.fuelyourphotos.com/seo-for-photographers/) to your homepage.
 - **SERP** - Search Engine Page Rank or rankings of your pages on Google.
 - **URL** - The full address of a page of your homepage as a visitor would find it in the address bar of his / her browser.
 - **Web Server** - Your web hosting provider will have several servers running in the cloud / internet. You will host your website on such a server so it can be accessed by other people browsing the internet. For this, your provider will supply you with login and upload information. 
@@ -256,3 +271,4 @@ Then, for each gallery you want to create, perform the following steps:
 
 - [Node.js Installation on macOS](https://tecadmin.net/install-nvm-macos-with-homebrew/)
 - [PhpMyAdmin Installation  for Laragon](https://dev.to/dendihandian/adding-phpmyadmin-to-laragon-lite-j96)
+- [SEO Guide for Photographers](https://www.fuelyourphotos.com/seo-for-photographers/)
