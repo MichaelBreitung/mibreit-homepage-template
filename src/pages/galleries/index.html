@@ -1,0 +1,23 @@
+{% set page_title="Enter your SEO optimized page title here" %}
+{% set page_keywords="List of Keywords focussing on topic of page - SEO optimized" %}
+{% set page_description="Description of what the page is about - SEO optimized" %}
+{% set page_canonical = "/galleries/" %}
+{% set page_active_navigation = "Inside page-data.json, you defined the navigation for the homepage. Here you specify, which navigation tab shall be active for the page - example: Home" %}
+{% set page_de = "If you have a bi-lingual homepage and a german version for this page exists, put the relative link here - example /german/contact-ger.html" %}
+{% extends "./layouts/en/content-layout.njk" %} 
+{% block content %}
+  <h1>Galleries</h1>
+  <table class="content__table galleries__table">
+    <tr title="Name of the gallery">
+      <td class="width-small">
+        <a href="test/"><img src="test/small/test.jpg" alt="image description" title="image title" width="200" height="133" ></a>
+      </td>
+      <td>
+        <h2>
+          <a href="test/">Gallery Title</a>
+        </h2>
+        <p>Gallery Description.</p>
+      </td>
+    </tr>
+  </table>
+{% endblock %}

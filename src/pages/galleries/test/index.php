@@ -1,0 +1,1 @@
+{% include "./layouts/gallery-layout.njk" %}
