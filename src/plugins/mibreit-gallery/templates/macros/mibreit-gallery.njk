@@ -128,10 +128,11 @@
   echo "<figure>"; 
   {{_image(item, de, false, old_lazy)}}
   {{_image(item, de, true)}}
-  if (${{item}}->altEn != ${{item}}->caption)
-  {
-    echo "<figcaption><p>{% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %}</p></figcaption>"; 
-  }
+  {% if de %}
+  echo "<figcaption><p>${{item}}->altDe</p></figcaption>"; 
+  {% else %}
+  echo "<figcaption><p>${{item}}->altEn</p></figcaption>"; 
+  {% endif %}
   echo "</figure>\n";
 {% endmacro %}
 

@@ -29,7 +29,7 @@ var mibreitGallerySetup = function (containerSelector, thumbContainerSelector, t
     });
   }
 
-  mibreitGalleryCaption(gallery, container, figCaptions);
+  mibreitGalleryImageDescription(gallery, container, figCaptions);
   mibreitGalleryHistory(gallery);
   mibreitGalleryBackgroundColor(gallery);
 

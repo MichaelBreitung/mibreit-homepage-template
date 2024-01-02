@@ -1,5 +1,5 @@
 {% set page_active_navigation = "Portfolio" %}
-{% extends "./layouts/en/gallery-layout.njk" %}
+{% extends "./layouts/gallery-layout.njk" %}
 {% block content %}
 {{ super() }}
 <h2>Some Headline</h2>

@@ -7,60 +7,70 @@ class MibreitGalleryImage
   public $altDe;        
   public $imageUrl;
   public $thumbUrl;
+  public $prints;
 
-  function __construct($imageXml, $path, $thumbPath, $relativePath) {
-    $this->caption = "image";
-    $this->altEn = "image";
-    $this->altDe = "image";
+  function __construct()
+  {
+    $this->caption = "";
+    $this->altEn = "";
+    $this->altDe = "";
     $this->imageUrl = "";
-
+    $this->thumbUrl = "";
     $this->prints = false;
     $this->woocommerce = "";
     $this->limited = false;
     $this->size = "large";
+  }
 
+  function initFromXml($imageXml, $path, $thumbPath, $relativePath) {
     $tmp = $imageXml->filename;
     if (!empty($tmp))
     {
       $this->imageUrl = $relativePath . $path . (string) $tmp;
       $this->thumbUrl = $relativePath . $thumbPath . (string) $tmp;
-    }
-    $tmp = $imageXml->caption;
-    if (!empty($tmp))
-    {
-      $this->caption = (string) $tmp;
-      $this->altEn = (string) $tmp;
-      $this->altDe = (string) $tmp;
-    }
-    $tmp = $imageXml->alt;    
-    if (!empty($tmp))
-    {    
-      $this->altEn = (string) $tmp;
-    }
-    $tmp = $imageXml->altDe;
-    if (!empty($tmp))
-    {
-      $this->altDe = (string)  $tmp;
-    }   
-    $prints = $imageXml->prints;
-    if (!empty($prints))
-    {
-      $this->prints = true;
-      $tmp = $prints["woocommerce"];
+
+      $tmp = $imageXml->caption;
       if (!empty($tmp))
       {
-        $this->woocommerce = (string) $tmp;
+        $this->caption = (string) $tmp;
+        $this->altEn = (string) $tmp;
+        $this->altDe = (string) $tmp;
       }
-      $tmp = $prints["limited"];
+      $tmp = $imageXml->alt;    
+      if (!empty($tmp))
+      {    
+        $this->altEn = (string) $tmp;
+      }
+      $tmp = $imageXml->altDe;
       if (!empty($tmp))
       {
-        $this->limited = (boolean) $tmp;
-      }
-      $tmp = $prints["size"];
-      if (!empty($tmp))
+        $this->altDe = (string)  $tmp;
+      }   
+      $prints = $imageXml->prints;
+      if (!empty($prints))
       {
-        $this->size = (string) $tmp;
+        $this->prints = true;
+        $tmp = $prints["woocommerce"];
+        if (!empty($tmp))
+        {
+          $this->woocommerce = (string) $tmp;
+        }
+        $tmp = $prints["limited"];
+        if (!empty($tmp))
+        {
+          $this->limited = (boolean) $tmp;
+        }
+        $tmp = $prints["size"];
+        if (!empty($tmp))
+        {
+          $this->size = (string) $tmp;
+        }
       }
+      return true;
+    } 
+    else 
+    {
+      return false;
     }
   }
 
@@ -191,8 +201,11 @@ class MibreitGalleryDataParser
       {
         foreach ($images->children() as $imageXml)
         {
-          $image = new MibreitGalleryImage($imageXml, $imagePath, $thumbPath, $relativePath);
-          array_push($this->images, $image);
+          $image = new MibreitGalleryImage();
+          if ($image->initFromXml($imageXml, $imagePath, $thumbPath, $relativePath))
+          {
+            array_push($this->images, $image);
+          }
         }  
       } 
     }   
