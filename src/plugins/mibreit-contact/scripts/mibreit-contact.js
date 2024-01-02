@@ -17,7 +17,7 @@ mibreitFormValidator.documentReady(function () {
   var messagesGerman = {
     email: {
       required: 'Bitte geben Sie eine Email Address ein',
-      invalid: 'Bitte geben Sie eine <em>valide</em> Email Address ein',
+      invalid: 'Bitte geben Sie eine valide Email Address ein',
     },
     subject: {
       required: 'Bitten nennen Sie den Betreff',
@@ -33,7 +33,7 @@ mibreitFormValidator.documentReady(function () {
   var messagesEnglish = {
     email: {
       required: 'Please enter an email address',
-      invalid: 'Please enter <em>valid</em> eamil address',
+      invalid: 'Please enter valid email address',
     },
     subject: {
       required: 'Do not forget to enter a subject',

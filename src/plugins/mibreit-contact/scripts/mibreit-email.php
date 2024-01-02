@@ -8,8 +8,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $message = trim($_POST["message"]);  
     $lang = trim($_POST["lang"]);
 
+    if ( empty($lang) ) {
+        http_response_code(400);
+        echo "Invalid Submission."; 
+        exit;
+    }
+
     // Check that data was sent to the mailer.
-    if ( empty($lang) OR empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if ( empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         // Set a 400 (bad request) response code and exit.
         http_response_code(400);
         if ($lang == "de")
