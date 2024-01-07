@@ -208,6 +208,21 @@ select {
   box-sizing: border-box;
 }
 
+button, a.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  border: none;
+  background-color: $button-background-color;
+  color: $button-link-color;
+  font-size: 1.5rem;
+  padding: 0.25rem;
+}
+
+button:focus, a.button:focus {
+  background-color: $form-background-focus;
+}
+
 /******* alignment ***********/
 /*****************************/
 

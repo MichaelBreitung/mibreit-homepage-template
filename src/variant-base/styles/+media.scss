@@ -21,6 +21,14 @@
     font-size: 75%;
   }
 
+  
+  input,
+  textarea,
+  button,
+  a.button {
+    font-size: 1.4rem;
+  }
+
   .navigation__container {
     .navigation {
       flex-direction: row;
@@ -124,7 +132,9 @@
   }
 
   input,
-  textarea {
+  textarea,
+  button,
+  a.button {
     font-size: 1.1rem;
   }
 
