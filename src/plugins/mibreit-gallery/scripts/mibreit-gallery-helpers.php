@@ -2,8 +2,9 @@
 <?php
 class MibreitGalleryPageData
 {
+  private $baseUrl;
   private $relativeUrl;
-  private $basePath;
+  private $absoluteBaseUrl;
 
   function __construct()
   {
@@ -14,40 +15,58 @@ class MibreitGalleryPageData
     {
       $this->relativeUrl = substr($this->relativeUrl, 1);
     }
+
+    $end_of_url = strrpos($this->relativeUrl, "/");
+    $this->baseUrl = substr($this->relativeUrl, 0, $end_of_url) . "/";
+    $this->absoluteBaseUrl = "{{getBasePageUrl(domain_name, use_https)}}/" . $this->baseUrl;  
+    $pos_of_lan_de = strrpos($this->relativeUrl, "lan=de");
+    $pos_of_image_nr = strrpos($this->relativeUrl, "imageNr");
+
+    // build proper options string
+    $options_string = "";
+    if ($pos_of_lan_de)
+    {
+      $options_string .= "?lan=de";
+      if ($pos_of_image_nr)
+      {
+        $options_string .= "&";
+      }
+    }
+    else if ($pos_of_image_nr) 
+    {
+      $options_string .= "?";
+    }
     
-    // make sure all relativeUrls will include index.php and language parameter
-    if (str_ends_with($this->relativeUrl, "/"))
+    if ($pos_of_image_nr) 
     {
-      $this->relativeUrl .= "index.php?lan=en";
-    }
-    elseif (strpos($this->relativeUrl, "?lan") == false )
-    {
-      // if no language parameter is given, en must be added -> otherwise we get multiple canonicals
-      $posImageNr = strpos($this->relativeUrl, "?imageNr");
-      if ($posImageNr)
+      $end_pos_of_image_nr = strpos($this->relativeUrl, "&", $pos_of_image_nr);
+      $length_of_image_nr = null;
+      if ($end_pos_of_image_nr)
       {
-        $this->relativeUrl = substr_replace($this->relativeUrl, "lan=en&", $posImageNr+1, 0);
+        $length_of_image_nr = $end_pos_of_image_nr - $pos_of_image_nr;
       }
-      else
-      {
-        $this->relativeUrl .= "?lan=en";
-      }
+      $options_string .= substr($this->relativeUrl, $pos_of_image_nr, $length_of_image_nr);
     }
-    $this->basePath = "{{getBasePageUrl(domain_name, use_https)}}/" . substr($this->relativeUrl, 0, strrpos($this->relativeUrl, "/", 0)) . "/";    
+
+    $this->relativeUrl = substr($this->relativeUrl, 0, $end_of_url) . "/" . $options_string;
   }
 
   // returns the gallery url relative to the domain without a starting /
   //
   // Example:
-  //   full url   - https://www.my-site.com/gallery/some-location/index.php
-  //   return url - gallery/some-location/index.php
-  public function getUrl($canonical)
+  //   full url   - https://www.my-site.com/gallery/some-location/
+  //   return url - gallery/some-location/
+  public function getRelativeUrl($canonical)
   {
     if ($canonical)
     {
       // exclude imageNr parameter if present, to get unique canonical
       $imageNrPos = strpos($this->relativeUrl, "&imageNr");
-      if ($imageNrPos != FALSE)
+      if (!$imageNrPos)
+      {
+        $imageNrPos = strpos($this->relativeUrl, "?imageNr");
+      }
+      if ($imageNrPos)
       {
         return substr($this->relativeUrl, 0, $imageNrPos);
       }      
@@ -56,9 +75,15 @@ class MibreitGalleryPageData
   }
 
   // returns the gallery url relative to the domain without a starting / in encoded form 
-  public function getUrlEncoded($canonical)
+  public function getRelativeUrlEncoded($canonical)
   {
-    return urlencode($this->getUrl($canonical));
+    return urlencode($this->getRelativeUrl($canonical));
+  }
+
+  
+  public function getBaseUrl()
+  {
+    return $this->baseUrl;
   }
 
   // returns the abolute gallery url's base path including the domain, but excluding the page file name
@@ -66,9 +91,9 @@ class MibreitGalleryPageData
   // Example:
   //   full url   - https://www.my-site.com/gallery/some-location/index.php
   //   return url - https://www.my-site.com/gallery/some-location/
-  public function getBasePath()
+  public function getAbsoluteBaseUrl()
   {
-    return $this->basePath;
+    return $this->absoluteBaseUrl;
   }
 }
 ?>

@@ -56,7 +56,7 @@
     $mibreitGalleryPageData = new MibreitGalleryPageData();   
     if ($mibreitGallery->getNumberImages())
     {
-      $page_image = $mibreitGalleryPageData->getBasePath() . $mibreitGallery->getImage($imageNr)->imageUrl;
+      $page_image = $mibreitGalleryPageData->getAbsoluteBaseUrl() . $mibreitGallery->getImage($imageNr)->imageUrl;
     }
     else 
     {

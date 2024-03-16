@@ -26,13 +26,13 @@
     <meta itemprop="height" content="<?php echo getimagesize($page_image)[1];?>">
   </div>
   <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+    {% if page_author_image | length %}
     <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-      {% if page_author_image | length %}
       <meta itemprop="url" content="{{getPageImage(getBasePageUrl(domain_name), page_author_image)}}">
-      {% endif %}
-      <meta itemprop="width" content="176">
-      <meta itemprop="height" content="200">
+      <meta itemprop="width" content="{{page_author_image_width}}">
+      <meta itemprop="height" content="{{page_author_image_height}}">
     </div>
+    {% endif %}
     <meta itemprop="name" content="{{page_author}}">
   </div>
   <?php $modified_date = get_the_modified_date('Y-m-d');$publish_date = get_the_date('Y-m-d'); ?>
@@ -52,6 +52,8 @@ if (strlen($affiliateBanner) > 0)
 }	
 ?>  
 {% endblock %}
-{% block donate %}
-{% include "./parts/en/donate.njk" %}
+{% block newsletter %}
+<div class="content">
+{% include "./parts/wordpress/newsletter-box.njk" %}
+</div>
 {% endblock %}  

@@ -5,8 +5,8 @@
 {% set page_sub_title = "<?php echo $mibreitGallery->getInfoEn()->header_h1;?>" %}
 {% set page_keywords="<?php echo $mibreitGallery->getInfoEn()->keywords\;?>" %}
 {% set page_description = "<?php echo $mibreitGallery->getInfoEn()->description\;?>" %}
-{% set page_canonical = "<?php echo $mibreitGalleryPageData->getUrl(TRUE);?>" %}
-{% set page_with_parameters = "<?php echo $mibreitGalleryPageData->getUrl(FALSE);?>" %}
+{% set page_canonical = "<?php echo $mibreitGalleryPageData->getRelativeUrl(TRUE);?>" %}
+{% set page_with_parameters = "<?php echo $mibreitGalleryPageData->getRelativeUrl(FALSE);?>" %}
 {% set page_image = "<?php echo $page_image ?>" %}
 {% set page_image_width = "<?php echo getimagesize($page_image)[0] ?>"%}
 {% set page_image_height = "<?php echo getimagesize($page_image)[1] ?>"%}

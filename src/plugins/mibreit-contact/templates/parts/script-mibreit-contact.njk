@@ -1,1 +1,10 @@
 <script src="/scripts/mibreit-contact/mibreit-contact.min.js"></script>
+<script>
+window.addEventListener('load',function () {
+    {% if page_smtp.username | length and page_smtp.password | length and page_smtp.from | length %}
+        mibreitContact(true);
+    {% else %}
+        mibreitContact(false);
+    {% endif %}
+});
+</script>

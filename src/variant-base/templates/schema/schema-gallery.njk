@@ -59,9 +59,9 @@
       echo "\"caption\": \"" . {{image}}->altEn . "\",\n";
     }
     {% endif %} 
-    echo "\"url\": \"" . $mibreitGalleryPageData->getBasePath() . {{image}}->imageUrl . "\",\n";
-    echo "\"contentUrl\": \"" . $mibreitGalleryPageData->getBasePath() . {{image}}->imageUrl . "\",\n";
-    echo "\"thumbnailUrl\": \"" . $mibreitGalleryPageData->getBasePath() . {{image}}->thumbUrl . "\",\n";
+    echo "\"url\": \"" . $mibreitGalleryPageData->getAbsoluteBaseUrl() . {{image}}->imageUrl . "\",\n";
+    echo "\"contentUrl\": \"" . $mibreitGalleryPageData->getAbsoluteBaseUrl() . {{image}}->imageUrl . "\",\n";
+    echo "\"thumbnailUrl\": \"" . $mibreitGalleryPageData->getAbsoluteBaseUrl() . {{image}}->thumbUrl . "\",\n";
     $size = getimagesize({{image}}->imageUrl);  
     echo "\"width\": \"" . $size[0] . "\",\n";
     echo "\"height\": \"" . $size[1] . "\"\n";

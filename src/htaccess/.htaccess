@@ -52,4 +52,5 @@
 # handling of not found error pages
 ErrorDocument 404 /errors/error404.html 
 ErrorDocument 403 /errors/error403.html 
+ErrorDocument 400 /errors/error400.html 
 

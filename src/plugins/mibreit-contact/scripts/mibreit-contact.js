@@ -1,4 +1,4 @@
-mibreitFormValidator.documentReady(function () {
+var mibreitContact = function (smtp = false) {
   var form = mibreitFormValidator.getElement('#contact');
   var formReply = mibreitFormValidator.getElement('#form-reply');
   var emailElement = mibreitFormValidator.getElement("input[name='email']");
@@ -91,8 +91,15 @@ mibreitFormValidator.documentReady(function () {
         }
       };
 
-      xhttp.open('POST', '/scripts/mibreit-contact/mibreit-email.php', true);
+      if (smtp)
+      {
+        xhttp.open('POST', '/scripts/mibreit-contact/mibreit-email-v2.php', true);
+      }
+      else {
+        xhttp.open('POST', '/scripts/mibreit-contact/mibreit-email.php', true);
+      }
+      
       xhttp.send(formData);
     }
   });
-});
+};

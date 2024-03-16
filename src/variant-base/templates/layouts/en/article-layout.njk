@@ -1,0 +1,33 @@
+{% from "../../macros/get-base-page-url.njk" import getBasePageUrl %}
+{% from "../../macros/get-page-image.njk" import getPageImage %}
+{% extends "./content-layout.njk" %}
+{% block content %}
+  <article itemscope itemtype="https://schema.org/Article">
+  {% block article %}{% endblock %}
+
+  <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+    <meta itemprop="name" content="{{page_author}}">
+  </div>   
+  <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+  {% if page_image %}
+    <meta itemprop="url" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_image)}}" >
+    <meta itemprop="width" content="{{page_image_width}}">
+    <meta itemprop="height" content="{{page_image_height}}"  >
+  {% elif page_header_image %}
+    <meta itemprop="url" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_header_image)}}" >
+    <meta itemprop="width" content="{{page_header_image_width}}">
+    <meta itemprop="height" content="{{page_header_image_height}}"  >
+  {% endif %}
+  </div>
+  <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+    {% if page_author_image | length %}
+    <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+      <meta itemprop="url" content="{{getPageImage(getBasePageUrl(domain_name), page_author_image)}}">
+      <meta itemprop="width" content="{{page_author_image_width}}">
+      <meta itemprop="height" content="{{page_author_image_height}}">
+    </div>
+    {% endif %}
+    <meta itemprop="name" content="{{page_author}}">
+  </div>
+  </article>
+{% endblock%}

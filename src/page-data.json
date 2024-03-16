@@ -12,6 +12,11 @@
   },
   "page_name": "Name of page",
   "page_email": "your.email@your-domain",
+  "page_smtp": {
+    "username": "",
+    "password": "",
+    "from": ""
+  },
   "page_contact": {
     "en": "/contact.html",
     "de": "/german/contact.html"

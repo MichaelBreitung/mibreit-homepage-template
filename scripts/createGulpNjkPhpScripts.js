@@ -52,6 +52,13 @@ const createGulpPhpScripts = function (templates, plugins) {
     plugins.forEach(function (pluginFolder) {
       tasks.push(createPhpPluginScripts(pluginFolder));
     });
+
+    // copy the vendor folder if php dependencies are installed by the plugins
+    tasks.push(function() {
+      return gulp
+          .src(`${baseFolder}/plugins/vendor/**/*.*`)
+          .pipe(gulp.dest(`${outputFolder}/scripts/vendor`));
+    });
   }
 
   return gulp.parallel(tasks);
