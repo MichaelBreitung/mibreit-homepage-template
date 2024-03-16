@@ -91,10 +91,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         http_response_code(500);
         if ($lang == "de")
         {
-            echo "Es gab ein Problem mit dem Versenden der Email. Bitte senden Sie direkt an {{page_email}}. {$mail->ErrorInfo}";
+            echo "Es gab ein Problem mit dem Versenden der Email. Bitte senden Sie direkt an {{page_email}}.";
         }
         else{
-            echo "There was a problem with sending the Email. Please send directly to {{page_email}}. {$mail->ErrorInfo}";
+            echo "There was a problem with sending the Email. Please send directly to {{page_email}}.";
         }          
         exit;
     }    
