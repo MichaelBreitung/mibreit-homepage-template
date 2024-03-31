@@ -11,16 +11,16 @@ var mibreitGalleryImageDescription = function (gallery, container, descriptions)
   var showImageDescription = function (idx) {
     hideImageDescription();
     if (idx >= 0 && idx < descriptions.length) {
-      descriptions[idx].style.setProperty('opacity', '1');
+      descriptions[idx].style.setProperty("opacity", "1");
       currentActiveImageDescription = idx;
     }
   };
 
   var hideImageDescription = function () {
     if (currentActiveImageDescription != -1) {
-      descriptions[currentActiveImageDescription].style.removeProperty('opacity');
+      descriptions[currentActiveImageDescription].style.removeProperty("opacity");
       if (descriptions[currentActiveImageDescription].style.length === 0) {
-        descriptions[currentActiveImageDescription].removeAttribute('style');
+        descriptions[currentActiveImageDescription].removeAttribute("style");
       }
       currentActiveImageDescription = -1;
     }
@@ -49,7 +49,7 @@ var mibreitGalleryImageDescription = function (gallery, container, descriptions)
     }
   };
 
-  container.addEventListener('mouseenter', function () {
+  container.addEventListener("mouseenter", function () {
     stopHoverTimer();
     if (!fullscreenActive) {
       hoverTimer = setTimeout(function () {
@@ -58,7 +58,7 @@ var mibreitGalleryImageDescription = function (gallery, container, descriptions)
       }, hoverTimerTimeout);
     }
   });
-  container.addEventListener('mouseleave', function () {
+  container.addEventListener("mouseleave", function () {
     stopHoverTimer();
     hideImageDescription();
     imageDescriptionVisible = false;

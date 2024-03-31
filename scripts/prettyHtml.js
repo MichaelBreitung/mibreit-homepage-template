@@ -5,6 +5,6 @@ const prettyHtml = function (file, enc, callback) {
   const trimmedString = prettyString.replace(/^ +/gm, "");
   file.contents = Buffer.from(trimmedString);
   callback(null, file);
-}
+};
 
 module.exports = prettyHtml;

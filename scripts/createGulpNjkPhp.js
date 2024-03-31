@@ -8,7 +8,7 @@ const { baseFolder, outputFolder } = require("./constants");
 
 const createGulpPhp = function (templates) {
   if (typeof templates !== "string") {
-    throw (new Error("createGulpPhp: no templates folder specified"));
+    throw new Error("createGulpPhp: no templates folder specified");
   }
 
   const njkPhp = function () {
@@ -29,7 +29,7 @@ const createGulpPhp = function (templates) {
       )
       .pipe(through2.obj(prettyHtml))
       .pipe(gulp.dest(outputFolder));
-  }
+  };
   return njkPhp;
 };
 

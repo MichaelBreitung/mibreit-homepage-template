@@ -11,38 +11,31 @@ class MibreitGalleryPageData
     $this->relativeUrl = $_SERVER["REQUEST_URI"];
 
     // request uri might start with / - remove it
-    if (str_starts_with($this->relativeUrl, "/"))
-    {
+    if (str_starts_with($this->relativeUrl, "/")) {
       $this->relativeUrl = substr($this->relativeUrl, 1);
     }
 
     $end_of_url = strrpos($this->relativeUrl, "/");
     $this->baseUrl = substr($this->relativeUrl, 0, $end_of_url) . "/";
-    $this->absoluteBaseUrl = "{{getBasePageUrl(domain_name, use_https)}}/" . $this->baseUrl;  
+    $this->absoluteBaseUrl = "{{getBasePageUrl(domain_name, use_https)}}/" . $this->baseUrl;
     $pos_of_lan_de = strrpos($this->relativeUrl, "lan=de");
     $pos_of_image_nr = strrpos($this->relativeUrl, "imageNr");
 
     // build proper options string
     $options_string = "";
-    if ($pos_of_lan_de)
-    {
+    if ($pos_of_lan_de) {
       $options_string .= "?lan=de";
-      if ($pos_of_image_nr)
-      {
+      if ($pos_of_image_nr) {
         $options_string .= "&";
       }
-    }
-    else if ($pos_of_image_nr) 
-    {
+    } else if ($pos_of_image_nr) {
       $options_string .= "?";
     }
-    
-    if ($pos_of_image_nr) 
-    {
+
+    if ($pos_of_image_nr) {
       $end_pos_of_image_nr = strpos($this->relativeUrl, "&", $pos_of_image_nr);
       $length_of_image_nr = null;
-      if ($end_pos_of_image_nr)
-      {
+      if ($end_pos_of_image_nr) {
         $length_of_image_nr = $end_pos_of_image_nr - $pos_of_image_nr;
       }
       $options_string .= substr($this->relativeUrl, $pos_of_image_nr, $length_of_image_nr);
@@ -58,20 +51,17 @@ class MibreitGalleryPageData
   //   return url - gallery/some-location/
   public function getRelativeUrl($canonical)
   {
-    if ($canonical)
-    {
+    if ($canonical) {
       // exclude imageNr parameter if present, to get unique canonical
       $imageNrPos = strpos($this->relativeUrl, "&imageNr");
-      if (!$imageNrPos)
-      {
+      if (!$imageNrPos) {
         $imageNrPos = strpos($this->relativeUrl, "?imageNr");
       }
-      if ($imageNrPos)
-      {
+      if ($imageNrPos) {
         return substr($this->relativeUrl, 0, $imageNrPos);
-      }      
-    }    
-    return $this->relativeUrl;    
+      }
+    }
+    return $this->relativeUrl;
   }
 
   // returns the gallery url relative to the domain without a starting / in encoded form 
@@ -80,7 +70,7 @@ class MibreitGalleryPageData
     return urlencode($this->getRelativeUrl($canonical));
   }
 
-  
+
   public function getBaseUrl()
   {
     return $this->baseUrl;

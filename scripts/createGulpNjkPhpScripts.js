@@ -1,12 +1,12 @@
-const gulp = require('gulp');
-const nunjucksRender = require('gulp-nunjucks-render');
-const data = require('gulp-data');
-const page_data = require('../src/page-data.json');
-const { baseFolder, outputFolder } = require('./constants');
+const gulp = require("gulp");
+const nunjucksRender = require("gulp-nunjucks-render");
+const data = require("gulp-data");
+const page_data = require("../src/page-data.json");
+const { baseFolder, outputFolder } = require("./constants");
 
 const createGulpPhpScripts = function (templates, plugins) {
-  if (typeof templates !== 'string') {
-    throw new Error('createGulpPhpScripts: no templates folder specified');
+  if (typeof templates !== "string") {
+    throw new Error("createGulpPhpScripts: no templates folder specified");
   }
 
   const source = [`${baseFolder}/scripts/**/*.php`];
@@ -18,7 +18,7 @@ const createGulpPhpScripts = function (templates, plugins) {
       .pipe(
         nunjucksRender({
           path: [`${baseFolder}/${templates}/templates`],
-          ext: '.php',
+          ext: ".php",
           envOptions: {
             autoescape: false,
             throwOnUndefined: true,
@@ -38,7 +38,7 @@ const createGulpPhpScripts = function (templates, plugins) {
           .pipe(
             nunjucksRender({
               path: [`${baseFolder}/${templates}/templates`],
-              ext: '.php',
+              ext: ".php",
               envOptions: {
                 autoescape: false,
                 throwOnUndefined: true,
@@ -54,10 +54,8 @@ const createGulpPhpScripts = function (templates, plugins) {
     });
 
     // copy the vendor folder if php dependencies are installed by the plugins
-    tasks.push(function() {
-      return gulp
-          .src(`${baseFolder}/plugins/vendor/**/*.*`)
-          .pipe(gulp.dest(`${outputFolder}/scripts/vendor`));
+    tasks.push(function () {
+      return gulp.src(`${baseFolder}/plugins/vendor/**/*.*`).pipe(gulp.dest(`${outputFolder}/scripts/vendor`));
     });
   }
 
