@@ -2,23 +2,22 @@ var mibreitGallerySetup = function (containerSelector, thumbContainerSelector, t
   var container = document.querySelector(containerSelector);
   var thumbContainer = document.querySelector(thumbContainerSelector);
   var titleElement = document.querySelector(titleSelector);
-  var figCaptions = document.querySelectorAll(containerSelector + ' figcaption');
+  var figCaptions = document.querySelectorAll(containerSelector + " figcaption");
 
   // reveal gallery
-  container.style.setProperty('opacity', '1');
-  thumbContainer.style.setProperty('opacity', '1');
+  container.style.setProperty("opacity", "1");
+  thumbContainer.style.setProperty("opacity", "1");
 
-  var gallery = mibreitGalleryTs.createGallery(containerSelector, containerSelector + ' img', {
+  var gallery = mibreitGalleryTs.createGallery(containerSelector, containerSelector + " img", {
     scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT,
     thumbContainerSelector,
-    thumbSelector: thumbContainerSelector + ' > img',
+    thumbSelector: thumbContainerSelector + " > img",
     numberOfVisibleThumbs: 6,
     preloaderBeforeSize: 1,
     preloaderAfterSize: 2,
   });
 
-  if (titleElement)
-  {
+  if (titleElement) {
     var viewer = gallery.getViewer();
     var imageInfo = viewer.getImageInfo();
     if (imageInfo) {
@@ -38,8 +37,8 @@ var mibreitGallerySetup = function (containerSelector, thumbContainerSelector, t
 
 var mibreitGallerySetupSimple = function (containerSelector) {
   var container = document.querySelector(containerSelector);
-  container.style.setProperty('opacity', '1');
-  var gallery = mibreitGalleryTs.createGallery(containerSelector, containerSelector + ' img', {
+  container.style.setProperty("opacity", "1");
+  var gallery = mibreitGalleryTs.createGallery(containerSelector, containerSelector + " img", {
     scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT,
     numberOfVisibleThumbs: 6,
     preloaderBeforeSize: 1,
@@ -54,20 +53,20 @@ var mibreitGallerySetupWoo = function (containerSelector, thumbContainerSelector
   var thumbContainer = document.querySelector(thumbContainerSelector);
 
   // reveal gallery
-  container.style.setProperty('opacity', '1');
-  thumbContainer.style.setProperty('opacity', '1');
+  container.style.setProperty("opacity", "1");
+  thumbContainer.style.setProperty("opacity", "1");
 
-  var gallery = mibreitGalleryTs.createGallery(containerSelector, containerSelector + ' img', {
+  var gallery = mibreitGalleryTs.createGallery(containerSelector, containerSelector + " img", {
     scaleMode: mibreitGalleryTs.EImageScaleMode.FIT_ASPECT,
     thumbContainerSelector,
-    thumbSelector: thumbContainerSelector + ' > img',
+    thumbSelector: thumbContainerSelector + " > img",
     numberOfVisibleThumbs: 4,
     preloaderBeforeSize: 1,
     preloaderAfterSize: 2,
   });
 
   mibreitGalleryBackgroundColor(gallery);
-  
+
   return gallery;
 };
 
@@ -80,8 +79,8 @@ var mibreitGallerySetupWP = function (imageSelector) {
   });
 
   images.forEach(function (image, index) {
-    image.style.setProperty('cursor', 'pointer');
-    image.addEventListener('click', function (e) {
+    image.style.setProperty("cursor", "pointer");
+    image.addEventListener("click", function (e) {
       if (!gallery.getFullscreen().isFullscreenActive()) {
         gallery.getViewer().showImage(index);
         gallery.getFullscreen().activate();
@@ -94,6 +93,6 @@ var mibreitGallerySetupWP = function (imageSelector) {
 
 var mibreitSlideshowSetup = function (containerSelector, scaleMode, zoom) {
   var container = document.querySelector(containerSelector);
-  container.style.setProperty('opacity', '1');
-  mibreitGalleryTs.createSlideshow(containerSelector + ' img', { scaleMode, interval: 4000, zoom });
+  container.style.setProperty("opacity", "1");
+  mibreitGalleryTs.createSlideshow(containerSelector + " img", { scaleMode, interval: 4000, zoom });
 };

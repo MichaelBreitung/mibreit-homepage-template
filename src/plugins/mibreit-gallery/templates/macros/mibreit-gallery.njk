@@ -28,7 +28,7 @@
 
 {# prepares has to be called before any of the other macros #}
 {% macro prepare(baseUrl) %}
-  <?php
+<?php
     $language = "en";
     if (isset($_GET['lan'])) 
     {
@@ -124,39 +124,43 @@
 
 {# private macro that should only be used internally within a php tag to create the figure markup #}
 {% macro _figure(item, de, old_lazy) %}
-  $size = getimagesize(${{item}}->imageUrl); 
-  echo "<figure>"; 
-  {{_image(item, de, false, old_lazy)}}
-  {{_image(item, de, true)}}
-  {% if de %}
-  echo "<figcaption><p>${{item}}->altDe</p></figcaption>"; 
-  {% else %}
-  echo "<figcaption><p>${{item}}->altEn</p></figcaption>"; 
-  {% endif %}
-  echo "</figure>\n";
+  $size = getimagesize(${{item}}->imageUrl); echo "<figure>";
+    {{_image(item, de, false, old_lazy)}}
+    {{_image(item, de, true)}}
+    {% if de %}
+      echo "<figcaption>
+        <p>${{item}}->altDe</p>
+      </figcaption>";
+    {% else %}
+      echo "<figcaption>
+        <p>${{item}}->altEn</p>
+      </figcaption>";
+    {% endif %}
+    echo "</figure>\n";
 {% endmacro %}
 
 {# private macro that should only be used internally within a php tag to create the image markup #}
 {% macro _image(item, de, no_script, old_lazy) %}
   {% if no_script %}
-    echo "<noscript><img src=\"" . ${{item}}->imageUrl . "\" style=\"position: absolute;\" ";
-  {% else %}
-  {% if old_lazy %}
-  echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" style=\"position: absolute;\" ";
-    echo "data-src=\"" . ${{item}}->imageUrl . "\" ";
-  {% else %}
-  echo "<img loading=\"lazy\" class=\"mibreit-LazyLoader_lazy\" style=\"position: absolute;\" ";
-    echo "src=\"" . ${{item}}->imageUrl . "\" ";
-  {% endif %}
-  {% endif %}
-  echo "title=\""    . ${{item}}->caption  . "\" ";
-  {% if not no_script %}
-    echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";
-  {% endif %}
-  echo "width=\""    . $size[0]         ."\" ";
-  echo "height=\""   . $size[1]         ."\" >"; 
-  {% if no_script %}
-  echo "</noscript>";
+    echo "<noscript><img src="\" "" .="." ${{item}}="${{item}}" -="-">imageUrl . "\" style=\"position: absolute;\" ";
+    {% else %}
+      {% if old_lazy %}
+        echo "<img src="\" /scripts/mibreit-gallery/images/image-placeholder-transparent.png\"" style="\" position:="position:" absolute;\""="absolute;\" "" ";
+    echo " data-src="\" .="." ${{item}}="${{item}}" -="-">imageUrl . "\" ";
+      {% else %}
+        echo "<img loading="\" lazy\""="lazy\" "" class="\" mibreit-lazyloader_lazy\""="mibreit-LazyLoader_lazy\" style="\" position:="position:" absolute;\""="absolute;\" ";
+    echo " src="\" .="." ${{item}}="${{item}}" -="-">imageUrl . "\" ";
+      {% endif %}
+    {% endif %}
+    echo "title=\"" . ${{item}}->caption . "\" ";
+    {% if not no_script %}
+      echo "alt=\"" .
+      {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %}
+      . "\" ";
+    {% endif %}
+    echo "width=\"" . $size[0] ."\" "; echo "height=\"" . $size[1] ."\" >";
+    {% if no_script %}
+      echo "</noscript>";
   {% endif %}
 {% endmacro %}
 
@@ -165,9 +169,9 @@
 # @param container - class name for container
 # @attention requires call to prepare() beforehand
 #}
-{% macro thumbview(container,  old_lazy) %}
+{% macro thumbview(container, old_lazy) %}
   <div class="{{container}}">
-    <?php
+  <?php
     foreach ($mibreitGallery->getImages() as $image)
     {
       $size = getimagesize($image->thumbUrl);   
@@ -227,8 +231,12 @@
     <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
   {% endif %}
   <script>
-    window.addEventListener('load',function () {
-      mibreitSlideshowSetup("{{container}}", {% if stretch %}mibreitGalleryTs.EImageScaleMode.EXPAND{% else %}mibreitGalleryTs.EImageScaleMode.FIT_ASPECT{% endif %}, {% if zoom %}true{% else %}false{% endif %});
+    window.addEventListener('load', function () {
+      mibreitSlideshowSetup("{{container}}",{% if stretch %}mibreitGalleryTs.EImageScaleMode.EXPAND
+      {% else %}
+        mibreitGalleryTs.EImageScaleMode.FIT_ASPECT{% endif %},{% if zoom %}true
+      {% else %}
+        false{% endif %});
     });
   </script>
 {% endmacro %}
@@ -241,7 +249,7 @@
 {% macro scriptSimpleGallery(container) %}
   <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
   <script>
-    window.addEventListener('load',function () { 
+    window.addEventListener('load', function () {
       mibreitGallerySetupSimple('{{container}}');
     });
   </script>
@@ -278,21 +286,20 @@
 {% macro scriptGalleryWoo(container, thumb_container) %}
   <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
   <script>
-    window.addEventListener('load',function () { 
+    window.addEventListener('load', function () {
       mibreitGallerySetupWoo('{{container}}', '{{thumb_container}}');
     });
   </script>
 {% endmacro %}
-
 
 {#
 # inserts script for gallery in Wordpress layouts
 #}
 {% macro scriptGalleryWP() %}
   <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
-  <script>    
-    window.addEventListener('load',function () { 
+  <script>
+    window.addEventListener('load', function () {
       mibreitGallerySetupWP("article > div > img");
-    });   
+    });
   </script>
 {% endmacro %}

@@ -9,7 +9,7 @@ const { baseFolder, outputFolder } = require("./constants");
 
 const createGulpHtml = function (templates) {
   if (typeof templates !== "string") {
-    throw (new Error("createGulpHtml: no templates folder specified"));
+    throw new Error("createGulpHtml: no templates folder specified");
   }
 
   const njkHtml = function () {
@@ -30,9 +30,8 @@ const createGulpHtml = function (templates) {
       .pipe(through2.obj(inlineNewsletterCss))
       .pipe(through2.obj(prettyHtml))
       .pipe(gulp.dest(outputFolder));
-  }
+  };
   return njkHtml;
 };
 
 module.exports = createGulpHtml;
-

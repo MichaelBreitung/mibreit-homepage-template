@@ -11,15 +11,15 @@
   height: 100%;
   width: 100%;
   z-index: 99;
-  background-color:rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   animation: fadein 1s;
 }
 
 @keyframes slideInBottom {
   from {
-    bottom: -50%
+    bottom: -50%;
   }
   to {
-    bottom: 0
+    bottom: 0;
   }
 }

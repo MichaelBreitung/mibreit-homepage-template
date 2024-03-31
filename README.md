@@ -7,9 +7,10 @@ Homepage Template based on Gulp and Nunjucks, which makes it easy to create html
 ## Install
 
 1. clone, fork or download the repository 
-2. call npm install in the root folder
-3. make changes to page-data.json, custom variant and pages
-4. run gulp
+2. Open the project inside a [devcontainer](https://code.visualstudio.com/docs/devcontainers/containers)
+3. Call npm install in the root folder
+4. make changes to page-data.json, custom variant and pages
+5. run gulp
 
 **Important:** You should not touch the base variant, since this is where I make regular updates and where I add features that you can reuse in the custom variant or in your own variants.
 

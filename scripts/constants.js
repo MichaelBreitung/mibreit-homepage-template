@@ -5,5 +5,5 @@ const tempFolder = "temp";
 module.exports = {
   outputFolder,
   baseFolder,
-  tempFolder
-}
+  tempFolder,
+};

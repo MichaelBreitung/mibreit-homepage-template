@@ -1,22 +1,22 @@
-const fs = require('fs');
-const gulp = require('gulp');
-const concat = require('gulp-concat');
-const cleanCss = require('gulp-clean-css');
-const sass = require('gulp-sass')(require('node-sass'));
-sass.compiler = require('node-sass');
+const fs = require("fs");
+const gulp = require("gulp");
+const concat = require("gulp-concat");
+const cleanCss = require("gulp-clean-css");
+const sass = require("gulp-sass")(require("node-sass"));
+sass.compiler = require("node-sass");
 
-const { baseFolder, outputFolder, tempFolder } = require('./constants');
+const { baseFolder, outputFolder, tempFolder } = require("./constants");
 
 const createGulpCss = function (styles, plugins) {
-  if (typeof styles !== 'string' && !Array.isArray(styles)) {
-    throw new Error('createGulpCss: no styles folder specified');
+  if (typeof styles !== "string" && !Array.isArray(styles)) {
+    throw new Error("createGulpCss: no styles folder specified");
   }
 
   const createCompileScss = function (sourceFolder, destinationFolder) {
     const compileScss = function () {
       return gulp
         .src([`${baseFolder}/${sourceFolder}/styles/**/*.scss`])
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass().on("error", sass.logError))
         .pipe(gulp.dest(`${baseFolder}/${destinationFolder}/styles`));
     };
     return compileScss;
@@ -75,8 +75,8 @@ const createGulpCss = function (styles, plugins) {
           `!${baseFolder}/${sourceFolder}/styles/+*-overrides.css`,
           `${baseFolder}/${sourceFolder}/styles/+*-overrides.css`,
         ])
-        .pipe(concat('styles.css'))
-        .pipe(cleanCss({ compatibility: 'ie8' }))
+        .pipe(concat("styles.css"))
+        .pipe(cleanCss({ compatibility: "ie8" }))
         .pipe(gulp.dest(`${outputFolder}/styles`));
     };
     return processCss;
@@ -95,15 +95,17 @@ const createGulpCss = function (styles, plugins) {
           `!${baseFolder}/${sourceFolder}/styles/newsletter/+*-overrides.css`,
           `${baseFolder}/${sourceFolder}/styles/newsletter/+*-overrides.css`,
         ])
-        .pipe(concat('styles.css'))
-        .pipe(cleanCss({ compatibility: 'ie8' }))
+        .pipe(concat("styles.css"))
+        .pipe(cleanCss({ compatibility: "ie8" }))
         .pipe(gulp.dest(`${outputFolder}/styles/newsletter`));
     };
     return processCss;
   };
 
   const processWordpressCssPlaceholder = function () {
-    return gulp.src([`${baseFolder}/pages/blog/wp-content/themes/mibreit-photo/style.css`]).pipe(gulp.dest(`${outputFolder}/blog/wp-content/themes/mibreit-photo`));
+    return gulp
+      .src([`${baseFolder}/pages/blog/wp-content/themes/mibreit-photo/style.css`])
+      .pipe(gulp.dest(`${outputFolder}/blog/wp-content/themes/mibreit-photo`));
   };
 
   return gulp.series(

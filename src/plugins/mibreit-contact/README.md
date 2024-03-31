@@ -4,10 +4,6 @@ Included under "scripts", you'll find two PHP files called "mibreit-email.php" a
 
 ## How to use Version 2
 
-Since this version depends on PHPMailer, you first must install it. It's not included with this repository. To install PHPMailer, you need to setup _Composer_ first:
+Since this version depends on PHPMailer, you first must install it. It's not included with this repository. To install PHPMailer, you need to setup _Composer_ first by running ``composer install`` inside the "src/plugins/" folder.
 
-1. [Install PHP](https://www.sitepoint.com/how-to-install-php-on-windows/) on your System. Following this guide, you can stop with step 4 of setting the path.
-2. Install [Composer](https://getcomposer.org/)
-3. Run ``composer install`` inside the "src/plugins/" folder
-
-Once you completed the _Composer_ setup and installed the dependencies, you can open the "page-data.json" and insert your SMTP information. Then, rebuild the site using _gulp_ and you are ready to go.
+Once you installed the dependencies, you can open the "page-data.json" and insert your SMTP information. Then, rebuild the site using _gulp_ and you are ready to go.

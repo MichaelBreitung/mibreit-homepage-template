@@ -1,22 +1,22 @@
-const fs = require('fs');
-const gulp = require('gulp');
-const concat = require('gulp-concat');
-const cleanCss = require('gulp-clean-css');
-const sass = require('gulp-sass')(require('node-sass'));
-sass.compiler = require('node-sass');
+const fs = require("fs");
+const gulp = require("gulp");
+const concat = require("gulp-concat");
+const cleanCss = require("gulp-clean-css");
+const sass = require("gulp-sass")(require("node-sass"));
+sass.compiler = require("node-sass");
 
-const { baseFolder, outputFolder, tempFolder } = require('./constants');
+const { baseFolder, outputFolder, tempFolder } = require("./constants");
 
 const createGulpCss = function (styles) {
-  if (typeof styles !== 'string' && !Array.isArray(styles)) {
-    throw new Error('createGulpNoscriptCss: no styles folder specified');
+  if (typeof styles !== "string" && !Array.isArray(styles)) {
+    throw new Error("createGulpNoscriptCss: no styles folder specified");
   }
 
   const createCompileScss = function (sourceFolder, destinationFolder) {
     const compileScss = function () {
       return gulp
         .src([`${baseFolder}/${sourceFolder}/noscript-styles/**/*.scss`])
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass().on("error", sass.logError))
         .pipe(gulp.dest(`${baseFolder}/${destinationFolder}/noscript-styles`));
     };
     return compileScss;
@@ -48,18 +48,14 @@ const createGulpCss = function (styles) {
           `!${baseFolder}/${sourceFolder}/noscript-styles/+*-overrides.css`,
           `${baseFolder}/${sourceFolder}/noscript-styles/+*-overrides.css`,
         ])
-        .pipe(concat('noscript.css'))
-        .pipe(cleanCss({ compatibility: 'ie8' }))
+        .pipe(concat("noscript.css"))
+        .pipe(cleanCss({ compatibility: "ie8" }))
         .pipe(gulp.dest(`${outputFolder}/styles`));
     };
     return processCss;
   };
 
-  return gulp.series(
-    gatherCssAndScss,
-    createCompileScss(tempFolder, tempFolder),
-    createProcessCss(tempFolder),
-  );
+  return gulp.series(gatherCssAndScss, createCompileScss(tempFolder, tempFolder), createProcessCss(tempFolder));
 };
 
 module.exports = createGulpCss;

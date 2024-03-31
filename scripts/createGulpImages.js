@@ -1,5 +1,5 @@
-const gulp = require('gulp');
-const { baseFolder, outputFolder } = require('./constants');
+const gulp = require("gulp");
+const { baseFolder, outputFolder } = require("./constants");
 
 const createGulpImages = function (images, favicon, plugins) {
   const copyImages = function () {
@@ -7,22 +7,22 @@ const createGulpImages = function (images, favicon, plugins) {
       return gulp
         .src(images.map((folder) => `${baseFolder}/${folder}/images/**/*.+(jpg|png|gif|svg)`))
         .pipe(gulp.dest(`${outputFolder}/images`));
-    } else if (typeof images === 'string') {
+    } else if (typeof images === "string") {
       return gulp
         .src(`${baseFolder}/${images}/images/**/*.+(jpg|png|gif|svg)`)
         .pipe(gulp.dest(`${outputFolder}/images`));
     } else {
-      return Promise.resolve('copyImages: nothing to do');
+      return Promise.resolve("copyImages: nothing to do");
     }
   };
 
   const copyFavIcon = function () {
-    if (typeof favicon === 'string') {
+    if (typeof favicon === "string") {
       return gulp
         .src(`${baseFolder}/${favicon}/images/favicon.ico`, { allowEmpty: true })
         .pipe(gulp.dest(outputFolder));
     } else {
-      return Promise.resolve('copyFavIcon: nothing to do');
+      return Promise.resolve("copyFavIcon: nothing to do");
     }
   };
 

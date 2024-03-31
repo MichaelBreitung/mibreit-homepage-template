@@ -1,22 +1,22 @@
-const fs = require('fs');
-const gulp = require('gulp');
-const createGulpNjkHtml = require('./createGulpNjkHtml');
-const createGulpNjkPhp = require('./createGulpNjkPhp');
-const createGulpNjkAffiliates = require('./createGulpNjkAffiliates');
-const createGulpXml = require('./createGulpXml');
-const createGulpNjkPhpScripts = require('./createGulpNjkPhpScripts');
-const createGulpNjkHtAccess = require('./createGulpNjkHtAccess');
-const createGulpNjkRobots = require('./createGulpNjkRobots');
-const createGatherNjkTemplates = require('./createGatherNjkTemplates');
-const { tempFolder, baseFolder } = require('./constants');
+const fs = require("fs");
+const gulp = require("gulp");
+const createGulpNjkHtml = require("./createGulpNjkHtml");
+const createGulpNjkPhp = require("./createGulpNjkPhp");
+const createGulpNjkAffiliates = require("./createGulpNjkAffiliates");
+const createGulpXml = require("./createGulpXml");
+const createGulpNjkPhpScripts = require("./createGulpNjkPhpScripts");
+const createGulpNjkHtAccess = require("./createGulpNjkHtAccess");
+const createGulpNjkRobots = require("./createGulpNjkRobots");
+const createGatherNjkTemplates = require("./createGatherNjkTemplates");
+const { tempFolder, baseFolder } = require("./constants");
 
 const createGulpNjkTasks = function (variant, withHtAccess = false) {
   let templates = variant.templates;
-  if (typeof templates !== 'string' && !Array.isArray(templates)) {
-    throw new Error('createGulpHtml: no templates folder specified');
+  if (typeof templates !== "string" && !Array.isArray(templates)) {
+    throw new Error("createGulpHtml: no templates folder specified");
   }
 
-  if (typeof templates === 'string') {
+  if (typeof templates === "string") {
     templates = [templates];
   }
 
@@ -34,7 +34,7 @@ const createGulpNjkTasks = function (variant, withHtAccess = false) {
       return createGulpNjkHtAccess(templates);
     } else {
       const nothingToDo = function () {
-        return Promise.resolve('getHtAccessTask: nothing to do');
+        return Promise.resolve("getHtAccessTask: nothing to do");
       };
       return nothingToDo;
     }
@@ -47,7 +47,7 @@ const createGulpNjkTasks = function (variant, withHtAccess = false) {
       createGulpNjkPhp(tempFolder),
       createGulpNjkPhpScripts(tempFolder, variant.plugins),
       createGulpNjkRobots(tempFolder),
-      getHtAccessTask(tempFolder),      
+      getHtAccessTask(tempFolder),
       createGulpXml(tempFolder),
       createGulpNjkAffiliates(tempFolder)
     )

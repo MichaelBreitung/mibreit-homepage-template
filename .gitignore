@@ -3,6 +3,7 @@
 /node_modules
 /src/temp
 /src/variant-custom
+/src/plugins/vendor
 
 /src/scripts/base/jquery/jquery.min.js
 /src/scripts/contact/jquery-validate/jquery.validate.min.js

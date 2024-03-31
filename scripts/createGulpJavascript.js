@@ -1,9 +1,9 @@
-const gulp = require('gulp');
-const through2 = require('through2');
-const concat = require('gulp-concat');
-const minifyJs = require('./minifyJs');
+const gulp = require("gulp");
+const through2 = require("through2");
+const concat = require("gulp-concat");
+const minifyJs = require("./minifyJs");
 const loadPluginConfigFromPath = require("./pluginConfigLoader");
-const { baseFolder, outputFolder } = require('./constants');
+const { baseFolder, outputFolder } = require("./constants");
 
 const createGulpJavascript = function (plugins) {
   const concatenateBaseJs = function () {
@@ -13,10 +13,10 @@ const createGulpJavascript = function (plugins) {
         `${baseFolder}/scripts/base/mibreit-cookie-consent/mibreitCookie.js`,
         `${baseFolder}/scripts/base/hamburger-navbar/*.js`,
         `${baseFolder}/scripts/base/mibreit-search/*.js`,
-        `${baseFolder}/scripts/mibreit-lazy-loader/scripts/*.js`
+        `${baseFolder}/scripts/mibreit-lazy-loader/scripts/*.js`,
       ])
       .pipe(through2.obj(minifyJs))
-      .pipe(concat('base.js'))
+      .pipe(concat("base.js"))
       .pipe(gulp.dest(`${outputFolder}/scripts`));
   };
 
