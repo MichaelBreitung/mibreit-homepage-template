@@ -124,17 +124,14 @@
 
 {# private macro that should only be used internally within a php tag to create the figure markup #}
 {% macro _figure(item, de, old_lazy) %}
-  $size = getimagesize(${{item}}->imageUrl); echo "<figure>";
+  $size = getimagesize(${{item}}->imageUrl); 
+  echo "<figure>";
     {{_image(item, de, false, old_lazy)}}
     {{_image(item, de, true)}}
     {% if de %}
-      echo "<figcaption>
-        <p>${{item}}->altDe</p>
-      </figcaption>";
+      echo "<figcaption><p>${{item}}->altDe</p></figcaption>";
     {% else %}
-      echo "<figcaption>
-        <p>${{item}}->altEn</p>
-      </figcaption>";
+      echo "<figcaption><p>${{item}}->altEn</p></figcaption>";
     {% endif %}
     echo "</figure>\n";
 {% endmacro %}
@@ -142,23 +139,22 @@
 {# private macro that should only be used internally within a php tag to create the image markup #}
 {% macro _image(item, de, no_script, old_lazy) %}
   {% if no_script %}
-    echo "<noscript><img src="\" "" .="." ${{item}}="${{item}}" -="-">imageUrl . "\" style=\"position: absolute;\" ";
+    echo "<noscript><img src=\"" . ${{item}}->imageUrl . "\" style=\"position: absolute;\" ";
     {% else %}
       {% if old_lazy %}
-        echo "<img src="\" /scripts/mibreit-gallery/images/image-placeholder-transparent.png\"" style="\" position:="position:" absolute;\""="absolute;\" "" ";
-    echo " data-src="\" .="." ${{item}}="${{item}}" -="-">imageUrl . "\" ";
+        echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" style=\"position: absolute;\" ";
+    echo "data-src=\"" . ${{item}}->imageUrl . "\" ";
       {% else %}
-        echo "<img loading="\" lazy\""="lazy\" "" class="\" mibreit-lazyloader_lazy\""="mibreit-LazyLoader_lazy\" style="\" position:="position:" absolute;\""="absolute;\" ";
-    echo " src="\" .="." ${{item}}="${{item}}" -="-">imageUrl . "\" ";
+        echo "<img loading=\"lazy\" class=\"mibreit-LazyLoader_lazy\" style=\"position: absolute;\" ";
+    echo "src=\"" . ${{item}}->imageUrl . "\" ";
       {% endif %}
     {% endif %}
-    echo "title=\"" . ${{item}}->caption . "\" ";
+    echo "title=\""    . ${{item}}->caption  . "\" ";
     {% if not no_script %}
-      echo "alt=\"" .
-      {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %}
-      . "\" ";
+      echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";
     {% endif %}
-    echo "width=\"" . $size[0] ."\" "; echo "height=\"" . $size[1] ."\" >";
+    echo "width=\""    . $size[0]         ."\" ";
+    echo "height=\""   . $size[1]         ."\" >";
     {% if no_script %}
       echo "</noscript>";
   {% endif %}
@@ -231,12 +227,8 @@
     <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
   {% endif %}
   <script>
-    window.addEventListener('load', function () {
-      mibreitSlideshowSetup("{{container}}",{% if stretch %}mibreitGalleryTs.EImageScaleMode.EXPAND
-      {% else %}
-        mibreitGalleryTs.EImageScaleMode.FIT_ASPECT{% endif %},{% if zoom %}true
-      {% else %}
-        false{% endif %});
+    window.addEventListener('load',function () {
+      mibreitSlideshowSetup("{{container}}", {% if stretch %}mibreitGalleryTs.EImageScaleMode.EXPAND{% else %}mibreitGalleryTs.EImageScaleMode.FIT_ASPECT{% endif %}, {% if zoom %}true{% else %}false{% endif %});
     });
   </script>
 {% endmacro %}
@@ -249,7 +241,7 @@
 {% macro scriptSimpleGallery(container) %}
   <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
   <script>
-    window.addEventListener('load', function () {
+    window.addEventListener('load',function () {
       mibreitGallerySetupSimple('{{container}}');
     });
   </script>
@@ -286,7 +278,7 @@
 {% macro scriptGalleryWoo(container, thumb_container) %}
   <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
   <script>
-    window.addEventListener('load', function () {
+    window.addEventListener('load',function () {
       mibreitGallerySetupWoo('{{container}}', '{{thumb_container}}');
     });
   </script>
