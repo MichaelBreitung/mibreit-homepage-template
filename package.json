@@ -4,9 +4,9 @@
   "description": "Homepage template based on Gulp and Nunjucks",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gallery:update": "python tools/mibreit-gallery-manager/gallery_manager.py -i dist/galleries",
-    "gallery:create": "python tools/mibreit-gallery-manager/gallery_manager.py -i dist/galleries -n",
-    "gallery": "python tools/mibreit-gallery-manager/gallery_manager.py"
+    "gallery:update": "python3 tools/mibreit-gallery-manager/gallery_manager.py -i dist/galleries",
+    "gallery:create": "python3 tools/mibreit-gallery-manager/gallery_manager.py -i dist/galleries -n",
+    "gallery": "python3 tools/mibreit-gallery-manager/gallery_manager.py"
   },
   "author": "Michael Breitung",
   "license": "BSD",

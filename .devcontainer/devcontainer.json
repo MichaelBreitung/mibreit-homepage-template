@@ -2,13 +2,13 @@
     "name": "mibreit_web_tooling",
     "dockerComposeFile": "./docker-compose.yml",
     "service": "mibreit-web-dev",
-    "workspaceFolder": "/home/develop",
+    "workspaceFolder": "/home/developer/develop",
     "shutdownAction": "stopCompose",
+    "containerUser": "developer",
+    "updateRemoteUserUID": true,
     "mounts": [
         // Bind the docker socket of the host to the container-internal socket
         "source=//var/run/docker.sock,target=/var/run/docker.sock,type=bind",
-        // Forward host SSH agent to container, to be able to use Git via SSH
-        "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind"
     ],
     "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
     "customizations": {
@@ -26,7 +26,9 @@
                 "ms-python.pylint",
                 "ms-python.black-formatter",
                 "bmewburn.vscode-intelephense-client",
-                "douglaszaltron.nunjucks-vscode-extensionpack"
+                "douglaszaltron.nunjucks-vscode-extensionpack",
+                "okitavera.vscode-nunjucks-formatter",
+                "eiminsasete.apacheconf-snippets"
             ],
             "settings": {
                 "editor.tabSize": 2,
@@ -58,6 +60,13 @@
                 "[njk]": {
                   "editor.defaultFormatter": "douglaszaltron.nunjucks-vscode-extensionpack"
                 },
+                "[nunjucks]": {
+                  "editor.formatOnSave": false,
+                  "editor.defaultFormatter": "okitavera.vscode-nunjucks-formatter"
+                },
+                "[dockerfile]": {
+                  "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+                },
                 "typescript.updateImportsOnFileMove.enabled": "always",
                 "javascript.updateImportsOnFileMove.enabled": "always",
                 "mypy-type-checker.importStrategy": "fromEnvironment",
@@ -68,7 +77,8 @@
                   "njk": "html"
                 },
                 "files.associations": {
-                  "*.njk": "njk"
+                  "*.njk": "njk",
+                  ".htaccess": "shellscript"
                 }
             }
         }

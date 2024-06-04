@@ -1,64 +1,31 @@
-FROM ubuntu:22.04
+# Dockerfile.base in this 
+FROM mibreit/mibreit-web-dev:latest 
 
-# LABEL for the custom image
-LABEL maintainer="michael.breitung@mibreit-photo.com"
-LABEL version="0.1"
-LABEL description="This is a custom Docker Image for Web Development."
-
-# Disable Prompt During Packages Installation
-ARG DEBIAN_FRONTEND=noninteractive
-
-# Setting bash as default shell
-SHELL ["/bin/bash", "-c"]
-
-# Setting environment variables
-ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION v20.11.0
-
-# Update Ubuntu Software repository and install tools
 RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
-  git=1:2.34.1-1ubuntu1.10 \
-  python3=3.10.6-1~22.04 \
-  python3-pip=22.0.2+dfsg-1ubuntu0.4 \
-  ca-certificates=20230311ubuntu0.22.04.1 \
-  curl=7.81.0-1ubuntu1.16 \
-  openssh-server=1:8.9p1-3ubuntu0.6 \
-  wget=1.21.2-2ubuntu1 \
-  unzip=6.0-26ubuntu3.2 \
-  php=2:8.1+92ubuntu1 \
-  php-curl=2:8.1+92ubuntu1 && \
+  sudo=1.9.9-1ubuntu2.4 && \
   apt-get clean -y && \
   rm -rf /var/lib/apt/lists/*
-  
-# Install python packages
-RUN pip3 install --no-cache-dir --upgrade \
-  pytest==8.1.1 \
-  black==24.3.0 \
-  pylint==3.1.0 \
-  pillow==10.2.0
 
-# Install Node using NVM
-RUN mkdir -p $NVM_DIR && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash && \
-  source $NVM_DIR/nvm.sh && \
-  nvm install "$NODE_VERSION" && \
-  npm install -g gulp-cli
+RUN ln -s $NVM_DIR/versions/node/$NODE_VERSION/bin/node /usr/local/bin/node && \
+  ln -s $NVM_DIR/versions/node/$NODE_VERSION/bin/npm /usr/local/bin/npm && \
+  ln -s $NVM_DIR/versions/node/$NODE_VERSION/bin/npx /usr/local/bin/npx && \
+  npm install -g gulp-cli && \
+  ln -s $NVM_DIR/versions/node/$NODE_VERSION/bin/gulp /usr/local/bin/gulp
 
-# Install Docker
-RUN install -m 0755 -d /etc/apt/keyrings && \
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && \
-  chmod a+r /etc/apt/keyrings/docker.asc
+# setup developer user
+ENV UID=${UID:-1000}
+ENV GID=${UID:-1000}
+ENV USER=${USER:-developer}
+RUN groupadd -g $GID $USER && \
+  useradd -d /home/$USER -s /bin/bash -m $USER -l -u $UID -g $GID && \
+  echo "developer ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN usermod -aG docker $USER
+USER $USER
 
-RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo $VERSION_CODENAME) stable" | \
-  tee /etc/apt/sources.list.d/docker.list > /dev/null 
-RUN apt update && apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-RUN usermod -aG docker $(whoami)
-
-# Install PHP Composer
-RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-
-# Highlight Branch in Bash
+# Highlight Branch in Bash for new user
 RUN echo "parse_git_branch() {" >> ~/.bashrc && \
   echo "  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'" >> ~/.bashrc && \
   echo "}" >> ~/.bashrc && \
   echo "export PS1='\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ '" >> ~/.bashrc
+
+# Add custom tooling on top, if required
