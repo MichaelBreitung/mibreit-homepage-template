@@ -10,7 +10,7 @@
         // Bind the docker socket of the host to the container-internal socket
         "source=//var/run/docker.sock,target=/var/run/docker.sock,type=bind",
     ],
-    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && sudo chmod a+w /home/developer/develop/node_modules",
     "customizations": {
         "vscode": {
             "extensions": [
