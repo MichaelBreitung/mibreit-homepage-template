@@ -35,7 +35,7 @@ var mibreitGallerySetup = function (containerSelector, thumbContainerSelector, t
   return gallery;
 };
 
-var mibreitGallerySetupSimple = function (containerSelector) {
+var mibreitGallerySetupSimple = function (containerSelector, history = true) {
   var container = document.querySelector(containerSelector);
   container.style.setProperty("opacity", "1");
   var gallery = mibreitGalleryTs.createGallery(containerSelector, containerSelector + " img", {
@@ -44,7 +44,9 @@ var mibreitGallerySetupSimple = function (containerSelector) {
     preloaderBeforeSize: 1,
     preloaderAfterSize: 2,
   });
-  mibreitGalleryHistory(gallery);
+  if (history) {
+    mibreitGalleryHistory(gallery);
+  }
   mibreitGalleryBackgroundColor(gallery);
 };
 

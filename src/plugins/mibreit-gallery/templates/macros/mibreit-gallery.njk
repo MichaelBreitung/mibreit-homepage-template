@@ -79,9 +79,11 @@
 # inserts slideshow container with php markup
 # @param container - class name for container
 # @param de - if given, german version is generated (optional)
+# @param srcset - an array of two values giving the size of an image used on desktop, and an image used on mobile (optional)
+#
 # @attention requires call to prepare() beforehand
 #}
-{% macro slideshow(container, de) %}
+{% macro slideshow(container, de, srcset) %}
   <div class="{{container}}">
   <?php
     $images = [];
@@ -97,7 +99,7 @@
     for ($i = 0; $i < $nrImages; $i++)
     {
       $image = $images[$i];     
-      {{_figure("image", de)}}
+      {{_figure("image", de, srcset)}}
     }
   ?>
   </div>
@@ -105,58 +107,63 @@
 
 {#
 # inserts gallery container with php markup
+#
 # @param container - class name for container
 # @param de - if given, german version is generated (optional)
+# @param srcset - an array of two values giving the size of an image used on desktop, and an image used on mobile (optional)
+#
 # @attention requires call to prepare() beforehand
 #}
-{% macro gallery(container, de, old_lazy) %}
+{% macro gallery(container, de, srcset) %}
   <div class="{{container}}">
     <?php
     $nrImages = $mibreitGallery->getNumberImages();
     for ($i = 0; $i < $nrImages; $i++)
     {
       $image = $mibreitGallery->getImage($i);
-      {{_figure("image", de, old_lazy)}}
+      {{_figure("image", de, srcset)}}
     }
   ?>
   </div>
 {% endmacro %}
 
 {# private macro that should only be used internally within a php tag to create the figure markup #}
-{% macro _figure(item, de, old_lazy) %}
+{% macro _figure(item, de, srcset) %}
   $size = getimagesize(${{item}}->imageUrl); 
   echo "<figure>";
-    {{_image(item, de, false, old_lazy)}}
-    {{_image(item, de, true)}}
-    {% if de %}
-      echo "<figcaption><p>${{item}}->altDe</p></figcaption>";
-    {% else %}
-      echo "<figcaption><p>${{item}}->altEn</p></figcaption>";
-    {% endif %}
-    echo "</figure>\n";
+  {{_image(item, de, false, srcset)}}
+  {{_image(item, de, true)}}
+  {% if de %}
+    echo "<figcaption><p>${{item}}->altDe</p></figcaption>";
+  {% else %}
+    echo "<figcaption><p>${{item}}->altEn</p></figcaption>";
+  {% endif %}
+  echo "</figure>\n";
 {% endmacro %}
 
+
+{# srcset="Essaouira.jpg 1280w, Essaouira-720x405.jpg 720w" sizes="(max-width: 1280px) 100vw, 1280px"#}
 {# private macro that should only be used internally within a php tag to create the image markup #}
-{% macro _image(item, de, no_script, old_lazy) %}
+{% macro _image(item, de, no_script, srcset) %}
   {% if no_script %}
     echo "<noscript><img src=\"" . ${{item}}->imageUrl . "\" style=\"position: absolute;\" ";
-    {% else %}
-      {% if old_lazy %}
-        echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" style=\"position: absolute;\" ";
-    echo "data-src=\"" . ${{item}}->imageUrl . "\" ";
-      {% else %}
-        echo "<img loading=\"lazy\" class=\"mibreit-LazyLoader_lazy\" style=\"position: absolute;\" ";
+  {% else %}
+    echo "<img loading=\"lazy\" class=\"mibreit-LazyLoader_lazy\" style=\"position: absolute;\" ";
     echo "src=\"" . ${{item}}->imageUrl . "\" ";
-      {% endif %}
-    {% endif %}
-    echo "title=\""    . ${{item}}->caption  . "\" ";
-    {% if not no_script %}
-      echo "alt=\""      . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";
-    {% endif %}
-    echo "width=\""    . $size[0]         ."\" ";
-    echo "height=\""   . $size[1]         ."\" >";
-    {% if no_script %}
-      echo "</noscript>";
+  {% endif %}
+  echo "title=\"" . ${{item}}->caption . "\" ";
+  {% if not no_script %}
+    echo "alt=\"" . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";
+  {% endif %}
+  echo "width=\"" . $size[0] ."\" ";
+  {% if srcset | length %}
+    echo "height=\"" . $size[1] ."\" srcset=\"" . ${{item}}->imageUrl . " " . {{srcset[0]}} . "w, " . ${{item}}->mediumUrl . " " . {{srcset[1]}} . "w\" ";
+    echo "sizes=\"(max-width: " . {{srcset[0]}} . "px) 100vw, " . {{srcset[0]}} . "px\" >";
+  {% else %}
+    echo "height=\"" . $size[1] . "\" >";
+  {% endif %}
+  {% if no_script %}
+    echo "</noscript>";
   {% endif %}
 {% endmacro %}
 
@@ -165,17 +172,13 @@
 # @param container - class name for container
 # @attention requires call to prepare() beforehand
 #}
-{% macro thumbview(container, old_lazy) %}
+{% macro thumbview(container) %}
   <div class="{{container}}">
   <?php
     foreach ($mibreitGallery->getImages() as $image)
     {
       $size = getimagesize($image->thumbUrl);   
-      {% if old_lazy %}   
-      echo "<img src=\"/scripts/mibreit-gallery/images/image-placeholder-transparent.png\" style=\"position: absolute;\" data-src=\"" . $image->thumbUrl . "\" ";
-      {% else %}
       echo "<img loading=\"lazy\" class=\"mibreit-LazyLoader_lazy\" style=\"position: absolute;\" src=\"" . $image->thumbUrl . "\" ";
-      {% endif %}
       echo "width=\"". $size[0] ."\" height=\"". $size[1] . "\" alt=\"thumbnail\" >\n";      
     }
   ?>
@@ -238,11 +241,11 @@
 # @param container - class or id name for container of slideshow -> starting with a . or #
 # @param gallery_var_name - the global javascript variable name used for the gallery
 #}
-{% macro scriptSimpleGallery(container) %}
+{% macro scriptSimpleGallery(container, history=true) %}
   <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
   <script>
     window.addEventListener('load',function () {
-      mibreitGallerySetupSimple('{{container}}');
+      mibreitGallerySetupSimple('{{container}}', {% if history %}true{% else %}false{% endif %});
     });
   </script>
 {% endmacro %}

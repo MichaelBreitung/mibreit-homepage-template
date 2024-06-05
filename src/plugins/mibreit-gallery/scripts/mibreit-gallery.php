@@ -6,6 +6,7 @@ class MibreitGalleryImage
   public $altEn;
   public $altDe;
   public $imageUrl;
+  public $mediumUrl;
   public $thumbUrl;
   public $prints;
   public $woocommerce;
@@ -18,6 +19,7 @@ class MibreitGalleryImage
     $this->altEn = "";
     $this->altDe = "";
     $this->imageUrl = "";
+    $this->mediumUrl = "";
     $this->thumbUrl = "";
     $this->prints = false;
     $this->woocommerce = "";
@@ -25,11 +27,12 @@ class MibreitGalleryImage
     $this->size = "large";
   }
 
-  function initFromXml($imageXml, $path, $thumbPath, $relativePath)
+  function initFromXml($imageXml, $path, $mediumPath, $thumbPath, $relativePath)
   {
     $tmp = $imageXml->filename;
     if (!empty($tmp)) {
       $this->imageUrl = $relativePath . $path . (string) $tmp;
+      $this->mediumUrl = $relativePath . $mediumPath . (string) $tmp;
       $this->thumbUrl = $relativePath . $thumbPath . (string) $tmp;
 
       $tmp = $imageXml->caption;
@@ -136,7 +139,11 @@ class MibreitGalleryInfo
 class MibreitGalleryDataParser
 {
   const IMAGE_PATH_TAG = "imagePath";
+  const MEDIUM_PATH_TAG = "mediumPath";
   const THUMB_PATH_TAG = "thumbPath";
+  const DEFAULT_IMAGE_PATH = "image/";
+  const DEFAULT_MEDIUM_PATH = "medium/";
+  const DEFAULT_THUMB_PATH = "thumb/";
 
   private $infoEn;
   private $infoDe;
@@ -168,11 +175,15 @@ class MibreitGalleryDataParser
       }
 
       $images = $gallery->images;
-      $imagePath = "";
+      $imagePath = self::DEFAULT_IMAGE_PATH;
       if (!empty($gallery[self::IMAGE_PATH_TAG])) {
         $imagePath = (string) $gallery[self::IMAGE_PATH_TAG];
       }
-      $thumbPath = "";
+      $mediumPath = self::DEFAULT_MEDIUM_PATH;
+      if (!empty($gallery[self::MEDIUM_PATH_TAG])) {
+        $mediumPath = (string) $gallery[self::MEDIUM_PATH_TAG];
+      }
+      $thumbPath = self::DEFAULT_THUMB_PATH;
       if (!empty($gallery[self::THUMB_PATH_TAG])) {
         $thumbPath = (string) $gallery[self::THUMB_PATH_TAG];
       }
@@ -180,7 +191,7 @@ class MibreitGalleryDataParser
       if (!empty($images)) {
         foreach ($images->children() as $imageXml) {
           $image = new MibreitGalleryImage();
-          if ($image->initFromXml($imageXml, $imagePath, $thumbPath, $relativePath)) {
+          if ($image->initFromXml($imageXml, $imagePath, $mediumPath, $thumbPath, $relativePath)) {
             array_push($this->images, $image);
           }
         }
