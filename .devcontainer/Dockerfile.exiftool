@@ -1,0 +1,10 @@
+# Dockerfile.exiftool is used as the base for the homepage template development
+FROM mibreit/mibreit-web-dev:latest 
+
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
+  libimage-exiftool-perl=12.40+dfsg-1 && \
+  apt-get clean -y && \
+  rm -rf /var/lib/apt/lists/*
+
+# Add language setting required by exiftool perl
+RUN echo "export LC_ALL=C" >> ~/.bashrc

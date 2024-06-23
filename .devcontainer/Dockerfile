@@ -1,5 +1,5 @@
-# Dockerfile.base in this 
-FROM mibreit/mibreit-web-dev:latest 
+# Dockerfile.exiftool is the template on which we base here
+FROM mibreit/mibreit-homepage-template:latest 
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
   sudo=1.9.9-1ubuntu2.4 && \
@@ -32,5 +32,8 @@ RUN echo "parse_git_branch() {" >> ~/.bashrc && \
 RUN echo "alias b='gulp'" >> ~/.bashrc && \
   echo "alias ug='npm run gallery:update'" >> ~/.bashrc && \
   echo "alias cg='npm run gallery:create'" >> ~/.bashrc
+
+# Add language setting required by exiftool perl
+RUN echo "export LC_ALL=C" >> ~/.bashrc
 
 # Add custom tooling on top, if required
