@@ -28,4 +28,8 @@ RUN echo "parse_git_branch() {" >> ~/.bashrc && \
   echo "}" >> ~/.bashrc && \
   echo "export PS1='\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ '" >> ~/.bashrc
 
+# Add aliases
+RUN echo "alias b='gulp'" >> ~/.bashrc && \
+  echo "alias ug='npm run gallery:update'" >> ~/.bashrc
+
 # Add custom tooling on top, if required
