@@ -263,9 +263,9 @@
   echo "<script>";
   echo "window.addEventListener('load',function () {\n"; 
   {% if title_class_name %}
-  echo "var viewer = mibreitGallerySetup(\"{{container}}\", \"{{thumb_container}}\", \"{{title_class_name}}\").getViewer();\n";
+  echo "var viewer = mibreitGallerySetup(\"{{container}}\", \"{{thumb_container}}\", \"{{title_class_name}}\").getImageViewer();\n";
   {% else %}
-  echo "var viewer = mibreitGallerySetup(\"{{container}}\", \"{{thumb_container}}\").getViewer();\n";
+  echo "var viewer = mibreitGallerySetup(\"{{container}}\", \"{{thumb_container}}\").getImageViewer();\n";
   {% endif %}
   {% if with_prints %}
   echo "viewer.addImageChangedCallback(mibreitGalleryPrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", viewer, " . $imageNr . "))\n";

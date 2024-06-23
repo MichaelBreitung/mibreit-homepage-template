@@ -1,9 +1,9 @@
 .mibreit-gallery {
   opacity: 0;
 
-  .mibreit_GalleryPrevious > svg,
-  .mibreit_GalleryNext > svg,
-  .mibreit_GalleryFullscreenButton > svg {
+  .mbg__gallery__previous_btn > svg,
+  .mbg__gallery__next_btn > svg,
+  .mbg__gallery__fullscreen_btn > svg {
     fill: #4f5c64;
   }
   figcaption {
@@ -21,8 +21,8 @@
 
 .mibreit-thumbview {
   opacity: 0;
-  .mibreit_ThumbScrollerPrevious,
-  .mibreit_ThumbScrollerNext {
+  .mbg__thumbs_scroller__previous_btn,
+  .mbg__thumbs_scroller__next_btn {
     opacity: 0.5;
     svg {
       fill: #4f5c64;
@@ -30,7 +30,7 @@
   }
 }
 
-.mibreit_Fullscreen > .mibreit_Fullscreen_exit {
+.mibreit_Fullscreen > .mbp__fullscreen__exit_btn {
   opacity: 0.5;
   svg {
     fill: #4f5c64;

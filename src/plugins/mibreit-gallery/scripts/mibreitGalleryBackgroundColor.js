@@ -1,6 +1,6 @@
 var mibreitGalleryBackgroundColor = function (gallery) {
   var fullscreen = gallery.getFullscreen();
-  var viewer = gallery.getViewer();
+  var viewer = gallery.getImageViewer();
   if (fullscreen && viewer) {
     if (typeof FastAverageColor !== "undefined") {
       var fastAverageColor = new FastAverageColor();

@@ -5,7 +5,7 @@ var mibreitGalleryImageDescription = function (gallery, container, descriptions)
   var hoverTimer = -1;
   var hoverTimerTimeout = 1000;
   var imageDescriptionVisible = false;
-  var fullscreenActive = gallery.getFullscreen().isFullscreenActive();
+  var fullscreenActive = gallery.getFullscreen().isActive();
   var currentActiveImageDescription = -1;
 
   var showImageDescription = function (idx) {
@@ -54,7 +54,7 @@ var mibreitGalleryImageDescription = function (gallery, container, descriptions)
     if (!fullscreenActive) {
       hoverTimer = setTimeout(function () {
         imageDescriptionVisible = true;
-        showImageDescription(gallery.getViewer().getImageIndex());
+        showImageDescription(gallery.getImageViewer().getImageIndex());
       }, hoverTimerTimeout);
     }
   });
@@ -64,7 +64,7 @@ var mibreitGalleryImageDescription = function (gallery, container, descriptions)
     imageDescriptionVisible = false;
   });
 
-  gallery.getViewer().addImageChangedCallback(imageChangedCallback);
+  gallery.getImageViewer().addImageChangedCallback(imageChangedCallback);
 
-  gallery.getFullscreen().addFullscreenChangedCallback(fullscreenChanged);
+  gallery.getFullscreen().addChangedCallback(fullscreenChanged);
 };

@@ -18,7 +18,7 @@ var mibreitGallerySetup = function (containerSelector, thumbContainerSelector, t
   });
 
   if (titleElement) {
-    var viewer = gallery.getViewer();
+    var viewer = gallery.getImageViewer();
     var imageInfo = viewer.getImageInfo();
     if (imageInfo) {
       titleElement.innerHTML = imageInfo.getTitle();
@@ -83,8 +83,8 @@ var mibreitGallerySetupWP = function (imageSelector) {
   images.forEach(function (image, index) {
     image.style.setProperty("cursor", "pointer");
     image.addEventListener("click", function (e) {
-      if (!gallery.getFullscreen().isFullscreenActive()) {
-        gallery.getViewer().showImage(index);
+      if (!gallery.getFullscreen().isActive()) {
+        gallery.getImageViewer().showImage(index);
         gallery.getFullscreen().activate();
       }
     });

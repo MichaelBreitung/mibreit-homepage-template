@@ -61,7 +61,7 @@ var mibreitGalleryHistory = function (gallery) {
   };
 
   var udpateSeo = function () {
-    var imageInfo = gallery.getViewer().getImageInfo(gallery.getViewer().getImageIndex());
+    var imageInfo = gallery.getImageViewer().getImageInfo(gallery.getImageViewer().getImageIndex());
     if (imageInfo) {
       var imageUrl = window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1) + imageInfo.getUrl();
       updateOgParameters(imageUrl);
@@ -77,7 +77,7 @@ var mibreitGalleryHistory = function (gallery) {
     var providedImageId = new URLSearchParams(window.location.search).get("imageNr");
     if (providedImageId) {
       currentImageId = parseInt(providedImageId);
-      gallery.getViewer().showImage(currentImageId);
+      gallery.getImageViewer().showImage(currentImageId);
       gallery.getLoader().setCurrentIndex(currentImageId);
     }
   };
@@ -92,7 +92,7 @@ var mibreitGalleryHistory = function (gallery) {
     udpateSeo();
   };
 
-  gallery.getViewer().addImageChangedCallback(imageChangedCallback);
+  gallery.getImageViewer().addImageChangedCallback(imageChangedCallback);
   window.onpopstate = function (event) {
     updateImageBasedOnURLParams();
   };
