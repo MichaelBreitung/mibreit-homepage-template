@@ -30,6 +30,7 @@ RUN echo "parse_git_branch() {" >> ~/.bashrc && \
 
 # Add aliases
 RUN echo "alias b='gulp'" >> ~/.bashrc && \
-  echo "alias ug='npm run gallery:update'" >> ~/.bashrc
+  echo "alias ug='npm run gallery:update'" >> ~/.bashrc && \
+  echo "alias cg='npm run gallery:create'" >> ~/.bashrc
 
 # Add custom tooling on top, if required
