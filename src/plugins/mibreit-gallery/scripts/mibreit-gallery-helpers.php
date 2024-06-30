@@ -15,8 +15,13 @@ class MibreitGalleryPageData
       $this->relativeUrl = substr($this->relativeUrl, 1);
     }
 
-    $end_of_url = strrpos($this->relativeUrl, "/");
+    // This check is important for cases where somebody calls an url with index.php trailed by a path
+    $end_of_url = strrpos($this->relativeUrl, "/index.php");
+    if (!$end_of_url) {
+      $end_of_url = strrpos($this->relativeUrl, "/");
+    }
     $this->baseUrl = substr($this->relativeUrl, 0, $end_of_url) . "/";
+
     $this->absoluteBaseUrl = "{{getBasePageUrl(domain_name, use_https)}}/" . $this->baseUrl;
     $pos_of_lan_de = strrpos($this->relativeUrl, "lan=de");
     $pos_of_image_nr = strrpos($this->relativeUrl, "imageNr");

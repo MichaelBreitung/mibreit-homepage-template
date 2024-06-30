@@ -53,14 +53,15 @@
     require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery.php';
     require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery-helpers.php';
     $mibreitGallery = new MibreitGalleryDataParser('gallery.xml');
-    $mibreitGalleryPageData = new MibreitGalleryPageData();   
+    $mibreitGalleryPageData = new MibreitGalleryPageData(); 
+    $page_image = "";
+    $page_image_width = 0;  
+    $page_image_height = 0;
     if ($mibreitGallery->getNumberImages())
     {
       $page_image = $mibreitGalleryPageData->getAbsoluteBaseUrl() . $mibreitGallery->getImage($imageNr)->imageUrl;
-    }
-    else 
-    {
-      $page_image = "";
+      $page_image_width = getimagesize($page_image)[0];
+      $page_image_height = getimagesize($page_image)[1];
     }
   ?>
 {% endmacro %}
