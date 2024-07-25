@@ -1,3 +1,4 @@
+mbg-images,
 .mibreit-gallery {
   opacity: 0;
 
@@ -19,6 +20,7 @@
   }
 }
 
+mbg-thumbs,
 .mibreit-thumbview {
   opacity: 0;
   .mbg__thumbs_scroller__previous_btn,
@@ -30,7 +32,7 @@
   }
 }
 
-.mibreit_Fullscreen > .mbp__fullscreen__exit_btn {
+.mbg__fullscreen > .mbg__fullscreen__exit_btn {
   opacity: 0.5;
   svg {
     fill: #4f5c64;

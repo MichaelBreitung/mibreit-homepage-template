@@ -16,7 +16,7 @@ class MibreitGalleryPageData
     }
 
     // This check is important for cases where somebody calls an url with index.php trailed by a path
-    $end_of_url = strrpos($this->relativeUrl, "/index.php");
+    $end_of_url = strrpos($this->relativeUrl, "index.php");
     if (!$end_of_url) {
       $end_of_url = strrpos($this->relativeUrl, "/");
     }

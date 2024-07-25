@@ -1,11 +1,9 @@
 {
   "jsorder": [
     "mibreitGalleryTs.min.js",
-    "fastAverageColor.js",
     "mibreitGalleryImageDescription.js",
     "mibreitGalleryHistory.js",
     "mibreitGalleryPrints.js",
-    "mibreitGalleryBackgroundColor.js",
     "mibreitGallerySetup.js"
   ]
 }

@@ -219,6 +219,13 @@
   {% endif %}
 {% endmacro %}
 
+{# 
+# Only add the script import - use of Gallery as Web Component possible
+#}
+{% macro scriptOnly() %}
+  <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
+{% endmacro %}
+
 {#
 # inserts script for slideshow
 # @param container - class or id name for container of slideshow -> starting with a . or #
