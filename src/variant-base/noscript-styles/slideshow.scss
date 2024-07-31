@@ -1,9 +1,15 @@
-.slideshow {
+body mbg-slideshow mbg-images {
   opacity: 1;
   height: 100%;
   padding-bottom: 0;
-
+  img {
+    position: relative !important;
+    width: 100%;
+    height: auto;
+  }
   figcaption {
+    position: relative !important;
+    opacity: 1;
     display: block;
     width: 100%;
   }
@@ -11,13 +17,4 @@
     padding: 0;
     text-align: center;
   }
-}
-.slideshow img {
-  position: relative !important;
-  width: 100%;
-  height: auto;
-}
-.slideshow figcaption {
-  position: relative !important;
-  opacity: 1;
 }

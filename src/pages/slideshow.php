@@ -1,4 +1,3 @@
-{% from "./macros/mibreit-gallery.njk" import slideshow, prepare, scriptSlideshow %}
 {% set page_title="Homepage Template Title" %}
 {% set page_sub_title="Homepage Template Subtitle" %}
 {% set page_keywords="Homepage, template, keywords" %}
@@ -8,5 +7,5 @@
 {% set page_de = "/german/slideshow.php" %}
 {% extends "./layouts/en/slideshow-content-layout.njk" %}
 {% block content %}
-  
+
 {% endblock %}

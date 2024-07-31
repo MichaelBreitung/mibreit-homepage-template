@@ -13,6 +13,9 @@
 <title>{{page_title}}</title>
 <link rel="canonical" href="{{getBasePageUrl(domain_name, use_https)}}/{{page_canonical}}" >
 <link rel="stylesheet" href="/styles/styles.css?ver=1.2" type="text/css" >
+<noscript>
+  <link rel="stylesheet" href="/styles/noscript.css" type="text/css">
+</noscript>
 {% if page_fav_icon | length %}
 <link rel="icon" href="{{page_fav_icon}}" type="image/x-icon" >
 {% endif %}
@@ -34,4 +37,3 @@
   <meta name="twitter:image" content="{{getPageImage(getBasePageUrl(domain_name, use_https), page_header_image)}}" >
 {% endif %}
 {% include "../../schema/schema-person.njk" %}
-{% include "../../parts/script-google-analytics.njk" %}

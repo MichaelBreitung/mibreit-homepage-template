@@ -1,4 +1,4 @@
-{% from "../../macros/mibreit-gallery.njk" import prepare, gallery, thumbview, imageTitle, scriptGallery %}
+{% from "../../macros/mibreit-gallery.njk" import prepare, gallery, scriptGallery %}
 {% from "../../schema/schema-gallery.njk" import imageGallery %}
 {% from "../../macros/get-base-page-url.njk" import getBasePageUrl %}
 {% set page_title="<?php echo $mibreitGallery->getInfoEn()->title;?>" %}
@@ -14,14 +14,9 @@
 {% block meta %}
   {{imageGallery(false)}}
 {% endblock %}
-{% block styles %}
-<noscript><link rel="stylesheet" href="/styles/noscript.css" type="text/css" ></noscript>
-{% endblock %}
 {% block scripts %}
-  {{scriptGallery(".mibreit-gallery", ".mibreit-thumbview", ".mibreit-slideshow-title")}}
+  {{scriptGallery()}}
 {% endblock %}
 {% block content %}
-  {{gallery("mibreit-gallery")}}
-  {{thumbview("mibreit-thumbview")}}
-  {{imageTitle("mibreit-slideshow-title")}}
+  {{gallery(false)}}
 {% endblock %}

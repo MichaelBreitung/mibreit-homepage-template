@@ -1,16 +1,19 @@
-.mibreit-gallery {
+mbg-gallery mbg-images {
+  padding-bottom: 0;
+}
+mbg-images {
   opacity: 1;
   height: 100%;
 }
-.mibreit-thumbview {
-  display:none !important;
+mbg-thumbs {
+  display: none !important;
 }
-.mibreit-gallery img {
+mbg-images img {
   position: relative !important;
   width: 100%;
   height: auto;
 }
-.mibreit-gallery figcaption {
+mbg-images figcaption {
   position: relative !important;
   opacity: 1;
 }

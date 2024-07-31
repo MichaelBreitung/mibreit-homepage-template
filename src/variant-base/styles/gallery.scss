@@ -1,26 +1,9 @@
-mbg-title,
-.mibreit-slideshow-title {
-  padding: 0rem;
-  padding-top: 0.5rem;
-  text-align: center;
-}
-
-mbg-images,
-.mibreit-gallery {
-  overflow: hidden;
-  position: relative;
-  left: 0;
-  margin: 0 auto;
-  width: 100%;
+mbg-gallery mbg-images {
   height: 37rem;
 }
 
-mbg-thumbs,
-.mibreit-thumbview {
-  margin-top: 0.5rem;
-  width: 100%;
+mbg-thumbs {
   max-width: 60rem;
   margin-left: auto;
   margin-right: auto;
-  height: 8rem;
 }

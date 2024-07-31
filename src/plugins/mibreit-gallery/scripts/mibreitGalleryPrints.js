@@ -1,4 +1,4 @@
-var mibreitGalleryPrints = function (imagePrints, gallery, index) {
+var mibreitGalleryPrints = function (imagePrints, viewer, index) {
   var printsDiv = document.querySelector(".mibreit-prints");
 
   var limitedDiv = document.querySelector(".mibreit-prints__options-limited");
@@ -43,13 +43,8 @@ var mibreitGalleryPrints = function (imagePrints, gallery, index) {
     }
   };
 
-  // init elements state
-  hideElement(woocommerceDiv);
-  hideElement(limitedDiv);
-  hideElement(customDiv);
-
-  var updatePrintInfo = function (id) {
-    var imageInfo = gallery.getImageInfo(gallery.getImageIndex());
+  var updatePrintInfo = function (index) {
+    var imageInfo = viewer.getImageInfo(index);
     var printInfo;
     if (imageInfo) {
       printInfo = imagePrints[imageInfo.getUrl()];
@@ -74,10 +69,14 @@ var mibreitGalleryPrints = function (imagePrints, gallery, index) {
       }
       showElement(printsDiv);
       transitionHeight(printsDiv);
+    } else {
+      hideElement(woocommerceDiv);
+      hideElement(limitedDiv);
+      hideElement(customDiv);
     }
   };
 
-  updatePrintInfo(index);
+  viewer.addImageChangedCallback(updatePrintInfo);
 
-  return updatePrintInfo;
+  updatePrintInfo(index);
 };

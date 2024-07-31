@@ -31,38 +31,40 @@ class MibreitGalleryImage
   {
     $tmp = $imageXml->filename;
     if (!empty($tmp)) {
-      $this->imageUrl = $relativePath . $path . (string) $tmp;
-      $this->mediumUrl = $relativePath . $mediumPath . (string) $tmp;
-      $this->thumbUrl = $relativePath . $thumbPath . (string) $tmp;
+      $tmp = strval($tmp);
+      $this->imageUrl = $relativePath . $path . $tmp;
+      $this->mediumUrl = $relativePath . $mediumPath . $tmp;
+      $this->thumbUrl = $relativePath . $thumbPath . $tmp;
 
       $tmp = $imageXml->caption;
       if (!empty($tmp)) {
-        $this->caption = (string) $tmp;
-        $this->altEn = (string) $tmp;
-        $this->altDe = (string) $tmp;
+        $tmp = strval($tmp);
+        $this->caption = $tmp;
+        $this->altEn = $tmp;
+        $this->altDe = $tmp;
       }
       $tmp = $imageXml->alt;
       if (!empty($tmp)) {
-        $this->altEn = (string) $tmp;
+        $this->altEn = strval($tmp);
       }
       $tmp = $imageXml->altDe;
       if (!empty($tmp)) {
-        $this->altDe = (string)  $tmp;
+        $this->altDe =  strval($tmp);
       }
       $prints = $imageXml->prints;
       if (!empty($prints)) {
         $this->prints = true;
         $tmp = $prints["woocommerce"];
         if (!empty($tmp)) {
-          $this->woocommerce = (string) $tmp;
+          $this->woocommerce = strval($tmp);
         }
         $tmp = $prints["limited"];
         if (!empty($tmp)) {
-          $this->limited = (bool) $tmp;
+          $this->limited = boolval($tmp);
         }
         $tmp = $prints["size"];
         if (!empty($tmp)) {
-          $this->size = (string) $tmp;
+          $this->size = strval($tmp);
         }
       }
       return true;
@@ -107,36 +109,36 @@ class MibreitGalleryInfo
   {
     $tmp = $infoXml->header_h1;
     if (!empty($tmp)) {
-      $this->header_h1 = (string) $tmp;
+      $this->header_h1 = strval($tmp);
     }
     $tmp = $infoXml->content_category;
     if (!empty($tmp)) {
-      $this->content_category = (string) $tmp;
+      $this->content_category = strval($tmp);
     }
     $tmp = $infoXml->content_title;
     if (!empty($tmp)) {
-      $this->content_title = (string) $tmp;
+      $this->content_title = strval($tmp);
     }
     $tmp = $infoXml->content;
     if (!empty($tmp)) {
-      $this->content = (string) $tmp;
+      $this->content = strval($tmp);
     }
     $tmp = $infoXml["keywords"];
     if (!empty($tmp)) {
-      $this->keywords = (string) $tmp;
+      $this->keywords = strval($tmp);
     }
     $tmp = $infoXml["description"];
     if (!empty($tmp)) {
-      $this->description = (string) $tmp;
+      $this->description = strval($tmp);
     }
     $tmp = $infoXml["title"];
     if (!empty($tmp)) {
-      $this->title = (string) $tmp;
+      $this->title = strval($tmp);
     }
   }
 }
 
-class MibreitGalleryDataParser
+class MibreitGalleryData
 {
   const IMAGE_PATH_TAG = "imagePath";
   const MEDIUM_PATH_TAG = "mediumPath";
@@ -177,15 +179,15 @@ class MibreitGalleryDataParser
       $images = $gallery->images;
       $imagePath = self::DEFAULT_IMAGE_PATH;
       if (!empty($gallery[self::IMAGE_PATH_TAG])) {
-        $imagePath = (string) $gallery[self::IMAGE_PATH_TAG];
+        $imagePath = strval($gallery[self::IMAGE_PATH_TAG]);
       }
       $mediumPath = self::DEFAULT_MEDIUM_PATH;
       if (!empty($gallery[self::MEDIUM_PATH_TAG])) {
-        $mediumPath = (string) $gallery[self::MEDIUM_PATH_TAG];
+        $mediumPath = strval($gallery[self::MEDIUM_PATH_TAG]);
       }
       $thumbPath = self::DEFAULT_THUMB_PATH;
       if (!empty($gallery[self::THUMB_PATH_TAG])) {
-        $thumbPath = (string) $gallery[self::THUMB_PATH_TAG];
+        $thumbPath = strval($gallery[self::THUMB_PATH_TAG]);
       }
 
       if (!empty($images)) {
@@ -252,4 +254,188 @@ class MibreitGalleryDataParser
   {
     return $this->infoDe;
   }
+}
+
+class MibreitGalleryPageData
+{
+  // const VALID_URL_REGEX = "/^([a-zA-Z0-9.\-\_:\/]*\/)([a-zA-Z0-9\-\_]*.php)?(\?lan=(de|en)&imageNr=[0-9]{1,3}|\?lan=(de|en)|\?imageNr=[0-9]{1,3}){0,1}$/";
+  const VALID_URL_REGEX = "/^([a-zA-Z0-9.\-\_:\/]*\/)([a-zA-Z0-9\-\_]*.php)?(\?[a-zA-Z0-9\-\_]*=[a-zA-Z0-9\-\_]*(\&[a-zA-Z0-9\-\_]*=[a-zA-Z0-9\-\_]*)*)?$/";
+
+  private $domainUrl;
+  private $relativeBaseUrl;
+  private $relativeUrl;
+  private $language;
+  private $initialImageNr;
+  private $initialImageUrl;
+  private $initialImageWidth;
+  private $initialImageHeight;
+
+  function __construct(string $domainUrl, array $images)
+  {
+    $requestUri = $_SERVER["REQUEST_URI"];
+    $isValid = preg_match(self::VALID_URL_REGEX, $requestUri, $matches);
+
+    if (!$isValid) {
+      header('Location: ' . $domainUrl . '/errors/error400.html');
+      exit();
+    } else {
+      $this->domainUrl = $domainUrl;
+      $this->relativeBaseUrl = substr($matches[1], 1);
+      $this->initializeLanguage();
+      $this->initializeInitialImage($images);
+      if ($this->language == "de") {
+        $this->relativeUrl = $this->relativeBaseUrl . "?lan=de";
+        if ($this->initialImageNr > 0) {
+          $this->relativeUrl = $this->relativeUrl . "&imageNr=" . $this->initialImageNr;
+        }
+      } else if ($this->initialImageNr > 0) {
+        $this->relativeUrl = $this->relativeBaseUrl . "?imageNr=" . $this->initialImageNr;
+      }
+    }
+  }
+
+  // returns the gallery url
+  public function getRelativeUrl($canonical)
+  {
+    if ($canonical) {
+      // exclude imageNr parameter if present, to get unique canonical
+      $imageNrPos = strpos($this->relativeUrl, "&imageNr");
+      if (!$imageNrPos) {
+        $imageNrPos = strpos($this->relativeUrl, "?imageNr");
+      }
+      if ($imageNrPos) {
+        return substr($this->relativeUrl, 0, $imageNrPos);
+      }
+    }
+    return $this->relativeUrl;
+  }
+
+  // returns the gallery url in encoded form 
+  public function getRelativeUrlEncoded($canonical)
+  {
+    return urlencode($this->getRelativeUrl($canonical));
+  }
+
+  // returns the gallery url relative to the domain without a starting / and without any options
+  public function getRelativeBaseUrl()
+  {
+    return $this->relativeBaseUrl;
+  }
+
+  // returns the abolute gallery url including the domain without any options
+  //
+  // Example:
+  //   full url   - https://www.my-site.com/gallery/some-location/index.php
+  //   return url - https://www.my-site.com/gallery/some-location/
+  public function getAbsoluteBaseUrl()
+  {
+    return $this->domainUrl . "/" . $this->getRelativeBaseUrl();
+  }
+
+  // returns the gallery url
+  public function getAbsoluteUrl($canonical)
+  {
+
+    return $this->domainUrl . "/" . $this->getRelativeUrl($canonical);
+  }
+
+  // returns the gallery url in encoded form 
+  public function getAbsoluteUrlEncoded($canonical)
+  {
+    return urlencode($this->getAbsoluteUrl($canonical));
+  }
+
+  public function getLanguage()
+  {
+    return $this->language;
+  }
+
+  public function getInitialImageNr()
+  {
+    return $this->initialImageNr;
+  }
+
+  public function getInitialImageInfo()
+  {
+    return array("url" => $this->initialImageUrl, "width" => $this->initialImageWidth, "height" => $this->initialImageHeight);
+  }
+
+  private function initializeLanguage()
+  {
+    $this->language = "en";
+    if (isset($_GET['lan']) && $_GET['lan'] == "de") {
+      $this->language = "de";
+    }
+  }
+
+  private function initializeInitialImage(array $images)
+  {
+    $numberOfImages = count($images);
+    $this->initialImageNr = 0;
+    $imageNr = 0;
+    if (isset($_GET['imageNr']) && ctype_digit($_GET['imageNr'])) {
+      $imageNr = (int) $_GET['imageNr'];
+    }
+    $this->initialImageUrl = "";
+    $this->initialImageWidth = 0;
+    $this->initialImageHeight = 0;
+    if ($numberOfImages) {
+      $this->initialImageNr = $imageNr >= 0 ? ($imageNr < $numberOfImages ? $imageNr : 0) : 0;
+      $this->initialImageUrl = $this->getAbsoluteBaseUrl() . $images[$this->initialImageNr]->imageUrl;
+      $this->initialImageWidth = getimagesize($this->initialImageUrl)[0];
+      $this->initialImageHeight = getimagesize($this->initialImageUrl)[1];
+    }
+  }
+}
+
+function getImageMarkup($image, $language, $includeNoScript, $srcset = NULL)
+{
+  if ($includeNoScript) {
+    echo "<noscript><img ";
+  } else {
+    echo "<img loading=\"lazy\" class=\"mbll__marker\" ";
+  }
+
+  echo "src=\"" . $image->imageUrl . "\" style=\"position: absolute;\" title=\"" . $image->caption . "\" ";
+
+  if (!$includeNoScript) {
+    echo "alt=\"";
+    if ($language == 'de') {
+      echo $image->altDe . "\" ";
+    } else {
+      echo $image->altEn . "\" ";
+    }
+  }
+
+  $size = getimagesize($image->imageUrl);
+  echo "width=\"" . $size[0] . "\" height=\"" . $size[1] . "\" ";
+
+  if ($srcset && $srcset["image"] && $srcset["medium"]) {
+    echo "srcset=\"" . $image->imageUrl . " " . $srcset["image"] . "w, " . $image->mediumUrl . " " . $srcset["medium"] . "w\" ";
+    echo "sizes=\"(max-width: " . $srcset["image"] . "px) 100vw, " . $srcset["image"] . "px\" ";
+  }
+
+  echo ">";
+  if ($includeNoScript) {
+    echo "</noscript>";
+  }
+}
+
+function getThumbMarkup($image)
+{
+  $size = getimagesize($image->thumbUrl);
+  echo "<img loading=\"lazy\" class=\"mbll__marker\" src=\"" . $image->thumbUrl . "\" style=\"position: absolute;\" title=\"" . $image->caption . "\" alt=\"Thumbnail\" width=\"" . $size[0] . "\" height=\"" . $size[1] . "\" >";
+}
+
+function getFigureMarkup($image, $language, $srcset)
+{
+  echo "<figure>";
+  getImageMarkup($image, $language, false, $srcset);
+  getImageMarkup($image, $language, true, NULL);
+  if ($language == 'de') {
+    echo "<figcaption><p>$image->altDe</p></figcaption>";
+  } else {
+    echo "<figcaption><p>$image->altEn</p></figcaption>";
+  }
+  echo "</figure>";
 }

@@ -1,19 +1,18 @@
-{% from "../../macros/mibreit-gallery.njk" import slideshow, prepare, randomImages, scriptSlideshow %}
+{% from "../../macros/mibreit-gallery.njk" import slideshow, prepare, scriptOnly %}
 {% from "../../schema/schema-gallery.njk" import imageGallery %}
 {% from "../../macros/get-base-page-url.njk" import getBasePageUrl %}
 {% block php_init %}  
   {{prepare(getBasePageUrl(domain_name, use_https))}}
-  {{randomImages(8)}}
 {% endblock %}
 {% extends "./content-layout.njk" %}
 {% block meta %}
   {{imageGallery(false)}}
 {% endblock %}
 {% block scripts %}
-  {{scriptSlideshow(".slideshow",false, false, true)}}
+  {{scriptOnly()}}
 {% endblock %}
 {% block slideshow %}
   <div class="slideshow-container">
-    {{slideshow("slideshow", false)}} 
+    {{slideshow(false, true, null, 8 )}} 
   </div>
 {% endblock %}

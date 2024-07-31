@@ -1,5 +1,4 @@
-.slideshow-container 
-{
+.slideshow-container {
   position: relative;
   width: 100%;
   margin-top: 0.5rem;
@@ -9,9 +8,7 @@
   max-width: 60rem;
 }
 
-.slideshow {
-  opacity: 0;
-  position: relative;
+mbg-slideshow mbg-images {
   width: 100%;
   padding-bottom: 66.66%;
   figcaption {

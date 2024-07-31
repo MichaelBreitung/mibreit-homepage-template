@@ -21,7 +21,6 @@
     font-size: 75%;
   }
 
-  
   input,
   textarea,
   button,
@@ -177,5 +176,9 @@
     .social-media__image {
       height: 2rem;
     }
+  }
+
+  mbg-gallery mbg-images {
+    height: 42rem;
   }
 }

@@ -1,7 +1,16 @@
+mbg-gallery,
+mbg-slideshow,
 mbg-images,
-.mibreit-gallery {
-  opacity: 0;
+mbg-thumbs,
+mbg-title {
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
 
+mbg-images {
+  opacity: 0;
+  width: 100%;
   .mbg__gallery__previous_btn > svg,
   .mbg__gallery__next_btn > svg,
   .mbg__gallery__fullscreen_btn > svg {
@@ -20,9 +29,10 @@ mbg-images,
   }
 }
 
-mbg-thumbs,
-.mibreit-thumbview {
+mbg-thumbs {
   opacity: 0;
+  width: 100%;
+  min-height: 6rem;
   .mbg__thumbs_scroller__previous_btn,
   .mbg__thumbs_scroller__next_btn {
     opacity: 0.5;
@@ -30,6 +40,10 @@ mbg-thumbs,
       fill: #4f5c64;
     }
   }
+}
+
+mbg-title {
+  text-align: center;
 }
 
 .mbg__fullscreen > .mbg__fullscreen__exit_btn {

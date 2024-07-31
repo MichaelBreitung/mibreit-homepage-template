@@ -38,7 +38,7 @@ function getAffiliateBanner($affiliateInput=NULL)
   {
     {%- endif %}
     $imageSize = getimagesize("{{banner.image}}");
-    $affiliateBanner = "<div class=\"aligncenterflex spacing-top-normal\"><a href=\"{{banner.url}}\"><img class=\"fluid\" src=\"{{banner.image}}\" alt=\"{{banner.description}}\" width=\"". $imageSize[0] ."\" height=\"". $imageSize[1] ."\" ></a></div>";
+    $affiliateBanner = "<div class=\"aligncenterflex spacing-top-normal\"><a href=\"{{banner.url}}\"><img loading=\"lazy\" class=\"fluid\" src=\"{{banner.image}}\" alt=\"{{banner.description}}\" width=\"". $imageSize[0] ."\" height=\"". $imageSize[1] ."\" ></a></div>";
   }
   {%- endfor %}
 {%- endif %}

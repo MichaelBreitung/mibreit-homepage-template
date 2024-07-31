@@ -4,205 +4,110 @@
 # which must be loaced in the same folder as the page that uses these macros.
 #
 # @attention All macros below only work in php layouts
-#
-# Example for gallery.xml
-
-  <?xml version="1.0" encoding="UTF-8"?>
-  <MibreitGallery imagePath="path to large images" thumbPath="path to thumbnails">
-  <infoEn keywords="landscape photos" description="great landscape photos">
-    <header_h1>Some header for the gallery pages</header_h1>
-    <content_title>Some title for the gallery pages</content_title>
-  </infoEn>
-  <infoDe .... same as for en, just german </infoDe>
-  <images>
-    <image>
-    <filename>some-image.jpg</filename>
-    <caption>title</caption>
-    <alt>alt description</alt>
-    <altDe>german alt description</altDe>
-    </image>
-  </images>
-  </MibreitGallery>
-
 #}
 
-{# prepares has to be called before any of the other macros #}
+{# Must be called before any of the other macros, usually at top of page #}
 {% macro prepare(baseUrl) %}
-<?php
-    $language = "en";
-    if (isset($_GET['lan'])) 
-    {
-      $language = $_GET['lan'];
-      if (strlen($language) > 2)
-      {
-        header('Location: {{baseUrl}}/errors/error400.html');
-        exit();
-      }
-    }
-    $imageNr = 0;
-    if (isset($_GET['imageNr'])) 
-    {
-      $imageNr = $_GET['imageNr'];
-      if (strlen($imageNr) > 2)
-      {
-        header('Location: {{baseUrl}}/errors/error400.html');
-        exit();
-      }
-    }
-
-    require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery.php';
-    require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery-helpers.php';
-    $mibreitGallery = new MibreitGalleryDataParser('gallery.xml');
-    $mibreitGalleryPageData = new MibreitGalleryPageData(); 
-    $page_image = "";
-    $page_image_width = 0;  
-    $page_image_height = 0;
-    if ($mibreitGallery->getNumberImages())
-    {
-      $page_image = $mibreitGalleryPageData->getAbsoluteBaseUrl() . $mibreitGallery->getImage($imageNr)->imageUrl;
-      $page_image_width = getimagesize($page_image)[0];
-      $page_image_height = getimagesize($page_image)[1];
-    }
-  ?>
-{% endmacro %}
-
-{#
-# Create an array of images from the image set in random order.
-# The array is then called $randomImages.
-#}
-{% macro randomImages(number) %}
   <?php
-    $randomImages = $mibreitGallery->getRandomImages(8);
+    require $_SERVER['DOCUMENT_ROOT'] . '/scripts/mibreit-gallery/mibreit-gallery.php';
+    $mibreitGallery = new MibreitGalleryData('gallery.xml');
+    $mibreitGalleryPageData = new MibreitGalleryPageData("{{baseUrl}}", $mibreitGallery->getImages()); 
+    $language = $mibreitGalleryPageData->getLanguage();
+    $initialImageInfo = $mibreitGalleryPageData->getInitialImageInfo();
+    $page_image = $initialImageInfo["url"];
+    $page_image_width = $initialImageInfo["width"];
+    $page_image_height = $initialImageInfo["height"];
   ?>
 {% endmacro %}
 
 {#
-# inserts slideshow container with php markup
-# @param container - class name for container
-# @param de - if given, german version is generated (optional)
-# @param srcset - an array of two values giving the size of an image used on desktop, and an image used on mobile (optional)
+# Inserts Slideshow into markup
+#
+# @param de - (optional) If given, german version is generated 
+# @param zoom - (optional) set to true to enable zoom effect
+# @param srcset - (optional) an array of two values giving the size of an image used on desktop, and an image used on mobile 
+# @param nrRandomImages - (optional) number of images used for slideshow - smaller than total number of images
+#
+# @attention - requires call to prepare() beforehand
+#}
+{% macro slideshow(de, zoom, srcset, nrRandomImages) %}
+  <mbg-slideshow loaderWindowLeft="0" loaderWindowRight="1" expand {% if zoom %}zoom{% endif %} >
+    <mbg-images>
+    <?php
+      {% if srcset %}
+      $srcset = array("image" => {{srcset[0]}}, "medium" => {{srcset[1]}});
+      {% else %}
+      $srcset = NULL;
+      {% endif %}
+
+      {% if nrRandomImages %}
+      $images = $mibreitGallery->getRandomImages({{nrRandomImages}});
+      {% else %}
+      $images = $mibreitGallery->getImages();
+      {% endif %}
+
+      $nrImages = count($images);
+      for ($i = 0; $i < $nrImages; $i++)
+      {
+        $image = $images[$i];     
+        getFigureMarkup($image, {% if de %}"de"{% else %}"en"{%endif%}, $srcset );
+        echo "\n";
+      }
+    ?>
+    </mbg-images>
+  </mbg-slideshow>
+{% endmacro %}
+
+{#
+# Inserts Gallery into markup
+#
+# @param de - (optional) If given, german version is generated 
+# @param srcset - (optional) an array of two values giving the size of an image used on desktop, and an image used on mobile
 #
 # @attention requires call to prepare() beforehand
 #}
-{% macro slideshow(container, de, srcset) %}
-  <div class="{{container}}">
-  <?php
-    $images = [];
-    if (isset($randomImages))
-    {
-      $images = $randomImages;
-    }
-    else
-    {
-      $images =  $mibreitGallery->getImages(); 
-    }
+{% macro gallery(de, srcset) %}
+  <?php echo "<mbg-gallery loaderWindowRight=\"5\" loaderWindowLeft=\"0\" numberOfVisibleThumbs=\"6\" initialImageNr=\"" . $mibreitGalleryPageData->getInitialImageNr() . "\" >\n"; ?>
+    <mbg-images>
+    <?php
+    {% if srcset %}
+    $srcset = array("image" => {{srcset[0]}}, "medium" => {{srcset[1]}});
+    {% else %}
+    $srcset = NULL;
+    {% endif %}
+    $images = $mibreitGallery->getImages();
     $nrImages = count($images);
     for ($i = 0; $i < $nrImages; $i++)
     {
-      $image = $images[$i];     
-      {{_figure("image", de, srcset)}}
+      $image = $images[$i];
+      getFigureMarkup($image, {% if de %}"de"{% else %}"en"{%endif%}, $srcset ); 
+      echo "\n";
     }
-  ?>
-  </div>
-{% endmacro %}
-
-{#
-# inserts gallery container with php markup
-#
-# @param container - class name for container
-# @param de - if given, german version is generated (optional)
-# @param srcset - an array of two values giving the size of an image used on desktop, and an image used on mobile (optional)
-#
-# @attention requires call to prepare() beforehand
-#}
-{% macro gallery(container, de, srcset) %}
-  <div class="{{container}}">
+    ?>
+    </mbg-images>
+    <mbg-thumbs>
     <?php
-    $nrImages = $mibreitGallery->getNumberImages();
     for ($i = 0; $i < $nrImages; $i++)
     {
-      $image = $mibreitGallery->getImage($i);
-      {{_figure("image", de, srcset)}}
+      $image = $images[$i];
+      getThumbMarkup($image);   
+      echo "\n";
     }
-  ?>
-  </div>
-{% endmacro %}
-
-{# private macro that should only be used internally within a php tag to create the figure markup #}
-{% macro _figure(item, de, srcset) %}
-  $size = getimagesize(${{item}}->imageUrl); 
-  echo "<figure>";
-  {{_image(item, de, false, srcset)}}
-  {{_image(item, de, true)}}
-  {% if de %}
-    echo "<figcaption><p>${{item}}->altDe</p></figcaption>";
-  {% else %}
-    echo "<figcaption><p>${{item}}->altEn</p></figcaption>";
-  {% endif %}
-  echo "</figure>\n";
-{% endmacro %}
-
-
-{# srcset="Essaouira.jpg 1280w, Essaouira-720x405.jpg 720w" sizes="(max-width: 1280px) 100vw, 1280px"#}
-{# private macro that should only be used internally within a php tag to create the image markup #}
-{% macro _image(item, de, no_script, srcset) %}
-  {% if no_script %}
-    echo "<noscript><img src=\"" . ${{item}}->imageUrl . "\" style=\"position: absolute;\" ";
-  {% else %}
-    echo "<img loading=\"lazy\" class=\"mibreit-LazyLoader_lazy\" style=\"position: absolute;\" ";
-    echo "src=\"" . ${{item}}->imageUrl . "\" ";
-  {% endif %}
-  echo "title=\"" . ${{item}}->caption . "\" ";
-  {% if not no_script %}
-    echo "alt=\"" . {% if de %}${{item}}->altDe{% else %}${{item}}->altEn{% endif %} . "\" ";
-  {% endif %}
-  echo "width=\"" . $size[0] ."\" ";
-  {% if srcset | length %}
-    echo "height=\"" . $size[1] ."\" srcset=\"" . ${{item}}->imageUrl . " " . {{srcset[0]}} . "w, " . ${{item}}->mediumUrl . " " . {{srcset[1]}} . "w\" ";
-    echo "sizes=\"(max-width: " . {{srcset[0]}} . "px) 100vw, " . {{srcset[0]}} . "px\" >";
-  {% else %}
-    echo "height=\"" . $size[1] . "\" >";
-  {% endif %}
-  {% if no_script %}
-    echo "</noscript>";
-  {% endif %}
+    ?>
+    </mbg-thumbs>
+    {% if de %}
+    <h2><mbg-title><?php echo $mibreitGallery->getInfoDe()->header_h1; ?></mbg-title></h2>
+    {% else %}
+    <h2><mbg-title><?php echo $mibreitGallery->getInfoEn()->header_h1; ?></mbg-title></h2>
+    {% endif %}
+  </mbg-gallery>
 {% endmacro %}
 
 {#
-# inserts thumbview container with php markup
-# @param container - class name for container
-# @attention requires call to prepare() beforehand
-#}
-{% macro thumbview(container) %}
-  <div class="{{container}}">
-  <?php
-    foreach ($mibreitGallery->getImages() as $image)
-    {
-      $size = getimagesize($image->thumbUrl);   
-      echo "<img loading=\"lazy\" class=\"mibreit-LazyLoader_lazy\" style=\"position: absolute;\" src=\"" . $image->thumbUrl . "\" ";
-      echo "width=\"". $size[0] ."\" height=\"". $size[1] . "\" alt=\"thumbnail\" >\n";      
-    }
-  ?>
-  </div>
-{% endmacro %}
-
-{#
-# inserts title container with php markup
-# @param class_name - class that is applied to title
-# @param de - if given, german version is generated (optional)
-# @attention requires call to prepare() beforehand
-#}
-{% macro imageTitle(class_name, de) %}
-  {% if de %}
-    <h2 class="{{class_name}}"><?php echo $mibreitGallery->getInfoDe()->header_h1; ?></h2>
-  {% else %}
-    <h2 class="{{class_name}}"><?php echo $mibreitGallery->getInfoEn()->header_h1; ?></h2>
-  {% endif %}
-{% endmacro %}
-
-{#
-# inserts gallery info
-# @param de - if given, german version is generated (optional)
+# Inserts gallery info
+#
+# @param de - (optional) If given, german version is generated 
+#
 # @attention requires call to prepare() beforehand
 #}
 {% macro galleryInfo(de) %}
@@ -227,72 +132,20 @@
 {% endmacro %}
 
 {#
-# inserts script for slideshow
-# @param container - class or id name for container of slideshow -> starting with a . or #
-# @param omit_script_include - it is possible to place multiple slideshows on one page. If you do so, you only need the slideshow include once. Use this flag whenever you want to omit the inclusion of the script. Typically you will just include it in your first call to this macro
-# @param stretch - if true scale mode STRETCH will be applied to images, if false FITASPECT
-# @param zoom - if provided and set to value != 100, zoom animation will be applied
-#}
-{% macro scriptSlideshow(container, omit_script_include, stretch, zoom) %}
-  {% if not omit_script_include %}
-    <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
-  {% endif %}
-  <script>
-    window.addEventListener('load',function () {
-      mibreitSlideshowSetup("{{container}}", {% if stretch %}mibreitGalleryTs.EImageScaleMode.EXPAND{% else %}mibreitGalleryTs.EImageScaleMode.FIT_ASPECT{% endif %}, {% if zoom %}true{% else %}false{% endif %});
-    });
-  </script>
-{% endmacro %}
-
-{#
-# inserts script for simple gallery without title and thumbs
-# @param container - class or id name for container of slideshow -> starting with a . or #
-# @param gallery_var_name - the global javascript variable name used for the gallery
-#}
-{% macro scriptSimpleGallery(container, history=true) %}
-  <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
-  <script>
-    window.addEventListener('load',function () {
-      mibreitGallerySetupSimple('{{container}}', {% if history %}true{% else %}false{% endif %});
-    });
-  </script>
-{% endmacro %}
-
-{#
 # inserts script for gallery
-# @param container - class or id name for container of slideshow -> starting with a . or #
-# @param thumb_container - class or id name for thumbview container of slideshow -> starting with a . or #
-# @param title_class_name - class name for title -> starting with a .
-# @param gallery_var_name - the global javascript variable name used for the gallery
 #}
-{% macro scriptGallery(container, thumb_container, title_class_name, with_prints) %}
+{% macro scriptGallery(with_prints) %}
   <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
-<?php
+  <?php
   echo "<script>";
   echo "window.addEventListener('load',function () {\n"; 
-  {% if title_class_name %}
-  echo "var viewer = mibreitGallerySetup(\"{{container}}\", \"{{thumb_container}}\", \"{{title_class_name}}\").getImageViewer();\n";
-  {% else %}
-  echo "var viewer = mibreitGallerySetup(\"{{container}}\", \"{{thumb_container}}\").getImageViewer();\n";
-  {% endif %}
+  echo "mibreitGallerySetup(window.mbgGalleryObjects[0], \"mbg-images\", \"mbg-thumbs\");\n";
   {% if with_prints %}
-  echo "viewer.addImageChangedCallback(mibreitGalleryPrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", viewer, " . $imageNr . "))\n";
+  echo "mibreitGalleryPrints(" . json_encode($mibreitGallery->getPrintInfos()) . ", window.mbgGalleryObjects[0].getImageViewer(), " . $mibreitGalleryPageData->getInitialImageNr() . ");\n";
   {% endif %}
   echo "});\n";
   echo "</script>";
-?>
-{% endmacro %}
-
-{#
-# inserts script for woocommerce gallery 
-#}
-{% macro scriptGalleryWoo(container, thumb_container) %}
-  <script src="/scripts/mibreit-gallery/mibreit-gallery.min.js"></script>
-  <script>
-    window.addEventListener('load',function () {
-      mibreitGallerySetupWoo('{{container}}', '{{thumb_container}}');
-    });
-  </script>
+  ?>
 {% endmacro %}
 
 {#
