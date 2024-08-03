@@ -288,8 +288,11 @@ class MibreitGalleryPageData
         if ($this->initialImageNr > 0) {
           $this->relativeUrl = $this->relativeUrl . "&imageNr=" . $this->initialImageNr;
         }
-      } else if ($this->initialImageNr > 0) {
-        $this->relativeUrl = $this->relativeBaseUrl . "?imageNr=" . $this->initialImageNr;
+      } else {
+        $this->relativeUrl = $this->relativeBaseUrl;
+        if ($this->initialImageNr > 0) {
+          $this->relativeUrl = $this->relativeUrl . "?imageNr=" . $this->initialImageNr;
+        }
       }
     }
   }
