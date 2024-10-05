@@ -1,20 +1,37 @@
 const gulp = require("gulp");
+const nunjucksRender = require("gulp-nunjucks-render");
+const data = require("gulp-data");
+
 const through2 = require("through2");
 const concat = require("gulp-concat");
 const minifyJs = require("./minifyJs");
 const loadPluginConfigFromPath = require("./pluginConfigLoader");
 const { baseFolder, outputFolder } = require("./constants");
+const page_data = require("../src/page-data.json");
 
 const createGulpJavascript = function (plugins) {
   const concatenateBaseJs = function () {
     return gulp
       .src([
+        `${baseFolder}/scripts/base/google/tagManager.js`,
         `${baseFolder}/scripts/base/mibreit-cookie-consent/mibreitCookieConsent.min.js`,
         `${baseFolder}/scripts/base/mibreit-cookie-consent/mibreitCookie.js`,
         `${baseFolder}/scripts/base/hamburger-navbar/*.js`,
         `${baseFolder}/scripts/base/mibreit-search/*.js`,
         `${baseFolder}/scripts/mibreit-lazy-loader/scripts/*.js`,
       ])
+      .pipe(data(page_data))
+      .pipe(
+        nunjucksRender({
+          ext: ".js",
+          envOptions: {
+            autoescape: false,
+            trimBlocks: true,
+            lstripBlocks: true,
+            throwOnUndefined: true,
+          },
+        })
+      )
       .pipe(through2.obj(minifyJs))
       .pipe(concat("base.js"))
       .pipe(gulp.dest(`${outputFolder}/scripts`));
