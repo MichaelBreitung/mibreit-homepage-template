@@ -1,0 +1,33 @@
+{#
+# inserts html for mailing list form
+# @param privacy_form_url - url of privacy form
+#}
+{% macro mibreitMailingList(privacy_form_url, show_unsubscribe = true) %}
+  <form id="mailing-list" class="mibreit-mailing-list" name="mibreit-mailing-list" method="post" autocomplete="off">
+    <table>
+      <tr>
+        <td class="mibreit-mailing-list__left">
+          <label for="email">Your email:</label>
+        </td>
+        <td class="mibreit-mailing-list__right">
+          <input id="email" name="email" type="text" class="fluid" spellcheck="false">
+        </td>
+      </tr>
+      <tr>
+        <td class="mibreit-mailing-list__left">
+          <input type="checkbox" id="privacy" name="privacy" class="mibreit-mailing-list__checkbox">
+        </td>
+        <td class="mibreit-mailing-list__right">
+          <label for="privacy">By using this form, you agree to the storage and processing of your data. More information can be found in the
+            <a href="{{privacy_form_url}}">privacy policy</a>.</label>
+        </td>
+      </tr>
+      <tr>
+        <td class="mibreit-mailing-list__left">&nbsp;</td>
+        <td class="mibreit-mailing-list__right"><input type="submit" name="submit" value="send" class="mibreit-mailing-list__button"></td>
+      </tr>
+    </table>
+  </form>
+  <p id="form-reply" class="mibreit-maling-list__result"></p>
+
+{% endmacro %}

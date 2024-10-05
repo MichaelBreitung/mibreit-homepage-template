@@ -1,6 +1,6 @@
 {
   "use_https": true,
-  "domain_name": "your-domain",  
+  "domain_name": "your-domain",
   "page_author": "Your Name",
   "page_author_twitter": "YourTwitterAccountName",
   "page_author_details": {
@@ -32,6 +32,7 @@
   "google_analytics": "",
   "google_search": "",
   "paypal_donate": "",
+  "mailer_lite": "",
   "amazon_affiliate": {
     "us": "",
     "uk": "",
@@ -108,8 +109,8 @@
       { "name": "Contact", "url": "Full Path To Contact" }
     ]
   },
-  "page_about": {  
-    "de": "/german/about.html",   
+  "page_about": {
+    "de": "/german/about.html",
     "en": "/about.html"
   },
   "page_cookie_consent": {
@@ -120,14 +121,12 @@
       "privacy_url": "/privacy-policy.html"
     }
   },
-  "blog":
-  {
+  "blog": {
     "rrs": "",
     "feedspot": ""
   },
   "page_affiliates": {
-    "banners":
-    [
+    "banners": [
       {
         "name": "affiliate1",
         "url": "affiliate-url",
@@ -139,8 +138,8 @@
         "url": "affiliate-url",
         "image": "affiliate-banner-url",
         "description": "affiliate description"
-      }     
+      }
     ],
-    "random": ["affiliate1", "affiliate2"]    
+    "random": ["affiliate1", "affiliate2"]
   }
 }

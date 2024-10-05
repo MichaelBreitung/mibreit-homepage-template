@@ -1,0 +1,51 @@
+.mibreit-mailing-list {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+
+  table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .mibreit-mailing-list__button {
+    padding: 0.25rem;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  input.mibreit-mailing-list__checkbox {
+    padding: 0.25rem;
+    width: 20px;
+  }
+
+  textarea {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 14rem;
+  }
+
+  td {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  td.mibreit-mailing-list__left {
+    text-align: left;
+    width: 12.5rem;
+    min-width: 12.5rem;
+  }
+
+  input.error {
+    background-color: #e45e4d;
+  }
+  span.error {
+    color: #e45e4d;
+  }
+}
+
+.mibreit-mailing-list__result {
+  font-weight: bold;
+}
