@@ -10,9 +10,40 @@
   // remove p tags from around images
   function filter_ptags_on_images($content)
   {
-      return preg_replace('/<p>(\s*)(<img .*\s*\/>)(\s*)<\/p>/iU', '\2', $content);
+    $content = preg_replace('/<p>(\s*)(<img .*\s*\/>)(\s*)<\/p>/iU', '\2', $content);
+    return $content;
   }
   add_filter('the_content', 'filter_ptags_on_images');
+
+  // use relative urls in image tags
+  function filter_relative_img_src($content){         
+    $site_url = get_site_url();
+    $parsed_url = parse_url($site_url);
+    $sub_path = isset($parsed_url['path']) ? $parsed_url['path'] : '';
+
+    $pattern = '/(' . preg_quote($site_url, '/') . ')(\/wp-content\/uploads\/[^"\'\s]+)/i';
+
+    $content = preg_replace($pattern, $sub_path . '$2', $content);
+
+    return $content;
+  }
+  add_filter('the_content', 'filter_relative_img_src');
+
+  function filter_relative_img_srcset($sources)
+  {
+    $site_url = get_site_url();
+    $parsed_url = parse_url($site_url);
+    $sub_path = isset($parsed_url['path']) ? $parsed_url['path'] : '';
+
+    $pattern = '/(' . preg_quote($site_url, '/') . ')(\/wp-content\/uploads\/[^"\'\s]+)/i';
+
+    foreach ($sources as $key => $source) {
+        $sources[$key]['url'] = preg_replace($pattern, $sub_path . '$2', $source['url']);
+    }
+
+    return $sources;
+  }
+  add_filter('wp_calculate_image_srcset', 'filter_relative_img_srcset');
 
   // make images fluid
   function filter_fluid_images ($class){
@@ -20,13 +51,6 @@
       return $class;
   }
   add_filter('get_image_tag_class','filter_fluid_images');
-
-  // make centered images fluid
-  function filter_fluid_centered_images($content){        
-      $add_class = str_replace("aligncenter", "aligncenter fluid", $content); 
-      return $add_class;
-  }
-  add_filter('the_content', 'filter_fluid_centered_images');
 
   // apply small size to image-desc
   function filter_small_image_description($content){        
