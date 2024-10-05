@@ -385,8 +385,8 @@ class MibreitGalleryPageData
     if ($numberOfImages) {
       $this->initialImageNr = $imageNr >= 0 ? ($imageNr < $numberOfImages ? $imageNr : 0) : 0;
       $this->initialImageUrl = $this->getAbsoluteBaseUrl() . $images[$this->initialImageNr]->imageUrl;
-      $this->initialImageWidth = getimagesize($this->initialImageUrl)[0];
-      $this->initialImageHeight = getimagesize($this->initialImageUrl)[1];
+      $this->initialImageWidth = getimagesize($images[$this->initialImageNr]->imageUrl)[0];
+      $this->initialImageHeight = getimagesize($images[$this->initialImageNr]->imageUrl)[1];
     }
   }
 }
