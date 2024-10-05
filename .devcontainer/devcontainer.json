@@ -53,9 +53,6 @@
                 "[html]": {
                   "editor.defaultFormatter": "vscode.html-language-features"
                 },
-                "[njk]": {
-                  "editor.defaultFormatter": "douglaszaltron.nunjucks-vscode-extensionpack"
-                },
                 "[nunjucks]": {
                   "editor.formatOnSave": false,
                   "editor.defaultFormatter": "okitavera.vscode-nunjucks-formatter"

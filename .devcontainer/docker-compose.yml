@@ -17,10 +17,32 @@ services:
     environment:
       - USER=developer
       - UID
-  mibreit-web-test:
-    image: php:apache
+  mibreit-web-dev-test:
+    image: webdevops/php-apache:8.2-alpine
     volumes:
-      - ../dist:/var/www/html
+      - ../dist:/app
     ports:
       - "80:80"
-  
+  mibreit-web-dev-db-blog:
+    image: mariadb:latest
+    volumes:
+      - ../_data/db-blog:/var/lib/mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: test
+      MYSQL_USER: test 
+      MYSQL_PASSWORD: password
+  mibreit-web-dev-phpmyadmin-blog:
+    depends_on:
+      - mibreit-web-dev-db-blog
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "8090:80"
+    environment:
+      PMA_HOST: mibreit-web-dev-db-blog
+      MYSQL_ROOT_PASSWORD: password
+      UPLOAD_LIMIT: 100M
