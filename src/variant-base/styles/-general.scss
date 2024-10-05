@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 
 * {
   padding: 0;
@@ -12,7 +12,7 @@ html {
 
 body {
   position: relative;
-  font: 1rem Helvetica, Verdana, 'Open Sans', Georgia;
+  font: 1rem Helvetica, Verdana, "Open Sans", Georgia;
   line-height: 1.6;
   color: $base-color;
   background-color: $background-color;
@@ -32,6 +32,10 @@ body {
 a {
   color: $link-color;
   text-decoration: none;
+  -webkit-transition: color $link-transition-time;
+  -moz-transition: color $link-transition-time;
+  -o-transition: color $link-transition-time;
+  transition: color $link-transition-time;
 }
 
 a:visited {
@@ -65,7 +69,8 @@ h2 {
   font-size: 2rem;
   font-weight: bold;
 }
-h2:first-child, h2:first-of-type {
+h2:first-child,
+h2:first-of-type {
   padding-top: 1rem;
 }
 
@@ -128,7 +133,8 @@ li {
 }
 
 table {
-  td, th {
+  td,
+  th {
     font-size: 1.5rem;
   }
 }
@@ -144,7 +150,8 @@ form {
   font-size: 1.5rem;
 }
 
-input, textarea {
+input,
+textarea {
   font-size: 1.4rem;
   padding: 0.25rem;
   box-sizing: border-box;
@@ -158,7 +165,7 @@ form input {
 
 form {
   input:-webkit-autofill,
-  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   textarea:-webkit-autofill,
   textarea:-webkit-autofill:hover,
@@ -198,7 +205,7 @@ form textarea:focus {
   outline: none;
 }
 
-form input[type='checkbox'] {
+form input[type="checkbox"] {
   height: 1.2rem;
   width: 1.2rem;
 }
@@ -208,7 +215,8 @@ select {
   box-sizing: border-box;
 }
 
-button, a.button {
+button,
+a.button {
   -webkit-appearance: button;
   -moz-appearance: button;
   appearance: button;
@@ -219,7 +227,8 @@ button, a.button {
   padding: 0.25rem;
 }
 
-button:focus, a.button:focus {
+button:focus,
+a.button:focus {
   background-color: $form-background-focus;
 }
 

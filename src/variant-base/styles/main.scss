@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 
 .content {
   position: relative;
@@ -23,6 +23,10 @@
       -webkit-box-shadow: $hover-shadow;
       -moz-box-shadow: $hover-shadow;
       box-shadow: $hover-shadow;
+      -webkit-transition: box-shadow $link-transition-time;
+      -moz-transition: box-shadow $link-transition-time;
+      -o-transition: box-shadow $link-transition-time;
+      transition: box-shadow $link-transition-time;
     }
     .width-small img {
       max-width: 100%;
@@ -36,10 +40,11 @@
     h2 {
       padding-top: 0;
     }
-  } 
+  }
 }
 
-.content > img, .content > a > img {
+.content > img,
+.content > a > img {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
@@ -48,4 +53,3 @@
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
-

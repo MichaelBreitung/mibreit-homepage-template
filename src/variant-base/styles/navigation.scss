@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 
 .navigation__container {
   position: sticky;
@@ -34,6 +34,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    -webkit-transition: color $navigation-link-transition-time, background $navigation-link-transition-time;
+    -moz-transition: color $navigation-link-transition-time, background $navigation-link-transition-time;
+    -o-transition: color $navigation-link-transition-time, background $navigation-link-transition-time;
+    transition: color $navigation-link-transition-time, background $navigation-link-transition-time;
   }
 
   .navigation__item--active {
@@ -62,6 +66,7 @@
 
   .navigation__icon-item img {
     height: auto;
+    width: 1.5rem;
     margin: auto;
     vertical-align: middle;
   }
@@ -85,7 +90,7 @@
 
   .menu-btn__burger::before,
   .menu-btn__burger::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 2rem;
     height: 0.3rem;
